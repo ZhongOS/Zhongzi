@@ -1,0 +1,3 @@
+if [ -f ${SYSROOT_DIR}/usr/sbin/ldconfig ]; then
+	qemu-${ARCH_NAME} ${SYSROOT_DIR}/usr/sbin/ldconfig -r ${SYSROOT_DIR}/
+fi

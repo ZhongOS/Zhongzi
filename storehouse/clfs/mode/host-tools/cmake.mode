@@ -1,0 +1,10 @@
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+    mkdir -p native-build
+    pushd native-build
+	CC="gcc" CXX="g++" \
+        cmake -DCMAKE_INSTALL_PREFIX=<<<CROSS_TOOLS_PREFIX>>> <<<EXTRA_PARM>>> \
+              -DCMAKE_BUILD_TYPE=Release ..
+	<<<MAKE_AND_INSTALL>>>
+    popd
+<<<CLEAR_DIR>>>

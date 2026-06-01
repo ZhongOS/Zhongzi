@@ -1,0 +1,2 @@
+PACKAGE=libdmtx
+BUILD_MODE=gnu

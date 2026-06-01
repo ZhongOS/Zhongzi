@@ -1,0 +1,2 @@
+PACKAGE=minizip-ng
+BUILD_MODE=cmake

@@ -1,0 +1,11 @@
+<<<TAR_UNCOMPRESS>>>
+    sed -i -e "/dep_wl_scanner =/s@, native: true@@g"\
+           -e "/prog_wl_scanner =/s@find_program\(.*\)\$@find_program('wayland-scanner')@g" \
+           meson.build
+    mkdir cross-build
+    pushd cross-build
+        meson ${MESON_CONFIG} ..
+        <<<NINJA_AND_INSTALL>>>
+    popd
+<<<CLEAR_DIR>>>
+

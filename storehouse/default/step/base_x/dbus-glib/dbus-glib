@@ -1,0 +1,2 @@
+PACKAGE=dbus-glib
+BUILD_MODE=custom

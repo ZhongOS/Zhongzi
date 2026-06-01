@@ -1,0 +1,2 @@
+PACKAGE=gzip
+BUILD_MODE=gnu

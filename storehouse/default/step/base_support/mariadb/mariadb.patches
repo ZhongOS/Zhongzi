@@ -1,0 +1,8 @@
+p1	0001-mariadb-fix-for-gcc13.patch
+
+[[[12.0.0]]]
+p1	0001-mariadb-fix-for-gcc13.patch
+p1	0001-Fix-build-error-for-libxml2-2.14.patch
+
+[[[11.8.1]]]
+p1	0001-mariadb-fix-for-gcc13.patch

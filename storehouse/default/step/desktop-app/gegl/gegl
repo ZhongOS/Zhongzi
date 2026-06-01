@@ -1,0 +1,2 @@
+PACKAGE=gegl
+BUILD_MODE=custom

@@ -1,0 +1,8 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+	FORCE_UNSAFE_CONFIGURE=1 \
+	./configure --prefix=/usr  --build=${CROSS_HOST} --host=${LINUX_HOST} \
+				--enable-no-install-program=kill,uptime gl_cv_crc_pclmul=no --without-libgmp-prefix
+	<<<MAKE_AND_INSTALL>>>
+	mv -v ${LINUX_SYSROOT_DIR}/usr/bin/chroot ${LINUX_SYSROOT_DIR}/usr/sbin
+<<<CLEAR_DIR>>>

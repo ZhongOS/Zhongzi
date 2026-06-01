@@ -1,0 +1,2 @@
+PACKAGE=KDE6-threadweaver
+BUILD_MODE=cmake

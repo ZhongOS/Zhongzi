@@ -1,0 +1,49 @@
+<<<TAR_UNCOMPRESS>>>
+pushd runtimes
+    mkdir -p native-build
+    pushd native-build
+	export PATH=${PREFIX}/llvm-project/bin:${PATH}
+# 	LDFLAGS="-Wl,-rpath-link=${CROSSTOOLS_DIR}/lib:${CROSSTOOLS_DIR}/lib64:${HOST_TOOLS_DIR}/lib64 -Wl,-rpath=${CROSSTOOLS_DIR}/lib:${CROSSTOOLS_DIR}/lib64:${HOST_TOOLS_DIR}/lib64" \
+	PKG_CONFIG_SYSROOT_DIR="" \
+        cmake .. -G Ninja -DCMAKE_INSTALL_PREFIX:PATH=${PREFIX}/llvm-project \
+                 -DCMAKE_CXX_COMPILER="g++" -DCMAKE_C_COMPILER="gcc" \
+		 -DLLVM_CMAKE_DIR=${SYSDIR}/cross-toolchains/llvm-project/lib64/cmake \
+		 -DLLVM_CONFIG=${SYSDIR}/cross-toolchains/llvm-project/bin/llvm-config \
+                 -DBUILD_SHARED_LIBS:BOOL=OFF \
+                 -DCMAKE_BUILD_TYPE=Release \
+                 -DCMAKE_INSTALL_RPATH="${PREFIX}/llvm-project/lib64;${CROSSTOOLS_DIR}/build-tools/lib64;\\\${ORIGIN}/../lib64" \
+                 -DCMAKE_C_FLAGS="-DNDEBUG" -DCMAKE_CXX_FLAGS="-DNDEBUG" \
+                 -DLLVM_LIBDIR_SUFFIX=64  \
+		 -DLLVM_INCLUDE_TESTS=OFF \
+		 -DLLVM_ENABLE_RUNTIMES="libcxx;libcxxabi;libunwind;compiler-rt" -DLLVM_RUNTIME_TARGETS=loongarch64-unknown-linux-gnu,x86_64-unknown-linux-gnu \
+                 -DLLVM_INSTALL_TOOLCHAIN_ONLY:BOOL=OFF
+        ninja
+        ninja install
+popd
+<<<CLEAR_DIR>>>
+
+
+[[[20.1.8]]]
+<<<TAR_UNCOMPRESS>>>
+pushd runtimes
+    mkdir -p native-build
+    pushd native-build
+	export PATH=${PREFIX}/llvm-project/bin:${PATH}
+# 	LDFLAGS="-Wl,-rpath-link=${CROSSTOOLS_DIR}/lib:${CROSSTOOLS_DIR}/lib64:${HOST_TOOLS_DIR}/lib64 -Wl,-rpath=${CROSSTOOLS_DIR}/lib:${CROSSTOOLS_DIR}/lib64:${HOST_TOOLS_DIR}/lib64" \
+	PKG_CONFIG_SYSROOT_DIR="" \
+        cmake .. -G Ninja -DCMAKE_INSTALL_PREFIX:PATH=${PREFIX}/llvm-project \
+                 -DCMAKE_CXX_COMPILER="g++" -DCMAKE_C_COMPILER="gcc" \
+		 -DLLVM_CMAKE_DIR=${SYSDIR}/cross-toolchains/llvm-project/lib64/cmake \
+		 -DLLVM_CONFIG=${SYSDIR}/cross-toolchains/llvm-project/bin/llvm-config \
+                 -DBUILD_SHARED_LIBS:BOOL=OFF \
+                 -DCMAKE_BUILD_TYPE=Release \
+                 -DCMAKE_INSTALL_RPATH="${PREFIX}/llvm-project/lib64;${CROSSTOOLS_DIR}/build-tools/lib64;\\\${ORIGIN}/../lib64" \
+                 -DCMAKE_C_FLAGS="-DNDEBUG" -DCMAKE_CXX_FLAGS="-DNDEBUG" \
+                 -DLLVM_LIBDIR_SUFFIX=64  \
+		 -DLLVM_INCLUDE_TESTS=OFF \
+		 -DLLVM_ENABLE_RUNTIMES="libcxx;libcxxabi;libunwind;compiler-rt;pstl" -DLLVM_RUNTIME_TARGETS=loongarch64-unknown-linux-gnu,x86_64-unknown-linux-gnu \
+                 -DLLVM_INSTALL_TOOLCHAIN_ONLY:BOOL=OFF
+        ninja
+        ninja install
+popd
+<<<CLEAR_DIR>>>

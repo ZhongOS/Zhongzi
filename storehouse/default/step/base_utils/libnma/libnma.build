@@ -1,0 +1,1 @@
+EXTRA_PARM=-Dvapi=false -Dgtk_doc=false -Dlibnma_gtk4=true -Dmobile_broadband_provider_info=false

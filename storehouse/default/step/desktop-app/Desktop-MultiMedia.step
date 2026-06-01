@@ -1,0 +1,45 @@
+NULL
+
+ssr
+# Kooha
+
+libvpl
+usrsctp
+libsrtp
+plog
+libjuice
+libdatachannel
+uthash
+mbedtls
+simde
+obs-studio
+
+
+MPlayer
+smplayer
+
+glad
+libplacebo
+mpv
+
+flatbuffers
+fstrcmp
+# rapidjson
+spdlog
+tinyxml
+tinyxml2
+pugixml
+waylandpp
+shairplay
+kodi|kodi;%PARENT=ORIG&java_runtime
+# Bento4
+# inputstream.adaptive|kodi
+inputstream.ffmpegdirect|kodi
+# rtmpdump|kodi
+# inputstream.rtmp|kodi
+pvr.iptvsimple|kodi
+# game.libretro|kodi
+# game.libretro.mame2003|kodi
+game.libretro.mame2003_plus|kodi;%PARENT=ORIG&game_emu
+
+NULL

@@ -1,0 +1,2 @@
+PACKAGE=xcb-proto
+BUILD_MODE=gnu

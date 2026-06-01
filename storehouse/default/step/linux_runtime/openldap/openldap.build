@@ -1,0 +1,16 @@
+<<<TAR_UNCOMPRESS>>>
+        <<<PATCH>>>
+        if [ ! -f configure ]; then
+                autoreconf -ifv
+        fi
+        CC="${LINUX_HOST}-gcc" CXX="${LINUX_HOST}-g++" \
+	STRIP="${LINUX_HOST}-strip" \
+	./configure ${COMMON_CONFIG} --disable-static --enable-dynamic  \
+            --enable-versioning=yes --disable-debug --disable-slapd \
+            --with-yielding_select=yes ac_cv_func_memcmp_working=yes --enable-malloc0returnsnull
+	check_gnu_Makefile
+        <<<MAKE>>> LD="${LINUX_HOST}-ld" depend
+	<<<MAKE>>> LD="${LINUX_HOST}-ld"
+        make STRIP="${LINUX_HOST}-strip" DESTDIR=${LINUX_SYSROOT_DIR} install
+        rm -f ${LINUX_SYSROOT_DIR}/usr/lib${LIB_SUFF}/*.la
+<<<CLEAR_DIR>>>

@@ -1,0 +1,9 @@
+<<<TAR_UNCOMPRESS>>>
+    sed -i "s@'rU'@'r'@g" waflib/ConfigSet.py waflib/Context.py
+    CXX=${CROSS_TARGET}-g++ CC=${CROSS_TARGET}-gcc \
+    PREFIX=/usr \
+    python3 ./waf configure --libdir=/usr/lib64 \
+           --doxygen --dbus --classic --alsa --clients 256 --ports-per-application=2048
+    CXX=${CROSS_TARGET}-g++ CC=${CROSS_TARGET}-gcc python3 ./waf build
+    CXX=${CROSS_TARGET}-g++ CC=${CROSS_TARGET}-gcc python3 ./waf --destdir=${SYSROOT_DIR} install
+<<<CLEAR_DIR>>>

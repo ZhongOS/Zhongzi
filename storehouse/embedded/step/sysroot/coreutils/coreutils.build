@@ -1,0 +1,10 @@
+<<<TAR_UNCOMPRESS>>>
+	FORCE_UNSAFE_CONFIGURE=1 \
+	./configure --prefix=/usr  --build=${CROSS_HOST} --host=${CROSS_TARGET} \
+				--enable-no-install-program=kill,uptime
+	<<<MAKE_AND_INSTALL>>>
+	mv -v ${SYSROOT_DIR}/usr/bin/chroot ${SYSROOT_DIR}/usr/sbin
+	echo '#!/bin/bash -e
+	qemu-${ARCH_NAME} ${SYSROOT_DIR}/usr/bin/uname "$@"' > ${CROSSTOOLS_DIR}/bin/cross-uname
+	chmod +x ${CROSSTOOLS_DIR}/bin/cross-uname
+<<<CLEAR_DIR>>>

@@ -1,0 +1,2 @@
+PACKAGE=highway
+BUILD_MODE=cmake

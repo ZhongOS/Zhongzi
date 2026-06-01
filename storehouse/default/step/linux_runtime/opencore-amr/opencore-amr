@@ -1,0 +1,2 @@
+PACKAGE=opencore-amr
+BUILD_MODE=gnu

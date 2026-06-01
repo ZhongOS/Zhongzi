@@ -1,0 +1,2 @@
+PACKAGE=pathspec
+BUILD_MODE=pip

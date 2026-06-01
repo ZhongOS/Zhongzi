@@ -1,0 +1,2 @@
+PACKAGE=kimap
+BUILD_MODE=cmake

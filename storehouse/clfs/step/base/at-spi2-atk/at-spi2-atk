@@ -1,0 +1,2 @@
+PACKAGE=at-spi2-atk
+BUILD_MODE=meson

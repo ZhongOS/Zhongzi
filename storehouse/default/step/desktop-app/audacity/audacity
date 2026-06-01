@@ -1,0 +1,2 @@
+PACKAGE=audacity
+BUILD_MODE=cmake

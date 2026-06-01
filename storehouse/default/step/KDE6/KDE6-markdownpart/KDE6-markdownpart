@@ -1,0 +1,2 @@
+PACKAGE=KDE6-markdownpart
+BUILD_MODE=cmake

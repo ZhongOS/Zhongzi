@@ -1,0 +1,22 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+	sed -i 's@\./fixinc\.sh@-c true@' gcc/Makefile.in
+	mkdir -pv cross-build
+	pushd cross-build
+		../configure --prefix=/usr --libdir=/usr/lib64 --build=${CROSS_HOST} \
+		             --host=${CROSS_TARGET} --target=${CROSS_TARGET} \
+		             --enable-__cxa_atexit --enable-threads=posix \
+		             --with-system-zlib --enable-libstdcxx-time \
+		             --enable-checking=release \
+		             --with-build-sysroot=${SYSROOT_DIR} \
+			     --enable-linker-build-id --with-linker-hash-style=gnu --enable-gnu-unique-object --enable-initfini-array --enable-gnu-indirect-function \
+#		             --enable-default-pie \
+			     --disable-multilib \
+			     --with-simd=lsx \
+		             --enable-languages=c,c++,fortran,objc,obj-c++,lto,ada
+		<<<MAKE>>>
+		make DESTDIR=${SYSROOT_DIR} install
+		ln -sfv /usr/bin/cpp ${SYSROOT_DIR}/lib
+		ln -sfv gcc ${SYSROOT_DIR}/usr/bin/cc
+	popd
+<<<CLEAR_DIR>>>

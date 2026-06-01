@@ -1,0 +1,2 @@
+PACKAGE=libpcap
+BUILD_MODE=gnu

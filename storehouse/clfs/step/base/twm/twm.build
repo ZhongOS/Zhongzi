@@ -1,0 +1,10 @@
+<<<TAR_UNCOMPRESS>>>
+    for config_i in $(find -name "config.sub")
+    do
+            cp -a -f $(automake --print-libdir)/config.{sub,guess} $(dirname ${config_i})/
+    done
+
+    sed -i -e '/^rcdir =/s,^\(rcdir = \).*,\1/etc/X11/app-defaults,' src/Makefile.in
+    ./configure ${COMMON_CONFIG}
+    <<<MAKE_AND_INSTALL>>>
+<<<CLEAR_DIR>>>

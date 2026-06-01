@@ -1,0 +1,2 @@
+PACKAGE=vcs
+BUILD_MODE=python

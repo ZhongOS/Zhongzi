@@ -1,0 +1,2 @@
+PACKAGE=icoutils
+BUILD_MODE=gnu

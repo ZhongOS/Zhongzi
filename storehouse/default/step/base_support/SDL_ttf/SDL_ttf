@@ -1,0 +1,2 @@
+PACKAGE=SDL_ttf
+BUILD_MODE=cmake

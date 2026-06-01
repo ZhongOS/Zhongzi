@@ -1,0 +1,7 @@
+PACKAGE=gimp
+BUILD_MODE=custom
+
+
+[[[2.10.38]]]
+PACKAGE=gimp
+BUILD_MODE=custom

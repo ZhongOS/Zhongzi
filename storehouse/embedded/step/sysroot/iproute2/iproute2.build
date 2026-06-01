@@ -1,0 +1,10 @@
+<<<TAR_UNCOMPRESS>>>
+	sed -i /ARPD/d Makefile
+	rm -fv man/man8/arpd.8
+	PKG_CONFIG=${CROSS_TARGET}-pkg-config \
+	<<<MAKE>>> CC="${CROSS_TARGET}-gcc" HOSTCC="gcc" KERNEL_INCLUDE=${SYSROOT_DIR}/usr/include \
+	     NETNS_RUN_DIR=/run/netns
+	PKG_CONFIG=${CROSS_TARGET}-pkg-config \
+	make CC="${CROSS_TARGET}-gcc" HOSTCC="gcc" KERNEL_INCLUDE=${SYSROOT_DIR}/usr/include \
+		 SBINDIR=/usr/sbin DESTDIR=${SYSROOT_DIR} install
+<<<CLEAR_DIR>>>

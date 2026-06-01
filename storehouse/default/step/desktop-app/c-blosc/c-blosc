@@ -1,0 +1,2 @@
+PACKAGE=c-blosc
+BUILD_MODE=cmake

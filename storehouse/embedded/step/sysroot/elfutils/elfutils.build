@@ -1,0 +1,20 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+        for config_i in $(find -name "config.sub")
+        do
+                chmod 0644 $(dirname ${config_i})/config.{sub,guess}
+                cp -a -f $(automake --print-libdir)/config.{sub,guess} $(dirname ${config_i})/
+        done
+        autoreconf -ifv
+
+	sed -i.orig "s@GENDIS_ENV) \./i386_gendis@GENDIS_ENV) qemu-${QEMU_TARGET_ARCH} \./i386_gendis@g" libcpu/Makefile.am
+
+	CFLAGS="${CLFAGS} -Wno-error=unused-but-set-variable" \
+	./configure ${COMMON_CONFIG} --disable-debuginfod --enable-libdebuginfod=dummy --enable-maintainer-mode \
+				ac_cv_null_dereference=no
+	<<<MAKE_AND_INSTALL>>>
+
+echo '#!/bin/bash -e
+qemu-${QEMU_TARGET_ARCH} ${SYSROOT_DIR}/usr/bin/eu-readelf "$@"' > ${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-eu-readelf
+chmod +x ${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-eu-readelf
+<<<CLEAR_DIR>>>

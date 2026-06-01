@@ -1,0 +1,2 @@
+PACKAGE=plymouth-kcm
+BUILD_MODE=cmake

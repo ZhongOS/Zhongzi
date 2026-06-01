@@ -1,0 +1,2 @@
+PACKAGE=exiv2
+BUILD_MODE=cmake

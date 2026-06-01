@@ -1,0 +1,2 @@
+PACKAGE=twolame
+BUILD_MODE=gnu

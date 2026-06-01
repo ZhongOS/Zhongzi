@@ -1,0 +1,2 @@
+PACKAGE=libX11
+BUILD_MODE=gnu

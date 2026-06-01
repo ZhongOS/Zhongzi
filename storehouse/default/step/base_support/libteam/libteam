@@ -1,0 +1,2 @@
+PACKAGE=libteam
+BUILD_MODE=gnu

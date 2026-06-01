@@ -1,0 +1,2 @@
+PACKAGE=mednafen
+BUILD_MODE=gnu

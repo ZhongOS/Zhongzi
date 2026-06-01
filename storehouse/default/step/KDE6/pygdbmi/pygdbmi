@@ -1,0 +1,2 @@
+PACKAGE=pygdbmi
+BUILD_MODE=python

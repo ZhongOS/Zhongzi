@@ -1,0 +1,2 @@
+PACKAGE=libzen
+BUILD_MODE=custom

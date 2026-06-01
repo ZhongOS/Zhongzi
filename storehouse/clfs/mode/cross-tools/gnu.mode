@@ -1,0 +1,13 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+        for config_i in $(find -name "config.sub")
+        do
+                cp -a -f $(automake --print-libdir)/config.{sub,guess} $(dirname ${config_i})/
+        done
+        if [ ! -f configure ]; then
+                autoreconf -ifv
+        fi
+	<<<CONFIG_ENV>>> ./configure --prefix=<<<CROSS_TOOLS_PREFIX>>> --build=${CROSS_HOST} \
+		--host=${CROSS_HOST} --target=${CROSS_TARGET} <<<EXTRA_PARM>>>
+	<<<MAKE_AND_INSTALL>>>
+<<<CLEAR_DIR>>>

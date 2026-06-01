@@ -1,0 +1,2 @@
+PACKAGE=libtatsu
+BUILD_MODE=gnu

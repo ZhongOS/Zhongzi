@@ -1,0 +1,2 @@
+PACKAGE=libretro-dosbox
+BUILD_MODE=custom

@@ -1,0 +1,2 @@
+PACKAGE=chrony
+BUILD_MODE=custom

@@ -1,0 +1,13 @@
+<<<TAR_UNCOMPRESS>>>
+    sed -i.orig -e "s@gtk-builder-convert@@g" \
+        -e "/\tgtk-update-icon-cache\$(EXEEXT)/s@gtk-update-icon-cache\$(EXEEXT)@@g" \
+        gtk/Makefile.in
+    mkdir cross-build
+    pushd cross-build
+        CFLAGS="-fcommon" ../configure ${COMMON_CONFIG} --disable-introspection \
+                     ac_cv_func_httpGetAuthString=yes ac_cv_func_mmap_fixed_mapped=yes \
+                     ac_cv_header_cups_cups_h=yes GLIB_MKENUMS=${CROSS_TOOLS_PREFIX}/bin/${MINGW_HOST}-glib-mkenums
+	<<<MAKE>>>
+        make DESTDIR=${MINGW_SYSROOT_DIR} install-exec
+    popd
+<<<CLEAR_DIR>>>

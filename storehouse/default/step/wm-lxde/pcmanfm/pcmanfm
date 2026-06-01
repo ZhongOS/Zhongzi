@@ -1,0 +1,2 @@
+PACKAGE=pcmanfm
+BUILD_MODE=gnu

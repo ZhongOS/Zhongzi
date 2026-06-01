@@ -1,0 +1,4 @@
+<<<TAR_UNCOMPRESS>>>
+    mkdir -pv ${SYSROOT_DIR}/usr/share/fonts/wenquanyi/
+    cp -av wqy-microhei.ttc ${SYSROOT_DIR}/usr/share/fonts/wenquanyi/
+<<<CLEAR_DIR>>>

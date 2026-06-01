@@ -1,0 +1,2 @@
+PACKAGE=weston
+BUILD_MODE=custom

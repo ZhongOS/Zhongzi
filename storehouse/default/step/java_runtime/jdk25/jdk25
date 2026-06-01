@@ -1,0 +1,2 @@
+PACKAGE=jdk25
+BUILD_MODE=custom

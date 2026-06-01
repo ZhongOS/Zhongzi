@@ -1,0 +1,2 @@
+PACKAGE=console-setup
+BUILD_MODE=custom

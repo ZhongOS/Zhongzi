@@ -1,0 +1,2 @@
+PACKAGE=xcb-imdkit
+BUILD_MODE=cmake

@@ -1,0 +1,2 @@
+PACKAGE=wheel
+BUILD_MODE=pip

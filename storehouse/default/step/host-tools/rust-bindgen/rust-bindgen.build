@@ -1,0 +1,4 @@
+<<<TAR_UNCOMPRESS>>>
+	cargo build --release
+	install -Dm755 target/release/bindgen ${PREFIX}/bin/
+<<<CLEAR_DIR>>>

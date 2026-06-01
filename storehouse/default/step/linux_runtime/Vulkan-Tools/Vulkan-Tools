@@ -1,0 +1,2 @@
+PACKAGE=Vulkan-Tools
+BUILD_MODE=custom

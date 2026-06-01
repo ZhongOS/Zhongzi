@@ -1,0 +1,6 @@
+<<<TAR_UNCOMPRESS>>>
+	./configure -bindir /usr/bin -mandir /usr/share/man -sitelib /usr/lib64/ocaml -config /etc -no-topfind
+	<<<MAKE>>> all
+	<<<MAKE>>> opt
+	make DESTDIR=${SYSROOT_DIR} install
+<<<CLEAR_DIR>>>

@@ -1,0 +1,3 @@
+PACKAGE=KDE6-kinfocenter
+# BUILD_MODE=custom
+BUILD_MODE=cmake

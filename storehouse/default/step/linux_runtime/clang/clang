@@ -1,0 +1,4 @@
+PACKAGE=llvm-project
+BUILD_MODE=custom
+# LOCK_VERSION=18.1.8
+# LOCK_MODE=AUTO

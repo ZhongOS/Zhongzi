@@ -1,0 +1,2 @@
+PACKAGE=libraw1394
+BUILD_MODE=gnu

@@ -1,0 +1,2 @@
+PACKAGE=flite
+BUILD_MODE=gnu

@@ -1,0 +1,2 @@
+PACKAGE=KDE6-ksvg
+BUILD_MODE=cmake

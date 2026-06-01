@@ -1,0 +1,2 @@
+PACKAGE=ollama
+BUILD_MODE=custom

@@ -1,0 +1,2 @@
+PACKAGE=fcitx5-lua
+BUILD_MODE=custom

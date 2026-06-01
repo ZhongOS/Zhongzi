@@ -1,0 +1,2 @@
+PACKAGE=systemsettings
+BUILD_MODE=cmake

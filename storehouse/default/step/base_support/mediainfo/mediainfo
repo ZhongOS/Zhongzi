@@ -1,0 +1,2 @@
+PACKAGE=mediainfo
+BUILD_MODE=custom

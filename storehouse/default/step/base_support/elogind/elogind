@@ -1,0 +1,2 @@
+PACKAGE=elogind
+BUILD_MODE=meson

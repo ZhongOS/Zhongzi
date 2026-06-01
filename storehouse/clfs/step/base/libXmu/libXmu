@@ -1,0 +1,2 @@
+PACKAGE=libXmu
+BUILD_MODE=gnu

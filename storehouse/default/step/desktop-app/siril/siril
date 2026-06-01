@@ -1,0 +1,2 @@
+PACKAGE=siril
+BUILD_MODE=custom

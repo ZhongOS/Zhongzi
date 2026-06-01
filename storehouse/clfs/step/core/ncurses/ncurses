@@ -1,0 +1,2 @@
+PACKAGE=ncurses
+BUILD_MODE=custom

@@ -1,0 +1,2 @@
+PACKAGE=nspr
+BUILD_MODE=custom

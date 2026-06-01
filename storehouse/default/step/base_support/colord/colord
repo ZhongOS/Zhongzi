@@ -1,0 +1,2 @@
+PACKAGE=colord
+BUILD_MODE=meson

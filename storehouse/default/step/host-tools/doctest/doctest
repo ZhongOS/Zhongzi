@@ -1,0 +1,2 @@
+PACKAGE=doctest
+BUILD_MODE=meson

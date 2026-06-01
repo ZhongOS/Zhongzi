@@ -1,0 +1,10 @@
+EXTRA_PARM=--sysconfdir=/etc/zsh --enable-etcdir=/etc/zsh
+
+[[[5.8]]]
+<<<TAR_UNCOMPRESS>>>
+    cp -a -f $(automake --print-libdir)/config.{sub,guess} ./
+    ./configure --build=${CROSS_HOST} --host=${CROSS_TARGET} \
+                --prefix=/usr --sysconfdir=/etc/zsh \
+                --enable-etcdir=/etc/zsh
+    <<<MAKE_AND_INSTALL>>>
+<<<CLEAR_DIR>>>

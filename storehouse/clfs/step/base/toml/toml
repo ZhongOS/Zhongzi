@@ -1,0 +1,2 @@
+PACKAGE=toml
+BUILD_MODE=python

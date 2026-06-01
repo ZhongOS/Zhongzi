@@ -1,0 +1,2 @@
+PACKAGE=util-macros
+BUILD_MODE=custom

@@ -1,0 +1,2 @@
+PACKAGE=libXres
+BUILD_MODE=gnu

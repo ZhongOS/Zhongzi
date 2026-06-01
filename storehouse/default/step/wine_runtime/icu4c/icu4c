@@ -1,0 +1,2 @@
+PACKAGE=icu4c
+BUILD_MODE=custom

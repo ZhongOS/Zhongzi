@@ -1,0 +1,7 @@
+<<<TAR_UNCOMPRESS>>>
+	sed -i 's:\\\${:\\\$\\{:' intltool-update.in
+	./configure --prefix=/usr --build=${CROSS_HOST} --host=${CROSS_TARGET}
+	<<<MAKE_AND_INSTALL>>>
+	cp -av ${SYSROOT_DIR}/usr/bin/intltool-* ${CROSSTOOLS_DIR}/bin/
+	sed -i "s@${CROSSTOOLS_DIR}@@g" ${SYSROOT_DIR}/usr/bin/intltool*
+<<<CLEAR_DIR>>>

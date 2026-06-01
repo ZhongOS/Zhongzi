@@ -1,0 +1,2 @@
+PACKAGE=sweeper
+BUILD_MODE=cmake

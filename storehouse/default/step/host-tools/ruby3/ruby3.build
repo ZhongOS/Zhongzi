@@ -1,0 +1,12 @@
+<<<TAR_UNCOMPRESS>>>
+        <<<PATCH>>>
+        for config_i in $(find -name "config.sub")
+        do
+                cp -a -f $(automake --print-libdir)/config.{sub,guess} $(dirname ${config_i})/
+        done
+        if [ ! -f configure ]; then
+                autoreconf -ifv
+        fi
+        ./configure --prefix=${PREFIX}/ruby3 --libdir=${PREFIX}/lib${LIB_SUFF} --without-baseruby
+        <<<MAKE_AND_INSTALL>>>
+<<<CLEAR_DIR>>>

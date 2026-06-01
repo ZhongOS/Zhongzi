@@ -1,0 +1,2 @@
+PACKAGE=stemmer
+BUILD_MODE=meson

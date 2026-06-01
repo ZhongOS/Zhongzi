@@ -1,0 +1,2 @@
+PACKAGE=breeze-gtk
+BUILD_MODE=cmake

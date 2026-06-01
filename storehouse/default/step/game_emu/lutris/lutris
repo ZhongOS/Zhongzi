@@ -1,0 +1,2 @@
+PACKAGE=lutris
+BUILD_MODE=meson

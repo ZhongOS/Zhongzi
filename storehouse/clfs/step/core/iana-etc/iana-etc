@@ -1,0 +1,2 @@
+PACKAGE=iana-etc
+BUILD_MODE=custom

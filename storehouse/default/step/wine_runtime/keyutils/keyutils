@@ -1,0 +1,2 @@
+PACKAGE=keyutils
+BUILD_MODE=custom

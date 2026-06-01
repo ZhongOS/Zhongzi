@@ -1,0 +1,2 @@
+PACKAGE=graphite
+BUILD_MODE=custom

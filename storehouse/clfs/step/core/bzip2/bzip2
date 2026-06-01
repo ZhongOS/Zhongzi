@@ -1,0 +1,2 @@
+PACKAGE=bzip2
+BUILD_MODE=custom

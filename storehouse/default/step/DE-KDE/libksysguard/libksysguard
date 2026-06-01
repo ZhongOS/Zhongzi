@@ -1,0 +1,2 @@
+PACKAGE=libksysguard
+BUILD_MODE=cmake

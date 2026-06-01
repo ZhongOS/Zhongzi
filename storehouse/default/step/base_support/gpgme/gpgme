@@ -1,0 +1,2 @@
+PACKAGE=gpgme
+BUILD_MODE=custom

@@ -1,0 +1,2 @@
+PACKAGE=typogrify
+BUILD_MODE=python

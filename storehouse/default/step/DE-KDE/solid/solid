@@ -1,0 +1,2 @@
+PACKAGE=solid
+BUILD_MODE=cmake

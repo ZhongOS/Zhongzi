@@ -1,0 +1,2 @@
+PACKAGE=KDE6-extra-cmake-modules
+BUILD_MODE=cmake

@@ -1,0 +1,2 @@
+PACKAGE=lame
+BUILD_MODE=gnu

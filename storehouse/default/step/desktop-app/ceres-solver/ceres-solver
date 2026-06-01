@@ -1,0 +1,2 @@
+PACKAGE=ceres-solver
+BUILD_MODE=cmake

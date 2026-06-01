@@ -1,0 +1,2 @@
+PACKAGE=phonon
+BUILD_MODE=cmake

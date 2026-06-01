@@ -1,0 +1,2 @@
+PACKAGE=hiredis
+BUILD_MODE=cmake

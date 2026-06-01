@@ -1,0 +1,4 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<MAKE>>> CC=${CROSS_TARGET}-gcc PREFIX=/usr
+	make CC=${CROSS_TARGET}-gcc PREFIX=/usr DESTDIR=${SYSROOT_DIR} install
+<<<CLEAR_DIR>>>

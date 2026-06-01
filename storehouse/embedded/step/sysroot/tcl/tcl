@@ -1,0 +1,2 @@
+PACKAGE=tcl
+BUILD_MODE=custom

@@ -1,0 +1,14 @@
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+    sed -i "/Append/s:RPATH=libdir,::"          SConstruct
+    sed -i "/Default/s:lib_static,::"           SConstruct
+    sed -i "/Alias/s:install_static,::"         SConstruct
+    sed -i "/  print/{s/print/print(/; s/$/)/}" SConstruct
+    sed -i "/get_contents()/s/,/.decode()&/"    SConstruct
+    scons PREFIX=/usr LIBDIR=/usr/lib64 APR=${CROSSTOOLS_DIR} \
+          APU=${CROSSTOOLS_DIR} ZLIB=${SYSROOT_DIR}/usr OPENSSL=${SYSROOT_DIR}/usr \
+          CC="${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-gcc"
+    scons PREFIX=${SYSROOT_DIR}/usr LIBDIR=${SYSROOT_DIR}/usr/lib64 APR=${CROSSTOOLS_DIR} \
+          APU=${CROSSTOOLS_DIR} ZLIB=${SYSROOT_DIR}/usr OPENSSL=${SYSROOT_DIR}/usr \
+          CC="${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-gcc" install
+<<<CLEAR_DIR>>>

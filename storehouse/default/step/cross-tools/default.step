@@ -1,0 +1,38 @@
+NULL
+
+# elfutils
+grub
+qemu|!qemu_git
+qemu_git|qemu_git
+fpc|opt+fpc
+
+# Parse-Yapp
+# JSON
+
+gdb
+
+# Module-Build
+# Pod-Parser
+# PerlIO-utf8_strict
+# po4a
+# YAML-Tiny
+
+# webencodings
+# # html5-parser@cross-tools
+# html5lib
+
+# llvm17@cross-tools|llvm17
+
+# soupsieve
+# beautifulsoup4
+# bs4
+# html5lib-python
+# pycparser
+
+qtchooser
+
+help2man
+
+qemu-wrapper
+
+NULL

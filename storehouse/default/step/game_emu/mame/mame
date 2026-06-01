@@ -1,0 +1,2 @@
+PACKAGE=mame
+BUILD_MODE=custom

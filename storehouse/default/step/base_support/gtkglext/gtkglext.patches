@@ -1,0 +1,3 @@
+p1 gtkglext-1.2.0-no-pangox.patch
+p1 0002-GCC-8-fixes.patch
+p1 0001-gtkglext-1.2.0-bz677457.patch

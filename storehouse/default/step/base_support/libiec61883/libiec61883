@@ -1,0 +1,2 @@
+PACKAGE=libiec61883
+BUILD_MODE=gnu

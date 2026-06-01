@@ -1,0 +1,47 @@
+<<<TAR_UNCOMPRESS>>>
+    pushd runtimes
+        mkdir host-build
+        pushd host-build
+	    export PATH=${CROSSTOOLS_DIR}/host-llvm-project/bin:$PATH
+            cmake .. -G Ninja -DCMAKE_INSTALL_PREFIX:PATH=${CROSSTOOLS_DIR}/host-llvm-project \
+                  -DCMAKE_CXX_COMPILER="clang++" -DCMAKE_C_COMPILER="clang" \
+		  -DCMAKE_BUILD_TYPE=Release \
+                  -DLLVM_CONFIG=${CROSSTOOLS_DIR}/host-llvm-project/bin/llvm-config \
+#                  -DLLVM_LIBDIR_SUFFIX=64 \
+#                  -DCMAKE_AR="${CROSSTOOLS_DIR}/bin/llvm-ar" \
+#                  -DCMAKE_RANLIB="${CROSSTOOLS_DIR}/bin/llvm-ranlib" \
+                  -DCMAKE_C_FLAGS="-DNDEBUG" -DCMAKE_CXX_FLAGS="-DNDEBUG" \
+		  -DLLVM_ENABLE_RUNTIMES="libunwind;libcxxabi;libcxx;compiler-rt" \
+		  -DLLVM_RUNTIME_TARGETS="x86_64-unknown-linux-gnu;loongarch64-unknown-linux-gnu"
+                  -DLLVM_LINK_LLVM_DYLIB:BOOL=ON
+#                  -DLLVM_HOST_TRIPLE=${CROSS_TARGET}
+            ninja
+            ninja install
+        popd
+    popd
+<<<CLEAR_DIR>>>
+
+
+[[[20.1.8]]]
+<<<TAR_UNCOMPRESS>>>
+    pushd runtimes
+        mkdir host-build
+        pushd host-build
+	    export PATH=${CROSSTOOLS_DIR}/host-llvm-project/bin:$PATH
+            cmake .. -G Ninja -DCMAKE_INSTALL_PREFIX:PATH=${CROSSTOOLS_DIR}/host-llvm-project \
+                  -DCMAKE_CXX_COMPILER="clang++" -DCMAKE_C_COMPILER="clang" \
+		  -DCMAKE_BUILD_TYPE=Release \
+                  -DLLVM_CONFIG=${CROSSTOOLS_DIR}/host-llvm-project/bin/llvm-config \
+#                  -DLLVM_LIBDIR_SUFFIX=64 \
+#                  -DCMAKE_AR="${CROSSTOOLS_DIR}/bin/llvm-ar" \
+#                  -DCMAKE_RANLIB="${CROSSTOOLS_DIR}/bin/llvm-ranlib" \
+                  -DCMAKE_C_FLAGS="-DNDEBUG" -DCMAKE_CXX_FLAGS="-DNDEBUG" \
+		  -DLLVM_ENABLE_RUNTIMES="libunwind;libcxxabi;pstl;libcxx;compiler-rt" \
+		  -DLLVM_RUNTIME_TARGETS="x86_64-unknown-linux-gnu;loongarch64-unknown-linux-gnu"
+                  -DLLVM_LINK_LLVM_DYLIB:BOOL=ON
+#                  -DLLVM_HOST_TRIPLE=${CROSS_TARGET}
+            ninja
+            ninja install
+        popd
+    popd
+<<<CLEAR_DIR>>>

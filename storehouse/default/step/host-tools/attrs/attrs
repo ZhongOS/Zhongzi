@@ -1,0 +1,2 @@
+PACKAGE=attrs
+BUILD_MODE=pip

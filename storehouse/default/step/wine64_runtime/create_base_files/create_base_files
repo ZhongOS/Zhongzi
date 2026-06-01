@@ -1,0 +1,2 @@
+PACKAGE=create_base_files
+BUILD_MODE=custom

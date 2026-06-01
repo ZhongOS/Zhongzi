@@ -1,0 +1,2 @@
+PACKAGE=kfilemetadata
+BUILD_MODE=cmake

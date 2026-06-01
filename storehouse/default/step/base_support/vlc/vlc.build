@@ -1,0 +1,28 @@
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+    CFLAGS="${CFLAGS} -Wno-incompatible-pointer-types" ./configure ${COMMON_CONFIG} --disable-chromecast
+    <<<MAKE>>> -C compat
+    <<<MAKE>>> -C src
+    make -C src DESTDIR=${SYSROOT_DIR} install
+    <<<MAKE_AND_INSTALL>>>
+<<<CLEAR_DIR>>>
+
+[[[3.0.23]]]
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+    CFLAGS="${CFLAGS} -Wno-incompatible-pointer-types" ./configure ${COMMON_CONFIG} --disable-chromecast --disable-gst-decode
+    <<<MAKE>>> -C compat
+    <<<MAKE>>> -C src
+    make -C src DESTDIR=${SYSROOT_DIR} install
+    <<<MAKE_AND_INSTALL>>>
+<<<CLEAR_DIR>>>
+
+[[[3.0.20]]]
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+    CFLAGS="${CFLAGS} -Wno-incompatible-pointer-types" ./configure ${COMMON_CONFIG} --disable-chromecast --disable-taglib
+    <<<MAKE>>> -C compat
+    <<<MAKE>>> -C src
+    make -C src DESTDIR=${SYSROOT_DIR} install
+    <<<MAKE_AND_INSTALL>>>
+<<<CLEAR_DIR>>>

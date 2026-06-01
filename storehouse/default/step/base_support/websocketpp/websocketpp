@@ -1,0 +1,2 @@
+PACKAGE=websocketpp
+BUILD_MODE=cmake

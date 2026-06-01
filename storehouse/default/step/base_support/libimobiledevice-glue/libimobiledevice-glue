@@ -1,0 +1,2 @@
+PACKAGE=libimobiledevice-glue
+BUILD_MODE=gnu

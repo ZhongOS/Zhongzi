@@ -1,0 +1,2 @@
+PACKAGE=jdk21
+BUILD_MODE=custom

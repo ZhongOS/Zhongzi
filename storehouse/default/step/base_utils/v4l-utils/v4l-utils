@@ -1,0 +1,2 @@
+PACKAGE=v4l-utils
+BUILD_MODE=gnu

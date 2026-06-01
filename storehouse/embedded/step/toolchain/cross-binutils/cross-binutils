@@ -1,0 +1,3 @@
+PACKAGE=binutils_git
+BUILD_MODE=custom
+LOCK_VERSION=32bit-test

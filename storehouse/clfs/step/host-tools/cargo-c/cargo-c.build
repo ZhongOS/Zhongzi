@@ -1,0 +1,5 @@
+<<<TAR_UNCOMPRESS>>>
+	RUSTFLAGS="-C link-args=-Wl,-rpath=${CROSSTOOLS_DIR}/lib:${CROSSTOOLS_DIR}/lib64:/usr/lib:/usr/lib64" \
+	cargo build --release
+	install -Dm755 target/release/cargo-{capi,cbuild,cinstall,ctest} ${CROSSTOOLS_DIR}/bin/
+<<<CLEAR_DIR>>>

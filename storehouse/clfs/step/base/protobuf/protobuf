@@ -1,0 +1,2 @@
+PACKAGE=protobuf
+BUILD_MODE=cmake

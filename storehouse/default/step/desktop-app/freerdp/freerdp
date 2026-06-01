@@ -1,0 +1,2 @@
+PACKAGE=freerdp
+BUILD_MODE=custom

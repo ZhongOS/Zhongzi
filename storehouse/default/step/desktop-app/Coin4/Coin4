@@ -1,0 +1,2 @@
+PACKAGE=Coin4
+BUILD_MODE=cmake

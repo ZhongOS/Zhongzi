@@ -1,0 +1,1 @@
+EXTRA_PARM=-Dlibspotify=false -Dplayer=false -Dclients=false

@@ -1,0 +1,1 @@
+EXTRA_PARM=-Dudevdir=/usr/lib/udev -Dsystemdsystemunitdir=/usr/lib/systemd/system -Dbpf=disabled

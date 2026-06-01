@@ -1,0 +1,3 @@
+PACKAGE=webencodings
+# BUILD_MODE=python
+BUILD_MODE=pip

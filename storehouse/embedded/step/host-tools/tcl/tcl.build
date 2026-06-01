@@ -1,0 +1,11 @@
+<<<TAR_UNCOMPRESS>>>
+    TCL_VERSION="${PACKAGE_VERSION%\.*}"
+    SRCDIR=$(pwd)
+    pushd unix
+	    ./configure --prefix=${PREFIX} --libdir=${PREFIX}/lib${LIB_SUFF}
+	    <<<MAKE>>>
+	    make install
+	    make install-private-headers
+	    ln -sfv tclsh${TCL_VERSION} ${PREFIX}/bin/tclsh
+    popd
+<<<CLEAR_DIR>>>

@@ -1,0 +1,2 @@
+PACKAGE=libyuv
+BUILD_MODE=custom

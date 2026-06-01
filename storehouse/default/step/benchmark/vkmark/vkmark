@@ -1,0 +1,2 @@
+PACKAGE=vkmark
+BUILD_MODE=meson

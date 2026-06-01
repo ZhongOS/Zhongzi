@@ -1,0 +1,15 @@
+linux-firmware
+:<ARCH>
+# efivar|efi
+# efibootmgr|efi
+# initramfs-for-squashfs|%config=advanced;none_status
+# initramfs-for-squashfs|%config=compatible;none_status
+initramfs-for-squashfs|%config=4kpage;none_status;opt;extra_kernel
+initramfs-for-squashfs|%config=16kpage;none_status
+initramfs-for-squashfs|%config=64kpage;none_status;opt;extra_kernel
+initramfs-for-squashfs|%config=4kpage_rt;none_status;opt;extra_kernel
+initramfs-for-squashfs|%config=16kpage_rt;none_status;opt;extra_kernel
+initramfs-for-squashfs|%config=64kpage_rt;none_status;opt;extra_kernel
+bootimage-squashfs|none_status
+create_files
+dist_sysroot

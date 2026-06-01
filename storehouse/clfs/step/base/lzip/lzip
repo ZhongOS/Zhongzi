@@ -1,0 +1,2 @@
+PACKAGE=lzip
+BUILD_MODE=custom

@@ -1,0 +1,4 @@
+# PACKAGE=wine-dev
+PACKAGE=wine
+BUILD_MODE=custom
+# LOCK_VERSION=9.18

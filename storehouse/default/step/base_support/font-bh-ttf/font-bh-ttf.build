@@ -1,0 +1,1 @@
+EXTRA_PARM=--with-fc-confdir=/etc/fonts --with-fontrootdir=/usr/share/fonts/X11

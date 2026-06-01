@@ -1,0 +1,19 @@
+<<<TAR_UNCOMPRESS>>>
+    ./configure --prefix=<<<CROSS_TOOLS_PREFIX>>> --disable-valadoc
+    <<<MAKE_AND_INSTALL>>>
+
+cat > <<<CROSS_TOOLS_PREFIX>>>/bin/${CROSS_TARGET}-vapigen << EOF
+#!/bin/bash -e
+LD_LIBRARY_PATH=<<<CROSS_TOOLS_PREFIX>>>/lib64/:<<<CROSS_TOOLS_PREFIX>>>/lib/ \
+<<<CROSS_TOOLS_PREFIX>>>/bin/vapigen --vapidir=${SYSROOT_DIR}/usr/share/vala/vapi \
+                                  --girdir=${SYSROOT_DIR}/usr/share/gir-1.0  "\$@"
+EOF
+chmod +x <<<CROSS_TOOLS_PREFIX>>>/bin/${CROSS_TARGET}-vapigen
+
+cat > <<<CROSS_TOOLS_PREFIX>>>/bin/${CROSS_TARGET}-valac << EOF
+#!/bin/bash -e
+LD_LIBRARY_PATH=<<<CROSS_TOOLS_PREFIX>>>/lib64/:<<<CROSS_TOOLS_PREFIX>>>/lib/ \
+<<<CROSS_TOOLS_PREFIX>>>/bin/valac --vapidir=${SYSROOT_DIR}/usr/share/vala/vapi "\$@"
+EOF
+chmod +x <<<CROSS_TOOLS_PREFIX>>>/bin/${CROSS_TARGET}-valac
+<<<CLEAR_DIR>>>

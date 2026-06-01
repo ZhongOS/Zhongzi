@@ -1,0 +1,70 @@
+NULL
+virglrenderer
+usbredir
+dtc
+qemu|!qemu_git
+qemu_git|qemu_git
+NULL
+yajl|libvirt
+libosinfo|libvirt
+# gtksourceview4|libvirt
+# vte|libvirt
+libvirt|libvirt
+libvirt-glib|libvirt
+libvirt-python|libvirt
+virt-manager|libvirt
+virt-viewer|libvirt
+gtk-vnc|libvirt
+qemu-edk2|libvirt
+# spice-gtk|libvirt
+NULL
+fuseiso
+icoutils
+q4wine
+winetricks
+NULL
+
+augeas
+hivex
+supermin|bad
+libguestfs|bad
+
+NULL
+latx
+# box86|bad
+box64
+box64-la
+lata|bad
+NULL
+
+liblasx2lsx
+
+NULL
+
+# -------------------------------------
+# NULL
+# # # wine-staging|wine+wine64+wine_dev
+# # wine32|wine;%target=i686;%PARENT=ORIG,i686_runtime,mingw_sysroot
+# # # wine64|wine64;!wine;!wine_dev;%target=x86_64;%PARENT=ORIG,x86_64_runtime
+# wine|wine+wine64;!wine_dev;%target=x86_64;%PARENT=ORIG,x86_64_runtime,i686_runtime,mingw_sysroot
+# # # wine_dev|wine+wine64;wine_dev;%target=x86_64;%PARENT=ORIG,x86_64_runtime,mingw_sysroot
+# # wine_dev|wine+wine64;wine_dev;%target=x86_64;%PARENT=ORIG,x86_64_runtime
+# wine_wow|wine64;!wine_dev;%target=x86_64;%PARENT=ORIG,x86_64_runtime,mingw_sysroot
+# NULL
+# dxvk|wine64;%target=x86_64;%PARENT=ORIG,x86_64_runtime,mingw_sysroot
+# dxvk|wine;%target=i686;%PARENT=ORIG,i686_runtime,mingw_sysroot
+# NULL
+# # # wine-proton|wine-proton;%target=x86_64;%PARENT=ORIG,x86_64_runtime,mingw_sysroot
+# NULL
+# --------------------------------------
+
+NULL
+# wine|wine+wine32+mingw;%target=?x86_64;%target_32=?i686;%PARENT=ORIG,x86_64_runtime,i686_runtime
+wine_wow|wine+mingw;%target=?x86_64;%target_mingw64=?mingw64ucrt;%target_mingw32=?mingw32;%PARENT=ORIG,x86_64_runtime,mingw_sysroot
+NULL
+dxvk|wine;wine32;%target=?i686;%target_mingw=?mingw32;%PARENT=ORIG,i686_runtime,mingw_sysroot
+dxvk|wine;%target=?x86_64;%target_mingw=?mingw64ucrt;%PARENT=ORIG,x86_64_runtime,mingw_sysroot
+NULL
+
+set-default-emu|none_status
+final_run

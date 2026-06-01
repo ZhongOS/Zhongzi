@@ -1,0 +1,2 @@
+PACKAGE=mtdev
+BUILD_MODE=gnu

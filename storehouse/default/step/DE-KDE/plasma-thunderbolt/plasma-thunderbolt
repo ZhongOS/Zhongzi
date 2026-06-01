@@ -1,0 +1,2 @@
+PACKAGE=plasma-thunderbolt
+BUILD_MODE=cmake

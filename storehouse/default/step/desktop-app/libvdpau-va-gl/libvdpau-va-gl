@@ -1,0 +1,3 @@
+PACKAGE=libvdpau-va-gl
+BUILD_MODE=custom
+# BUILD_MODE=cmake

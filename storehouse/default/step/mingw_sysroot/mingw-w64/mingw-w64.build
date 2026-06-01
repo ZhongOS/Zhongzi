@@ -1,0 +1,22 @@
+<<<TAR_UNCOMPRESS>>>
+#        MINGW_HOST=$(archname_to_triple "$(get_user_set_env target ${MINGW_HOST})" "${MINGW_HOST}")
+#        INSTALL_ARCH_NAME="mingw64ucrt"
+#        INSTALL_ARCH_NAME=$(archname_to_linuxname "$(get_user_set_env target ${MINGW_HOST})" "${MINGW_HOST}")
+
+	pushd mingw-w64-headers
+		mkdir -p build
+		pushd build
+			../configure --host=${MINGW_HOST} --prefix=/mingw
+#			<<<MAKE>>> DESTDIR=${SYSROOT_DIR}/usr/lib/${INSTALL_ARCH_NAME}/sys-root install
+			<<<MAKE>>> DESTDIR=${MINGW_SYSROOT_DIR} install
+			<<<MAKE>>> DESTDIR=${TOOLCHAIN_DIRECTORY}/${MINGW_HOST}/mingw-w64-headers install
+		popd
+	popd
+	mkdir -p build
+	pushd build
+		../configure --host=${MINGW_HOST} --prefix=/mingw
+#		<<<MAKE>>> DESTDIR=${SYSROOT_DIR}/usr/lib/${INSTALL_ARCH_NAME}/sys-root install
+		<<<MAKE>>> DESTDIR=${MINGW_SYSROOT_DIR} install
+		<<<MAKE>>> DESTDIR=${TOOLCHAIN_DIRECTORY}/${MINGW_HOST}/mingw-w64-libs install
+	popd
+<<<CLEAR_DIR>>>

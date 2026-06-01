@@ -1,0 +1,2 @@
+PACKAGE=fcitx5-gtk
+BUILD_MODE=custom

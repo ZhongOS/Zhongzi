@@ -1,0 +1,2 @@
+PACKAGE=cldr-emoji-annotation
+BUILD_MODE=gnu

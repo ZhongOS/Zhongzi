@@ -1,0 +1,26 @@
+<<<TAR_UNCOMPRESS>>>
+        <<<PATCH>>>
+        mkdir cross-build
+        pushd cross-build
+#                 meson ${MESON_CONFIG} --default-library=static -Dtests=disabled \
+                meson ${MESON_CONFIG} --default-library=both -Dtests=disabled \
+                      ..
+                ninja
+                DESTDIR=${MINGW_SYSROOT_DIR} ninja install
+        popd
+        rm -f ${MINGW_SYSROOT_DIR}/mingw/lib/*.la
+<<<CLEAR_DIR>>>
+
+[[[1.17.6]]]
+<<<TAR_UNCOMPRESS>>>
+        <<<PATCH>>>
+        if [ ! -f configure ]; then
+                autoreconf -ifv
+        fi
+	rm -f ${MINGW_SYSROOT_DIR}/mingw/lib/pkgconfig/cairo.pc
+        LIBS="-lharfbuzz" ./configure ${COMMON_CONFIG} --disable-shared --disable-trace --enable-malloc0returnsnull
+        CC="${MINGW_HOST}-gcc" CXX="${MINGW_HOST}-g++" <<<MAKE>>>
+        make DESTDIR=${MINGW_SYSROOT_DIR} install
+        rm -f ${MINGW_SYSROOT_DIR}/mingw/lib/*.la
+<<<CLEAR_DIR>>>
+

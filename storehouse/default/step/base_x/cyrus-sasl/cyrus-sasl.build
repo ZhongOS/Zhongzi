@@ -1,0 +1,1 @@
+EXTRA_PARM=--enable-auth-sasldb --with-sphinx-build=no --with-dbpath=/var/lib/sasl/sasldb2 --with-saslauthd=/var/run/saslauthd ac_cv_gssapi_supports_spnego=yes

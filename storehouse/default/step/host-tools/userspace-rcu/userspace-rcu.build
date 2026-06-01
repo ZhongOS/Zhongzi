@@ -1,0 +1,6 @@
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+    autoreconf -ifv
+    ./configure ${COMMON_CONFIG}
+    <<<MAKE_AND_INSTALL>>>
+<<<CLEAR_DIR>>>

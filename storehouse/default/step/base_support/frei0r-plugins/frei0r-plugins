@@ -1,0 +1,2 @@
+PACKAGE=frei0r-plugins
+BUILD_MODE=cmake

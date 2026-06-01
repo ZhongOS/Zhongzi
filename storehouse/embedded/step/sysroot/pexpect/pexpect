@@ -1,0 +1,2 @@
+PACKAGE=pexpect
+BUILD_MODE=python

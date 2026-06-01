@@ -1,0 +1,2 @@
+PACKAGE=ntfs-3g
+BUILD_MODE=custom

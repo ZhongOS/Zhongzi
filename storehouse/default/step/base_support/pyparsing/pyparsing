@@ -1,0 +1,2 @@
+PACKAGE=pyparsing
+BUILD_MODE=pip

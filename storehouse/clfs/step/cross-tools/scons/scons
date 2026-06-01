@@ -1,0 +1,2 @@
+PACKAGE=scons
+BUILD_MODE=python

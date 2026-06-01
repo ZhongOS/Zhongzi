@@ -1,0 +1,2 @@
+PACKAGE=dkms
+BUILD_MODE=custom

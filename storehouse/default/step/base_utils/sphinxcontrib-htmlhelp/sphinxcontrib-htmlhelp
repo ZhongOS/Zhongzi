@@ -1,0 +1,2 @@
+PACKAGE=sphinxcontrib-htmlhelp
+BUILD_MODE=pip

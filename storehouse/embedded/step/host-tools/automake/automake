@@ -1,0 +1,2 @@
+PACKAGE=automake
+BUILD_MODE=custom

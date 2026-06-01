@@ -1,0 +1,2 @@
+PACKAGE=woff2
+BUILD_MODE=cmake

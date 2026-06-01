@@ -1,0 +1,11 @@
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+    mkdir -p native-build
+    pushd native-build
+        cmake -DCMAKE_INSTALL_PREFIX=${PREFIX} <<<EXTRA_PARM>>> \
+              -DCMAKE_BUILD_TYPE=RELEASE -DBUILD_SERVER=OFF -DBUILD_LIBRARIES=OFF -DCMAKE_POLICY_VERSION_MINIMUM=3.5 ..
+        <<<MAKE_AND_INSTALL>>>
+    popd
+<<<CLEAR_DIR>>>
+# mkdir -p ${CROSSTOOLS_DIR}/host-tools/bin/
+# cp -a ${CROSSTOOLS_DIR}/bin/wayland-scanner++ ${CROSSTOOLS_DIR}/host-tools/bin/

@@ -1,0 +1,7 @@
+<<<TAR_UNCOMPRESS>>>
+    ./autogen.sh
+    ./configure ${COMMON_CONFIG} --disable-systemd --disable-doxygen-docs --disable-xml-docs
+    <<<MAKE_AND_INSTALL>>>
+<<<CLEAR_DIR>>>
+
+EXTRA_PARM=-Dsystemd=disabled

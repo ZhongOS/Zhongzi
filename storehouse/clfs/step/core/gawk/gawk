@@ -1,0 +1,2 @@
+PACKAGE=gawk
+BUILD_MODE=custom

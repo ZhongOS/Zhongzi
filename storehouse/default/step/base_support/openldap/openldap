@@ -1,0 +1,2 @@
+PACKAGE=openldap
+BUILD_MODE=custom

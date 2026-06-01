@@ -1,0 +1,2 @@
+PACKAGE=KDE6-plasma-disks
+BUILD_MODE=cmake

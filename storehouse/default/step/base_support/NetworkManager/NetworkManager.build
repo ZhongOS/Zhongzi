@@ -1,0 +1,38 @@
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+#    sed -i "s@jansson_libdir,@'${SYSROOT_DIR}' + &@g" meson.build
+    sed -i -e 's/Qt/&5/' meson.build
+    sed -i -e 's/-qt4/-qt5/' -e 's/moc_location/host_bins/' examples/C/qt/meson.build 
+    mkdir cross-build
+    pushd cross-build
+        meson ${MESON_CONFIG} \
+#	      -Dlibaudit=no -Dnmtui=true -Dovs=false -Dppp=false -Dselinux=false \
+              -Dqt=false \
+	      -Dlibaudit=no -Dselinux=false -Dteamdctl=true \
+	      -Dsession_tracking=systemd \
+#	      -Dmodem_manager=false \
+	      -Dpolkit=$((test -f ${CROSSTOOLS_DIR}/bin/rustc) && echo "true" || echo "false") \
+	      -Dsystemdsystemunitdir=/usr/lib/systemd/system \
+	      -Dmobile_broadband_provider_info_database=/usr/share/mobile-broadband-provider-info/serviceproviders.xml \
+	      -Dconfig_wifi_backend_default=wpa_supplicant \
+	      -Ddnsmasq=/sbin/dnsmasq -Dpppd=/usr/sbin/pppd \
+	      ..
+#        sed -i -e "s@\(${SYSDIR}/\)sysroot/usr\(.*\)/\(g-ir-compiler\|g-ir-scanner\|vapigen\)@\1cross-tools\2${CROSS_TARGET}-\3@g" build.ninja
+#        sed -i -e "s@\(${CROSSTOOLS_DIR}/\)\(.*\)/\(g-ir-compiler\|g-ir-scanner\|vapigen\)@\1\2/${CROSS_TARGET}-\3@g" build.ninja
+        CC=${CROSS_TARGET}-gcc ninja
+        DESTDIR=${SYSROOT_DIR} ninja install
+    popd
+<<<CLEAR_DIR>>>
+
+cat > ${SYSROOT_DIR}/usr/share/polkit-1/rules.d/org.freedesktop.NetworkManager.rules << "EOF"
+polkit.addRule(function(action, subject) {
+    if (action.id.indexOf("org.freedesktop.NetworkManager.") == 0 && subject.isInGroup("netdev")) {
+        return polkit.Result.YES;
+    }
+});
+EOF
+
+cat > ${SYSROOT_DIR}/etc/NetworkManager/conf.d/polkit.conf << "EOF"
+[main]
+auth-polkit=false
+EOF

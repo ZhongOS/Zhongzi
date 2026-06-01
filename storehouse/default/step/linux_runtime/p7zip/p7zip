@@ -1,0 +1,2 @@
+PACKAGE=p7zip
+BUILD_MODE=custom

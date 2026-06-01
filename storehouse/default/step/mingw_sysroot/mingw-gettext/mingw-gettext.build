@@ -1,0 +1,9 @@
+<<<TAR_UNCOMPRESS>>>
+# 	sed -i "/hello-c++-kde/d" gettext-tools/examples/Makefile.in
+# 	sed -i "/close_used_without_requesting_gnulib_module_close/d" $(grep -rl "close_used_without_requesting_gnulib_module_close" *)
+	sed -i "s@ gnulib-tests @ @g" gettext-tools/Makefile.in
+	./configure ${COMMON_CONFIG} --enable-shared --enable-threads=win32 --enable-static --without-emacs --disable-openmp
+	<<<MAKE>>>
+        make DESTDIR=${MINGW_SYSROOT_DIR} install
+	rm -f ${MINGW_SYSROOT_DIR}/mingw/lib/*.la
+<<<CLEAR_DIR>>>

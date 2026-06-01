@@ -1,0 +1,2 @@
+PACKAGE=kget
+BUILD_MODE=cmake

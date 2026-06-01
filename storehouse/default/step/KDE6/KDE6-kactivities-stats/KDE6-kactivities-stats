@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kactivities-stats
+BUILD_MODE=cmake

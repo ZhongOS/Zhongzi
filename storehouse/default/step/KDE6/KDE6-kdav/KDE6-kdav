@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kdav
+BUILD_MODE=cmake

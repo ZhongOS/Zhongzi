@@ -1,0 +1,2 @@
+CONFIG_ENV=KDECI_BUILD=0
+EXTRA_PARM=-DQtWaylandScanner_EXECUTABLE=${CROSSTOOLS_DIR}/qt5/bin/qtwaylandscanner

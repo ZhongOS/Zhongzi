@@ -1,0 +1,2 @@
+PACKAGE=dragon
+BUILD_MODE=cmake

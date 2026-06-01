@@ -1,0 +1,2 @@
+PACKAGE=sip
+BUILD_MODE=pip

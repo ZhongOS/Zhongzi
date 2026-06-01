@@ -1,0 +1,2 @@
+PACKAGE=truststore
+BUILD_MODE=pip

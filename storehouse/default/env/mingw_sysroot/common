@@ -1,0 +1,13 @@
+export PREFIX=/mingw
+export PKG_CONFIG_SYSROOT_DIR="${SYSROOT_DIR}/usr/lib/mingw/sys-root"
+export MINGW_SYSROOT_DIR="${SYSROOT_DIR}/usr/lib/mingw/sys-root"
+export PKG_CONFIG_PATH="${SYSROOT_DIR}/usr/lib/mingw/sys-root/mingw/lib/pkgconfig"
+# export MINGW_HOST=x86_64-w64-mingw32ucrt
+export MINGW_HOST=x86_64-w64-mingw32
+export COMMON_CONFIG="--prefix=/mingw --build=${CROSS_HOST} --host=${MINGW_HOST}"
+export MAKE_AND_INSTALL="make -j${JOBS} && make DESTDIR=${SYSROOT_DIR}/usr/lib/mingw/sys-root install && rm -f ${SYSROOT_DIR}/usr/lib/mingw/sys-root/lib/*.la"
+export MESON_CONFIG="--prefix=/mingw --cross-file ${COMMON_DIR}/meson-cross_mingw.txt"
+export NINJA_AND_INSTALL="CC=${MINGW_HOST}-gcc ninja && DESTDIR=${SYSROOT_DIR}/usr/lib/mingw/sys-root ninja install"
+
+export CROSS_TOOLS_PREFIX=${SYSDIR}/cross-toolchains/${MINGW_HOST}
+export PATH=${CROSS_TOOLS_PREFIX}/bin:$PATH

@@ -1,0 +1,2 @@
+PACKAGE=wxWidgets
+BUILD_MODE=custom

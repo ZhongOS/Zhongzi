@@ -1,0 +1,1 @@
+EXTRA_PARM=-Dbenchmark=disabled -Dintrospection=disabled -Dgraphite2=disabled -Dtests=disabled -Ddocs=disabled

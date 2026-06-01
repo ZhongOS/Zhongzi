@@ -1,0 +1,12 @@
+<<<TAR_UNCOMPRESS>>>
+        for config_i in $(find -name "config.sub")
+        do
+                cp -a -f $(automake --print-libdir)/config.{sub,guess} $(dirname ${config_i})/
+        done
+        sed -i "/^GROFF_BIN_PATH/s@\$builddir@${CROSSTOOLS_DIR}/bin@g" test-groff.in
+        sed -i "s@\$builddir/groff@${CROSSTOOLS_DIR}/bin/groff@g" test-groff.in
+        sed -i "s@GROFF_COMMAND=test-groff@GROFF_COMMAND=${PWD}/test-groff@g" Makefile.in
+        PAGE=A4 ./configure --prefix=/usr --build=${CROSS_HOST} --host=${CROSS_TARGET}
+        <<<MAKE>>> GROFFBIN=${CROSSTOOLS_DIR}/bin/groff GROFF_BIN_PATH=${CROSSTOOLS_DIR}/bin/
+        make DESTDIR=${SYSROOT_DIR} install
+<<<CLEAR_DIR>>>

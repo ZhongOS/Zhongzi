@@ -1,0 +1,14 @@
+<<<TAR_UNCOMPRESS>>>
+	if [ -f ${SYSROOT_DIR}/usr/bin/desktop-file-edit ]; then
+		rm -f ${SYSROOT_DIR}/usr/bin/desktop-file-edit
+	fi
+	<<<PATCH>>>
+	mkdir cross-build
+	pushd cross-build
+		meson ${MESON_CONFIG} <<<EXTRA_PARM>>> \
+                      ..
+#		sed -i -e "s@\(${SYSROOT_DIR}/\)usr\(.*\)/\(g-ir-compiler\|g-ir-scanner\)@${CROSSTOOLS_DIR}/\2${CROSS_TARGET}-\3@g" build.ninja
+		<<<NINJA_AND_INSTALL>>>
+	popd
+	rm -f ${SYSROOT_DIR}/usr/lib64/*.la
+<<<CLEAR_DIR>>>

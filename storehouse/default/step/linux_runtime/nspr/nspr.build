@@ -1,0 +1,11 @@
+<<<TAR_UNCOMPRESS>>>
+    pushd nspr
+    <<<PATCH>>>
+    sed -i "s@ /usr/lib/libc.a@@g" pr/src/Makefile.in
+    ./configure ${COMMON_CONFIG} \
+                --with-mozilla --with-pthreads --enable-64bit
+    check_gnu_Makefile
+    make CC="gcc" CFLAGS="" -C config
+    <<<MAKE_AND_INSTALL>>>
+    popd
+<<<CLEAR_DIR>>>

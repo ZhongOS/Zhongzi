@@ -1,0 +1,5 @@
+<<<TAR_UNCOMPRESS>>>
+	sed -i "s@ln -s @ln -sf @g" Makefile
+	<<<MAKE>>> CC=${CROSS_TARGET}-gcc
+	make CC=${CROSS_TARGET}-gcc libdir=/usr/lib64 libexecdir=/usr/libexec DESTDIR=${SYSROOT_DIR} install
+<<<CLEAR_DIR>>>

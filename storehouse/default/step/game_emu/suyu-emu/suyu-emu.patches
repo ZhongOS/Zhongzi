@@ -1,0 +1,3 @@
+p1 0001-fix-fmt-miss-include-for-gcc-14.patch
+p1 0002-workaround-for-generic-cpu.patch
+p1 0003-fix-cmake-error-for-glad.patch

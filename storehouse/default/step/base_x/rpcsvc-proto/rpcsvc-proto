@@ -1,0 +1,2 @@
+PACKAGE=rpcsvc-proto
+BUILD_MODE=custom

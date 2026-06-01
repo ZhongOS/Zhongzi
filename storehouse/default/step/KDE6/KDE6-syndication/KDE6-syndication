@@ -1,0 +1,2 @@
+PACKAGE=KDE6-syndication
+BUILD_MODE=cmake

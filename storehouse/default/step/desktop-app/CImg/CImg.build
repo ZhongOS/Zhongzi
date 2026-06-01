@@ -1,0 +1,7 @@
+<<<TAR_UNCOMPRESS>>>
+	mkdir -pv ${SYSROOT_DIR}/usr/share/CImg
+	mkdir -pv ${SYSROOT_DIR}/usr/include/CImg
+	cp -a CImg.h resources html examples plugins README.txt ${SYSROOT_DIR}/usr/share/CImg/
+	cp -a CImg.h plugins ${SYSROOT_DIR}/usr/include/CImg
+	ln -sfv CImg/CImg.h ${SYSROOT_DIR}/usr/include/CImg.h
+<<<CLEAR_DIR>>>

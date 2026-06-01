@@ -1,0 +1,2 @@
+PACKAGE=KDE6-knewstuff
+BUILD_MODE=cmake

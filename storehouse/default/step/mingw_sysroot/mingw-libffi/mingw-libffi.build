@@ -1,0 +1,2 @@
+EXTRA_PARM=--enable-shared --with-gcc-arch=native
+# EXTRA_PARM=--disable-shared --with-gcc-arch=native

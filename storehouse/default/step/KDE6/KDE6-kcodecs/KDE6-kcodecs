@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kcodecs
+BUILD_MODE=cmake

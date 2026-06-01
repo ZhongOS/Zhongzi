@@ -1,0 +1,2 @@
+PACKAGE=opam
+BUILD_MODE=custom

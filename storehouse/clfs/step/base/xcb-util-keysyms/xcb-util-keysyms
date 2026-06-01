@@ -1,0 +1,2 @@
+PACKAGE=xcb-util-keysyms
+BUILD_MODE=gnu

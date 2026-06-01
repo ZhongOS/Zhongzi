@@ -1,0 +1,44 @@
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+    pushd sources/shiboken6
+# 	# 因为从6.11.0开始，会强制编译shibokenmodule目录的内容（6.10.0则存在配置参数进行控制），因此导致配置错误，使用以下命令在当前阶段不编译 shibokenmodule 目录。
+	sed -i "/shibokenmodule/d" CMakeLists.txt
+	mkdir -p native-build
+	pushd native-build
+		CC="gcc" CXX="g++" \
+		LLVM_INSTALL_DIR=${HOST_TOOLS_DIR}/compat/ \
+# 		LLVM_INSTALL_DIR=${CROSSTOOLS_DIR} \
+# 		LDFLAGS="${LDFLAGS} -Wl,-rpath=${CROSSTOOLS_DIR}/lib64" \
+	        cmake -DCMAKE_INSTALL_PREFIX=${PREFIX} -DBUILD_TESTS=OFF \
+        	      -DCMAKE_BUILD_TYPE=RELEASE ..
+	        <<<MAKE_AND_INSTALL>>>
+	popd
+    popd
+    pushd sources/shiboken6_generator
+	mkdir -p native-build
+	pushd native-build
+		CC="gcc" CXX="g++" \
+		LLVM_INSTALL_DIR=${HOST_TOOLS_DIR}/compat/ \
+	        cmake -DCMAKE_INSTALL_PREFIX=${PREFIX} -DBUILD_TESTS=OFF -DSHIBOKEN_BUILD_TOOLS=ON \
+        	      -DCMAKE_BUILD_TYPE=RELEASE ..
+	        <<<MAKE_AND_INSTALL>>>
+	popd
+    popd
+<<<CLEAR_DIR>>>
+
+[[[6.10.0]]]
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+    pushd sources/shiboken6
+	mkdir -p native-build
+	pushd native-build
+		CC="gcc" CXX="g++" \
+# 		LLVM_INSTALL_DIR=${HOST_TOOLS_DIR} \
+		LLVM_INSTALL_DIR=${CROSSTOOLS_DIR} \
+# 		LDFLAGS="${LDFLAGS} -Wl,-rpath=${CROSSTOOLS_DIR}/lib64" \
+	        cmake -DCMAKE_INSTALL_PREFIX=${PREFIX} -DBUILD_TESTS=OFF -DSHIBOKEN_BUILD_TOOLS=ON \
+        	      -DCMAKE_BUILD_TYPE=RELEASE ..
+	        <<<MAKE_AND_INSTALL>>>
+	popd
+    popd
+<<<CLEAR_DIR>>>

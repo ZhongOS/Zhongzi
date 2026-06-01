@@ -1,0 +1,2 @@
+PACKAGE=KDE6-eventviews
+BUILD_MODE=cmake

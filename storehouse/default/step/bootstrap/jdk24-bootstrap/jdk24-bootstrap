@@ -1,0 +1,2 @@
+PACKAGE=jdk24-bootstrap
+BUILD_MODE=custom

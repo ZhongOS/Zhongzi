@@ -1,0 +1,2 @@
+PACKAGE=dolphin-plugins
+BUILD_MODE=cmake

@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kirigami-addons
+BUILD_MODE=cmake

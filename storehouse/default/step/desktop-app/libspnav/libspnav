@@ -1,0 +1,2 @@
+PACKAGE=libspnav
+BUILD_MODE=gnu

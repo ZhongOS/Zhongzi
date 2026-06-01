@@ -1,0 +1,2 @@
+PACKAGE=libpciaccess
+BUILD_MODE=gnu

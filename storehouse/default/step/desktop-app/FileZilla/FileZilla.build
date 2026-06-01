@@ -1,0 +1,2 @@
+EXTRA_PARM=--with-wx-prefix=${SYSROOT_DIR}/usr --with-pugixml=builtin ac_cv_path_xdgopen=/usr/bin/xdg-open
+CONFIG_ENV=CFLAGS="${CFLAGS} -Wno-int-conversion"

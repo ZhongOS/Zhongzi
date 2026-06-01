@@ -1,0 +1,7 @@
+PACKAGE=libdvdread
+BUILD_MODE=meson
+
+
+[[[6.1.3]]]
+PACKAGE=libdvdread
+BUILD_MODE=gnu

@@ -1,0 +1,2 @@
+PACKAGE=alsa-lib
+BUILD_MODE=gnu

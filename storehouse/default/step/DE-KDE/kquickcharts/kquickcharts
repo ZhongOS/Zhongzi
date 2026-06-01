@@ -1,0 +1,2 @@
+PACKAGE=kquickcharts
+BUILD_MODE=cmake

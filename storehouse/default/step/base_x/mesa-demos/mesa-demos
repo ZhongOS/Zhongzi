@@ -1,0 +1,2 @@
+PACKAGE=mesa-demos
+BUILD_MODE=custom

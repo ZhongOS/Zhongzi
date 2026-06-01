@@ -1,0 +1,3 @@
+PACKAGE=gi-docgen
+# BUILD_MODE=python
+BUILD_MODE=pip

@@ -1,0 +1,2 @@
+PACKAGE=calendarsupport
+BUILD_MODE=cmake

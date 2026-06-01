@@ -1,0 +1,1 @@
+EXTRA_PARM=--cross-prefix=${LINUX_HOST}- --sysroot=${LINUX_SYSROOT_DIR} --enable-shared --disable-cli --enable-pic --enable-lto

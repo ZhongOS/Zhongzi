@@ -1,0 +1,7 @@
+<<<TAR_UNCOMPRESS>>>
+    sed -i '/#define LUA_ROOT/s:/usr/local/:/usr/:' src/luaconf.h
+    make MYCFLAGS="-fPIC" linux -j${JOBS}
+    make INSTALL_TOP=<<<CROSS_TOOLS_PREFIX>>> \
+         INSTALL_LIB=<<<CROSS_TOOLS_PREFIX>>>/lib64 \
+         INSTALL_MAN=<<<CROSS_TOOLS_PREFIX>>>/share/man/man1 install
+<<<CLEAR_DIR>>>

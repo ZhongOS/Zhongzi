@@ -1,0 +1,15 @@
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+    tar xvf ${RESOURCEDIR}/files/gobject-introspection-glib_git.tar.gz -C subprojects/
+    mv subprojects/gobject-introspection-glib_git subprojects/glib
+    tar xvf ${RESOURCEDIR}/files/gobject-introspection-gvdb_git.tar.gz -C subprojects/glib/subprojects/
+    rmdir subprojects/glib/subprojects/gvdb
+    mv subprojects/glib/subprojects/gobject-introspection-gvdb_git subprojects/glib/subprojects/gvdb
+    mkdir -p native-build
+    pushd native-build
+        meson --prefix=${PREFIX} --libdir=${PREFIX}/lib${LIB_SUFF} \
+              --buildtype=release ..
+	ninja
+        ninja install
+    popd
+<<<CLEAR_DIR>>>

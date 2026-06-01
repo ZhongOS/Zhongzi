@@ -1,0 +1,4 @@
+# PACKAGE=gcc_git
+PACKAGE=gcc
+BUILD_MODE=custom
+# LOCK_VERSION=32bit-test

@@ -1,0 +1,2 @@
+PACKAGE=font-bh-type1
+BUILD_MODE=gnu

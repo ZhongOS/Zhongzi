@@ -1,0 +1,2 @@
+PACKAGE=denemo
+BUILD_MODE=gnu

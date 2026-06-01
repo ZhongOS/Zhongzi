@@ -1,0 +1,2 @@
+PACKAGE=libva-utils
+BUILD_MODE=meson

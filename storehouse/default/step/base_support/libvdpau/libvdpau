@@ -1,0 +1,2 @@
+PACKAGE=libvdpau
+BUILD_MODE=meson

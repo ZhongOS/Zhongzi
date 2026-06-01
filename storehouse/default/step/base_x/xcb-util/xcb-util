@@ -1,0 +1,2 @@
+PACKAGE=xcb-util
+BUILD_MODE=gnu

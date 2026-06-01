@@ -1,0 +1,2 @@
+PACKAGE=expect
+BUILD_MODE=custom

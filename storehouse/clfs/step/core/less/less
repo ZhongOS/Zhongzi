@@ -1,0 +1,2 @@
+PACKAGE=less
+BUILD_MODE=gnu

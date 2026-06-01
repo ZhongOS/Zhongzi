@@ -1,0 +1,2 @@
+p1 0001-fix-configure-error-under-loongarch64-architecture.patch
+p1 0001-libxcrypt-4.5.2-fix-build-error-for-glibc-2.43.patch

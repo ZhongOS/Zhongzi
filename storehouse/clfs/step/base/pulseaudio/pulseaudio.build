@@ -1,0 +1,1 @@
+EXTRA_PARM=-Ddatabase=gdbm -Dbluez5=disabled -Dsystemduserunitdir=/usr/lib/systemd/user -Dbashcompletiondir=/usr/share/bash-completion/completions

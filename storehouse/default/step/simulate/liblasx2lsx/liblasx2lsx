@@ -1,0 +1,2 @@
+PACKAGE=liblasx2lsx
+BUILD_MODE=custom

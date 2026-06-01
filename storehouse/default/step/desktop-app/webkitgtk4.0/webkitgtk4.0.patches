@@ -1,0 +1,6 @@
+
+
+[[[2.38.2]]]
+p1	webkitgtk-add-loongarch64.patch
+p1	webkitgtk-fix-for-gcc13.patch
+p1	webkitgtk-pr7531-ruby32-File_exists_removal.patch

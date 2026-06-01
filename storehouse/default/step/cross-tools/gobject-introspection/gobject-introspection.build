@@ -1,0 +1,37 @@
+if [ ! -f ${HOST_TOOLS_DIR}/bin/g-ir-scanner ]; then
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+    tar xvf ${RESOURCEDIR}/files/gobject-introspection-glib_git.tar.gz -C subprojects/
+    mv subprojects/gobject-introspection-glib_git subprojects/glib
+    tar xvf ${RESOURCEDIR}/files/gobject-introspection-gvdb_git.tar.gz -C subprojects/glib/subprojects/
+    rmdir subprojects/glib/subprojects/gvdb
+    mv subprojects/glib/subprojects/gobject-introspection-gvdb_git subprojects/glib/subprojects/gvdb
+    mkdir -p native-build
+    pushd native-build
+        meson --prefix=<<<HOST_TOOLS_PREFIX>>> --libdir=<<<HOST_TOOLS_PREFIX>>>/lib64 \
+              --buildtype=release ..
+	ninja
+#        LD_LIBRARY_PATH=${CROSSTOOLS_DIR}/lib64/:${CROSSTOOLS_DIR}/lib ninja
+        ninja install
+    popd
+<<<CLEAR_DIR>>>
+fi
+
+mkdir -p ${CROSSTOOLS_DIR}/bin
+cat > <<<CROSS_TOOLS_PREFIX>>>/bin/${CROSS_TARGET}-g-ir-scanner << EOF
+#!/bin/bash -e
+# LD_LIBRARY_PATH=<<<HOST_TOOLS_PREFIX>>>/lib64/:<<<HOST_TOOLS_PREFIX>>>/lib/ \
+<<<HOST_TOOLS_PREFIX>>>/bin/g-ir-scanner \
+      --add-include-path=${SYSROOT_DIR}/usr/share/gir-1.0 \
+      --use-binary-wrapper=<<<CROSS_TOOLS_PREFIX>>>/bin/qemu-${YONGBAO_TARGET_ARCH} \
+      --use-ldd-wrapper=<<<CROSS_TOOLS_PREFIX>>>/bin/qemu-${YONGBAO_TARGET_ARCH}-ldd "\$@"
+EOF
+chmod +x <<<CROSS_TOOLS_PREFIX>>>/bin/${CROSS_TARGET}-g-ir-scanner
+
+cat > <<<CROSS_TOOLS_PREFIX>>>/bin/${CROSS_TARGET}-g-ir-compiler << EOF
+#!/bin/bash -e
+# LD_LIBRARY_PATH=<<<CROSS_TOOLS_PREFIX>>>/lib64/:<<<CROSS_TOOLS_PREFIX>>>/lib/ \
+<<<HOST_TOOLS_PREFIX>>>/bin/g-ir-compiler \
+          --includedir=/${SYSROOT_DIR}/usr/share/gir-1.0 "\$@"
+EOF
+chmod +x <<<CROSS_TOOLS_PREFIX>>>/bin/${CROSS_TARGET}-g-ir-compiler

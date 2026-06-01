@@ -1,0 +1,12 @@
+<<<TAR_UNCOMPRESS>>>
+	ABI=$(archname_to_archabi "$(get_user_set_env target "mingw64")" "${MINGW_HOST}") ./configure --build=${CROSS_HOST} --host=${MINGW_HOST} \
+                --prefix=/mingw --enable-cxx --disable-shared --enable-static
+	<<<MAKE>>>
+	make DESTDIR=${MINGW_SYSROOT_DIR} install
+	make distclean
+	ABI=$(archname_to_archabi "$(get_user_set_env target "mingw64")" "${MINGW_HOST}") ./configure --build=${CROSS_HOST} --host=${MINGW_HOST} \
+                --prefix=/mingw --enable-cxx --enable-shared --disable-static
+	<<<MAKE>>>
+	make DESTDIR=${MINGW_SYSROOT_DIR} install
+<<<CLEAR_DIR>>>
+rm -f ${MINGW_SYSROOT_DIR}/mingw/lib/*.la

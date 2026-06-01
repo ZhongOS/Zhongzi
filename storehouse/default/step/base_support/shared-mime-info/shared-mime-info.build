@@ -1,0 +1,12 @@
+<<<TAR_UNCOMPRESS>>>
+    mkdir cross-build
+    pushd cross-build
+        CFLAGS="${CFLAGS} -Wno-implicit-function-declaration -Wno-int-conversion" \
+	meson ${MESON_CONFIG} ..
+	<<<NINJA_AND_INSTALL>>>
+    popd
+
+echo "qemu-${ARCH_NAME} ${SYSROOT_DIR}/usr/bin/update-mime-database \"\$@\"" \
+                > ${CROSSTOOLS_DIR}/bin/update-mime-database
+chmod +x ${CROSSTOOLS_DIR}/bin/update-mime-database
+<<<CLEAR_DIR>>>

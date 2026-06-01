@@ -1,0 +1,15 @@
+<<<TAR_UNCOMPRESS>>>
+    install -v -m755 bin/collateindex.pl ${SYSROOT_DIR}/usr/bin
+    install -v -m644 bin/collateindex.pl.1 ${SYSROOT_DIR}/usr/share/man/man1
+    install -v -d -m755 ${SYSROOT_DIR}/usr/share/sgml/docbook/dsssl-stylesheets-1.79
+    cp -v -R * ${SYSROOT_DIR}/usr/share/sgml/docbook/dsssl-stylesheets-1.79
+
+    install-catalog --add ${SYSROOT_DIR}/etc/sgml/dsssl-docbook-stylesheets.cat \
+        ${SYSROOT_DIR}/usr/share/sgml/docbook/dsssl-stylesheets-1.79/catalog
+    install-catalog --add ${SYSROOT_DIR}/etc/sgml/dsssl-docbook-stylesheets.cat \
+        ${SYSROOT_DIR}/usr/share/sgml/docbook/dsssl-stylesheets-1.79/common/catalog
+    install-catalog --add /etc/sgml/sgml-docbook.cat \
+        ${SYSROOT_DIR}/etc/sgml/dsssl-docbook-stylesheets.cat
+
+    sed -i "s@${SYSROOT_DIR}@@g" ${SYSROOT_DIR}/etc/sgml/*
+<<<CLEAR_DIR>>>

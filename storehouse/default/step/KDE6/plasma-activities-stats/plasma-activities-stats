@@ -1,0 +1,2 @@
+PACKAGE=plasma-activities-stats
+BUILD_MODE=cmake

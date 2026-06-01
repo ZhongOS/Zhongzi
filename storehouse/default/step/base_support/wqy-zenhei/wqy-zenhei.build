@@ -1,0 +1,6 @@
+<<<TAR_UNCOMPRESS>>>
+    mkdir -pv ${SYSROOT_DIR}/usr/share/fonts/wenquanyi/
+    cp -av wqy-zenhei.ttc ${SYSROOT_DIR}/usr/share/fonts/wenquanyi/
+    sed -i "7,11d" 44-wqy-zenhei.conf
+    cp -av 44-wqy-zenhei.conf ${SYSROOT_DIR}/etc/fonts/conf.d/
+<<<CLEAR_DIR>>>

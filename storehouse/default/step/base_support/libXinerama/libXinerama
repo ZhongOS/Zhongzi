@@ -1,0 +1,2 @@
+PACKAGE=libXinerama
+BUILD_MODE=gnu

@@ -1,0 +1,2 @@
+PACKAGE=libusbmuxd
+BUILD_MODE=gnu

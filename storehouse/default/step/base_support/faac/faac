@@ -1,0 +1,7 @@
+PACKAGE=faac
+BUILD_MODE=meson
+
+
+[[[1.31.1]]]
+PACKAGE=faac
+BUILD_MODE=custom

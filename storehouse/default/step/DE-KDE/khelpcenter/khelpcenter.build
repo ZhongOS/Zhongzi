@@ -1,0 +1,1 @@
+EXTRA_PARM=-DXAPIAN_SHARED_LIBRARY=${SYSDIR}/sysroot/usr/lib64/libxapian.so -DXAPIAN_STATIC_LIBRARY=${SYSDIR}/sysroot/usr/lib64/libxapian.a

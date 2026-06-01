@@ -1,0 +1,2 @@
+PACKAGE=xlsclients
+BUILD_MODE=gnu

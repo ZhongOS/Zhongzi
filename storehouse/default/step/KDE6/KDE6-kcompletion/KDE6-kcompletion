@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kcompletion
+BUILD_MODE=cmake

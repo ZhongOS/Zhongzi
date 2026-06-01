@@ -1,0 +1,2 @@
+PACKAGE=libinput
+BUILD_MODE=meson

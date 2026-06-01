@@ -1,0 +1,2 @@
+PACKAGE=dejavu-fonts-ttf
+BUILD_MODE=custom

@@ -1,0 +1,2 @@
+PACKAGE=firewalld
+BUILD_MODE=gnu

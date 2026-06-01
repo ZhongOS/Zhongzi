@@ -1,0 +1,7 @@
+<<<TAR_UNCOMPRESS>>>
+    CC=${CROSS_TARGET}-gcc \
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --libdir=/usr/lib64
+    check_gnu_Makefile
+    <<<MAKE>>> CC=${CROSS_TARGET}-gcc
+    make DESTDIR=${SYSROOT_DIR} install
+<<<CLEAR_DIR>>>

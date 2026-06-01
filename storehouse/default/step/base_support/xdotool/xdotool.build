@@ -1,0 +1,6 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+	sed -i "s@installpc post-install@installpc@g" Makefile
+	CC=${CROSS_TARGET}-gcc <<<MAKE>>> PREFIX=/usr INSTALLLIB=/usr/lib64
+	CC=${CROSS_TARGET}-gcc make PREFIX=/usr INSTALLLIB=/usr/lib64 DESTDIR=${SYSROOT_DIR} install
+<<<CLEAR_DIR>>>

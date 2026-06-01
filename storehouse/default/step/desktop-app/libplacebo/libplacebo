@@ -1,0 +1,2 @@
+PACKAGE=libplacebo
+BUILD_MODE=meson

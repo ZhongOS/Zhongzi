@@ -1,0 +1,7 @@
+# p1	0001-Add-avx-support.patch
+# p1	0002-Correct-the-translation-function-for-the-following-i.patch
+# p1	0003-Correct-the-translation-function-for-the-following-i.patch
+
+p1	0001-fix-interp_prefix-to-latx-M.patch
+
+p1	0001-fix-test-amdgpu-for-cross-build.patch

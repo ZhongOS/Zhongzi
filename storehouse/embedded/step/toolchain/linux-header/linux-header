@@ -1,0 +1,4 @@
+PACKAGE=linux
+BUILD_MODE=custom
+# LOCK_VERSION=32bit-test
+LOCK_VERSION=git

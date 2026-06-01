@@ -1,0 +1,2 @@
+PACKAGE=libvisual
+BUILD_MODE=gnu

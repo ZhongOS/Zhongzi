@@ -1,0 +1,4 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<MAKE>>> CC="${X86_64_HOST}-gcc" PREFIX=/usr LIBDIR=/usr/lib64
+	make CC="${X86_64_HOST}-gcc" PREFIX=/usr LIBDIR=/usr/lib64 DESTDIR=${X86_64_SYSROOT_DIR} install
+<<<CLEAR_DIR>>>

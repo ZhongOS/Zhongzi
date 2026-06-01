@@ -1,0 +1,91 @@
+NULL
+
+robin-map
+oneTBB
+c-blosc
+openvdb
+# pugixml
+pystring
+minizip-ng
+OpenColorIO
+OpenImageIO
+MaterialX
+# pystring
+# minizip-ng
+# OpenColorIO
+OpenCOLLADA
+partio
+# llvm17@/cross-tools|llvm17
+# # llvm17@/oldversion|llvm17;%PARENT=sysroot
+# # OpenShadingLanguage|llvm17;%PARENT=ORIG&oldversion
+# llvm17@/oldversion|llvm17;%PARENT=sysroot;%OVERLAY=desk_app
+# OpenShadingLanguage|llvm17;%PARENT=ORIG&oldversion
+OpenSubdiv
+OpenXR-SDK
+libspnav
+# c-blosc
+# openvdb
+alembic
+
+# pyside6@/host-tools
+# shiboken6
+# pyside6
+
+PyOpenGL
+# OpenUSD|bad
+# shaderc
+# ispc|bad
+# oidn|bad
+# embree|bad
+ceres-solver
+blender
+NULL
+
+cairomm
+glibmm
+pangomm
+gtkmm
+tinycss2
+cssselect
+inkscape
+NULL
+
+babl
+gegl
+gexiv2
+libmypaint
+# mypaint-brushes-1
+mypaint-brushes
+gimp
+NULL
+
+# libvdpau-va-gl
+# vdpau-va-driver-vp9
+# audacity
+
+NULL
+
+xerces-c
+# oneTBB
+VTK
+OCCT
+# libgee
+granite-6
+Coin4
+pivy
+matplotlib
+# rift
+GSL
+pcl
+hdf5
+med
+FreeCAD
+
+NULL
+
+godot
+NULL
+
+# denemo
+
+NULL

@@ -1,0 +1,2 @@
+PACKAGE=libproxy
+BUILD_MODE=cmake

@@ -1,0 +1,2 @@
+EXTRA_PARM=--enable-static --enable-shared
+# EXTRA_PARM=--enable-static --disable-shared

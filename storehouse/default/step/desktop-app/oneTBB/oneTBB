@@ -1,0 +1,2 @@
+PACKAGE=oneTBB
+BUILD_MODE=cmake

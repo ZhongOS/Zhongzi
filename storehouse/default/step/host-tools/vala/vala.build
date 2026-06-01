@@ -1,0 +1,4 @@
+<<<TAR_UNCOMPRESS>>>
+    ./configure --prefix=${PREFIX} --disable-valadoc
+    <<<MAKE_AND_INSTALL>>>
+<<<CLEAR_DIR>>>

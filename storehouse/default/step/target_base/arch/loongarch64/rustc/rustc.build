@@ -1,0 +1,208 @@
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+    export CFLAGS="$(echo ${CFLAGS} | sed "s@ -g\( \|$\)@@g")"
+    export CXXFLAGS="$(echo ${CXXFLAGS} | sed "s@ -g\( \|$\)@@g")"
+    TARGET_PKG_CONFIG_SYSROOT_DIR=${PKG_CONFIG_SYSROOT_DIR} \
+    PKG_CONFIG_SYSROOT_DIR="" \
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var \
+                --host=${CROSS_TARGET} --target=${CROSS_TARGET} \
+#                 --local-rust-root=${CROSSTOOLS_DIR} \
+                --local-rust-root=${HOST_TOOLS_DIR} \
+#                 --enable-extended --enable-vendor --disable-docs --release-channel=stable \
+                --enable-extended --enable-vendor --disable-docs --release-channel=dev \
+		--set=target.${CROSS_TARGET}.linker="${CROSS_TARGET}-gcc" \
+		--set=target.${CROSS_TARGET}.cc="${CROSS_TARGET}-gcc" \
+		--set=target.${CROSS_TARGET}.cxx="${CROSS_TARGET}-g++" \
+#		--set=target.${CROSS_TARGET}.llvm-config="${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-llvm-config" \
+#		--set=target.$(echo ${CROSS_HOST} | sed 's@cross@unknown@g').llvm-config="${CROSSTOOLS_DIR}/bin/llvm-config" \
+#		--set=target.$(echo ${CROSS_HOST} | sed 's@cross@unknown@g').linker="clang" \
+                --disable-codegen-tests --experimental-targets="" --enable-llvm-static-stdcpp --enable-profiler
+#     export CARGO_TARGET_$(echo ${CROSS_TARGET^^} | tr '-' '_')_RUSTFLAGS="$RUSTFLAGS -C link-args=-lz -C link-args=-lzstd -C link-args=-lLLVM -Ccode-model=large"
+    export CARGO_TARGET_$(echo ${CROSS_TARGET^^} | tr '-' '_')_RUSTFLAGS="$RUSTFLAGS -C link-args=-lz -C link-args=-lzstd -C link-args=-lLLVM -Ccode-model=medium"
+#  -Ccode-model=medium"
+    TARGET_PKG_CONFIG_SYSROOT_DIR=${PKG_CONFIG_SYSROOT_DIR} \
+    PKG_CONFIG_SYSROOT_DIR="" \
+#    CARGO_TARGET_LOONGARCH64_UNKNOWN_LINUX_GNU_RUSTFLAGS="$RUSTFLAGS -C link-args=-lz -C link-args=-lzstd -C link-args=-lLLVM" \
+    <<<MAKE>>> \
+         $(echo ${CROSS_TARGET^^} | tr '-' '_')_OPENSSL_INCLUDE_DIR=${SYSROOT_DIR}/usr/include \
+         $(echo ${CROSS_TARGET^^} | tr '-' '_')_OPENSSL_LIB_DIR=${SYSROOT_DIR}/usr/lib64
+    TARGET_PKG_CONFIG_SYSROOT_DIR=${PKG_CONFIG_SYSROOT_DIR} \
+    PKG_CONFIG_SYSROOT_DIR="" \
+#    CARGO_TARGET_LOONGARCH64_UNKNOWN_LINUX_GNU_RUSTFLAGS="$RUSTFLAGS -C link-args=-lz -C link-args=-lzstd -C link-args=-lLLVM" \
+    <<<MAKE>>> \
+         $(echo ${CROSS_TARGET^^} | tr '-' '_')_OPENSSL_INCLUDE_DIR=${SYSROOT_DIR}/usr/include \
+         $(echo ${CROSS_TARGET^^} | tr '-' '_')_OPENSSL_LIB_DIR=${SYSROOT_DIR}/usr/lib64 \
+         DESTDIR=${SYSROOT_DIR}/ install
+<<<CLEAR_DIR>>>
+rm -f ${SYSROOT_DIR}/usr/lib/rustlib/manifest-*
+
+
+[[[1.84.1]]]
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+    export CFLAGS="$(echo ${CFLAGS} | sed "s@ -g\( \|$\)@@g")"
+    export CXXFLAGS="$(echo ${CXXFLAGS} | sed "s@ -g\( \|$\)@@g")"
+    PKG_CONFIG_SYSROOT_DIR="" \
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --libdir=/usr/lib${LIB_SUFF} \
+                --host=${CROSS_TARGET} --target=${CROSS_TARGET} \
+                --local-rust-root=${CROSSTOOLS_DIR} \
+                --enable-extended --enable-vendor --disable-docs --release-channel=stable \
+		--set=target.${CROSS_TARGET}.linker="${CROSS_TARGET}-gcc" \
+		--set=target.${CROSS_TARGET}.cc="${CROSS_TARGET}-gcc" \
+		--set=target.${CROSS_TARGET}.cxx="${CROSS_TARGET}-g++" \
+		--set=target.${CROSS_TARGET}.llvm-config="${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-llvm-config" \
+		--set=target.$(echo ${CROSS_HOST} | sed 's@cross@unknown@g').llvm-config="${CROSSTOOLS_DIR}/bin/llvm-config" \
+		--set=target.$(echo ${CROSS_HOST} | sed 's@cross@unknown@g').linker="clang" \
+                --disable-codegen-tests --experimental-targets="" --enable-llvm-static-stdcpp --enable-profiler
+    export CARGO_TARGET_$(echo ${CROSS_TARGET^^} | tr '-' '_')_RUSTFLAGS="$RUSTFLAGS -C link-args=-lz -C link-args=-lzstd -C link-args=-lLLVM -Ccode-model=large"
+#  -Ccode-model=medium"
+    PKG_CONFIG_SYSROOT_DIR="" \
+#    CARGO_TARGET_LOONGARCH64_UNKNOWN_LINUX_GNU_RUSTFLAGS="$RUSTFLAGS -C link-args=-lz -C link-args=-lzstd -C link-args=-lLLVM" \
+    <<<MAKE>>> \
+         $(echo ${CROSS_TARGET^^} | tr '-' '_')_OPENSSL_INCLUDE_DIR=${SYSROOT_DIR}/usr/include \
+         $(echo ${CROSS_TARGET^^} | tr '-' '_')_OPENSSL_LIB_DIR=${SYSROOT_DIR}/usr/lib64
+    PKG_CONFIG_SYSROOT_DIR="" \
+#    CARGO_TARGET_LOONGARCH64_UNKNOWN_LINUX_GNU_RUSTFLAGS="$RUSTFLAGS -C link-args=-lz -C link-args=-lzstd -C link-args=-lLLVM" \
+    <<<MAKE>>> \
+         $(echo ${CROSS_TARGET^^} | tr '-' '_')_OPENSSL_INCLUDE_DIR=${SYSROOT_DIR}/usr/include \
+         $(echo ${CROSS_TARGET^^} | tr '-' '_')_OPENSSL_LIB_DIR=${SYSROOT_DIR}/usr/lib64 \
+         DESTDIR=${SYSROOT_DIR}/ install
+<<<CLEAR_DIR>>>
+
+
+[[[1.80.0]]]
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+    export CFLAGS="$(echo ${CFLAGS} | sed "s@ -g\( \|$\)@@g")"
+    export CXXFLAGS="$(echo ${CXXFLAGS} | sed "s@ -g\( \|$\)@@g")"
+#    export LD_LIBRARY_PATH=${CROSSTOOLS_DIR}/lib64:${CROSSTOOLS_DIR}/lib:/usr/lib64:/usr/lib
+#    LDFLAGS="" \
+    PKG_CONFIG_SYSROOT_DIR="" \
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --libdir=/usr/lib${LIB_SUFF} \
+                --host=${CROSS_TARGET} \
+                --local-rust-root=${CROSSTOOLS_DIR} \
+                --enable-extended --enable-vendor --release-channel=stable \
+                --disable-codegen-tests --experimental-targets="" --enable-llvm-static-stdcpp --enable-profiler
+#    LDFLAGS="" \
+    PKG_CONFIG_SYSROOT_DIR="" \
+    RUSTFLAGS="$RUSTFLAGS -C link-args=-lz" \
+    <<<MAKE>>> HOST_CC="gcc" CC="${CROSS_TARGET}-gcc" \
+         HOST_CXX="g++" CXX="${CROSS_TARGET}-g++" \
+         LOONGARCH64_UNKNOWN_LINUX_GNU_OPENSSL_INCLUDE_DIR=${SYSROOT_DIR}/usr/include \
+         LOONGARCH64_UNKNOWN_LINUX_GNU_OPENSSL_LIB_DIR=${SYSROOT_DIR}/usr/lib64
+#    LDFLAGS="" \
+    PKG_CONFIG_SYSROOT_DIR="" \
+    RUSTFLAGS="$RUSTFLAGS -C link-args=-lz" \
+    <<<MAKE>>> HOST_CC="gcc" CC="${CROSS_TARGET}-gcc" \
+         HOST_CXX="g++" CXX="${CROSS_TARGET}-g++" \
+         LOONGARCH64_UNKNOWN_LINUX_GNU_OPENSSL_INCLUDE_DIR=${SYSROOT_DIR}/usr/include \
+         LOONGARCH64_UNKNOWN_LINUX_GNU_OPENSSL_LIB_DIR=${SYSROOT_DIR}/usr/lib64 \
+         DESTDIR=${SYSROOT_DIR}/ install
+<<<CLEAR_DIR>>>
+
+
+[[[1.70.0]]]
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+    cargo update -p cargo
+    find vendor -name .cargo-checksum.json \
+          -exec sed -i.uncheck -e 's/"files":{[^}]*}/"files":{ }/' '{}' '+'
+    LDFLAGS="" \
+    PKG_CONFIG_SYSROOT_DIR="" \
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --libdir=/usr/lib${LIB_SUFF} \
+                --host=${CROSS_TARGET} \
+                --local-rust-root=${CROSSTOOLS_DIR} \
+                --enable-extended --enable-vendor --release-channel=stable \
+                --disable-codegen-tests --experimental-targets=""
+    LDFLAGS="" \
+    PKG_CONFIG_SYSROOT_DIR="" \
+    RUSTFLAGS="$RUSTFLAGS -C link-args=-lz" \
+    <<<MAKE>>> HOST_CC="gcc" CC="${CROSS_TARGET}-gcc" \
+         HOST_CXX="g++" CXX="${CROSS_TARGET}-g++" \
+         LOONGARCH64_UNKNOWN_LINUX_GNU_OPENSSL_INCLUDE_DIR=${SYSROOT_DIR}/usr/include \
+         LOONGARCH64_UNKNOWN_LINUX_GNU_OPENSSL_LIB_DIR=${SYSROOT_DIR}/usr/lib64
+    LDFLAGS="" \
+    PKG_CONFIG_SYSROOT_DIR="" \
+    RUSTFLAGS="$RUSTFLAGS -C link-args=-lz" \
+    <<<MAKE>>> HOST_CC="gcc" CC="${CROSS_TARGET}-gcc" \
+         HOST_CXX="g++" CXX="${CROSS_TARGET}-g++" \
+         LOONGARCH64_UNKNOWN_LINUX_GNU_OPENSSL_INCLUDE_DIR=${SYSROOT_DIR}/usr/include \
+         LOONGARCH64_UNKNOWN_LINUX_GNU_OPENSSL_LIB_DIR=${SYSROOT_DIR}/usr/lib64 \
+         DESTDIR=${SYSROOT_DIR}/ install
+<<<CLEAR_DIR>>>
+
+
+[[[1.69.0]]]
+<<<TAR_UNCOMPRESS>>>
+    rm -rf src/llvm-project
+    tar xvf ${RESOURCEDIR}/files/llvm-project-16.0.4.src.tar.xz -C src/
+    mv src/llvm-project-16.0.4.src src/llvm-project
+    <<<PATCH>>>
+    sed -i "s@ifdef LLVM_RUSTLLVM@if 0@g" compiler/rustc_llvm/llvm-wrapper/PassWrapper.cpp
+    find vendor -name .cargo-checksum.json \
+          -exec sed -i.uncheck -e 's/"files":{[^}]*}/"files":{ }/' '{}' '+'
+    LDFLAGS="" \
+    PKG_CONFIG_SYSROOT_DIR="" \
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --libdir=/usr/lib${LIB_SUFF} \
+                --host=${CROSS_TARGET} \
+                --local-rust-root=${CROSSTOOLS_DIR} \
+                --enable-extended --enable-vendor --release-channel=stable \
+                --disable-codegen-tests --experimental-targets=""
+    LDFLAGS="" \
+    PKG_CONFIG_SYSROOT_DIR="" \
+    RUSTFLAGS="$RUSTFLAGS -C link-args=-lz" \
+    <<<MAKE>>> HOST_CC="gcc" CC="${CROSS_TARGET}-gcc" \
+         HOST_CXX="g++" CXX="${CROSS_TARGET}-g++" \
+         LOONGARCH64_UNKNOWN_LINUX_GNU_OPENSSL_INCLUDE_DIR=${SYSROOT_DIR}/usr/include \
+         LOONGARCH64_UNKNOWN_LINUX_GNU_OPENSSL_LIB_DIR=${SYSROOT_DIR}/usr/lib64
+    LDFLAGS="" \
+    PKG_CONFIG_SYSROOT_DIR="" \
+    RUSTFLAGS="$RUSTFLAGS -C link-args=-lz" \
+    <<<MAKE>>> HOST_CC="gcc" CC="${CROSS_TARGET}-gcc" \
+         HOST_CXX="g++" CXX="${CROSS_TARGET}-g++" \
+         LOONGARCH64_UNKNOWN_LINUX_GNU_OPENSSL_INCLUDE_DIR=${SYSROOT_DIR}/usr/include \
+         LOONGARCH64_UNKNOWN_LINUX_GNU_OPENSSL_LIB_DIR=${SYSROOT_DIR}/usr/lib64 \
+         DESTDIR=${SYSROOT_DIR}/ install
+<<<CLEAR_DIR>>>
+
+[[[1.66.0]]]
+<<<TAR_UNCOMPRESS>>>
+    rm -rf src/llvm-project
+    tar xvf ${DOWNLOADDIR}/llvm-project-16.0.1_git.tar.gz -C src/
+    mv src/llvm-project-16.0.1_git src/llvm-project
+    <<<PATCH>>>
+    sed -i "s@ifdef LLVM_RUSTLLVM@if 0@g" compiler/rustc_llvm/llvm-wrapper/PassWrapper.cpp
+    find vendor -name .cargo-checksum.json \
+          -exec sed -i.uncheck -e 's/"files":{[^}]*}/"files":{ }/' '{}' '+'
+    LDFLAGS="" \
+    PKG_CONFIG_SYSROOT_DIR="" \
+    ./configure ${COMMON_CONFIG} \
+                --local-rust-root=${CROSSTOOLS_DIR} \
+                --enable-extended --enable-vendor --release-channel=stable \
+                --disable-codegen-tests --experimental-targets="LoongArch"
+    LDFLAGS="" \
+    PKG_CONFIG_SYSROOT_DIR="" \
+    RUSTFLAGS="$RUSTFLAGS -C link-args=-lz" \
+    <<<MAKE>>> HOST_CC="gcc" CC="${CROSS_TARGET}-gcc" \
+         HOST_CXX="g++" CXX="${CROSS_TARGET}-g++" \
+         LOONGARCH64_UNKNOWN_LINUX_GNU_OPENSSL_INCLUDE_DIR=${SYSROOT_DIR}/usr/include \
+         LOONGARCH64_UNKNOWN_LINUX_GNU_OPENSSL_LIB_DIR=${SYSROOT_DIR}/usr/lib64
+    LDFLAGS="" \
+    PKG_CONFIG_SYSROOT_DIR="" \
+    RUSTFLAGS="$RUSTFLAGS -C link-args=-lz" \
+    make HOST_CC="gcc" CC="${CROSS_TARGET}-gcc" \
+         HOST_CXX="g++" CXX="${CROSS_TARGET}-g++" \
+         LOONGARCH64_UNKNOWN_LINUX_GNU_OPENSSL_INCLUDE_DIR=${SYSROOT_DIR}/usr/include \
+         LOONGARCH64_UNKNOWN_LINUX_GNU_OPENSSL_LIB_DIR=${SYSROOT_DIR}/usr/lib64 \
+         DESTDIR=${SYSROOT_DIR}/ install
+    LDFLAGS="" \
+    PKG_CONFIG_SYSROOT_DIR="" \
+    RUSTFLAGS="$RUSTFLAGS -C link-args=-lz" \
+    make HOST_CC="gcc" CC="${CROSS_TARGET}-gcc" \
+         HOST_CXX="g++" CXX="${CROSS_TARGET}-g++" \
+         LOONGARCH64_UNKNOWN_LINUX_GNU_OPENSSL_INCLUDE_DIR=${SYSROOT_DIR}/usr/include \
+         LOONGARCH64_UNKNOWN_LINUX_GNU_OPENSSL_LIB_DIR=${SYSROOT_DIR}/usr/lib64 \
+         dist
+    mkdir -pv ${BUILD_DIRECTORY}/rust-dist
+    find build/dist -name "*.xz" -exec mv '{}' ${BUILD_DIRECTORY}/rust-dist/ ';'
+<<<CLEAR_DIR>>>

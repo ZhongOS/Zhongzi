@@ -1,0 +1,2 @@
+PACKAGE=grantlee
+BUILD_MODE=cmake

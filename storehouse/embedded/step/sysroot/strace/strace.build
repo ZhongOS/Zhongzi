@@ -1,0 +1,1 @@
+EXTRA_PARM=CFLAGS="${CFLAGS} -Wno-error=calloc-transposed-args -Wno-error=sign-compare"

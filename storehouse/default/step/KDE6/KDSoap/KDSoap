@@ -1,0 +1,2 @@
+PACKAGE=KDSoap
+BUILD_MODE=custom

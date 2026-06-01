@@ -1,0 +1,5 @@
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+    ./configure ${COMMON_CONFIG}
+    <<<MAKE_AND_INSTALL>>>
+<<<CLEAR_DIR>>>

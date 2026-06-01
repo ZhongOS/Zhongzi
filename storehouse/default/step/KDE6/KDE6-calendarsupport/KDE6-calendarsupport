@@ -1,0 +1,2 @@
+PACKAGE=KDE6-calendarsupport
+BUILD_MODE=cmake

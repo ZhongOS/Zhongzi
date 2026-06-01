@@ -1,0 +1,2 @@
+PACKAGE=prison
+BUILD_MODE=cmake

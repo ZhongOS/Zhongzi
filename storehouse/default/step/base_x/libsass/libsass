@@ -1,0 +1,2 @@
+PACKAGE=libsass
+BUILD_MODE=gnu

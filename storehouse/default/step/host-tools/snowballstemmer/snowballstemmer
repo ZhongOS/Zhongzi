@@ -1,0 +1,2 @@
+PACKAGE=snowballstemmer
+BUILD_MODE=pip

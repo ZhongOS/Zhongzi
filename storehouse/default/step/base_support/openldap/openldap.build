@@ -1,0 +1,16 @@
+<<<TAR_UNCOMPRESS>>>
+        <<<PATCH>>>
+        if [ ! -f configure ]; then
+                autoreconf -ifv
+        fi
+        CC="${CROSS_TARGET}-gcc" CXX="${CROSS_TARGET}-g++" \
+	STRIP="${CROSS_TARGET}-strip" \
+	./configure ${COMMON_CONFIG} --disable-static --enable-dynamic  \
+            --enable-versioning=yes --disable-debug --disable-slapd \
+            --with-yielding_select=yes ac_cv_func_memcmp_working=yes --enable-malloc0returnsnull
+	check_gnu_Makefile
+        <<<MAKE>>> LD="${CROSS_TARGET}-ld" depend
+	<<<MAKE>>> LD="${CROSS_TARGET}-ld"
+        make STRIP="${CROSS_TARGET}-strip" DESTDIR=${SYSROOT_DIR} install
+        rm -f ${SYSROOT_DIR}/usr/lib64/*.la
+<<<CLEAR_DIR>>>

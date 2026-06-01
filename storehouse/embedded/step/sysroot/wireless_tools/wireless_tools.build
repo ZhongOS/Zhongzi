@@ -1,0 +1,6 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+	sed  -i.orig "/^INSTALL_LIB/s@/lib/@/lib${LIB_SUFF}/@g" Makefile
+	<<<MAKE>>> CC=${CROSS_TARGET}-gcc
+	make PREFIX=${SYSROOT_DIR}/usr INSTALL_MAN=${SYSROOT_DIR}/usr/share/man install
+<<<CLEAR_DIR>>>

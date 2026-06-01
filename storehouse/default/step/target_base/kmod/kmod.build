@@ -1,0 +1,19 @@
+<<<TAR_UNCOMPRESS>>>
+#        rm $(dirname $(find -name "config.sub"))/config.{sub,guess}
+#        automake --add-missing
+#	autoreconf -ifv
+	rm m4/l*.m4
+	./autogen.sh
+	./configure --prefix=/usr --libdir=/usr/lib${LIB_SUFF} --bindir=/bin \
+	            --sysconfdir=/etc --build=${CROSS_HOST} --host=${CROSS_TARGET} \
+	            --with-xz --with-zstd --with-zlib --disable-manpages \
+		    --with-bashcompletiondir=/usr/share/bash-completion/completions \
+		    --with-fishcompletiondir=/usr/share/fish/vendor_completions.d/ \
+		    as_ln_s="ln -sf"
+	<<<MAKE_AND_INSTALL>>>
+	
+	for target in depmod insmod lsmod modinfo modprobe rmmod; do
+		ln -sfv ../bin/kmod ${SYSROOT_DIR}/sbin/$target
+	done
+	ln -sfv kmod ${SYSROOT_DIR}/bin/lsmod
+<<<CLEAR_DIR>>>

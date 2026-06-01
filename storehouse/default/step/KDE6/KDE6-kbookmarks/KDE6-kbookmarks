@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kbookmarks
+BUILD_MODE=cmake

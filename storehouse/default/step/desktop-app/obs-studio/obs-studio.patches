@@ -1,0 +1,5 @@
+
+
+[[[32.1.0]]]
+# p1	0001-obs-studio-fix-Libqrcodegencpp-to-qrcodegencpp.patch
+p1	0001-obs-studio-fix-for-gcc-15.patch

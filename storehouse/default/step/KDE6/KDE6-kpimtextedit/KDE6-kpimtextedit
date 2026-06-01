@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kpimtextedit
+BUILD_MODE=cmake

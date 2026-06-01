@@ -1,0 +1,3 @@
+PACKAGE=glean-parser
+BUILD_MODE=pip
+# LOCK_VERSION=13.0.1

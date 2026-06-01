@@ -1,0 +1,2 @@
+PACKAGE=libseccomp
+BUILD_MODE=gnu

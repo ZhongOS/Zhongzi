@@ -1,0 +1,78 @@
+make_directory@core
+linux-header@core
+binutils@cross-tools
+gmp@host-tools
+mpfr@host-tools
+mpc@host-tools
+gcc_nolibc@cross-tools
+automake@host-tools
+glibc@core
+glibc_localedata@core|bad
+libxcrypt@core
+gcc@cross-tools
+file@host-tools
+autoconf@host-tools
+libtool@host-tools
+# pkg-config@cross-tools
+pkgconf@cross-tools
+ninja@host-tools
+groff@host-tools
+guile@host-tools
+perl@cross-tools
+File-ShareDir-Install@cross-tools
+File-ShareDir@cross-tools
+Class-Inspector@cross-tools
+XML-Parser@cross-tools
+URI@cross-tools
+Python3@cross-tools
+setuptools@cross-tools
+flit-core@cross-tools
+pip@cross-tools
+MarkupSafe@cross-tools
+Jinja2@cross-tools
+qemu@cross-tools
+meson@host-tools
+glib@host-tools
+gobject-introspection@cross-tools
+vala@cross-tools
+llvm-project@cross-tools
+rust-bootstrap@host-tools
+rustc@cross-tools
+lua@host-tools
+ruby@host-tools
+wayland@host-tools
+# nspr@host-tools
+# nss@host-tools
+make@host-tools
+elfutils@cross-tools
+# PyYAML@cross-tools
+# Mako@cross-tools
+openssl@host-tools
+cmake@host-tools
+glslang@host-tools
+cargo-c@host-tools
+sqlite@host-tools
+# libxml2@host-tools
+# lxml@host-tools
+Cython@cross-tools
+pathspec@cross-tools
+pluggy@cross-tools
+packaging@cross-tools
+trove-classifiers@cross-tools
+hatchling@cross-tools
+unifdef@host-tools
+scons@cross-tools
+autoconf-archive@host-tools
+SPIRV-LLVM-Translator@cross-tools
+libclc@cross-tools
+Python3_13@host-tools
+doxygen@host-tools
+# nasm@host-tools
+node@host-tools|bad
+gdb@cross-tools
+grub@cross-tools
+@core:clfs
+@base:clfs
+# @extra:clfs
+@boot:clfs
+blfs-systemd-units@core

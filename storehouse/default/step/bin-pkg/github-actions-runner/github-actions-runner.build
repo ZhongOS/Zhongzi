@@ -1,0 +1,4 @@
+<<<TAR_UNCOMPRESS>>>
+	mkdir -p ${SYSROOT_DIR}/opt/github-actions/runner
+	tar xvf ${RESOURCEDIR}/files/actions-runner-linux-loongarch64-2.308.0.tar.gz -C ${SYSROOT_DIR}/opt/github-actions/runner/
+<<<CLEAR_DIR>>>

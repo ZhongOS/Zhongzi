@@ -1,0 +1,6 @@
+# EXTRA_PARM=--disable-shared
+EXTRA_PARM=--with-libncurses-prefix=${PREFIX} --with-included-libxml
+
+[[[0.26]]]
+EXTRA_PARM=--with-libncurses-prefix=${PREFIX} --with-included-libxml
+CONFIG_ENV=CFLAGS="${CFLAGS} -Wno-incompatible-pointer-types"

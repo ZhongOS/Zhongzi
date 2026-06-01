@@ -1,0 +1,8 @@
+<<<TAR_UNCOMPRESS>>>
+        <<<PATCH>>>
+        ./configure --prefix=${PREFIX}/${X86_HOST} --build=${CROSS_HOST} \
+                --host=${CROSS_HOST} --target=${X86_HOST} \
+                --with-pc_path=${SYSROOT_DIR}/usr/lib/i686/sys-root/usr/lib/pkgconfig --program-prefix=${X86_HOST}- --with-internal-glib --disable-host-tool
+	<<<MAKE>>>
+	make install
+<<<CLEAR_DIR>>>

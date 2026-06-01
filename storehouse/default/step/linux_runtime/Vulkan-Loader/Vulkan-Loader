@@ -1,0 +1,2 @@
+PACKAGE=Vulkan-Loader
+BUILD_MODE=cmake

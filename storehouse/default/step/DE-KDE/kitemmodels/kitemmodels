@@ -1,0 +1,2 @@
+PACKAGE=kitemmodels
+BUILD_MODE=cmake

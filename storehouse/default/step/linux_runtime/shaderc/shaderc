@@ -1,0 +1,2 @@
+PACKAGE=shaderc
+BUILD_MODE=custom

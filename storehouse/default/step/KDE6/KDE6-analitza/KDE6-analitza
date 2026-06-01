@@ -1,0 +1,2 @@
+PACKAGE=KDE6-analitza
+BUILD_MODE=cmake

@@ -1,0 +1,5 @@
+p1 0001-filezilla-3.67.1-fix-build-error.patch
+p1 0001-remove-wx_config-add-host-parm.patch
+
+[[[3.67.0]]]
+p1 0001-filezilla-3.67.0-fix-build-error.patch

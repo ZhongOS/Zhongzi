@@ -1,0 +1,2 @@
+PACKAGE=flit_core
+BUILD_MODE=pip

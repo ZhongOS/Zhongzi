@@ -1,0 +1,2 @@
+PACKAGE=libretro-beetle-psx
+BUILD_MODE=custom

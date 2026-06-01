@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kdialog
+BUILD_MODE=cmake

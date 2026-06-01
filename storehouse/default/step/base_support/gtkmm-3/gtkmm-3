@@ -1,0 +1,2 @@
+PACKAGE=gtkmm-3
+BUILD_MODE=meson

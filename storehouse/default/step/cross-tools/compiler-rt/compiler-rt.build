@@ -1,0 +1,25 @@
+<<<TAR_UNCOMPRESS>>>
+    pushd compiler-rt
+        mkdir native-build
+        pushd native-build
+            cmake .. -G Ninja -DCMAKE_INSTALL_PREFIX:PATH=<<<CROSS_TOOLS_PREFIX>>> \
+		  -DCMAKE_CXX_COMPILER="g++" -DCMAKE_C_COMPILER="gcc" \
+		  -DCMAKE_BUILD_TYPE=Release \
+#                  -DLLVM_CONFIG=${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-llvm-config \
+#                  -DLLVM_LIBDIR_SUFFIX=64 \
+#                  -DCMAKE_AR="${CROSSTOOLS_DIR}/bin/llvm-ar" \
+#                  -DCMAKE_RANLIB="${CROSSTOOLS_DIR}/bin/llvm-ranlib" \
+                  -DCMAKE_C_FLAGS="-DNDEBUG" -DCMAKE_CXX_FLAGS="-DNDEBUG" \
+                  -DLLVM_CMAKE_DIR=${CROSSTOOLS_DIR}/lib${LIB_SUFF}/cmake \
+                  -DLLVM_LIBDIR_SUFFIX=${LIB_SUFF}  \
+                  -DLLVM_ENABLE_RTTI:BOOL=ON \
+                  -DLLVM_ENABLE_ZLIB:BOOL=ON \
+                  -DLLVM_ENABLE_TERMINFO:BOOL=OFF \
+                  -DLLVM_USE_SANITIZER:BOOL=ON \
+                  -DLLVM_LINK_LLVM_DYLIB:BOOL=ON
+                  -DLLVM_HOST_TRIPLE=${CROSS_HOST}
+	    ninja
+	    ninja install
+        popd
+    popd
+<<<CLEAR_DIR>>>

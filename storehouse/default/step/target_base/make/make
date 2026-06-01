@@ -1,0 +1,2 @@
+PACKAGE=make
+BUILD_MODE=gnu

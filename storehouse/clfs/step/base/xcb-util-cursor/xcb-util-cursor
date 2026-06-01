@@ -1,0 +1,2 @@
+PACKAGE=xcb-util-cursor
+BUILD_MODE=gnu

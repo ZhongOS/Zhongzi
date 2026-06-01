@@ -1,0 +1,2 @@
+CONFIG_ENV=CFLAGS="${CFLAGS} -Wno-error=stringop-overread"
+EXTRA_PARM=--disable-werror

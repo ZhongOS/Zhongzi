@@ -1,0 +1,23 @@
+# i686-binutils|wine,wine64
+# i686-gcc|wine,wine64
+# i686-pkgconf|wine,wine64
+# i686-qemu|wine,wine64
+# x86_64-binutils|wine64
+# x86_64-gcc|wine64
+# x86_64-pkgconf|wine64
+# x86_64-qemu|wine64
+
+
+# linux-binutils|wine64;%target=x86_64
+# linux-binutils|wine64,wine;%target=i686
+# linux-gcc|wine64;%target=x86_64
+# linux-gcc|wine64,wine;%target=i686
+# linux-pkgconf|wine64;%target=x86_64
+# linux-pkgconf|wine64,wine;%target=i686
+# linux-qemu|wine64;%target=x86_64
+# linux-qemu|wine64,wine;%target=i686
+
+linux-binutils
+linux-gcc
+linux-pkgconf
+linux-qemu

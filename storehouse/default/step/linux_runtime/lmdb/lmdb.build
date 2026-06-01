@@ -1,0 +1,6 @@
+<<<TAR_UNCOMPRESS>>>
+    pushd libraries/liblmdb
+        <<<MAKE>>> CC=${LINUX_HOST}-gcc prefix=/usr libdir=/usr/lib${LIB_SUFF}
+        make DESTDIR=${LINUX_SYSROOT_DIR} prefix=/usr libdir=/usr/lib${LIB_SUFF} install
+    popd
+<<<CLEAR_DIR>>>

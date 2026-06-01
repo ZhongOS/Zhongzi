@@ -1,0 +1,5 @@
+<<<TAR_UNCOMPRESS>>>
+    RUSTFLAGS="$RUSTFLAGS -C linker=${CROSS_TARGET}-gcc" \
+    cargo build --release --target ${CROSS_TARGET}
+    install -Dm755 target/${CROSS_TARGET}/release/rg ${SYSROOT_DIR}/usr/bin/
+<<<CLEAR_DIR>>>

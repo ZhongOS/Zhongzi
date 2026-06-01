@@ -1,0 +1,7 @@
+<<<TAR_UNCOMPRESS>>>
+    ./configure ${COMMON_CONFIG} \
+                --with-gitconfig=/etc/gitconfig --with-python=python3 --without-iconv \
+                 ac_cv_fread_reads_directories=yes ac_cv_snprintf_returns_bogus=no
+    <<<MAKE>>>
+    make DESTDIR=${SYSROOT_DIR} perllibdir=$(perl -V:installsitelib | grep -o "'.*'" | sed "s@'@@g" | sed "s@${CROSSTOOLS_DIR}@/usr@g") install
+<<<CLEAR_DIR>>>

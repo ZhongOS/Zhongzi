@@ -1,0 +1,2 @@
+PACKAGE=bison
+BUILD_MODE=gnu

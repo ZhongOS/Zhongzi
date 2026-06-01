@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kdeplasma-addons
+BUILD_MODE=cmake

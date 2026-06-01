@@ -1,0 +1,2 @@
+PACKAGE=lcms
+BUILD_MODE=gnu

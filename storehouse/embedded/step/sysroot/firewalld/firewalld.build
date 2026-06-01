@@ -1,0 +1,1 @@
+EXTRA_PARM=PYTHON=${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-python3 --disable-docs

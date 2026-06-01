@@ -1,0 +1,2 @@
+PACKAGE=gnugo
+BUILD_MODE=custom

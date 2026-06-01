@@ -1,0 +1,2 @@
+PACKAGE=glfw
+BUILD_MODE=cmake

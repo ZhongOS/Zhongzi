@@ -1,0 +1,2 @@
+PACKAGE=libunique
+BUILD_MODE=custom

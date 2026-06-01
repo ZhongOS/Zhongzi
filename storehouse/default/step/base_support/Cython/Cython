@@ -1,0 +1,2 @@
+PACKAGE=cython
+BUILD_MODE=custom

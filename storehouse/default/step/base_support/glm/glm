@@ -1,0 +1,2 @@
+PACKAGE=glm
+BUILD_MODE=cmake

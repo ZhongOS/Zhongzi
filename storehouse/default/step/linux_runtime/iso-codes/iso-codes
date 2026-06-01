@@ -1,0 +1,6 @@
+PACKAGE=iso-codes
+BUILD_MODE=meson
+
+[[[4.19.0]]]
+PACKAGE=iso-codes
+BUILD_MODE=gnu

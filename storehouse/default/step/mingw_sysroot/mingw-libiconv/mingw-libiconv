@@ -1,0 +1,2 @@
+PACKAGE=libiconv
+BUILD_MODE=gnu

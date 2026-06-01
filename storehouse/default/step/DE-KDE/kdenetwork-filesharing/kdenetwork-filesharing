@@ -1,0 +1,2 @@
+PACKAGE=kdenetwork-filesharing
+BUILD_MODE=cmake

@@ -1,0 +1,2 @@
+PACKAGE=libxcvt
+BUILD_MODE=meson

@@ -1,0 +1,2 @@
+PACKAGE=partio
+BUILD_MODE=cmake

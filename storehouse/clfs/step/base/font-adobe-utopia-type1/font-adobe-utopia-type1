@@ -1,0 +1,2 @@
+PACKAGE=font-adobe-utopia-type1
+BUILD_MODE=gnu

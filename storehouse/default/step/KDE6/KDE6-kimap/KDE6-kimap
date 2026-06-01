@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kimap
+BUILD_MODE=cmake

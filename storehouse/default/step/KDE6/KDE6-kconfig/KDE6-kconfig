@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kconfig
+BUILD_MODE=custom

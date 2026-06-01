@@ -1,0 +1,2 @@
+PACKAGE=coin
+BUILD_MODE=meson_cross

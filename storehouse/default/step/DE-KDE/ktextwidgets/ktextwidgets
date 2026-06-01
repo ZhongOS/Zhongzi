@@ -1,0 +1,2 @@
+PACKAGE=ktextwidgets
+BUILD_MODE=cmake

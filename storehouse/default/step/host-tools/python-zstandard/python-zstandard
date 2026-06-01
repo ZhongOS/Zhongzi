@@ -1,0 +1,2 @@
+PACKAGE=python-zstandard
+BUILD_MODE=python

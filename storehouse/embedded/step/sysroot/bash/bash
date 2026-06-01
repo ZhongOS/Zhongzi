@@ -1,0 +1,2 @@
+PACKAGE=bash
+BUILD_MODE=custom

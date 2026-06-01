@@ -1,0 +1,2 @@
+PACKAGE=fuse
+BUILD_MODE=gnu

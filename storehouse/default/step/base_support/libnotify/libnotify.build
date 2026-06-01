@@ -1,0 +1,1 @@
+EXTRA_PARM= -Dgtk_doc=false -Dman=false

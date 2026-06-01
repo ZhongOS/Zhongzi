@@ -1,0 +1,2 @@
+PACKAGE=libcamera
+BUILD_MODE=meson

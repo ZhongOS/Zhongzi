@@ -1,0 +1,2 @@
+PACKAGE=libdatachannel
+BUILD_MODE=cmake

@@ -1,0 +1,2 @@
+PACKAGE=kdnssd
+BUILD_MODE=cmake

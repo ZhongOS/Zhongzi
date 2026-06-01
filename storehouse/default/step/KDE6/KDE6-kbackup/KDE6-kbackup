@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kbackup
+BUILD_MODE=cmake

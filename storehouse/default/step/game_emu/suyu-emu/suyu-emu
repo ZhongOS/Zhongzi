@@ -1,0 +1,3 @@
+PACKAGE=suyu
+# BUILD_MODE=custom
+BUILD_MODE=cmake

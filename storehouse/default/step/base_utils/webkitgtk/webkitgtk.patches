@@ -1,0 +1,5 @@
+
+
+[[[2.38.0]]]
+p1	webkitgtk-add-loongarch64.patch
+p1	webkitgtk-fix-for-gcc13.patch

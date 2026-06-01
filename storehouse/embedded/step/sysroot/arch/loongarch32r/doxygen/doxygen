@@ -1,0 +1,3 @@
+PACKAGE=doxygen
+BUILD_MODE=custom
+LOCK_VERSION=1.15.0

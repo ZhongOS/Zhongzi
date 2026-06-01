@@ -1,0 +1,68 @@
+<<<TAR_UNCOMPRESS>>>
+    CROSS_TARGET=$(archname_to_triple "$(get_user_set_env mingw_target ${CROSS_TARGET})" "${CROSS_TARGET}")
+    ARCH_ABI=$(archname_to_archabi "$(get_user_set_env mingw_target ${CROSS_TARGET})" "${ARCH_ABI}")
+    <<<PATCH>>>
+    # mkdir -pv ${TOOLCHAIN_DIRECTORY}/cross-target/${CROSS_TARGET}/cross-tools/target/mingw
+
+    tar xvf $(ls ${DOWNLOADDIR}/gmp-*.tar.* | sort -V | tail -n1)
+    tar xvf $(ls ${DOWNLOADDIR}/mpfr-*.tar.* | sort -V | tail -n1)
+    tar xvf $(ls ${DOWNLOADDIR}/mpc-*.tar.* | sort -V | tail -n1)
+    mv gmp-* gmp
+    mv mpfr-* mpfr
+    mv mpc-* mpc
+    mkdir cross-build
+    pushd cross-build
+        AR=ar \
+        ../configure --prefix=${TOOLCHAIN_DIRECTORY}/cross-target/${CROSS_TARGET}/cross-tools --build=${CROSS_HOST} --host=${CROSS_HOST} \
+                     --target=${CROSS_TARGET} \
+                     --with-newlib --disable-shared --with-sysroot=${TOOLCHAIN_DIRECTORY}/cross-target/${CROSS_TARGET}/cross-tools/target \
+                     --disable-decimal-float --disable-libgomp --disable-libitm \
+                     --disable-libsanitizer --disable-libquadmath --disable-threads \
+                     --disable-target-zlib --with-system-zlib --enable-checking=release \
+                     --enable-default-pie --disable-multilib \
+                     --enable-languages=c
+        <<<MAKE>>> all-gcc
+        make install-strip-gcc
+    popd
+<<<CLEAR_DIR>>>
+
+[[[13.0.0]]]
+<<<TAR_UNCOMPRESS>>>
+    CROSS_TARGET=$(archname_to_triple "$(get_user_set_env target ${CROSS_TARGET})" "${CROSS_TARGET}")
+    <<<PATCH>>>
+    if [ -d ${PREFIX}/cross-tools ]; then
+	mv ${PREFIX}/cross-tools{,.$(date +%Y%m%d%H%M%S)}
+    fi
+    mkdir -pv ${PREFIX}/cross-tools
+    mkdir -pv ${PREFIX}/cross-tools/target/lib{,64}
+    cp -a ${TOOLCHAIN_DIRECTORY}/${CROSS_HOST}/binutils/${CROSS_TARGET}/cross-tools/* ${PREFIX}/cross-tools/
+
+    tar xvf $(ls ${DOWNLOADDIR}/gmp-*.tar.* | sort -V | tail -n1)
+    tar xvf $(ls ${DOWNLOADDIR}/mpfr-*.tar.* | sort -V | tail -n1)
+    tar xvf $(ls ${DOWNLOADDIR}/mpc-*.tar.* | sort -V | tail -n1)
+    mv gmp-* gmp
+    mv mpfr-* mpfr
+    mv mpc-* mpc
+    mkdir cross-build
+    pushd cross-build
+        AR=ar LDFLAGS="-static" \
+        ../configure --prefix=${PREFIX}/cross-tools --build=${CROSS_HOST} --host=${CROSS_HOST} \
+                     --target=${CROSS_TARGET} \
+                     --with-newlib --disable-shared --with-sysroot=${PREFIX}/cross-tools/target \
+                     --disable-decimal-float --disable-libgomp --disable-libitm \
+                     --disable-libsanitizer --disable-libquadmath --disable-threads \
+                     --disable-target-zlib --with-system-zlib --enable-checking=release \
+                     --enable-default-pie \
+                     --enable-languages=c,c++
+        <<<MAKE>>> all-gcc all-target-libgcc LIBS="$([[ $(gcc -dumpversion) -ge 13 ]] && echo "${LIBS}" || echo "${LIBS} -lzstd -lpthread")"
+        make DESTDIR=${PWD}/dest install-strip-gcc install-strip-target-libgcc
+
+        INSTALL_DIST_DIR="${TOOLCHAIN_DIRECTORY}/${CROSS_HOST}/gcc-newlib/${CROSS_TARGET}"
+        if [ -d ${INSTALL_DIST_DIR} ] || [ -f ${INSTALL_DIST_DIR} ]; then
+                mv ${INSTALL_DIST_DIR} ${INSTALL_DIST_DIR}.$(date +%Y%m%d%H%M%S)
+        fi
+        mkdir -pv ${INSTALL_DIST_DIR}
+        cp -a dest/${PREFIX}/* ${INSTALL_DIST_DIR}/
+
+    popd
+<<<CLEAR_DIR>>>

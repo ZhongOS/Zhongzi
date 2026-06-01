@@ -1,0 +1,2 @@
+PACKAGE=openssl
+BUILD_MODE=custom

@@ -1,0 +1,2 @@
+PACKAGE=jdk17-bootstrap
+BUILD_MODE=custom

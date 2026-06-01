@@ -1,0 +1,5 @@
+<<<TAR_UNCOMPRESS>>>
+    make prefix="/usr" CFLAGS="${CFLAGS} -std=gnu17"
+    make prefix="/usr" CFLAGS="${CFLAGS} -std=gnu17" DESTDIR=${PWD}/dest install
+    cp -av dest/usr/bin/* ${PREFIX}/bin/
+<<<CLEAR_DIR>>>

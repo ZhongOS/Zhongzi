@@ -1,0 +1,2 @@
+PACKAGE=kwin
+BUILD_MODE=custom

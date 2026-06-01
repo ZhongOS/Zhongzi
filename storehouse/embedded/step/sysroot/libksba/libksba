@@ -1,0 +1,2 @@
+PACKAGE=libksba
+BUILD_MODE=gnu

@@ -1,0 +1,2 @@
+PACKAGE=sphinxcontrib-jquery
+BUILD_MODE=pip

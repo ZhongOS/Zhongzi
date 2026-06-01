@@ -1,0 +1,10 @@
+p1 0001-pcsc-lite-2.4.1-fix-for-cross-build.patch
+
+[[[2.4.0]]]
+p1 0001-pcsc-lite-2.4.0-fix-for-cross-build.patch
+
+[[[2.3.3]]]
+p1 0001-pcsc-lite-2.2.1-fix-for-cross-build.patch
+
+[[[2.2.0]]]
+# p1 0001-set-polkit_policy_dir-to-hard-directory-for-cross-bu.patch

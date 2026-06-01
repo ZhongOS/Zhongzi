@@ -1,0 +1,2 @@
+PACKAGE=xnu
+BUILD_MODE=custom

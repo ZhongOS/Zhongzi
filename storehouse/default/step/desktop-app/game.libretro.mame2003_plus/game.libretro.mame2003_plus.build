@@ -1,0 +1,1 @@
+EXTRA_PARM=-DOVERRIDE_PATHS=1 -DMAME2003_PLUS_LIB=${SYSROOT_DIR}/usr/share/retroarch/cores/mame2003_plus_libretro.so

@@ -1,0 +1,2 @@
+PACKAGE=xf86-video-fbdev
+BUILD_MODE=gnu

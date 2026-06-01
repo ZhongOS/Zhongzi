@@ -1,0 +1,2 @@
+PACKAGE=Bento4
+BUILD_MODE=cmake

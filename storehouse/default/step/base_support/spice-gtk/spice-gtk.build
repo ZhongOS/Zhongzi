@@ -1,0 +1,1 @@
+EXTRA_PARM=-Dusb-ids-path=/usr/share/hwdata/usb.ids

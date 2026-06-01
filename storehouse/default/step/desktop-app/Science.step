@@ -1,0 +1,43 @@
+NULL
+# gtkglext
+# fmt
+# eigen3
+# CSpice
+
+ImageMagick
+
+CSpice
+Celestia
+CelestiaContent
+
+cfitsio
+librtprocess
+libheif
+ffms2
+libXISF
+siril
+NULL
+
+OpenBLAS
+NULL
+
+QScintilla
+octave
+NULL
+
+# maeparser
+# coordgenlibs
+# openbabel
+# molsketch
+# NULL
+
+libev
+libnova
+indi
+wcslib
+stellarsolver
+erfa
+xplanet
+libxisf
+kstars|%PARENT=ORIG,KDE5
+NULL

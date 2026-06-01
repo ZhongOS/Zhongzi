@@ -1,0 +1,2 @@
+PACKAGE=libXISF
+BUILD_MODE=cmake

@@ -1,0 +1,2 @@
+PACKAGE=KDE6-drkonqi
+BUILD_MODE=cmake

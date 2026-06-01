@@ -1,0 +1,5 @@
+set_strip_step "/usr/bin/"
+set_strip_step "/usr/sbin/"
+set_strip_step "/usr/libexec/" "0"
+set_strip_step "/usr/lib${LIB_SUFF}/" "0" "*.a" "--strip-debug"
+set_strip_step "/usr/lib${LIB_SUFF}/" "0" "*.so*" "--strip-unneeded" "${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-strip"

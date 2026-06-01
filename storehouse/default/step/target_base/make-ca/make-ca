@@ -1,0 +1,2 @@
+PACKAGE=make-ca
+BUILD_MODE=custom

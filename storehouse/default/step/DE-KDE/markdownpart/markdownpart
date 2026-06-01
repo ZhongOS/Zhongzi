@@ -1,0 +1,2 @@
+PACKAGE=markdownpart
+BUILD_MODE=cmake

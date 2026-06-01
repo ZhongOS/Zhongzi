@@ -1,0 +1,8 @@
+p1	0001-Add-clang-and-rust-loongarch64-define-to-Makefile.co.patch
+p1	0002-perf-fix-build-error-for-glibc-2.43.patch
+
+[[[6.19]]]
+# p1 0001-Fix-malloc-0-error.patch
+# p1 0001-fix-compiler-error-when-using-gcc-14.patch
+p1 0001-libbpf-fix-build-error-for-glibc-2.43.patch
+# p1 0001-linux-kernel-tools-perf-fix-build-error-for-glibc-2..patch

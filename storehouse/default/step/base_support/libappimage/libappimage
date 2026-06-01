@@ -1,0 +1,2 @@
+PACKAGE=libappimage
+BUILD_MODE=cmake

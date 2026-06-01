@@ -1,0 +1,2 @@
+PACKAGE=alsa-utils
+BUILD_MODE=gnu

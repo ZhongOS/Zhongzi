@@ -1,0 +1,2 @@
+PACKAGE=x264
+BUILD_MODE=gnu

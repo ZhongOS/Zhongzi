@@ -1,0 +1,2 @@
+PACKAGE=akonadi-search
+BUILD_MODE=cmake

@@ -1,0 +1,2 @@
+PACKAGE=help2man
+BUILD_MODE=custom

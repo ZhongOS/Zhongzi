@@ -1,0 +1,7 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+	CROSS_PREFIX=${CROSS_TARGET}- ./configure --prefix=/usr --libdir=/usr/lib${LIB_SUFF}
+	<<<MAKE_AND_INSTALL>>>
+# 	<<<MAKE>>>
+# 	make DESTDIR=${SYSROOT_DIR} install
+<<<CLEAR_DIR>>>

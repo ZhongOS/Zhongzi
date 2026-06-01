@@ -1,0 +1,2 @@
+PACKAGE=milou
+BUILD_MODE=cmake

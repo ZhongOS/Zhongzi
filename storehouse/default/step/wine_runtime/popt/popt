@@ -1,0 +1,2 @@
+PACKAGE=popt
+BUILD_MODE=gnu

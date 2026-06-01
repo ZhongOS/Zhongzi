@@ -1,0 +1,9 @@
+<<<TAR_UNCOMPRESS>>>
+    for config_i in $(find -name "config.sub")
+    do
+            cp -a -f $(automake --print-libdir)/config.{sub,guess} $(dirname ${config_i})/
+    done
+    ./configure ${COMMON_CONFIG} --disable-amd64-as-feature-detection SYSROOT=${SYSROOT_DIR} GPGRT_CONFIG=${CROSSTOOLS_DIR}/bin/gpgrt-config
+    <<<MAKE_AND_INSTALL>>>
+    cp -av ${SYSROOT_DIR}/bin/libgcrypt-config ${CROSSTOOLS_DIR}/bin/
+<<<CLEAR_DIR>>>

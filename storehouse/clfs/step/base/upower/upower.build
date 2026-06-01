@@ -1,0 +1,1 @@
+EXTRA_PARM=-Dgtk-doc=false  -Dman=false -Dudevrulesdir=/usr/lib/udev/rules.d -Dudevhwdbdir=/usr/lib/udev/hwdb.d -Dsystemdsystemunitdir=/usr/lib/systemd/system

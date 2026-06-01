@@ -1,0 +1,7 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+	PATH=${CROSSTOOLS_DIR}/golang/bin:${PATH}
+#	CGO_ENABLED=1 CGO_CFLAGS="-mlasx" GOOS=linux GOARCH=loong64 go build -trimpath -buildmode=pie -o ollama .
+	CC=${CROSS_TARGET}-gcc CXX=${CROSS_TARGET}-g++ GOPROXY=https://goproxy.cn CGO_ENABLED=1 CGO_CFLAGS="-mlasx" GOOS=linux GOARCH=loong64 go build -trimpath -buildmode=pie -o ollama .
+	cp ollama ${SYSROOT_DIR}/usr/bin/
+<<<CLEAR_DIR>>>

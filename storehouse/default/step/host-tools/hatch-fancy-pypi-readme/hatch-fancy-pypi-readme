@@ -1,0 +1,2 @@
+PACKAGE=hatch-fancy-pypi-readme
+BUILD_MODE=pip

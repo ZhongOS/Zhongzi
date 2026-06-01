@@ -1,0 +1,2 @@
+PACKAGE=mypaint-brushes
+BUILD_MODE=gnu

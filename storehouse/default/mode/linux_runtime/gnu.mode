@@ -1,0 +1,13 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+	if [ ! -f configure ]; then
+		autoreconf -ifv
+	fi
+	<<<CONFIG_ENV>>> ./configure ${COMMON_CONFIG} <<<EXTRA_PARM>>> --enable-malloc0returnsnull
+	<<<MAKE_AND_INSTALL>>>
+# 	check_gnu_Makefile
+# 	CC="${LINUX_HOST}-gcc" CXX="${LINUX_HOST}-g++" <<<MAKE>>>
+# 	run_step_package_check check
+#         make DESTDIR=${LINUX_SYSROOT_DIR} install
+# 	rm -f ${LINUX_SYSROOT_DIR}/usr/lib${LIB_SUFF}/*.la
+<<<CLEAR_DIR>>>

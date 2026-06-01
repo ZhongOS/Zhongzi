@@ -1,0 +1,6 @@
+PACKAGE=libproxy
+BUILD_MODE=meson
+
+[[[0.4.18]]]
+PACKAGE=libproxy
+BUILD_MODE=cmake

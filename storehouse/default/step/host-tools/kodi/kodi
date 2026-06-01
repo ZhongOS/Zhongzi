@@ -1,0 +1,2 @@
+PACKAGE=xbmc
+BUILD_MODE=custom

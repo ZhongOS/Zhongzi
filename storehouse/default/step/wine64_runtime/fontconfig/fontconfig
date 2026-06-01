@@ -1,0 +1,2 @@
+PACKAGE=fontconfig
+BUILD_MODE=gnu

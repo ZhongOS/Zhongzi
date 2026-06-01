@@ -1,0 +1,2 @@
+NULL
+yuzu-emu|%target=x86_64;%PARENT=ORIG,x86_64_runtime

@@ -1,0 +1,2 @@
+PACKAGE=alsa-plugins
+BUILD_MODE=gnu

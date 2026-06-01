@@ -1,0 +1,7 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+	export PATH=${PREFIX}/${LINUX_HOST}/bin:${PATH}
+	CC=${LINUX_HOST}-gcc \
+	${PREFIX}/${LINUX_HOST}/bin/perl Makefile.PL
+	<<<MAKE_AND_INSTALL>>>
+<<<CLEAR_DIR>>>

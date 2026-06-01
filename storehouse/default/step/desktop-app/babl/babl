@@ -1,0 +1,2 @@
+PACKAGE=babl
+BUILD_MODE=meson

@@ -1,0 +1,10 @@
+
+
+[[[0.26]]]
+p2	0001-gnulib-fix-build-error-for-glibc-2.43.patch	gettext-runtime/gnulib-lib
+p2	0001-gnulib-fix-build-error-for-glibc-2.43.patch	gettext-runtime/intl/gnulib-lib
+p2	0001-gnulib-fix-build-error-for-glibc-2.43.patch	gettext-runtime/libasprintf/gnulib-lib
+p2	0001-gnulib-fix-build-error-for-glibc-2.43.patch	gettext-tools/gnulib-lib
+p2	0001-gnulib-fix-build-error-for-glibc-2.43.patch	gettext-tools/libgettextpo
+p2	0001-gnulib-fix-build-error-for-glibc-2.43.patch	gettext-tools/libgrep/gnulib-lib
+p1	0001-gnulib-fix-build-error-for-glibc-2.43.patch	libtextstyle

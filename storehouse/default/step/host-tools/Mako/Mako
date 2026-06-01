@@ -1,0 +1,4 @@
+PACKAGE=Mako
+BUILD_MODE=python
+# 不能使用pip构建Mako，否则会导致 firefox，thunderbird 构建失败（删除mako目录即可构建成功，使用python来构建也可构建成功）
+# BUILD_MODE=pip

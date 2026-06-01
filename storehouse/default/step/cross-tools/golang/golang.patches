@@ -1,0 +1,35 @@
+
+
+[[[1.20.9]]]
+p1 0001-cmd-asm-add-RDTIME-L-H-.W-RDTIME.D-support-for-loong.patch
+p1 0002-runtime-implement-cputicks-with-the-stable-counter-o.patch
+p1 0003-runtime-remove-the-fake-mstart-caller-in-systemstack.patch
+p1 0004-cmd-internal-obj-loong64-save-LR-after-decrementing-.patch
+p1 0005-runtime-refactor-the-linux-loong64-entrypoint.patch
+p1 0006-cmd-internal-obj-loong64-remove-invalid-branch-delay.patch
+p1 0007-runtime-calculate-nanoseconds-in-usleep-on-linux-loo.patch
+p1 0008-cmd-internal-obj-remove-redundant-cnames-on-loong64.patch
+p1 0009-runtime-save-fetch-g-register-during-VDSO-on-loong64.patch
+p1 0010-runtime-save-restore-callee-saved-registers-in-loong.patch
+p1 0011-runtime-add-comment-for-sys_linux_loong64.patch
+p1 0012-runtime-mark-morestack_noctxt-SPWRITE-for-linux-loon.patch
+p1 0013-cmd-internal-obj-loong64-add-the-PCALAU12I-instructi.patch
+p1 0014-cmd-internal-obj-loong64-cmd-link-internal-loong64-s.patch
+p1 0015-runtime-add-support-for-buildmode-c-shared-on-loong6.patch
+p1 0016-cmd-compile-add-support-for-buildmode-c-shared-on-lo.patch
+p1 0017-cmd-internal-obj-loong64-cmd-internal-objabi-add-c-s.patch
+p1 0018-cmd-link-add-support-for-buildmode-c-shared-on-loong.patch
+p1 0019-cmd-internal-sys-enable-c-shared-feature-on-loong64.patch
+p1 0020-cmd-dist-misc-cgo-testcshared-enable-c-shared-test-o.patch
+p1 0021-cmd-compile-cmd-dist-cmd-go-internal-enable-buildmod.patch
+p1 0022-net-disable-TestLookupDotsWithRemoteSource-and-TestL.patch
+p1 0023-enable-c-archive-test-on-linux-loong64.patch
+p1 0024-cmd-internal-obj-loong64-add-support-for-movgr2cf-an.patch
+p1 0025-runtime-save-and-restore-fcc-registers-in-async-pree.patch
+p1 0026-cmd-cmd-vendor-pick-up-updates-for-golang.org-x-arch.patch
+p1 0027-cmd-internal-objfile-add-loong64-disassembler-suppor.patch
+p1 0028-cmd-compile-link-internal-runtime-support-buildmode-.patch
+p1 0029-cmd-link-internal-support-buildmode-plugin-for-loong.patch
+p1 0030-cmd-dist-test-enable-buildmode-shared-plugin-test-fo.patch
+p1 0031-runtime-enable-memory-sanitizer-on-loong64.patch
+p1 0032-runtime-enable-address-sanitizer-on-loong64.patch

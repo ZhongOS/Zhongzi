@@ -1,0 +1,7 @@
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+#     RUSTFLAGS="$RUSTFLAGS -C linker=${CROSS_TARGET}-gcc -Ccode-model=large" \
+    RUSTFLAGS="$RUSTFLAGS -C linker=${CROSS_TARGET}-gcc -Ccode-model=medium --sysroot=${CROSSTOOLS_DIR}" \
+    cargo build --release --target ${CROSS_TARGET}
+    install -Dm755 target/${CROSS_TARGET}/release/edit ${SYSROOT_DIR}/usr/bin/
+<<<CLEAR_DIR>>>

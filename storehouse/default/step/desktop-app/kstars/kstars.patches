@@ -1,0 +1,8 @@
+
+
+[[[3.8.0]]]
+p1 0001-kstars-3.8.0-fix-for-eigen3-3.4.1.patch
+
+[[[3.7.0]]]
+p1 0001-kstar-3.7.0-fix-for-gcc-14.patch
+p1 0001-kstats-fix-for-gcc-15.patch

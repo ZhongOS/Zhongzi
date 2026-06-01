@@ -1,0 +1,2 @@
+PACKAGE=libkdepim
+BUILD_MODE=cmake

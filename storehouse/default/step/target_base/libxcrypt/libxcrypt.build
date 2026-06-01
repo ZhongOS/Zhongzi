@@ -1,0 +1,3 @@
+# CONFIG_ENV=CFLAGS="${CFLAGS} -Wno-error=stringop-overread"
+CONFIG_ENV=CC="${CROSS_TARGET}-gcc -fno-link-libatomic"
+EXTRA_PARM=--disable-werror

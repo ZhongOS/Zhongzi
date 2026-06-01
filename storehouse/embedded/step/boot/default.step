@@ -1,0 +1,4 @@
+:<ARCH>
+# initramfs-for-squashfs|%config=la32s;none_status
+bootimage-squashfs|none_status
+dist_boot

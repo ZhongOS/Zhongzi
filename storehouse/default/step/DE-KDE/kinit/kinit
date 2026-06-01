@@ -1,0 +1,2 @@
+PACKAGE=kinit
+BUILD_MODE=cmake

@@ -1,0 +1,2 @@
+PACKAGE=KDDockWidgets
+BUILD_MODE=cmake

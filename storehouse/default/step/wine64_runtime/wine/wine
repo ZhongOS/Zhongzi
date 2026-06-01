@@ -1,0 +1,3 @@
+PACKAGE=wine
+LOCK_VERSION=8.0.2
+BUILD_MODE=custom

@@ -1,0 +1,2 @@
+PACKAGE=dhcpcd
+BUILD_MODE=gnu

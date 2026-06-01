@@ -1,0 +1,10 @@
+
+
+[[[25.0.0]]]
+p1 0001-node-25.0.0-fix-CODETYPE-to-CODE_TYPE-for-loongarch6.patch
+
+[[[20.0.0]]]
+p1 0001-Add-the-missing-LoongArch-definition-in-the-v8.gyp-f.patch
+
+[[[19.0.0]]]
+p1	0001-Node.js-19.0.0-fix-v8-loongarch64-support.patch

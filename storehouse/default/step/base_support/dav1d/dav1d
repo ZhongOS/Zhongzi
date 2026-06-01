@@ -1,0 +1,2 @@
+PACKAGE=dav1d
+BUILD_MODE=meson

@@ -1,0 +1,2 @@
+PACKAGE=incidenceeditor
+BUILD_MODE=cmake

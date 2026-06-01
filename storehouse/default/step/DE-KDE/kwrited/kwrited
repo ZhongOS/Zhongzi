@@ -1,0 +1,2 @@
+PACKAGE=kwrited
+BUILD_MODE=cmake

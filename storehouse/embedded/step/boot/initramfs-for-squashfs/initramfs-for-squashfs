@@ -1,0 +1,2 @@
+PACKAGE=initramfs-for-squashfs
+BUILD_MODE=custom

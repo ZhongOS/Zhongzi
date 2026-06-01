@@ -1,0 +1,19 @@
+<<<TAR_UNCOMPRESS>>>
+	sed -i.orig -e "/^all:/s/ test//" Makefile
+	sed -i -e 's:ln -s -f $(PREFIX)/bin/:ln -s -f :' Makefile
+	sed -i "s@(PREFIX)/man@(PREFIX)/share/man@g" Makefile
+	<<<MAKE>>> CC=${LINUX_HOST}-gcc -f Makefile-libbz2_so
+	make clean
+	<<<MAKE>>> CC=${LINUX_HOST}-gcc
+	make PREFIX=${LINUX_SYSROOT_DIR}/usr install
+	cp -v bzip2-shared ${LINUX_SYSROOT_DIR}/bin/bzip2
+	cp -av libbz2.so* ${LINUX_SYSROOT_DIR}/lib${LIB_SUFF}
+	if [ "x${LIB_SUFF}" != "x" ]; then
+		if [ "x${ARCH_NAME}" != "xaarch64" ]; then
+			mv ${LINUX_SYSROOT_DIR}/usr/lib/libbz2.a ${LINUX_SYSROOT_DIR}/lib${LIB_SUFF}/
+		fi
+	fi
+	ln -sfv ../../lib${LIB_SUFF}/libbz2.so.1.0 ${LINUX_SYSROOT_DIR}/usr/lib${LIB_SUFF}/libbz2.so
+	ln -sfv bzip2 ${LINUX_SYSROOT_DIR}/bin/bunzip2
+	ln -sfv bzip2 ${LINUX_SYSROOT_DIR}/bin/bzcat
+<<<CLEAR_DIR>>>

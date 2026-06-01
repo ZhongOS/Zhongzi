@@ -1,0 +1,1 @@
+EXTRA_PARM=--with-systemdsystemunitdir=/usr/lib/systemd/system --with-udev-rules-dir=/usr/lib/udev/rules.d

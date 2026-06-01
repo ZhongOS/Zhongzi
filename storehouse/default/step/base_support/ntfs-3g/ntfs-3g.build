@@ -1,0 +1,11 @@
+<<<TAR_UNCOMPRESS>>>
+    ./configure ${COMMON_CONFIG} --with-fuse=internal
+    check_gnu_Makefile
+    <<<MAKE>>>
+    make LDCONFIG="" DESTDIR=${SYSROOT_DIR} install
+    ln -sfv ../bin/ntfs-3g ${SYSROOT_DIR}/usr/sbin/mount.ntfs
+    ln -sfv ntfs-3g.8 ${SYSROOT_DIR}/usr/share/man/man8/mount.ntfs.8
+
+	mkdir -pv ${SYSROOT_DIR}/mnt/usb
+	chmod -v 777 ${SYSROOT_DIR}/mnt/usb
+<<<CLEAR_DIR>>>

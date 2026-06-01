@@ -1,0 +1,2 @@
+PACKAGE=fpc
+BUILD_MODE=custom

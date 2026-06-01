@@ -1,0 +1,2 @@
+PACKAGE=speexdsp
+BUILD_MODE=gnu

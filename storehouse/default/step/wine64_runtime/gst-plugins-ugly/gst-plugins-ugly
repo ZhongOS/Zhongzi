@@ -1,0 +1,2 @@
+PACKAGE=gst-plugins-ugly
+BUILD_MODE=meson

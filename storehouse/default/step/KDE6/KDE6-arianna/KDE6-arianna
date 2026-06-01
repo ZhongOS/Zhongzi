@@ -1,0 +1,2 @@
+PACKAGE=KDE6-arianna
+BUILD_MODE=cmake

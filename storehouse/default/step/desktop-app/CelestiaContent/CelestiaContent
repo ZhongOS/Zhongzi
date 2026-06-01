@@ -1,0 +1,2 @@
+PACKAGE=CelestiaContent
+BUILD_MODE=cmake

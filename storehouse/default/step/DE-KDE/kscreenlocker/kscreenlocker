@@ -1,0 +1,2 @@
+PACKAGE=kscreenlocker
+BUILD_MODE=cmake

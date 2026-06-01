@@ -1,0 +1,2 @@
+PACKAGE=autoconf-archive
+BUILD_MODE=gnu

@@ -1,0 +1,43 @@
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+    cp -a -f $(automake --print-libdir)/config.{sub,guess} ./
+    sed -i "s@\/usr\/bin\/perl@${HOST_TOOLS_DIR}/bin/perl@g" hacks/glx/xshadertoy-compile.pl
+#     ./configure $COMMON_CONFIG --includedir=${SYSROOT_DIR}/usr/include
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var \
+		--build=${CROSS_HOST} --host=${CROSS_TARGET} --includedir=${SYSROOT_DIR}/usr/include
+    check_gnu_Makefile
+    <<<MAKE>>> GTK_DATADIR=/usr/share GLIB_COMPILE_RESOURCES=${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-glib-compile-resources
+    make DESTDIR=${SYSROOT_DIR} GTK_DATADIR=/usr/share install
+<<<CLEAR_DIR>>>
+
+cat > ${SYSROOT_DIR}/etc/pam.d/xscreensaver << "EOF"
+## Begin /etc/pam.d/xscreensaver
+
+auth    include system-auth
+account include system-account
+
+## End /etc/pam.d/xscreensaver
+EOF
+
+set_final_fix_step "/usr/libexec/xscreensaver/" "F" "g" "text executable"
+
+
+[[[6.12]]]
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+    cp -a -f $(automake --print-libdir)/config.{sub,guess} ./
+    ./configure $COMMON_CONFIG --includedir=${SYSROOT_DIR}/usr/include
+    <<<MAKE>>> GTK_DATADIR=/usr/share GLIB_COMPILE_RESOURCES=${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-glib-compile-resources
+    make install_prefix=${SYSROOT_DIR} GTK_DATADIR=/usr/share install
+<<<CLEAR_DIR>>>
+
+cat > ${SYSROOT_DIR}/etc/pam.d/xscreensaver << "EOF"
+## Begin /etc/pam.d/xscreensaver
+
+auth    include system-auth
+account include system-account
+
+## End /etc/pam.d/xscreensaver
+EOF
+
+set_final_fix_step "/usr/libexec/xscreensaver/" "F" "g" "text executable"

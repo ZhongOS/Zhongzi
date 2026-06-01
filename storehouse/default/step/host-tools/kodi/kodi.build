@@ -1,0 +1,10 @@
+<<<TAR_UNCOMPRESS>>>
+	pushd tools/depends/native/TexturePacker/src
+		mkdir -p native-build
+		pushd native-build
+			cmake -DCMAKE_INSTALL_PREFIX=${PREFIX} \
+				-DCMAKE_BUILD_TYPE=RELEASE ..
+			<<<MAKE_AND_INSTALL>>>
+		popd
+	popd
+<<<CLEAR_DIR>>>

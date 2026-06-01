@@ -1,0 +1,5 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<MAKE>>> CROSS_COMPILE="${CROSS_TARGET}-" BUILD_CC="gcc" GOLANG=no PAM_CAP=no prefix=/usr lib=lib${LIB_SUFF}
+	make CROSS_COMPILE="${CROSS_TARGET}-" BUILD_CC="gcc" GOLANG=no PAM_CAP=no prefix=/usr lib=lib${LIB_SUFF} \
+		 DESTDIR=${SYSROOT_DIR} install
+<<<CLEAR_DIR>>>

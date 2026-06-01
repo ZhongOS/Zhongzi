@@ -1,0 +1,2 @@
+PACKAGE=PyQt5
+BUILD_MODE=custom

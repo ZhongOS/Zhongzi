@@ -1,0 +1,3 @@
+PACKAGE=toml
+# BUILD_MODE=python
+BUILD_MODE=pip

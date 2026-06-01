@@ -1,0 +1,2 @@
+PACKAGE=kitemviews
+BUILD_MODE=cmake

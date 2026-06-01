@@ -1,0 +1,2 @@
+PACKAGE=libvncserver
+BUILD_MODE=cmake

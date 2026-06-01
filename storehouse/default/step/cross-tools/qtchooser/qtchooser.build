@@ -1,0 +1,8 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<MAKE>>> QTCHOOSER_GLOBAL_DIR=${CROSSTOOLS_DIR}/qt5/lib/qtchooser/etc/
+	<<<MAKE>>> QTCHOOSER_GLOBAL_DIR=${CROSSTOOLS_DIR}/qt5/lib/qtchooser/etc/ install INSTALL_ROOT=${PWD}/dest
+	mkdir -p ${CROSSTOOLS_DIR}/qt5/lib/qtchooser/etc/qtchooser
+	cp -a ${PWD}/dest/usr/bin/* ${CROSSTOOLS_DIR}/qt5/lib/qtchooser/
+	echo "${CROSSTOOLS_DIR}/qt5/bin" > ${CROSSTOOLS_DIR}/qt5/lib/qtchooser/etc/qtchooser/qt5.conf
+	echo "${CROSSTOOLS_DIR}/qt5/lib" >> ${CROSSTOOLS_DIR}/qt5/lib/qtchooser/etc/qtchooser/qt5.conf
+<<<CLEAR_DIR>>>

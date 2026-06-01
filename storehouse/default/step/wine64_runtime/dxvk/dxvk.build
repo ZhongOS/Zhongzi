@@ -1,0 +1,14 @@
+<<<TAR_UNCOMPRESS>>>
+        <<<PATCH>>>
+
+	PATH=${SYSDIR}/cross-toolchains/x86_64-w64-mingw32/bin:${SYSDIR}/cross-toolchains/i686-w64-mingw32/bin:${PATH}
+
+        mkdir cross-build
+        pushd cross-build
+                meson --prefix=/opt/wine64 --buildtype=release --cross-file ${COMMON_DIR}/meson-cross_mingw64.txt \
+		      --default-library=both \
+                      ..
+		CC=${X86_64_HOST}-gcc ninja 
+		DESTDIR=${SYSROOT_DIR} ninja install
+        popd
+<<<CLEAR_DIR>>>

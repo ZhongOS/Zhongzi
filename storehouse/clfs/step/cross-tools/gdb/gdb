@@ -1,0 +1,2 @@
+PACKAGE=gdb
+BUILD_MODE=gnu

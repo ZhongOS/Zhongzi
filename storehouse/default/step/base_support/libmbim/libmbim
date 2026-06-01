@@ -1,0 +1,6 @@
+PACKAGE=libmbim
+BUILD_MODE=meson
+
+# [[[1.26.4]]]
+# PACKAGE=libmbim
+# BUILD_MODE=custom

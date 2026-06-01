@@ -1,0 +1,19 @@
+<<<TAR_UNCOMPRESS>>>
+	./configure ${COMMON_CONFIG} --disable-gpg-test --enable-malloc0returnsnull --enable-languages=cl GPGRT_CONFIG=${CROSSTOOLS_DIR}/bin/gpgrt-config
+	check_gnu_Makefile
+	<<<MAKE>>> PYTHONS=
+	make DESTDIR=${SYSROOT_DIR} install PYTHONS=
+	cp -av ${SYSROOT_DIR}/bin/gpgme-config  ${CROSSTOOLS_DIR}/bin/
+<<<CLEAR_DIR>>>
+sed -i "/^prefix/s@=\"\/usr@=\"${SYSROOT_DIR}\/usr@g" ${CROSSTOOLS_DIR}/bin/gpgme-config
+sed -i "/^libs/s@=\"-L\/usr@=\"-L${SYSROOT_DIR}\/usr@g" ${CROSSTOOLS_DIR}/bin/gpgme-config
+
+[[[1.24.3]]]
+<<<TAR_UNCOMPRESS>>>
+	./configure ${COMMON_CONFIG} --disable-gpg-test --enable-malloc0returnsnull --enable-languages=cl,cpp,qt MOC2=${SYSROOT_DIR}/usr/lib64/qt6/libexec/moc GPGRT_CONFIG=${CROSSTOOLS_DIR}/bin/gpgrt-config
+	<<<MAKE>>> PYTHONS=
+	make DESTDIR=${SYSROOT_DIR} install PYTHONS=
+	cp -av ${SYSROOT_DIR}/bin/gpgme-config  ${CROSSTOOLS_DIR}/bin/
+<<<CLEAR_DIR>>>
+sed -i "/^prefix/s@=\"\/usr@=\"${SYSROOT_DIR}\/usr@g" ${CROSSTOOLS_DIR}/bin/gpgme-config
+sed -i "/^libs/s@=\"-L\/usr@=\"-L${SYSROOT_DIR}\/usr@g" ${CROSSTOOLS_DIR}/bin/gpgme-config

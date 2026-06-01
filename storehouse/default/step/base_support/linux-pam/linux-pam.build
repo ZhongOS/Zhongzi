@@ -1,0 +1,68 @@
+<<<TAR_UNCOMPRESS>>>
+        <<<PATCH>>>
+        mkdir cross-build
+        pushd cross-build
+                meson ${MESON_CONFIG} -Ddocs=disabled -Dsystemdunitdir=/usr/lib/systemd/system/ -Dsecuredir=/usr/lib64/security \
+                      ..
+                sed -i "s@gi-docgen \(index\|generate\|gen-index\|gen-deps\|search\|check\|serve\) @& --add-include-path ${SYSROOT_DIR}/usr/share/gir-1.0/ @g" build.ninja
+                <<<NINJA_AND_INSTALL>>>
+        popd
+        rm -f ${SYSROOT_DIR}/usr/lib64/*.la
+
+mkdir -pv ${SYSROOT_DIR}/etc/pam.d
+
+cat > ${SYSROOT_DIR}/etc/pam.d/system-account << "EOF"
+account   required    pam_unix.so
+EOF
+
+cat > ${SYSROOT_DIR}/etc/pam.d/system-auth << "EOF"
+auth      required    pam_unix.so
+EOF
+
+cat > ${SYSROOT_DIR}/etc/pam.d/system-session << "EOF"
+session   required    pam_unix.so
+EOF
+cat > ${SYSROOT_DIR}/etc/pam.d/system-password << "EOF"
+password  required    pam_unix.so       sha512 shadow try_first_pass
+EOF
+
+cat > ${SYSROOT_DIR}/etc/pam.d/other << EOF
+auth            required        pam_unix.so     nullok
+account         required        pam_unix.so
+session         required        pam_unix.so
+password        required        pam_unix.so     nullok
+EOF
+
+<<<CLEAR_DIR>>>
+
+[[[1.6.1]]]
+<<<TAR_UNCOMPRESS>>>
+    ./configure ${COMMON_CONFIG} --enable-securedir=/usr/lib64/security --disable-doc \
+                ac_cv_func_yp_get_default_domain=no
+    <<<MAKE_AND_INSTALL>>>
+    chmod -v 4755 ${SYSROOT_DIR}/usr/sbin/unix_chkpwd
+
+mkdir -pv ${SYSROOT_DIR}/etc/pam.d
+
+cat > ${SYSROOT_DIR}/etc/pam.d/system-account << "EOF"
+account   required    pam_unix.so
+EOF
+
+cat > ${SYSROOT_DIR}/etc/pam.d/system-auth << "EOF"
+auth      required    pam_unix.so
+EOF
+
+cat > ${SYSROOT_DIR}/etc/pam.d/system-session << "EOF"
+session   required    pam_unix.so
+EOF
+cat > ${SYSROOT_DIR}/etc/pam.d/system-password << "EOF"
+password  required    pam_unix.so       sha512 shadow try_first_pass
+EOF
+
+cat > ${SYSROOT_DIR}/etc/pam.d/other << EOF
+auth            required        pam_unix.so     nullok
+account         required        pam_unix.so
+session         required        pam_unix.so
+password        required        pam_unix.so     nullok
+EOF
+<<<CLEAR_DIR>>>

@@ -1,0 +1,35 @@
+<<<TAR_UNCOMPRESS>>>
+	sed -i "s@if \./@if qemu-${QEMU_ARCH} \./@g" setup/setupdir.sh
+	sed -i "s@^\./ossvers@qemu-${QEMU_ARCH} \./ossvers@g" setup/setupdir.sh
+	mkdir -p cross-build
+	pushd cross-build
+#		CC=${LINUX_HOST}-gcc LDFLAGS="-D_FILE_OFFSET_BITS=64" ../configure --enable-libsalsa=NO --config-vmix=FIXEDPOINT --config-midi=YES
+		CC=${LINUX_HOST}-gcc LDFLAGS="${LDFLAGS} -D_FILE_OFFSET_BITS=64" ../configure --enable-libsalsa=NO --config-vmix=FIXEDPOINT --config-midi=YES
+		make CC=${LINUX_HOST}-gcc LD=${LINUX_HOST}-ld CPLUSPLUS="${LINUX_HOST}-g++ -fno-rtti -fno-exceptions -I." ARCH=${ARCH_NAME}
+		make CC=${LINUX_HOST}-gcc LD=${LINUX_HOST}-ld CXX=${LINUX_HOST}-g++ ARCH=${ARCH_NAME} DESTDIR=${LINUX_SYSROOT_DIR} copy
+	popd
+<<<CLEAR_DIR>>>
+
+# <<<TAR_UNCOMPRESS>>>
+# 	mkdir -p cross-build
+# 	pushd cross-build
+# 		../configure --enable-libsalsa=NO --config-vmix=FIXEDPOINT --config-midi=YES
+# 		make CC=${LINUX_HOST}-gcc LD=${LINUX_HOST}-ld CPLUSPLUS="${LINUX_HOST}-g++ -fno-rtti -fno-exceptions -I." ARCH=${ARCH_NAME}
+#  		make CC=${LINUX_HOST}-gcc CXX=${LINUX_HOST}-g++ ARCH=${ARCH_NAME} DESTDIR=${LINUX_SYSROOT_DIR} copy
+# 	popd
+# <<<CLEAR_DIR>>>
+
+# <<<TAR_UNCOMPRESS>>>
+#	mkdir -p cross-build
+#	pushd cross-build
+#		../configure --enable-libsalsa=NO --config-vmix=FIXEDPOINT
+#		pushd lib/libOSSlib
+#			<<<MAKE>>> CC=${X86_64_HOST}-gcc CXX=${X86_64_HOST}-g++ libOSSlib.so
+#		popd
+#		pushd lib/libsalsa
+#			<<<MAKE>>> CC=${X86_64_HOST}-gcc CXX=${X86_64_HOST}-g++
+#		popd
+#		<<<MAKE>>> CC=${X86_64_HOST}-gcc CXX=${X86_64_HOST}-g++ build
+#		make CC=${X86_64_HOST}-gcc CXX=${X86_64_HOST}-g++ DESTDIR=${X86_64_SYSROOT_DIR} copy
+#	popd
+# <<<CLEAR_DIR>>>

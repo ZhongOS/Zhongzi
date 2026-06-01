@@ -1,0 +1,2 @@
+EXTRA_PARM=-Dsession-managers="[]" -Dffmpeg=enabled -Dsystemd-user-unit-dir=/usr/lib/systemd/user
+# CONFIG_ENV=LDFLAGS="${LDFLAGS}:${PWD}/src/pipewire"

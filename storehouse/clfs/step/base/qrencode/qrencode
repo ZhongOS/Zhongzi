@@ -1,0 +1,2 @@
+PACKAGE=libqrencode
+BUILD_MODE=cmake

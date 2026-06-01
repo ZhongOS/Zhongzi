@@ -1,0 +1,2 @@
+PACKAGE=efibootmgr
+BUILD_MODE=custom

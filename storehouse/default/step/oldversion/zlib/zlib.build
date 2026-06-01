@@ -1,0 +1,6 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+	CROSS_PREFIX=${CROSS_TARGET}- ./configure --prefix=/usr --libdir=/usr/lib64
+	<<<MAKE>>>
+	make DESTDIR=${SYSROOT_DIR} install
+<<<CLEAR_DIR>>>

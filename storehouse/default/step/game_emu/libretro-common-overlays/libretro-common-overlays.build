@@ -1,0 +1,4 @@
+<<<TAR_UNCOMPRESS>>>
+	make INSTALLDIR=/usr/share/retroarch/overlays DESTDIR=${SYSROOT_DIR} install
+<<<CLEAR_DIR>>>
+

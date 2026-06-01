@@ -1,0 +1,347 @@
+make_directory@target_base
+
+automake@host-tools
+# pkg-config@host-tools
+pkgconf@host-tools
+pkgconf@cross-tools
+binutils@host-tools|!host-binutils_git
+# binutils_git@host-tools|host-binutils_git
+gcc@host-tools|!host-gcc_git
+# gcc_git@host-tools|host-gcc_git
+
+binutils@cross-tools|!binutils_git
+binutils_git@cross-tools|binutils_git
+gmp@host-tools
+mpfr@host-tools
+mpc@host-tools
+gcc_nolibc@cross-tools|!gcc_git
+gcc_git_nolibc@cross-tools|gcc_git
+linux-header@target_base
+# linux-header@target_base|!linux_git
+# linux-header_git@target_base|linux_git
+glibc@target_base
+glibc_localedata@target_base
+libxcrypt@target_base
+gcc@cross-tools|!gcc_git
+gcc_git@cross-tools|gcc_git
+
+NULL@target_base
+
+file@host-tools
+autoconf@host-tools
+autoconf-archive@host-tools
+libtool@host-tools
+ninja@host-tools
+groff@host-tools
+guile@host-tools
+sqlite@host-tools
+
+# pkg-config@cross-tools
+
+perl@host-tools
+File-ShareDir-Install@host-tools
+File-ShareDir@host-tools
+Class-Inspector@host-tools
+XML-Parser@host-tools
+URI@host-tools
+
+libffi@host-tools
+Python3@host-tools
+setuptools_pre@host-tools
+flit-core@host-tools
+pip@host-tools
+wheel@host-tools
+setuptools@host-tools
+MarkupSafe@host-tools
+Jinja2@host-tools
+meson@host-tools
+Mako@host-tools
+packaging@host-tools
+python-zstandard@host-tools
+pygobject@host-tools
+
+pcre2@host-tools
+# libffi@host-tools
+glib@host-tools
+gobject-introspection@host-tools
+vala@host-tools
+
+gobject-introspection@cross-tools
+vala@cross-tools
+
+libxml2@host-tools|nouse
+# # :clang|opt
+# @cross-tools:llvm|opt
+# SPIRV-LLVM-Translator@cross-tools|opt;!llvm_git
+# SPIRV-LLVM-Translator_git@cross-tools|opt;llvm_git
+
+NULL@host-tools
+NULL@cross-tools
+
+@bootstrap|opt
+
+
+@host-tools
+@cross-tools
+
+
+tcl@host-tools
+graphviz@host-tools
+
+NULL@host-tools
+NULL@cross-tools
+
+golang@cross-tools|opt+golang
+rustc@host-tools|opt
+rustc@cross-tools|opt
+
+ocaml@host-tools|opt+ocaml
+dune@host-tools|opt+ocaml
+ocaml@cross-tools|opt+ocaml
+#    ocaml-findlib@cross-tools|opt,ocaml
+
+
+# 开始制作目标系统
+@target_base
+
+rust-bindgen@host-tools|opt
+cargo-c@host-tools|opt
+# for rpds-py
+puccinialin@host-tools|opt
+maturin@host-tools|opt
+# for firefox
+rpds-py@host-tools|opt
+cbindgen@host-tools|opt
+
+qemu@host-tools
+
+Python3_13@host-tools
+expect@host-tools
+dejagnu@host-tools
+ruby3@host-tools
+truststore@host-tools
+
+@base_support|opt
+blfs-systemd-units@target_base
+create_base_files@target_base
+ldd_cache@target_base|none_status
+distro_info@target_base|none_status
+
+# 制作boot相关的内容，如Linux内核、Grub、固件等。
+@boot
+
+# 构建图形登录器
+@lightdm|opt;lightdm
+@sddm|opt;sddm
+
+# 构建桌面环境
+@wm-lxde|opt+LXDE
+# @DE-KDE|opt+KDE
+@KDE6|opt+KDE6
+
+# 构建JAVA的运行环境
+@java_runtime|java
+
+# NULL@cross-toolchains
+# default_arch-binutils@cross-toolchains|gcc13
+# default_arch-gcc-glibc@cross-toolchains|gcc13
+
+# 构建游戏相关的组件
+@game_emu|game
+
+@DE-KDE:kf5|opt+KDE5
+
+# 构建桌面应用组件
+@desktop-app|opt+desk-app
+
+
+# ------------------------------------
+# # 构建Mingw的工具链及基础库
+# NULL@cross-toolchains|opt
+# NULL@mingw_sysroot|opt
+# @cross-toolchains:pre-mingw_tools|wine64;%target=mingw64
+# @cross-toolchains:pre-mingw_tools|wine,wine64;%target=mingw32
+# @cross-toolchains:pre-mingw_tools|mingw;%target=?mingw64ucrt
+# @mingw_sysroot:core|wine64;%target=mingw64
+# @mingw_sysroot:core|wine,wine64;%target=mingw32
+# @mingw_sysroot:core|mingw;%target=?mingw64ucrt
+# @cross-toolchains:mingw_tools|wine64;%target=mingw64;%PARENT=mingw_sysroot
+# @cross-toolchains:mingw_tools|wine,wine64;%target=mingw32;%PARENT=mingw_sysroot
+# @cross-toolchains:mingw_tools|mingw;%target=?mingw64ucrt;%PARENT=mingw_sysroot
+# mingw-w64-libs@mingw_sysroot|wine64;%target=mingw64
+# mingw-w64-libs@mingw_sysroot|wine,wine64;%target=mingw32
+# mingw-w64-libs@mingw_sysroot|mingw;%target=?mingw64ucrt
+# @mingw_sysroot|mingw_sysroot;%target=?mingw64ucrt
+# --------------------------------------
+
+# # 构建Mingw的工具链及基础库
+# NULL@cross-toolchains|opt
+# NULL@mingw_sysroot|opt
+# # @cross-toolchains:pre-mingw_tools|wine64;%target=mingw64
+# @cross-toolchains:pre-mingw_tools|wine,wine32;%target=mingw32
+# @cross-toolchains:pre-mingw_tools|mingw,wine;%target=?mingw64ucrt
+# # @mingw_sysroot:core|wine64;%target=mingw64
+# @mingw_sysroot:core|wine,wine32;%target=mingw32
+# @mingw_sysroot:core|mingw,wine;%target=?mingw64ucrt
+# # @cross-toolchains:mingw_tools|wine64;%target=mingw64;%PARENT=mingw_sysroot
+# @cross-toolchains:mingw_tools|wine,wine32;%target=mingw32;%PARENT=mingw_sysroot
+# @cross-toolchains:mingw_tools|mingw,wine;%target=?mingw64ucrt;%PARENT=mingw_sysroot
+# # mingw-w64-libs@mingw_sysroot|wine64;%target=mingw64
+# mingw-w64-libs@mingw_sysroot|wine,wine32;%target=mingw32
+# mingw-w64-libs@mingw_sysroot|mingw,wine;%target=?mingw64ucrt
+# @mingw_sysroot|mingw_sysroot;%target=?mingw64ucrt
+# NULL@mingw_sysroot|opt
+# NULL@cross-toolchains|opt
+
+# 构建Mingw的工具链及基础库
+NULL@mingw_sysroot|opt
+create_commfile@mingw_sysroot|mingw,wine;%target=?mingw64ucrt
+NULL@cross-toolchains|opt
+@cross-toolchains:pre-mingw_tools|mingw,wine;%target=?mingw64ucrt
+@mingw_sysroot:core|mingw,wine;%target=?mingw64ucrt
+@cross-toolchains:mingw_tools|mingw,wine;%target=?mingw64ucrt;%PARENT=mingw_sysroot
+mingw-w64-libs@mingw_sysroot|mingw,wine;%target=?mingw64ucrt
+
+NULL@mingw_sysroot|opt
+create_commfile@mingw_sysroot|wine,wine32;%target=mingw32
+NULL@cross-toolchains|opt
+@cross-toolchains:pre-mingw_tools|wine,wine32;%target=mingw32
+@mingw_sysroot:core|wine,wine32;%target=mingw32
+@cross-toolchains:mingw_tools|wine,wine32;%target=mingw32;%PARENT=mingw_sysroot
+mingw-w64-libs@mingw_sysroot|wine,wine32;%target=mingw32
+NULL@cross-toolchains|opt
+
+NULL@mingw_sysroot|opt
+@mingw_sysroot|mingw_sysroot;%target=?mingw64ucrt
+NULL@mingw_sysroot|opt
+NULL@cross-toolchains|opt
+
+# 构建linux_runtime的工具链和基础库
+NULL@linux_runtime|opt
+make_directory@linux_runtime:core|opt;linux_runtime,chromium,wine;%target=?x86_64;%OVERLAY=x86_64_runtime;%PARENT=sysroot
+NULL@cross-toolchains|opt
+@cross-toolchains:pre-tools|opt;linux_runtime,chromium,wine;%target=?x86_64
+NULL@linux_runtime|opt
+# make_directory@linux_runtime:core|opt;linux_runtime,chromium,wine;%target=?x86_64;%OVERLAY=x86_64_runtime;%PARENT=sysroot
+@linux_runtime:core|opt;linux_runtime,chromium,wine;%target=?x86_64;%OVERLAY=x86_64_runtime
+NULL@cross-toolchains|opt
+linux-gcc-glibc@cross-toolchains|opt;linux_runtime,chromium,wine;%target=?x86_64;%OVERLAY=x86_64_runtime
+@cross-toolchains|opt;linux_runtime,chromium,wine;%target=?x86_64;%OVERLAY=x86_64_runtime
+@cross-toolchains:forcheck|opt;forcheck;linux_runtime,chromium,wine;%target=?x86_64;%OVERLAY=x86_64_runtime
+NULL@cross-toolchains|opt
+
+# 构建linux_runtime的基础运行环境
+NULL@linux_runtime|opt
+@linux_runtime|opt;linux_runtime,chromium,wine;%target=?x86_64;%OVERLAY=x86_64_runtime
+NULL@linux_runtime|opt
+
+# 构建i686的工具链和基础库
+make_directory@linux_runtime:core|i686_runtime,wine32;%target=i686;%OVERLAY=i686_runtime;%PARENT=sysroot
+NULL@cross-toolchains|opt
+@cross-toolchains:pre-tools|opt;wine32;%target=i686
+NULL@linux_runtime|i686_runtime
+# make_directory@linux_runtime:core|i686_runtime,wine32;%target=i686;%OVERLAY=i686_runtime;%PARENT=sysroot
+@linux_runtime:core|i686_runtime,wine32;%target=i686;%OVERLAY=i686_runtime
+NULL@cross-toolchains|opt
+linux-gcc-glibc@cross-toolchains|opt;i686_runtime,wine32;%target=i686;%OVERLAY=i686_runtime
+@cross-toolchains|opt;i686_runtime,wine32;%target=i686;%OVERLAY=i686_runtime
+NULL@cross-toolchains|opt
+
+# 构建i686的基础运行环境
+NULL@linux_runtime|opt
+@linux_runtime|opt;i686_runtime,wine32;%target=i686;%OVERLAY=i686_runtime
+NULL@linux_runtime|opt
+
+# --------------------------------
+
+# # 构建x86_64的工具链和基础库
+# # @cross-toolchains:pre-tools|opt
+# NULL@cross-toolchains|opt
+# @cross-toolchains:pre-tools|opt;wine64;%target=?x86_64
+# # NULL@linux_runtime|x86_64_runtime,i686_runtime
+# NULL@linux_runtime|opt
+# make_directory@linux_runtime:core|x86_64_runtime,wine64;%target=?x86_64;%OVERLAY=x86_64_runtime;%PARENT=sysroot
+# @linux_runtime:core|x86_64_runtime,wine64;%target=?x86_64;%OVERLAY=x86_64_runtime
+# NULL@cross-toolchains|opt
+# # linux-gcc-glibc@cross-toolchains|opt;wine64,wine;%target=?x86_64;%PARENT=x86_64_runtime
+# linux-gcc-glibc@cross-toolchains|opt;wine64,wine;%target=?x86_64;%OVERLAY=x86_64_runtime
+# 
+# NULL@cross-toolchains|opt
+# @cross-toolchains|opt;wine64,wine;%target=?x86_64;%OVERLAY=x86_64_runtime
+
+# # 构建i686的工具链和基础库
+# NULL@cross-toolchains|opt
+# @cross-toolchains:pre-tools|opt;wine64,wine;%target=i686
+# NULL@linux_runtime|i686_runtime
+# make_directory@linux_runtime:core|i686_runtime,wine;%target=i686;%OVERLAY=i686_runtime;%PARENT=sysroot
+# @linux_runtime:core|i686_runtime,wine;%target=i686;%OVERLAY=i686_runtime
+# NULL@cross-toolchains|opt
+# # linux-gcc-glibc@cross-toolchains|opt;wine64,wine;%target=i686;%PARENT=i686_runtime
+# linux-gcc-glibc@cross-toolchains|opt;wine64,wine;%target=i686;%OVERLAY=i686_runtime
+# 
+# # @cross-toolchains|opt
+# @cross-toolchains|opt;wine64,wine;%target=i686;%OVERLAY=i686_runtime
+
+# # 构建aarch64的工具链和基础库
+# NULL@cross-toolchains|opt
+# @cross-toolchains:pre-tools|opt;lata;%target=?aarch64
+# NULL@linux_runtime|opt
+# make_directory@linux_runtime:core|aarch64_runtime,lata;%target=?aarch64;%OVERLAY=aarch64_runtime;%PARENT=sysroot
+# @linux_runtime:core|aarch64_runtime,lata;%target=?aarch64;%OVERLAY=aarch64_runtime
+# NULL@cross-toolchains|opt
+# linux-gcc-glibc@cross-toolchains|opt;lata;%target=?aarch64;%OVERLAY=aarch64_runtime
+
+# NULL@cross-toolchains|opt
+# @cross-toolchains|opt;lata;%target=?aarch64;%OVERLAY=aarch64_runtime
+
+
+# # 构建x86_64的基础运行环境
+# NULL@linux_runtime|opt
+# @linux_runtime|x86_64_runtime,wine64;%target=?x86_64;%OVERLAY=x86_64_runtime
+# 
+# # 构建i686的基础运行环境
+# NULL@linux_runtime|opt
+# @linux_runtime|i686_runtime,wine;%target=i686;%OVERLAY=i686_runtime
+# 
+# # 构建aarch64的基础运行环境
+# NULL@linux_runtime|opt
+# @linux_runtime|aarch64_runtime,lata;%target=?aarch64;%OVERLAY=aarch64_runtime
+
+# --------------------------------------------------------------------
+
+# 构建chromium浏览器
+@desktop-app:chromium|chromium
+# llvm-project@host-tools|%host=?x86_64;%target=?loongarch64;%PARENT=sysroot,x86_64_runtime;chromium
+# # compiler-rt@host-tools|chromium
+# # llvm_runtimes@host-tools|chromium
+# rustc@host-tools|%PARENT=sysroot;chromium
+# chromium@desktop-app|chromium
+# vscode@desktop-app|vscode
+
+# @game_emu:x86|game
+
+# 构建虚拟机及模拟器工具。
+@simulate|emu
+# @simulate:wine-collection|emu;%OVERLAY=wine-collection
+
+# 增加一些二进制相关的软件包。
+# @bin-pkg
+
+# @wine_runtime:core|wine,wine64
+# @wine64_runtime:core|wine64
+
+# wine32-tools@host-tools|wine,wine64;!wine_dev
+# @wine_runtime|wine
+# @wine64_runtime|wine64
+
+# @oldversion|opt
+
+@toolchain|opt+host-dist
+
+@computer_language|opt
+
+@unusual|*nobuild
+
+@benchmark|benchmark
+
+# @tests|tests

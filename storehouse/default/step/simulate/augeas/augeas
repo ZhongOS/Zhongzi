@@ -1,0 +1,2 @@
+PACKAGE=augeas
+BUILD_MODE=gnu

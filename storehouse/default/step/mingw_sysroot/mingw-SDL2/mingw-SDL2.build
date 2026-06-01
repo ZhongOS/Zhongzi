@@ -1,0 +1,5 @@
+<<<TAR_UNCOMPRESS>>>
+    ./configure ${COMMON_CONFIG}
+    <<<MAKE>>> WAYLAND_SCANNER=wayland-scanner
+    make DESTDIR=${MINGW_SYSROOT_DIR} install
+<<<CLEAR_DIR>>>

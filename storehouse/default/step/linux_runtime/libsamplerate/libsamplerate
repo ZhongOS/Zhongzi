@@ -1,0 +1,2 @@
+PACKAGE=libsamplerate
+BUILD_MODE=gnu

@@ -1,0 +1,2 @@
+PACKAGE=fmt
+BUILD_MODE=cmake

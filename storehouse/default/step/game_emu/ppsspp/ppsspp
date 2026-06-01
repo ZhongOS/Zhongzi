@@ -1,0 +1,2 @@
+PACKAGE=ppsspp
+BUILD_MODE=custom

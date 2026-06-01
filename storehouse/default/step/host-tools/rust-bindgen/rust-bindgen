@@ -1,0 +1,2 @@
+PACKAGE=rust-bindgen
+BUILD_MODE=custom

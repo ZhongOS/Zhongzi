@@ -1,0 +1,2 @@
+PACKAGE=ocl-icd
+BUILD_MODE=custom

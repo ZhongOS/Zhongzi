@@ -1,0 +1,2 @@
+PACKAGE=xhost
+BUILD_MODE=gnu

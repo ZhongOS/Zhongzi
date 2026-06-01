@@ -1,0 +1,2 @@
+PACKAGE=lightdm
+BUILD_MODE=custom

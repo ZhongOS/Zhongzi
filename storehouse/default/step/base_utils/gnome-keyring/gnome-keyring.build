@@ -1,0 +1,5 @@
+<<<TAR_UNCOMPRESS>>>
+    sed -i 's:"/desktop:"/org:' schema/*.xml
+    ./configure ${COMMON_CONFIG}
+    <<<MAKE_AND_INSTALL>>>
+<<<CLEAR_DIR>>>

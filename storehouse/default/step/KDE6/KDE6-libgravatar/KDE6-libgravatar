@@ -1,0 +1,2 @@
+PACKAGE=KDE6-libgravatar
+BUILD_MODE=cmake

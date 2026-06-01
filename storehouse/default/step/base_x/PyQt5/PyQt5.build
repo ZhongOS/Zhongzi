@@ -1,0 +1,12 @@
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+    sed -i "s,@MinimumSipVersion@,4.19.25," configure.py
+    _PYTHON_SYSCONFIGDATA_NAME=_sysconfigdata__linux_${CROSS_TARGET} \
+    ${CROSSTOOLS_DIR}/bin/python3 ./configure.py --confirm-license \
+              --bindir=/usr/bin --sipdir=/usr/share/sip/PyQt5 \
+              --destdir=/usr/lib64/python<<<PYTHON_VERSION>>>/site-packages \
+              --stubsdir=/usr/lib64/python<<<PYTHON_VERSION>>>/site-packages/PyQt5 \
+              --sip-incdir=${SYSROOT_DIR}/usr/include/python<<<PYTHON_VERSION>>>
+    <<<MAKE>>>
+    make INSTALL_ROOT=${SYSROOT_DIR} install
+<<<CLEAR_DIR>>>

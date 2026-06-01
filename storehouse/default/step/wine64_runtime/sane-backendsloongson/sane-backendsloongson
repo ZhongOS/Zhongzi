@@ -1,0 +1,2 @@
+PACKAGE=sane-backendsloongson
+BUILD_MODE=gnu

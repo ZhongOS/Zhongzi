@@ -1,0 +1,65 @@
+<<<TAR_UNCOMPRESS>>>
+    pushd lldb
+        mkdir cross-build
+        pushd cross-build
+            CC="${CROSS_TARGET}-gcc" CXX="${CROSS_TARGET}-g++" \
+            cmake .. -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release \
+                  -DLLVM_CONFIG=${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-llvm-config \
+                  -DLLVM_LIBDIR_SUFFIX=64 \
+                  -DCMAKE_AR="${CROSSTOOLS_DIR}/bin/llvm-ar" \
+                  -DCMAKE_RANLIB="${CROSSTOOLS_DIR}/bin/llvm-ranlib" \
+                  -DCMAKE_C_FLAGS="-DNDEBUG" -DCMAKE_CXX_FLAGS="-DNDEBUG" \
+                  -DLLVM_ENABLE_RTTI:BOOL=ON \
+                  -DLLVM_ENABLE_ZLIB:BOOL=ON \
+		  -DLLDB_ENABLE_LUA:BOOL=OFF \
+                  -DCMAKE_MAKE_PROGRAM:PATH=${CROSSTOOLS_DIR}/bin/ninja \
+                  -DDOXYGEN_EXECUTABLE:PATH=/usr/bin/doxygen \
+                  -DLLDB_TABLEGEN:PATH=${CROSSTOOLS_DIR}/bin/lldb_tablegen \
+		  -DPython3_EXECUTABLE=${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-python3 \
+                  -DLLVM_ENABLE_TERMINFO:BOOL=OFF \
+                  -DCMAKE_SYSROOT=${SYSROOT_DIR} \
+                  -DCMAKE_FIND_ROOT_PATH=${SYSROOT_DIR}/usr \
+                  -DLLVM_LINK_LLVM_DYLIB:BOOL=ON \
+		  -DLLVM_VERSION_SUFFIX='' \
+                  -DLLDB_INCLUDE_TESTS=OFF -DLLVM_BUILD_RUNTIME=OFF \
+                  -DLLVM_HOST_TRIPLE=${CROSS_TARGET}
+             sed -i "s@${CROSSTOOLS_DIR}/lib64/libclang-cpp.so@${SYSROOT_DIR}/usr/lib64/libclang-cpp.so@g" build.ninja
+             sed -i "s@${CROSSTOOLS_DIR}/lib64/libLLVM@${SYSROOT_DIR}/usr/lib64/libLLVM@g" build.ninja
+	     sed -i "s@${PWD}/bin/lldb-tblgen@qemu-loongarch64 ${PWD}/bin/lldb-tblgen@g" build.ninja
+             <<<NINJA_AND_INSTALL>>>
+        popd
+    popd
+<<<CLEAR_DIR>>>
+
+
+[[[18.0.0]]]
+<<<TAR_UNCOMPRESS>>>
+    pushd lldb
+        mkdir cross-build
+        pushd cross-build
+            CC="clang -fuse-ld=lld" CXX="clang++ -fuse-ld=lld" \
+            cmake .. -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release \
+                  -DLLVM_CONFIG=${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-llvm-config \
+                  -DLLVM_LIBDIR_SUFFIX=64 \
+                  -DCMAKE_AR="${CROSSTOOLS_DIR}/bin/llvm-ar" \
+                  -DCMAKE_RANLIB="${CROSSTOOLS_DIR}/bin/llvm-ranlib" \
+                  -DCMAKE_C_FLAGS="-DNDEBUG" -DCMAKE_CXX_FLAGS="-DNDEBUG" \
+                  -DLLVM_ENABLE_RTTI:BOOL=ON \
+                  -DLLVM_ENABLE_ZLIB:BOOL=ON \
+                  -DCMAKE_MAKE_PROGRAM:PATH=${CROSSTOOLS_DIR}/bin/ninja \
+                  -DDOXYGEN_EXECUTABLE:PATH=/usr/bin/doxygen \
+                  -DLLDB_TABLEGEN:PATH=${CROSSTOOLS_DIR}/bin/lldb_tablegen \
+                  -DLLVM_ENABLE_TERMINFO:BOOL=OFF \
+                  -DCMAKE_SYSROOT=${SYSROOT_DIR} \
+                  -DCMAKE_FIND_ROOT_PATH=${SYSROOT_DIR}/usr \
+                  -DLLVM_LINK_LLVM_DYLIB:BOOL=ON \
+		  -DLLVM_VERSION_SUFFIX='' \
+                  -DLLDB_INCLUDE_TESTS=OFF -DLLVM_BUILD_RUNTIME=OFF \
+                  -DLLVM_HOST_TRIPLE=${CROSS_TARGET}
+             sed -i "s@${CROSSTOOLS_DIR}/lib64/libclang-cpp.so@${SYSROOT_DIR}/usr/lib64/libclang-cpp.so@g" build.ninja
+             sed -i "s@${CROSSTOOLS_DIR}/lib64/libLLVM@${SYSROOT_DIR}/usr/lib64/libLLVM@g" build.ninja
+	     sed -i "s@${PWD}/bin/lldb-tblgen@qemu-loongarch64 ${PWD}/bin/lldb-tblgen@g" build.ninja
+             <<<NINJA_AND_INSTALL>>>
+        popd
+    popd
+<<<CLEAR_DIR>>>

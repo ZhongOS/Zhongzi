@@ -1,0 +1,2 @@
+PACKAGE=kservice
+BUILD_MODE=cmake

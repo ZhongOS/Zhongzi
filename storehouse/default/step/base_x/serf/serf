@@ -1,0 +1,2 @@
+PACKAGE=serf
+BUILD_MODE=custom

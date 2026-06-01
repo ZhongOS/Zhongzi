@@ -1,0 +1,1 @@
+EXTRA_PARM=-Ddefault_bus=dbus-broker -Ddbus_broker=/usr/bin/dbus-broker -Ddbus_daemon=/usr/bin/dbus-daemon

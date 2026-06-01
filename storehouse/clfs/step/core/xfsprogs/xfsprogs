@@ -1,0 +1,6 @@
+PACKAGE=xfsprogs
+BUILD_MODE=custom
+
+[[[6.1.0]]]
+PACKAGE=xfsprogs
+BUILD_MODE=gnu

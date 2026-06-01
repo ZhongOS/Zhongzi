@@ -1,0 +1,72 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+# 	pushd src/basic
+#         python3 missing_syscalls.py missing_syscall_def.h $(ls syscalls-*.txt)
+# 	popd
+	sed -i -e 's/GROUP="render"/GROUP="video"/' \
+           -e 's/GROUP="sgx", //' rules.d/50-udev-default.rules.in
+	sed -i "s@Werror=undef',@& '-Wno-error=format-overflow', '-Wno-error=implicit-function-declaration',@g" meson.build
+
+	mkdir -p build
+	pushd build
+		meson ${MESON_CONFIG} \
+		      -Ddefault-dnssec=no -Dfirstboot=false \
+		      -Dinstall-tests=false -Dldconfig=false -Dsysusers=false \
+		      -Drpmmacrosdir=no -Dhomed=false -Duserdb=false -Dman=false -Dmode=release -Dlogind=true \
+		      -Dpamconfdir=/etc/pam.d \
+		      -Ddbuspolicydir=/usr/share/dbus-1/system.d -Ddbussessionservicedir=/usr/share/dbus-1/services -Ddbussystemservicedir=/usr/share/dbus-1/system-services \
+		      -Dbashcompletiondir=/usr/share/bash-completion/completions \
+		      ..
+		<<<NINJA_AND_INSTALL>>>
+	popd
+
+	rm -f ${SYSROOT_DIR}/usr/lib/systemd/system/systemd-networkd-wait-online.service
+
+<<<CLEAR_DIR>>>
+cat > ${SYSROOT_DIR}/usr/lib/systemd/system/rc-local.service << "EOF"
+[Unit]
+Description=/etc/rc.local Compatibility
+ConditionFileIsExecutable=/etc/rc.local
+After=network.target
+
+[Service]
+Type=forking
+ExecStart=/etc/rc.local start
+TimeoutSec=infinity
+RemainAfterExit=yes
+GuessMainPID=no
+EOF
+ln -sfv ../rc-local.service ${SYSROOT_DIR}/usr/lib/systemd/system/multi-user.target.wants/rc-local.service
+
+set_strip_step "/usr/lib/systemd" "0"
+
+
+
+[[[257.9]]]
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+# 	pushd src/basic
+#         python3 missing_syscalls.py missing_syscall_def.h $(ls syscalls-*.txt)
+# 	popd
+	sed -i -e 's/GROUP="render"/GROUP="video"/' \
+           -e 's/GROUP="sgx", //' rules.d/50-udev-default.rules.in
+	sed -i "s@Werror=undef',@& '-Wno-error=format-overflow', '-Wno-error=implicit-function-declaration',@g" meson.build
+
+	mkdir -p build
+	pushd build
+		meson ${MESON_CONFIG} \
+		      -Ddefault-dnssec=no -Dfirstboot=false \
+		      -Dinstall-tests=false -Dldconfig=false -Dsysusers=false \
+		      -Drpmmacrosdir=no -Dhomed=false -Duserdb=false -Dman=false -Dmode=release -Dlogind=true \
+		      -Dpamconfdir=/etc/pam.d \
+		      -Ddbuspolicydir=/usr/share/dbus-1/system.d -Ddbussessionservicedir=/usr/share/dbus-1/services -Ddbussystemservicedir=/usr/share/dbus-1/system-services \
+		      -Dbashcompletiondir=/usr/share/bash-completion/completions \
+		      ..
+		<<<NINJA_AND_INSTALL>>>
+	popd
+
+	rm -f ${SYSROOT_DIR}/usr/lib/systemd/system/systemd-networkd-wait-online.service
+
+<<<CLEAR_DIR>>>
+
+set_strip_step "/usr/lib/systemd" "0"

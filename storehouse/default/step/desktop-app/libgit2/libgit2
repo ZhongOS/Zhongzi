@@ -1,0 +1,2 @@
+PACKAGE=libgit2
+BUILD_MODE=cmake

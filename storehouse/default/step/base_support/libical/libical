@@ -1,0 +1,3 @@
+PACKAGE=libical
+BUILD_MODE=custom
+# BUILD_MODE=cmake

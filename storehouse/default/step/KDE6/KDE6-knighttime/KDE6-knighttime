@@ -1,0 +1,2 @@
+PACKAGE=KDE6-knighttime
+BUILD_MODE=cmake

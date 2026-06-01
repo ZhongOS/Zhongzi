@@ -1,0 +1,5 @@
+<<<TAR_UNCOMPRESS>>>
+    sed -i 's/png_\(sizeof\)/\1/g' examples/png2theora.c
+    ./configure ${COMMON_CONFIG}
+    <<<MAKE_AND_INSTALL>>>
+<<<CLEAR_DIR>>>

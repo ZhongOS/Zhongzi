@@ -1,0 +1,7 @@
+<<<TAR_UNCOMPRESS>>>
+	FORCE_UNSAFE_CONFIGURE=1 \
+	./configure --prefix=/usr  --build=${CROSS_HOST} --host=${X86_64_HOST} \
+				--enable-no-install-program=kill,uptime
+	<<<MAKE_AND_INSTALL>>>
+	mv -v ${X86_64_SYSROOT_DIR}/usr/bin/chroot ${X86_64_SYSROOT_DIR}/usr/sbin
+<<<CLEAR_DIR>>>

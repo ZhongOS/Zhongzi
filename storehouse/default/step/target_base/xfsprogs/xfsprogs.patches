@@ -1,0 +1,9 @@
+p1 0001-Fix-for-cross-build.patch
+p1 0002-Fix-for-gcc-13.patch
+
+[[[6.3.0]]]
+p1 0001-Fix-for-cross-build.patch
+p1 0002-Fix-for-gcc-13.patch
+p1 0001-fix-po-file-typo.patch
+
+[[[6.2.0]]]

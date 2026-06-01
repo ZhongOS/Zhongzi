@@ -1,0 +1,2 @@
+PACKAGE=squashfuse
+BUILD_MODE=gnu

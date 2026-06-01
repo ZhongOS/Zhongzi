@@ -1,0 +1,15 @@
+<<<TAR_UNCOMPRESS>>>
+	unpack_for_pkg_format "${PACKAGE_FORMAT}" "${STEP_PACKAGENAME}" "${ARCH_NAME}"
+	<<<PATCH>>>
+	for config_i in $(find -name "config.sub")
+	do
+		cp -a -f <<<CROSS_TOOLS_PREFIX>>>/share/automake*/config.* $(dirname ${config_i})/
+	done
+	if [ ! -f configure ]; then
+		autoreconf -ifv
+	fi
+	<<<CONFIG_ENV>>> ./configure ${COMMON_CONFIG} <<<EXTRA_PARM>>> --enable-malloc0returnsnull
+	CC="${CROSS_TARGET}-gcc" CXX="${CROSS_TARGET}-g++" <<<MAKE>>>
+        make DESTDIR=${SYSROOT_DIR} install
+	rm -f ${SYSROOT_DIR}/usr/lib${LIB_SUFF}/*.la
+<<<CLEAR_DIR>>>

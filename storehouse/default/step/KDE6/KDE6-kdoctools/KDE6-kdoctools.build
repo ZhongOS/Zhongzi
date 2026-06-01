@@ -1,0 +1,34 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+	sed -i "s@COMMAND \$<TARGET_FILE:KF6::docbookl10nhelper>@COMMAND qemu-loongarch64 ../bin/docbookl10nhelper@g" \
+		src/CMakeLists.txt
+	sed -i.orig "s@COMMAND \${KDOCTOOLS_MEINPROC_EXECUTABLE}@COMMAND qemu-loongarch64 ${PWD}/cross-build/bin/meinproc6@g" \
+		KF6DocToolsMacros.cmake
+	mkdir cross-build
+	pushd cross-build
+		CC="${CROSS_TARGET}-gcc" CXX="${CROSS_TARGET}-g++" \
+		cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=${COMMON_DIR}/cmake-cross.cmake \
+		      -DKI18N_PYTHON_EXECUTABLE=${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-python3 \
+		      -D_Python3_CONFIG=${HOST_TOOLS_DIR}/bin/python3-config \
+		      -D_Python_CONFIG=${HOST_TOOLS_DIR}/bin/python3-config \
+		      -DCMAKE_INSTALL_LIBDIR=/usr/lib64 -DLIB_SUFFIX=64 -DCMAKE_INSTALL_LIBEXECDIR=/usr/libexec \
+		      -DCMAKE_INSTALL_PREFIX=/usr \
+		      -DBUILD_SHARED_LIBS=ON \
+		      -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
+		      -Wno-dev ..
+		<<<MAKE>>> -C src meinproc6
+		<<<MAKE_AND_INSTALL>>>
+	popd
+	cp KF6DocToolsMacros.cmake.orig ${SYSROOT_DIR}/usr/lib64/cmake/KF6DocTools/KF6DocToolsMacros.cmake
+	cp ${SYSROOT_DIR}/usr/share/kf6/kdoctools/customization/xsl/pt{_br,-BR}.xml
+# 	sed -i "s@${SYSROOT_DIR}@@g" ${SYSROOT_DIR}/usr/share/kf6/kdoctools/customization/dtd/kdedbx45.dtd
+	rm -f ${SYSROOT_DIR}/usr/lib64/*.la
+<<<CLEAR_DIR>>>
+
+echo "qemu-loongarch64 ${SYSROOT_DIR}/usr/bin/meinproc6 --srcdir ${SYSROOT_DIR}/usr/share/kf6/kdoctools \"\$@\"" \
+        > ${CROSSTOOLS_DIR}/bin/meinproc6
+echo "qemu-loongarch64 ${SYSROOT_DIR}/usr/bin/checkXML6 \"\$@\"" \
+        > ${CROSSTOOLS_DIR}/bin/checkXML6
+chmod +x ${CROSSTOOLS_DIR}/bin/meinproc6 ${CROSSTOOLS_DIR}/bin/checkXML6
+
+set_final_fix_step "usr/share/kf6/kdoctools/customization/dtd/" "F" "f" "*.dtd"

@@ -1,0 +1,2 @@
+PACKAGE=exfat
+BUILD_MODE=gnu

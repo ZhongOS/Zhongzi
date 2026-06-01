@@ -1,0 +1,7 @@
+<<<TAR_UNCOMPRESS>>>
+	./configure --prefix=/usr --libdir=/usr/lib${LIB_SUFF} --build=${CROSS_HOST} \
+                --host=${CROSS_TARGET} --with-openssl \
+                --enable-threaded-resolver --with-ca-path=/etc/ssl/certs
+	<<<MAKE_AND_INSTALL>>>
+	cp ${SYSROOT_DIR}/usr/bin/curl-config ${CROSSTOOLS_DIR}/bin/
+<<<CLEAR_DIR>>>

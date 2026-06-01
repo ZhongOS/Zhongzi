@@ -1,0 +1,2 @@
+PACKAGE=qt5
+BUILD_MODE=custom

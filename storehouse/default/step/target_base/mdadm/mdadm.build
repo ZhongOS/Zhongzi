@@ -1,0 +1,5 @@
+<<<TAR_UNCOMPRESS>>>
+# mdadm软件包使用CXFLAGS来传递CFLAGS参数，以保证其内部参数传递正确。
+	<<<MAKE>>> CC="${CROSS_TARGET}-gcc" CXFLAGS="${CFLAGS} -Wno-error=unterminated-string-initialization -Wno-error=format-truncation"
+	make DESTDIR=${SYSROOT_DIR} PKG_CONFIG=${CROSS_TARGET}-pkg-config install
+<<<CLEAR_DIR>>>

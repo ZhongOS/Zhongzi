@@ -1,0 +1,2 @@
+PACKAGE=libqalculate
+BUILD_MODE=gnu

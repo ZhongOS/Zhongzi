@@ -1,0 +1,2 @@
+PACKAGE=KDE6-k3b
+BUILD_MODE=cmake

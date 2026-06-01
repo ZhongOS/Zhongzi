@@ -1,0 +1,2 @@
+PACKAGE=ptyprocess
+BUILD_MODE=pip

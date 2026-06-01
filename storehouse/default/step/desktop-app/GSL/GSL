@@ -1,0 +1,2 @@
+PACKAGE=GSL
+BUILD_MODE=cmake

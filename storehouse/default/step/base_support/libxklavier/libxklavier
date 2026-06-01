@@ -1,0 +1,2 @@
+PACKAGE=libxklavier
+BUILD_MODE=gnu_gi

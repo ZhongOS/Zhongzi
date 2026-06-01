@@ -1,0 +1,5 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+	<<<MAKE>>> CC="${CROSS_TARGET}-gcc" -C src
+	make CC="${CROSS_TARGET}-gcc" -C src DESTDIR=${SYSROOT_DIR} install
+<<<CLEAR_DIR>>>

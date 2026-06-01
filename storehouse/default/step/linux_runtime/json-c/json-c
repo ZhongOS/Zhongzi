@@ -1,0 +1,2 @@
+PACKAGE=json-c
+BUILD_MODE=cmake

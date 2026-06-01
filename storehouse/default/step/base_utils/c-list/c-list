@@ -1,0 +1,2 @@
+PACKAGE=c-list
+BUILD_MODE=meson

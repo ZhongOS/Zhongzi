@@ -1,0 +1,54 @@
+<<<TAR_UNCOMPRESS>>>
+
+pushd libclc
+    mkdir -p native-build
+    pushd native-build
+        LDFLAGS="" PKG_CONFIG_SYSROOT_DIR="" \
+        cmake .. -G Ninja -DCMAKE_INSTALL_PREFIX:PATH=<<<CROSS_TOOLS_PREFIX>>> \
+                 -DCMAKE_CXX_COMPILER="clang++" -DCMAKE_C_COMPILER="clang" \
+		 -DCMAKE_C_FLAGS="-DNDEBUG --target=${CROSS_HOST} --sysroot=/" -DCMAKE_CXX_FLAGS="-DNDEBUG --target=${CROSS_HOST} --sysroot=/" \
+                  -DLLVM_CLANG="${CROSSTOOLS_DIR}/bin/clang" \
+                  -DLLVM_AS="${CROSSTOOLS_DIR}/bin/llvm-as" \
+                  -DLLVM_LINK="${CROSSTOOLS_DIR}/bin/llvm-link" \
+                  -DLLVM_OPT="${CROSSTOOLS_DIR}/bin/opt" \
+                  -DLLVM_SPIRV="${CROSSTOOLS_DIR}/bin/llvm-spirv" \
+                  -DCMAKE_AR="${CROSSTOOLS_DIR}/bin/llvm-ar" \
+                  -DCMAKE_RANLIB="${CROSSTOOLS_DIR}/bin/llvm-ranlib" \
+                 -DBUILD_SHARED_LIBS:BOOL=OFF \
+                 -DCMAKE_BUILD_TYPE=Release \
+                 -DCMAKE_INSTALL_RPATH="<<<CROSS_TOOLS_PREFIX>>>/lib64;\\\${ORIGIN}/../lib64" \
+#                  -DCMAKE_C_FLAGS="-DNDEBUG" -DCMAKE_CXX_FLAGS="-DNDEBUG" \
+                 -DLLVM_LIBDIR_SUFFIX=64  \
+                 -DLLVM_INSTALL_TOOLCHAIN_ONLY:BOOL=OFF \
+                 -DLLVM_HOST_TRIPLE=${CROSS_HOST} \
+                 -DDEFAULT_SYSROOT:PATH="${SYSROOT_DIR}"
+        ninja
+        ninja install
+popd
+
+#    pushd libclc
+#        mkdir cross-build
+#        pushd cross-build
+#            CC="clang" CXX="clang++" \
+#            cmake .. -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=${COMMON_DIR}/cmake-cross.cmake \
+#                  -DLLVM_CONFIG=${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-llvm-config \
+#                  -DLLVM_LIBDIR_SUFFIX=64 \
+#                  -DLLVM_CLANG="${CROSSTOOLS_DIR}/bin/clang" \
+#                  -DLLVM_AS="${CROSSTOOLS_DIR}/bin/llvm-as" \
+#                  -DLLVM_LINK="${CROSSTOOLS_DIR}/bin/llvm-link" \
+#                  -DLLVM_OPT="${CROSSTOOLS_DIR}/bin/opt" \
+#                  -DLLVM_SPIRV="${CROSSTOOLS_DIR}/bin/llvm-spirv" \
+#                  -DCMAKE_AR="${CROSSTOOLS_DIR}/bin/llvm-ar" \
+#                  -DCMAKE_RANLIB="${CROSSTOOLS_DIR}/bin/llvm-ranlib" \
+#                  -DCMAKE_C_FLAGS="-DNDEBUG" -DCMAKE_CXX_FLAGS="-DNDEBUG" \
+#                  -DLLVM_ENABLE_RTTI:BOOL=ON \
+#                  -DLLVM_ENABLE_ZLIB:BOOL=ON \
+#                  -DCMAKE_MAKE_PROGRAM:PATH=${CROSSTOOLS_DIR}/bin/ninja \
+#                  -DLLVM_ENABLE_TERMINFO:BOOL=OFF \
+#                  -DLLVM_USE_SANITIZER:BOOL=ON \
+#                  -DLLVM_LINK_LLVM_DYLIB:BOOL=ON \
+#                  -DLLVM_HOST_TRIPLE=${CROSS_TARGET}
+#             <<<NINJA_AND_INSTALL>>>
+#        popd
+#    popd
+<<<CLEAR_DIR>>>

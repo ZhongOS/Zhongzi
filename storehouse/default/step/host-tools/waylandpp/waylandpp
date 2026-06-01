@@ -1,0 +1,2 @@
+PACKAGE=waylandpp
+BUILD_MODE=custom

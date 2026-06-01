@@ -1,0 +1,2 @@
+PACKAGE=gstreamer
+BUILD_MODE=meson

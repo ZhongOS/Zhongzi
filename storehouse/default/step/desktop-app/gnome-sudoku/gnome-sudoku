@@ -1,0 +1,3 @@
+PACKAGE=gnome-sudoku
+# BUILD_MODE=meson_cross
+BUILD_MODE=custom

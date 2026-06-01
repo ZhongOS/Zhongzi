@@ -1,0 +1,2 @@
+PACKAGE=xdotool
+BUILD_MODE=custom

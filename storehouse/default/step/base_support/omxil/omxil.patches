@@ -1,0 +1,9 @@
+p1 libomxil-bellagio-0.9.3-fix_Werror.patch
+p1 libomxil-bellagio-0.9.3-unused.patch
+p1 libomxil-bellagio-0.9.3-nodoc.patch
+p1 bellagio-0.9.3-dynamicloader-linking.patch
+p1 bellagio-0.9.3-parallel-build.patch
+p1 bellagio-0.9.3-segfault-on-removeFromWaitResource.patch
+p0 omxil_version.patch
+p1 libomxil-bellagio-0.9.3-memcpy.patch
+p0 libomxil-bellagio-0.9.3-valgrind_register.patch

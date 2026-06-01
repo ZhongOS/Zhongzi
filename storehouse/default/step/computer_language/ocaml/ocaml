@@ -1,0 +1,2 @@
+PACKAGE=ocaml
+BUILD_MODE=custom

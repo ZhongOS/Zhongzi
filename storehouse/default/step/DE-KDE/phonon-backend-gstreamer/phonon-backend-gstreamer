@@ -1,0 +1,2 @@
+PACKAGE=phonon-backend-gstreamer
+BUILD_MODE=cmake

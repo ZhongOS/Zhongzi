@@ -1,0 +1,2 @@
+PACKAGE=openjpeg
+BUILD_MODE=cmake

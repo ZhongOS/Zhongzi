@@ -1,0 +1,2 @@
+PACKAGE=PyOpenGL
+BUILD_MODE=python

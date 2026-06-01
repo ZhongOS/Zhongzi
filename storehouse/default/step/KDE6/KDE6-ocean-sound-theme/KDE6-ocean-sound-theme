@@ -1,0 +1,2 @@
+PACKAGE=KDE6-ocean-sound-theme
+BUILD_MODE=cmake

@@ -1,0 +1,2 @@
+PACKAGE=libretro-snes9x2010
+BUILD_MODE=custom

@@ -1,0 +1,2 @@
+PACKAGE=adwaita-icon-theme
+BUILD_MODE=meson

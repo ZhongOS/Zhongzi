@@ -1,0 +1,2 @@
+PACKAGE=e2fsprogs
+BUILD_MODE=custom

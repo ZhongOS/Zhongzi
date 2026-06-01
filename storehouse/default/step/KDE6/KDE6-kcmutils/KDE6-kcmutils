@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kcmutils
+BUILD_MODE=custom

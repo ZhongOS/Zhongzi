@@ -1,0 +1,2 @@
+PACKAGE=libdbusmenu
+BUILD_MODE=custom

@@ -1,0 +1,2 @@
+PACKAGE=khotkeys
+BUILD_MODE=cmake

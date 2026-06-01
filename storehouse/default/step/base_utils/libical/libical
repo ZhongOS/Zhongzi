@@ -1,0 +1,2 @@
+PACKAGE=libical
+BUILD_MODE=custom

@@ -1,0 +1,2 @@
+PACKAGE=kjs
+BUILD_MODE=custom

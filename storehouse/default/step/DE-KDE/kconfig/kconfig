@@ -1,0 +1,2 @@
+PACKAGE=kconfig
+BUILD_MODE=custom

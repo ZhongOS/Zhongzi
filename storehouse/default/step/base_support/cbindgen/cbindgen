@@ -1,0 +1,2 @@
+PACKAGE=cbindgen
+BUILD_MODE=custom

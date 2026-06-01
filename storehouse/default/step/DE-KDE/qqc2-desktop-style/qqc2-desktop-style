@@ -1,0 +1,2 @@
+PACKAGE=qqc2-desktop-style
+BUILD_MODE=cmake

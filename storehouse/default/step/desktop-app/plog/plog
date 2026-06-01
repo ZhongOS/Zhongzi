@@ -1,0 +1,2 @@
+PACKAGE=plog
+BUILD_MODE=cmake

@@ -1,0 +1,11 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+        if [ ! -f configure ]; then
+                autoreconf -ifv
+        fi
+	./configure --prefix=/mingw --build=${CROSS_HOST} \
+		--host=${MINGW_HOST} <<<EXTRA_PARM>>>
+	<<<MAKE>>>
+	make DESTDIR=${CROSS_TOOLS_PREFIX}/sys-root install
+<<<CLEAR_DIR>>>
+rm -f ${CROSS_TOOLS_PREFIX}/sys-root/mingw/lib/*.la

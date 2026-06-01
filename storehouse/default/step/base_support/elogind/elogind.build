@@ -1,0 +1,1 @@
+EXTRA_PARM=-Dcgroup-controller=elogind -Ddbuspolicydir=/etc/dbus-1/system.d -Ddefault-kill-user-processes=false -Ddbussessionservicedir=/usr/share/dbus-1/services -Ddbussystemservicedir=/usr/share/dbus-1/system-services -Dbashcompletiondir=/usr/share/bash-completion/completions

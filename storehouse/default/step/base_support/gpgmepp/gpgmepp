@@ -1,0 +1,2 @@
+PACKAGE=gpgmepp
+BUILD_MODE=cmake

@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kwayland-integration
+BUILD_MODE=cmake

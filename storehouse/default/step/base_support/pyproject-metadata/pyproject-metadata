@@ -1,0 +1,2 @@
+PACKAGE=pyproject-metadata
+BUILD_MODE=pip

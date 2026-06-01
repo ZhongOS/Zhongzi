@@ -1,0 +1,2 @@
+PACKAGE=kirigami2
+BUILD_MODE=cmake

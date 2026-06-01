@@ -1,0 +1,1 @@
+EXTRA_PARM=--disable-chfn-chsh --disable-login --disable-nologin --disable-su --disable-setpriv --disable-runuser --disable-pylibmount --disable-static --without-python --disable-makeinstall-chown runstatedir=/run ADJTIME_PATH=/var/lib/hwclock/adjtime --with-systemdsystemunitdir=/usr/lib/systemd/system

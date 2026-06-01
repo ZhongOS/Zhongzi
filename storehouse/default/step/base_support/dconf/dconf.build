@@ -1,0 +1,1 @@
+EXTRA_PARM=-Dbash_completion=false -Dman=false -Dsystemduserunitdir=/usr/lib/systemd/user

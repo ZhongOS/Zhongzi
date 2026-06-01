@@ -1,0 +1,2 @@
+PACKAGE=zsh
+BUILD_MODE=custom

@@ -1,0 +1,3 @@
+PACKAGE=librsvg
+BUILD_MODE=custom
+# LOCK_VERSION=2.58.0

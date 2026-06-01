@@ -1,0 +1,45 @@
+p1 firefox-140.9.0esr-glibc-2.43.patch
+p1 firefox-140.9.0esr-llvm_22-1.patch
+p1 firefox-140.9.0esr-python_3.14_fixes-1.patch
+p1 0001-fixed-a-judgment-issue-when-libstdc-has-multiple-ver.patch
+
+[[[140.9.0]]]
+p1 0001-fixed-a-judgment-issue-when-libstdc-has-multiple-ver.patch
+# p1 0001-fix-build-error-for-rust-1.89.patch
+
+[[[128.12.0]]]
+p1 0001-fixed-a-judgment-issue-when-libstdc-has-multiple-ver.patch
+p1 0001-firefox-128.8-fix-for-glean_parser-17.0.1-build-erro.patch
+
+[[[128.7.0]]]
+p1 0001-fixed-a-judgment-issue-when-libstdc-has-multiple-ver.patch
+# p1 0001-firefox-123.0-fix-for-glean_parser-13.0.0.patch
+p1 0001-firefox-128.6-fix-for-glean_parser-16.2.0-build-erro.patch
+
+[[[115.0.0]]]
+p1 0001-thunderbird-115-add-loongarch-support.patch
+p1 firefox-110-fix-rust.patch
+p1 0001_xpcom_add_loongarch64_support.patch
+p1 firefox-100-for-clfs.patch
+p1 0001-thunderbird-116.0-fix-for-gcc13.patch
+p1 0001-fixed-a-judgment-issue-when-libstdc-has-multiple-ver.patch
+p1 0001-thunderbird-115-fix-for-python3.12.patch
+p1 0001-thunderbird-115.3.2-fix-tools-power-mach_commands-fo.patch
+p1 0001-firefox-119-set-vaapi-enabled-as-default.patch
+p1 0006-Enable-WebRTC-for-LoongArch.patch
+
+[[[114.0.0]]]
+p1 firefox-100-add-loongarch.patch
+p1 firefox-110-fix-rust.patch
+p1 0001_xpcom_add_loongarch64_support.patch
+p1 firefox-100-for-clfs.patch
+p1 firefox-105-fix-for-gcc13.patch
+p1 firefox-105-fix-jit-for-loongarch64.patch
+
+[[[103.0.0]]]
+p1 firefox-100-add-loongarch.patch
+p1 firefox-105-fix-rust.patch
+p1 firefox-100-xpcom-add-loongarch.patch
+p1 firefox-100-for-clfs.patch
+p1 firefox-105-fix-for-gcc13.patch
+p1 firefox-105-fix-jit-for-loongarch64.patch

@@ -1,0 +1,2 @@
+PACKAGE=xpr
+BUILD_MODE=gnu

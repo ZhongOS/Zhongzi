@@ -1,0 +1,2 @@
+PACKAGE=lua
+BUILD_MODE=custom

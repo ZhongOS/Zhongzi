@@ -1,0 +1,2 @@
+PACKAGE=gobject-introspection
+BUILD_MODE=custom

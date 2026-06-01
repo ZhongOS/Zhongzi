@@ -1,0 +1,2 @@
+PACKAGE=libguestfs
+BUILD_MODE=gnu

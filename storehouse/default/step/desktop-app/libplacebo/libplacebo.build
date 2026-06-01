@@ -1,0 +1,1 @@
+EXTRA_PARM=-Dvulkan-registry=${SYSROOT_DIR}/usr/share/vulkan/registry/vk.xml -Ddemos=false

@@ -1,0 +1,2 @@
+PACKAGE=dotconf
+BUILD_MODE=gnu

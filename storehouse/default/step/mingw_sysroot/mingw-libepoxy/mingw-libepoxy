@@ -1,0 +1,2 @@
+PACKAGE=libepoxy
+BUILD_MODE=meson

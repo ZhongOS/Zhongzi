@@ -1,0 +1,11 @@
+<<<TAR_UNCOMPRESS>>>
+    pushd src
+	./autogen.sh
+        PYTHON=python3 ./configure ${COMMON_CONFIG} --with-default-dict=/usr/lib/cracklib/pw_dict
+        <<<MAKE_AND_INSTALL>>>
+        install -v -m644 -D  ${RESOURCEDIR}/files/cracklib-words.gz \
+                             ${SYSROOT_DIR}/usr/share/dict/cracklib-words.gz
+        gunzip -fv ${SYSROOT_DIR}/usr/share/dict/cracklib-words.gz
+        install -v -m755 -d ${SYSROOT_DIR}/usr/lib/cracklib
+    popd
+<<<CLEAR_DIR>>>

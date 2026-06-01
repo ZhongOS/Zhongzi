@@ -1,0 +1,2 @@
+PACKAGE=nasm
+BUILD_MODE=gnu

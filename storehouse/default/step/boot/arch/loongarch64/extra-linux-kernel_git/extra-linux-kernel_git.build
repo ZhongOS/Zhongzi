@@ -1,0 +1,22 @@
+<<<TAR_UNCOMPRESS>>>
+	EXTRA_STR=$(get_user_set_env extra_str "")
+
+	<<<PATCH>>>
+	make mrproper
+	if [ "x${EXTRA_STR}" == "x" ]; then
+		cp -af ${RESOURCEDIR}/linux-config-6.x ./.config
+	else
+		cp -af ${RESOURCEDIR}/linux-config-6.x_${EXTRA_STR} ./.config
+		sed -i "/^CONFIG_LOCALVERSION=/s@\"\"\$@\"_${EXTRA_STR}\"@g" ./.config
+	fi
+	make ARCH=${ARCH_FAMILY} CROSS_COMPILE=${CROSS_TARGET}- olddefconfig
+	PKG_CONFIG_SYSROOT_DIR="" \
+		<<<MAKE>>> ARCH=${ARCH_FAMILY} CROSS_COMPILE=${CROSS_TARGET}-
+	PKG_CONFIG_SYSROOT_DIR="" \
+		make ARCH=${ARCH_FAMILY} CROSS_COMPILE=${CROSS_TARGET}- INSTALL_MOD_PATH=dest modules_install
+	exit 1
+#	mkdir -p ${SYSROOT_DIR}/lib/modules/
+#	cp -af dest/lib/modules/* ${SYSROOT_DIR}/lib/modules/
+#	cp -af arch/${ARCH_FAMILY}/boot/vmlinux.efi ${SYSROOT_DIR}/boot/vmlinux.efi
+#	echo "$(ls dest/lib/modules/)" > ${COMMON_DIR}/linux-kernel.version
+<<<CLEAR_DIR>>>

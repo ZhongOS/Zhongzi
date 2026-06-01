@@ -1,0 +1,2 @@
+PACKAGE=rdfind
+BUILD_MODE=gnu

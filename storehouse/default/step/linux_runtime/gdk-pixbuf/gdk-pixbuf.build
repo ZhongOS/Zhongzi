@@ -1,0 +1,31 @@
+<<<TAR_UNCOMPRESS>>>
+    mkdir cross-build
+    pushd cross-build
+        meson ${MESON_CONFIG} --wrap-mode=nofallback -Dman=false -Ddocumentation=false -Dglycin=disabled ..
+        <<<NINJA_AND_INSTALL>>>
+    popd
+
+echo "qemu-${QEMU_ARCH} ${LINUX_SYSROOT_DIR}/usr/bin/gdk-pixbuf-csource \"\$@\"" \
+                > ${CROSS_TOOLS_PREFIX}/bin/gdk-pixbuf-csource
+chmod +x ${CROSS_TOOLS_PREFIX}/bin/gdk-pixbuf-csource
+echo "qemu-${QEMU_ARCH} ${LINUX_SYSROOT_DIR}/usr/bin/gdk-pixbuf-pixdata \"\$@\"" \
+                > ${CROSS_TOOLS_PREFIX}/bin/gdk-pixbuf-pixdata
+chmod +x ${CROSS_TOOLS_PREFIX}/bin/gdk-pixbuf-pixdata
+<<<CLEAR_DIR>>>
+
+
+[[[2.43.2]]]
+<<<TAR_UNCOMPRESS>>>
+    mkdir cross-build
+    pushd cross-build
+        meson ${MESON_CONFIG} --wrap-mode=nofallback -Dman=false ..
+        <<<NINJA_AND_INSTALL>>>
+    popd
+
+echo "qemu-${QEMU_ARCH} ${LINUX_SYSROOT_DIR}/usr/bin/gdk-pixbuf-csource \"\$@\"" \
+                > ${CROSS_TOOLS_PREFIX}/bin/gdk-pixbuf-csource
+chmod +x ${CROSS_TOOLS_PREFIX}/bin/gdk-pixbuf-csource
+echo "qemu-${QEMU_ARCH} ${LINUX_SYSROOT_DIR}/usr/bin/gdk-pixbuf-pixdata \"\$@\"" \
+                > ${CROSS_TOOLS_PREFIX}/bin/gdk-pixbuf-pixdata
+chmod +x ${CROSS_TOOLS_PREFIX}/bin/gdk-pixbuf-pixdata
+<<<CLEAR_DIR>>>

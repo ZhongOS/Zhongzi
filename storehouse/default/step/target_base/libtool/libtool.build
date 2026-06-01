@@ -1,0 +1,11 @@
+<<<TAR_UNCOMPRESS>>>
+	./configure ${COMMON_CONFIG}
+	<<<MAKE_AND_INSTALL>>>
+sed -i -e "s@${CROSSTOOLS_DIR}/${CROSS_TARGET}@/usr@g" \
+       -e "s@${CROSSTOOLS_DIR}/lib/gcc@/usr/lib${LIB_SUFF}/gcc@g" \
+       -e "s@${CROSSTOOLS_DIR}/bin@/usr/bin@g" \
+       -e "s@${SYSROOT_DIR}/lib@/usr/lib@g" \
+       -e "s@${SYSROOT_DIR}/usr@/usr@g" \
+       -e "s@${CROSS_TARGET}-@@g" \
+       ${SYSROOT_DIR}/usr/bin/libtool
+<<<CLEAR_DIR>>>

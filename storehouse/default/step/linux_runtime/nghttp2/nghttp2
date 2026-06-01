@@ -1,0 +1,2 @@
+PACKAGE=nghttp2
+BUILD_MODE=gnu

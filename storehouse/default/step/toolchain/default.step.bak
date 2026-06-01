@@ -1,0 +1,154 @@
+NULL
+binutils|!compat;%host=?;%vendor=;!binutils_git
+binutils_git|!compat;%host=?;%vendor=;binutils_git
+gcc|!compat;%host=?;%vendor=;!gcc_git
+gcc_git|!compat;%host=?;%vendor=;gcc_git
+linux-header|!compat;%vendor=;%host=?;
+glibc|!compat;%host=?;%vendor=;
+libxcrypt|!compat;%host=?;%vendor=;
+musl|!compat;%host=?%vendor=;
+mingw-w64|!compat;%host=?%vendor=;
+# xnu|!compat;%host=?
+gcc-glibc|!compat;%host=?;%vendor=;!gcc_git
+gcc_git-glibc|!compat;%host=?;%vendor=;gcc_git
+mingw-w64-libs|!compat;%host=?%vendor=;
+gmp|!compat;%host=?%vendor=;
+zlib|!compat;%host=?%vendor=;
+zstd|!compat;%host=?%vendor=;
+
+binutils|compat;%compat=1;%host=?;!binutils_git
+binutils_git|compat;%compat=1;%host=?;binutils_git
+gcc|compat;%compat=1;%host=?;!gcc_git
+gcc_git|compat;%compat=1;%host=?;gcc_git
+compat_linux-header_6.6|compat;%host=?;
+compat_glibc_generic|compat;%host=?;
+compat_glibc_x86_64|compat;%host=?;
+libxcrypt|compat;%compat=1;%host=?;
+musl|compat;%compat=1;%host=?;
+mingw-w64|compat;%compat=1;%host=?
+# xnu|compat;%compat=1;%host=?;
+gcc-glibc|compat;%compat=1;%host=?;!gcc_git
+gcc_git-glibc|compat;%compat=1;%host=?;gcc_git
+mingw-w64-libs|compat;%compat=1;%host=?
+gmp|compat;%compat=1;%host=?
+zlib|compat;%compat=1;%host=?
+zstd|compat;%compat=1;%host=?
+
+
+NULL
+binutils|%target=?loongarch64;%vendor=?;!binutils_git
+binutils_git|%target=?loongarch64;%vendor=?;binutils_git
+gcc|%target=?loongarch64;%vendor=?;!gcc_git
+gcc_git|%target=?loongarch64;%vendor=?;gcc_git
+linux-header|%target=?loongarch64;%vendor=?
+glibc|%target=?loongarch64;%vendor=?
+libxcrypt|%target=?loongarch64;%vendor=?
+musl|%target=?loongarch64;%vendor=?
+mingw-w64|%target=?;%vendor=?
+# xnu|%target=?loongarch64
+gcc-glibc|%target=?loongarch64;%vendor=?;!gcc_git
+gcc_git-glibc|%target=?loongarch64;%vendor=?;gcc_git
+mingw-w64-libs|%target=?;%vendor=?
+gmp|%target=?loongarch64;%vendor=?
+zlib|%target=?loongarch64;%vendor=?
+zstd|%target=?loongarch64;%vendor=?
+
+
+binutils|compat;%compat=1;%target=?;!binutils_git
+binutils_git|compat;%compat=1;%target=?;binutils_git
+gcc|compat;%compat=1;%target=?;!gcc_git
+gcc_git|compat;%compat=1;%target=?;gcc_git
+compat_linux-header_6.6|compat;%target=?;
+compat_glibc_generic|compat;%target=?;
+compat_glibc_x86_64|compat;%target=?;
+libxcrypt|compat;%compat=1;%target=?;
+musl|compat;%compat=1;%target=?;
+mingw-w64|compat;%compat=1;%target=?
+# xnu|compat;%compat=1;%target=?;
+gcc-glibc|compat;%compat=1;%target=?;!gcc_git
+gcc_git-glibc|compat;%compat=1;%target=?;gcc_git
+mingw-w64-libs|compat;%compat=1;%target=?
+gmp|compat;%compat=1;%target=?
+zlib|compat;%compat=1;%target=?
+zstd|compat;%compat=1;%target=?
+
+
+NULL
+llvm-project|llvm
+NULL
+llvm-runtimes|!compat;%host=?;llvm
+llvm-runtimes|compat;%compat=1;%host=?;llvm
+NULL
+llvm-runtimes|%target=?loongarch64;llvm
+
+# NULL
+# mingw-binutils|%mingw_target=?mingw64ucrt;mingw
+# mingw-gcc|%mingw_target=?mingw64ucrt;mingw
+# mingw-w64|%mingw_target=?mingw64ucrt;mingw
+# mingw-gcc-libc|%mingw_target=?mingw64ucrt;mingw
+# mingw-w64-libs|%mingw_target=?mingw64ucrt;mingw
+# mingw-gmp|%mingw_target=?mingw64ucrt;mingw
+# mingw-zlib|%mingw_target=?mingw64ucrt;mingw
+# mingw-zstd|%mingw_target=?mingw64ucrt;mingw
+
+NULL
+cross-binutils|!compat;%host=?;%target=?;%vendor=?;!binutils_git;gcc
+cross-binutils_git|!compat;%host=?;%target=?;%vendor=?;binutils_git;gcc
+cross-gcc|!compat;%host=?;%target=?;%vendor=?;!gcc_git;gcc
+cross-gcc_git|!compat;%host=?;%target=?;%vendor=?;gcc_git,linux_target;gcc
+cross-gcc-libc|!compat;%host=?;%target=?;%vendor=?;!gcc_git;gcc
+cross-gcc_git-libc|!compat;%host=?;%target=?;%vendor=?;gcc_git,linux_target;gcc
+cross-gdb|!compat;%host=?;%target=?;%vendor=?;!gdb_git;gcc
+cross-gdb_git|!compat;%host=?;%target=?;%vendor=?;gdb_git,linux_target;gcc
+cross-pkg-config|!compat;%host=?;%target=?;%vendor=?;gcc
+# cross-llvm-project|!compat;%host=?;%target=?;llvm
+cross-llvm-project|!compat;%host=?;llvm
+cross-rustc|!compat;%host=?;%target=?;rustc
+
+NULL
+cross-binutils|compat;%compat=?1;%target_compat=?;%host=?;%target=?;%vendor=?;!binutils_git;gcc
+cross-binutils_git|compat;%compat=?1;%target_compat=?;%host=?;%target=?;%vendor=?;binutils_git;gcc
+cross-gcc|compat;%compat=?1;%host=?;%target_compat=?;%target=?;%vendor=?;!gcc_git;gcc
+cross-gcc_git|compat;%compat=?1;%target_compat=?;%host=?;%target=?;%vendor=?;gcc_git,linux_target;gcc
+cross-gcc-libc|compat;%compat=?1;%target_compat=?;%host=?;%target=?;%vendor=?;!gcc_git;gcc;libc
+cross-gcc_git-libc|compat;%compat=?1;%target_compat=?;%host=?;%target=?;%vendor=?;gcc_git,linux_target;gcc;libc
+cross-gdb|compat;%compat=?1;%host=?;%target_compat=?;%target=?;%vendor=?;!gdb_git;gcc;libc
+cross-gdb_git|compat;%compat=?1;%target_compat=?;%host=?;%target=?;%vendor=?;gdb_git,linux_target;gcc;libc
+cross-pkg-config|compat;%compat=?1;%target_compat=?;%host=?;%target=?;%vendor=?;gcc;libc
+# cross-llvm-project|compat;%compat=?1;%target_compat=?;%host=?;%target=?;%vendor=?;llvm
+cross-llvm-project|compat;%compat=?1;%host=?;llvm
+cross-rustc|compat;%compat=?1;%target_compat=?;%host=?;%target=?;rustc
+
+# NULL
+# cross-mingw-binutils|%host;%target;!binutils_git;mingw_target
+# cross-mingw-gcc|%host;%target;!gcc_git;mingw_target
+
+NULL
+dist-cross-gcc|!compat;%host=?;%target=?;%vendor=?;none_status;gcc
+dist-cross-gcc-libc|!compat;%host=?;%target=?;%vendor=?;none_status;gcc;libc
+dist-cross-llvm-project|!compat;%host=?;%target=?;llvm
+dist-cross-llvm-runtimes|!compat;%target=?;llvm
+
+NULL
+dist-cross-gcc|compat;%compat=1;%target_compat=?;%host=?;%target=?;%vendor=?;none_status;gcc
+dist-cross-gcc-libc|compat;%compat=1;%target_compat=?;%host=?;%target=?;%vendor=?;none_status;gcc;libc
+dist-cross-llvm-project|compat;%compat=1;%target_compat=?;%host=?;%target=?;llvm
+dist-cross-llvm-runtimes|compat;%compat=1;%target_compat=?;%target=?;llvm
+
+NULL
+# cross-x86_64-binutils|x86_64
+# cross-x86_64-gcc|x86_64
+# cross-x86_64-gcc-glibc|x86_64
+# cross-mingw-binutils|mingw
+# cross-mingw-gcc|mingw
+# cross-mingw-gcc-glibc|mingw
+# dist-cross-gcc-noglibc|!dist
+# dist-cross-gcc_git-noglibc|!dist
+# dist-cross-x86_64-gcc|!dist
+# dist-cross-x86_64-gcc-glibc|!dist
+# dist-cross-mingw-gcc|!dist
+# dist-cross-mingw-gcc-glibc|!dist
+# dist-cross-gcc-full|!dist
+# dist-cross-rustc|!dist
+# # ocaml|*ocaml
+# qemu-edk2|*qemu

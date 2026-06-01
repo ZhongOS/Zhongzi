@@ -1,0 +1,29 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+	mkdir -p tools-build-all
+	pushd tools-build-all
+		../configure --prefix=<<<CROSS_TOOLS_PREFIX>>> --build=${CROSS_HOST} \
+		             --host=${CROSS_HOST} --target=${CROSS_TARGET} \
+		             --with-sysroot=${SYSROOT_DIR} --with-mpfr=<<<HOST_TOOLS_PREFIX>>> \
+		             --with-gmp=<<<HOST_TOOLS_PREFIX>>> --with-mpc=<<<HOST_TOOLS_PREFIX>>> \
+			     --with-mpfr-lib=<<<HOST_TOOLS_PREFIX>>>/lib${LIB_SUFF} \
+			     --with-gmp-lib=<<<HOST_TOOLS_PREFIX>>>/lib${LIB_SUFF} --with-mpc-lib=<<<HOST_TOOLS_PREFIX>>>/lib${LIB_SUFF} \
+		             --enable-__cxa_atexit --enable-threads=posix --with-system-zlib \
+		             --enable-libstdcxx-time --enable-checking=release --disable-multilib \
+			     --enable-linker-build-id --with-linker-hash-style=gnu --enable-gnu-unique-object --enable-initfini-array --enable-gnu-indirect-function \
+		             --enable-default-pie \
+		             --enable-languages=c,c++,fortran,objc,obj-c++,lto,ada
+		<<<MAKE>>>
+		make install-strip
+		ln -sf ${CROSS_TARGET}-gcc ${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-cc
+# 		rm -fv $(dirname $(realpath $(${CROSS_TARGET}-gcc -print-file-name=libssp.so)))/libssp{,_nonshared}.*
+		rm -fv $(dirname $(realpath $(${CROSS_TARGET}-gcc -print-file-name=libssp.a)))/libssp*
+	${CROSS_TARGET}-gcc -dumpspecs > specs
+	CUSTOM_LIB_PATH="${SYSROOT_DIR}/lib${LIB_SUFF}"
+        sed -i "/^\*link:/,/^$/ {
+/--build-id/ s|\(--build-id[^ ]*\)|\1 -rpath-link=${CUSTOM_LIB_PATH//\//\\/}|;
+}" specs
+        mv specs $(dirname $(${CROSS_TARGET}-gcc -print-libgcc-file-name))/specs
+
+	popd
+<<<CLEAR_DIR>>>

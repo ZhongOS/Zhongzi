@@ -1,0 +1,2 @@
+PACKAGE=mesa_git
+BUILD_MODE=custom

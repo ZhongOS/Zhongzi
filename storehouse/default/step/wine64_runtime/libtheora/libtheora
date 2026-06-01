@@ -1,0 +1,2 @@
+PACKAGE=libtheora
+BUILD_MODE=custom

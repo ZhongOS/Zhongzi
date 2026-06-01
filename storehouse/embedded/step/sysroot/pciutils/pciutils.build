@@ -1,0 +1,7 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<MAKE>>> CROSS_COMPILE="${CROSS_TARGET}-" HOST="${CROSS_TARGET}" \
+	     PREFIX=/usr SHARED=yes LIBDIR=/usr/lib${LIB_SUFF}
+	make CROSS_COMPILE="${CROSS_TARGET}-" HOST="${CROSS_TARGET}" \
+	     PREFIX=/usr SHARED=yes LIBDIR=/usr/lib${LIB_SUFF} STRIP="" \
+	     DESTDIR=${SYSROOT_DIR} install install-lib
+<<<CLEAR_DIR>>>

@@ -1,0 +1,2 @@
+EXTRA_PARM= --enable-gtk3
+CONFIG_ENV=CFLAGS="${CFLAGS} -Wno-return-mismatch"

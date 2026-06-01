@@ -1,0 +1,2 @@
+PACKAGE=libpng12
+BUILD_MODE=gnu

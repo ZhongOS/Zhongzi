@@ -1,0 +1,2 @@
+PACKAGE=xapian-core
+BUILD_MODE=gnu

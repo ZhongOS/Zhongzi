@@ -1,0 +1,2 @@
+PACKAGE=efivar
+BUILD_MODE=custom

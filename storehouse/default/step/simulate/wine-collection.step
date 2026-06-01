@@ -1,0 +1,14 @@
+# NULL@/host-tools
+# wine32-tools@/host-tools|wine
+# wine-tools@/host-tools|wine,wine64;!wine_dev
+# wine_dev-tools@/host-tools|wine64;wine_dev;%target=x86_64;%PARENT=ORIG,x86_64_runtime
+# wine7-tools@/host-tools|wine64;wine_dev;%target=x86_64;%PARENT=ORIG,x86_64_runtime
+# wine8-tools@/host-tools|wine64;wine_dev;%target=x86_64;%PARENT=ORIG,x86_64_runtime
+NULL
+wine7|wine7;%VERSION=;%target=x86_64;%PARENT=ORIG,x86_64_runtime,i686_runtime
+wine7|wine7;%VERSION=v7.21;%target=x86_64;%PARENT=ORIG,x86_64_runtime,i686_runtime;bad
+# wine7|wine7;%VERSION=v9.10;%target=x86_64;%PARENT=ORIG,x86_64_runtime,i686_runtime
+# wine8|wine8;%VERSION=;%target=x86_64;%PARENT=ORIG,x86_64_runtime,mingw_sysroot
+wine8|wine8;%VERSION=v8.0;%target=x86_64;%PARENT=ORIG,x86_64_runtime,i686_runtime,mingw_sysroot
+wine-tkg-ntsync|wine-ntsync;%VERSION=git;%target=x86_64;%PARENT=ORIG,x86_64_runtime,i686_runtime,mingw_sysroot
+dist_sysroot

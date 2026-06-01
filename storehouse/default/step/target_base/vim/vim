@@ -1,0 +1,3 @@
+PACKAGE=vim
+BUILD_MODE=custom
+LOCK_MODE=AUTO

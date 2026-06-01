@@ -1,0 +1,2 @@
+PACKAGE=Module-Build
+BUILD_MODE=perl

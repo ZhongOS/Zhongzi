@@ -1,0 +1,5 @@
+# p1	0001-pyside6-fix-compiler-error-for-Qt-6.8.1.patch
+
+p1	0001-Always-link-to-python-libraries.patch
+p1	0001-Fix-installation.patch
+p1	0001-Revert-Modify-headers-installation-for-CMake-builds.patch

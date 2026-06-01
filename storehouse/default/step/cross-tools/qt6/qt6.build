@@ -1,0 +1,85 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+
+#	sed -i "/embree/d" qtquick3d/src/3rdparty/CMakeLists.txt
+#	sed -i "/QT_QUICK3D_HAS_EMBREE/d" qtquick3d/src/3rdparty/CMakeLists.txt
+
+	mkdir -p native-build
+	pushd native-build
+		LDFLAGS="${LDFLAGS} -Wl,-rpath=${CROSSTOOLS_DIR}/lib64" \
+		cmake -DCMAKE_INSTALL_PREFIX=${CROSSTOOLS_DIR}/qt6 \
+		      -DCMAKE_BUILD_TYPE=RELEASE \
+		      -DICU_ROOT=${HOST_TOOLS_DIR} \
+		      -DQT_FEATURE_system_freetype=OFF \
+		      -DQT_BUILD_EXAMPLES_AS_EXTERNAL=ON \
+		      -DQT_BUILD_SUBMODULES=qtbase\;qtshadertools\;qtdeclarative\;qt3d\;qtquick3d\;qttools\;qtremoteobjects\;qtscxml\;qtwayland\;qtmultimedia\;qt5compat\;qtopcua\;qtlottie \
+		      ..
+		<<<MAKE_AND_INSTALL>>>
+	popd
+	mkdir -p ${CROSSTOOLS_DIR}/qt6/lib64/qt6/
+	ln -sf ${CROSSTOOLS_DIR}/qt6/libexec ${CROSSTOOLS_DIR}/qt6/lib64/qt6/
+	pushd qtwebengine/src/gn
+		mkdir -p build
+		pushd build
+			cmake -DCMAKE_INSTALL_PREFIX=${CROSSTOOLS_DIR}/qt6 \
+	                      -DCMAKE_BUILD_TYPE=RELEASE \
+        	              ..
+			<<<MAKE_AND_INSTALL>>>
+		popd
+	popd
+# 	pushd qtwebengine/src/core/tools/qwebengine_convert_dict
+#		mkdir -p build
+# 		pushd build
+# 			cmake -DCMAKE_INSTALL_PREFIX=${CROSSTOOLS_DIR}/qt6 \
+# 	                      -DCMAKE_BUILD_TYPE=RELEASE \
+#         	              ..
+# 			<<<MAKE_AND_INSTALL>>>
+# 		popd
+# 	popd
+<<<CLEAR_DIR>>>
+
+
+[[[6.8.3]]]
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+
+	sed -i "/embree/d" qtquick3d/src/3rdparty/CMakeLists.txt
+	sed -i "/QT_QUICK3D_HAS_EMBREE/d" qtquick3d/src/3rdparty/CMakeLists.txt
+
+	mkdir -p native-build
+	pushd native-build
+		cmake -DCMAKE_INSTALL_PREFIX=${CROSSTOOLS_DIR}/qt6 \
+		      -DCMAKE_BUILD_TYPE=RELEASE \
+		      -DICU_ROOT=${HOST_TOOLS_DIR} \
+		      -DQT_FEATURE_system_freetype=OFF \
+# #		      -DCMAKE_INSTALL_RPATH="${CROSSTOOLS_DIR}/lib${LIB_SUFF};${CROSSTOOLS_DIR}/lib;${CROSSTOOLS_DIR}/build-tools/lib${LIB_SUFF};${CROSSTOOLS_DIR}/build-tools/lib;\\\${ORIGIN}/../lib${LIB_SUFF}" \
+#		      -DCMAKE_INSTALL_RPATH="${CROSSTOOLS_DIR}/lib${LIB_SUFF};${CROSSTOOLS_DIR}/lib;${HOST_TOOLS_DIR}/lib${LIB_SUFF};${HOST_TOOLS_DIR}/lib;\\\${ORIGIN}/../lib${LIB_SUFF}" \
+		      -DQT_BUILD_SUBMODULES=qtbase\;qtshadertools\;qtdeclarative\;qt3d\;qtquick3d\;qttools\;qtremoteobjects\;qtscxml\;qtwayland\;qtmultimedia\;qt5compat\;qtopcua \
+		      ..
+		<<<MAKE_AND_INSTALL>>>
+	popd
+	mkdir -p ${CROSSTOOLS_DIR}/qt6/lib64/qt6/
+	ln -sf ${CROSSTOOLS_DIR}/qt6/libexec ${CROSSTOOLS_DIR}/qt6/lib64/qt6/
+# #	sed -i "s#@YONGBAO_HOST_LDFLAGS@#-Wl,-rpath-link=${CROSSTOOLS_DIR}/lib:${CROSSTOOLS_DIR}/lib64:${CROSSTOOLS_DIR}/build-tools/lib:${CROSSTOOLS_DIR}/build-tools/lib64 -Wl,-rpath=${CROSSTOOLS_DIR}/lib:${CROSSTOOLS_DIR}/lib64:${CROSSTOOLS_DIR}/build-tools/lib:${CROSSTOOLS_DIR}/build-tools/lib64/#g" qtwebengine/src/host/BUILD.toolchain.gn.in
+# 	sed -i "s#@YONGBAO_HOST_LDFLAGS@#-Wl,-rpath-link=${CROSSTOOLS_DIR}/lib:${CROSSTOOLS_DIR}/lib64:${HOST_TOOLS_DIR}/lib:${HOST_TOOLS_DIR}/lib64 -Wl,-rpath=${CROSSTOOLS_DIR}/lib:${CROSSTOOLS_DIR}/lib64:${HOST_TOOLS_DIR}/lib:${HOST_TOOLS_DIR}/lib64/#g" qtwebengine/src/host/BUILD.toolchain.gn.in
+ 	sed -i "s#@YONGBAO_HOST_LDFLAGS@##g" qtwebengine/src/host/BUILD.toolchain.gn.in
+	pushd qtwebengine/src/gn
+		mkdir -p build
+		pushd build
+			cmake -DCMAKE_INSTALL_PREFIX=${CROSSTOOLS_DIR}/qt6 \
+	                      -DCMAKE_BUILD_TYPE=RELEASE \
+# #        	              -DCMAKE_INSTALL_RPATH="${CROSSTOOLS_DIR}/lib${LIB_SUFF};${CROSSTOOLS_DIR}/build-tools/lib${LIB_SUFF};\\\${ORIGIN}/../lib${LIB_SUFF}" \
+# #		      	      -DCMAKE_INSTALL_RPATH="${CROSSTOOLS_DIR}/lib${LIB_SUFF};${CROSSTOOLS_DIR}/lib;${CROSSTOOLS_DIR}/build-tools/lib${LIB_SUFF};${CROSSTOOLS_DIR}/build-tools/lib;\\\${ORIGIN}/../lib${LIB_SUFF}" \
+#		      	      -DCMAKE_INSTALL_RPATH="${CROSSTOOLS_DIR}/lib${LIB_SUFF};${CROSSTOOLS_DIR}/lib;${HOST_TOOLS_DIR}/lib${LIB_SUFF};${HOST_TOOLS_DIR}/lib;\\\${ORIGIN}/../lib${LIB_SUFF}" \
+        	              ..
+			<<<MAKE_AND_INSTALL>>>
+		popd
+#		mv ${CROSSTOOLS_DIR}/qt6/bin/gn{,.orig}
+# cat > ${CROSSTOOLS_DIR}/qt6/bin/gn << EOF
+# #!/bin/bash -e
+# LD_LIBRARY_PATH=<<<HOST_TOOLS_PREFIX>>>/lib64/ \
+# <<<CROSS_TOOLS_PREFIX>>>/qt6/bin/gn.orig "\$@"
+# EOF
+# 		chmod +x ${CROSSTOOLS_DIR}/qt6/bin/gn
+	popd
+<<<CLEAR_DIR>>>

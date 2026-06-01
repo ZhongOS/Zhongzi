@@ -1,0 +1,2 @@
+PACKAGE=libmtp
+BUILD_MODE=gnu

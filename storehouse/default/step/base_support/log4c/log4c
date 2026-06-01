@@ -1,0 +1,2 @@
+PACKAGE=log4c
+BUILD_MODE=gnu

@@ -1,0 +1,2 @@
+PACKAGE=kdav
+BUILD_MODE=cmake

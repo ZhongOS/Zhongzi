@@ -1,0 +1,7 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<MAKE>>> CROSS_COMPILE="${LINUX_HOST}-" HOST="${LINUX_HOST}" \
+	     PREFIX=/usr SHARED=yes LIBDIR=/usr/lib${LIB_SUFF}
+	make CROSS_COMPILE="${LINUX_HOST}-" HOST="${LINUX_HOST}" \
+	     PREFIX=/usr SHARED=yes LIBDIR=/usr/lib${LIB_SUFF} STRIP="" \
+	     DESTDIR=${LINUX_SYSROOT_DIR} install install-lib
+<<<CLEAR_DIR>>>

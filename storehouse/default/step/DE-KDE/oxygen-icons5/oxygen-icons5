@@ -1,0 +1,2 @@
+PACKAGE=oxygen-icons5
+BUILD_MODE=cmake

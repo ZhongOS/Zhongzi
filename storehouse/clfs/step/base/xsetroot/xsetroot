@@ -1,0 +1,2 @@
+PACKAGE=xsetroot
+BUILD_MODE=gnu

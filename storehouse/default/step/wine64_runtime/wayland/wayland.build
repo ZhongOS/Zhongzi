@@ -1,0 +1,10 @@
+<<<TAR_UNCOMPRESS>>>
+    sed -i "/wayland_scanner_for_build =/s@find\(.*\)\$@'${CROSSTOOLS_DIR}/bin/wayland-scanner'@g" src/meson.build
+    sed -i -e "/scanner_dep = dependency('wayland-scanner'/d" src/meson.build
+    mkdir cross-build
+    pushd cross-build
+	meson ${MESON_CONFIG} \
+              ..
+	<<<NINJA_AND_INSTALL>>>
+    popd
+<<<CLEAR_DIR>>>

@@ -1,0 +1,4 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<MAKE>>> CC="${LINUX_HOST}-gcc" PREFIX=/usr LIBDIR=/usr/lib${LIB_SUFF}
+	make CC="${LINUX_HOST}-gcc" PREFIX=/usr LIBDIR=/usr/lib${LIB_SUFF} DESTDIR=${LINUX_SYSROOT_DIR} install
+<<<CLEAR_DIR>>>

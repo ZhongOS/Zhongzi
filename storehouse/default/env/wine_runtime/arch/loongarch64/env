@@ -1,0 +1,4 @@
+export ARCH_NAME=i686
+export ARCH_FAMILY=x86
+export ARCH_ABI=32
+export QEMU_ARCH=i386

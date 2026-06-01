@@ -1,0 +1,2 @@
+PACKAGE=KDE6-oxygen-icons5
+BUILD_MODE=cmake

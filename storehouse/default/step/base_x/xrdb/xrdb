@@ -1,0 +1,2 @@
+PACKAGE=xrdb
+BUILD_MODE=gnu

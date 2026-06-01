@@ -1,0 +1,4 @@
+ssh-keygen -A
+systemctl disable sshd.socket
+systemctl enable sshd.service
+

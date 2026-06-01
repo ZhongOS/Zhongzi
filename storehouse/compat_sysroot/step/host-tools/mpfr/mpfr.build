@@ -1,0 +1,2 @@
+# EXTRA_PARM=--with-gmp=${PREFIX}
+EXTRA_PARM=--with-gmp-include=${PREFIX}/include --with-gmp-lib=${PREFIX}/lib64

@@ -1,0 +1,2 @@
+PACKAGE=startup-notification
+BUILD_MODE=gnu

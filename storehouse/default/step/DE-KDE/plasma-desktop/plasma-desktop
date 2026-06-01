@@ -1,0 +1,2 @@
+PACKAGE=plasma-desktop
+BUILD_MODE=custom

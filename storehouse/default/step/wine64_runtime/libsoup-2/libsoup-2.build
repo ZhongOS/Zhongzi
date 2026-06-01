@@ -1,0 +1,2 @@
+CONFIG_ENV=CFLAGS="${CFLAGS} -Wno-error=implicit-function-declaration"
+EXTRA_PARM=-Dvapi=disabled -Dgssapi=disabled -Dsysprof=disabled -Dintrospection=disabled

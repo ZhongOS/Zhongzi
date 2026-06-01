@@ -1,0 +1,15 @@
+
+
+[[[2.51.4]]]
+p1	0001-Fix-for-gstream-1.27.patch
+
+[[[2.49.4]]]
+p1	0001-webkitgtk-disable-use-bmalloc.patch
+
+[[[2.49.3]]]
+# p1	0001-webkitgtk-thirdparty-skia-disable-lsx-for-loongarch6.patch
+
+
+[[[2.38.0]]]
+p1	webkitgtk-add-loongarch64.patch
+p1	webkitgtk-fix-for-gcc13.patch

@@ -1,0 +1,2 @@
+PACKAGE=ksmtp
+BUILD_MODE=cmake

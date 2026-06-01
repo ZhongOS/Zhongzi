@@ -1,0 +1,2 @@
+PACKAGE=open-iscsi
+BUILD_MODE=meson

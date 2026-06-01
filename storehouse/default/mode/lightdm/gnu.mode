@@ -1,0 +1,15 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+	for config_i in $(find -name "config.sub")
+	do
+		cp -a -f $(automake --print-libdir)/config.{sub,guess} $(dirname ${config_i})/
+	done
+	if [ ! -f configure ]; then
+		autoreconf -ifv
+	fi
+	<<<CONFIG_ENV>>> ./configure ${COMMON_CONFIG} <<<EXTRA_PARM>>> --enable-malloc0returnsnull
+	<<<MAKE_AND_INSTALL>>>
+# 	<<<MAKE>>>
+#         make DESTDIR=${SYSROOT_DIR} install
+# 	rm -f ${SYSROOT_DIR}/usr/lib64/*.la
+<<<CLEAR_DIR>>>

@@ -1,0 +1,2 @@
+PACKAGE=alsa-tools
+BUILD_MODE=custom

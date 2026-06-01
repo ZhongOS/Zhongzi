@@ -1,0 +1,2 @@
+PACKAGE=KDE6-breeze
+BUILD_MODE=cmake

@@ -1,0 +1,141 @@
+<<<TAR_UNCOMPRESS>>>
+        <<<PATCH>>>
+	cp -a -f $(automake --print-libdir)/config.{sub,guess} build-aux/
+	autoconf
+	./configure --host=${CROSS_TARGET} --prefix=/usr --libdir=/usr/lib64/ocaml --sysconfdir=/etc --datadir=/usr/share
+	<<<MAKE>>> runtime/sak SAK_CC=cc SAK_CFLAGS= SAK_LINK='cc -o $(1) $(2)'
+	<<<MAKE>>> ocamlopt ocamlc OCAMLRUN=ocamlrun NEW_OCAMLRUN=ocamlrun CAMLC="`which ocamlc`"
+	<<<MAKE>>> ocamlmklib      OCAMLRUN=ocamlrun NEW_OCAMLRUN=ocamlrun CAMLC="`which ocamlc`"
+	<<<MAKE>>> boot/ocamlrun
+	<<<MAKE>>> runtime
+	<<<MAKE>>> -C stdlib OCAMLRUN=ocamlrun COMPILER="${PWD}/boot/ocamlc"
+	<<<MAKE>>> coldstart OCAMLRUN=ocamlrun NEW_OCAMLRUN=ocamlrun
+	<<<MAKE>>> runtime/libasmrun.a runtime/libasmrund.a runtime/libasmruni.a runtime/libasmrun_pic.a
+	for i in library otherlibs opt ocamlnat ocaml ocamldoc ocamldebugger
+	do
+		<<<MAKE>>> $i \
+		OCAMLRUN=ocamlrun NEW_OCAMLRUN=ocamlrun \
+		OPTCOMPILER="${PWD}/ocamlopt" \
+		MKLIB="ocamlrun \"${PWD}/tools/ocamlmklib\"" \
+		OCAMLYACC=ocamlyacc
+	done
+        mv boot/ocamlrun{,.orig}
+       	echo "qemu-loongarch64 ${PWD}/boot/ocamlrun.orig \"\$@\"" > boot/ocamlrun
+        chmod +x boot/ocamlrun
+	make DESTDIR=${SYSROOT_DIR} install
+        rm -f ${SYSROOT_DIR}/usr/lib64/*.la
+
+	make distclean
+
+	PATH=${CROSSTOOLS_DIR}/ocaml-cross/bin:${PATH}
+	./configure --host=${CROSS_TARGET} --prefix=/usr --libdir=/usr/lib64/ocaml --sysconfdir=/etc --datadir=/usr/share
+	<<<MAKE>>> runtime/sak SAK_CC=cc SAK_CFLAGS= SAK_LINK='cc -o $(1) $(2)'
+	<<<MAKE>>> ocamlopt ocamlc OCAMLRUN=ocamlrun NEW_OCAMLRUN=ocamlrun CAMLC="`which ocamlc`"
+	<<<MAKE>>> ocamlmklib      OCAMLRUN=ocamlrun NEW_OCAMLRUN=ocamlrun CAMLC="`which ocamlc`"
+	<<<MAKE>>> boot/ocamlrun
+	<<<MAKE>>> runtime
+	<<<MAKE>>> -C stdlib OCAMLRUN=ocamlrun COMPILER="${PWD}/boot/ocamlc"
+	<<<MAKE>>> coldstart OCAMLRUN=ocamlrun NEW_OCAMLRUN=ocamlrun
+	<<<MAKE>>> runtime/libasmrun.a runtime/libasmrund.a runtime/libasmruni.a runtime/libasmrun_pic.a
+	for i in library otherlibs opt ocamlnat ocaml ocamldoc ocamldebugger
+	do
+		<<<MAKE>>> $i \
+		OCAMLRUN=ocamlrun NEW_OCAMLRUN=ocamlrun \
+		OPTCOMPILER="${PWD}/ocamlopt" \
+		MKLIB="ocamlrun \"${PWD}/tools/ocamlmklib\"" \
+		OCAMLYACC=ocamlyacc
+	done
+        mv boot/ocamlrun{,.orig}
+       	echo "qemu-loongarch64 ${PWD}/boot/ocamlrun.orig \"\$@\"" > boot/ocamlrun
+        chmod +x boot/ocamlrun
+	make DESTDIR=${SYSROOT_DIR} install
+        rm -f ${SYSROOT_DIR}/usr/lib64/*.la
+
+       	make DESTDIR=${PWD}/ocaml-$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")-${ARCH_NAME} install
+        mkdir -pv ${DIST_DIRECTORY}/host/${ARCH_NAME}/ocaml/$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")/
+       	tar -cJf ${DIST_DIRECTORY}/host/${ARCH_NAME}/ocaml/$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")/ocaml-$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")-${ARCH_NAME}.tar.xz ocaml-$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")-${ARCH_NAME}
+<<<CLEAR_DIR>>>
+
+[[[5.0.0]]]
+<<<TAR_UNCOMPRESS>>>
+        <<<PATCH>>>
+	cp ${CROSSTOOLS_DIR}/share/automake*/config.* build-aux/
+	autoconf
+	./configure --host=${CROSS_TARGET} --prefix=/usr --libdir=/usr/lib64/ocaml --sysconfdir=/etc --datadir=/usr/share
+	<<<MAKE>>> runtime/sak SAK_CC=cc SAK_CFLAGS= SAK_LINK='cc -o $(1) $(2)'
+	<<<MAKE>>> ocamlopt ocamlc OCAMLRUN=ocamlrun NEW_OCAMLRUN=ocamlrun CAMLC="`which ocamlc`"
+	<<<MAKE>>> -C tools ocamlmklib OCAMLRUN=ocamlrun NEW_OCAMLRUN=ocamlrun CAMLC="`which ocamlc`"
+	<<<MAKE>>> boot/ocamlruns
+	<<<MAKE>>> runtime
+	<<<MAKE>>> -C stdlib OCAMLRUN=ocamlrun COMPILER="${PWD}/boot/ocamlc"
+	<<<MAKE>>> coldstart OCAMLRUN=ocamlrun NEW_OCAMLRUN=ocamlrun
+	<<<MAKE>>> runtime/libasmrun.a runtime/libasmrund.a runtime/libasmruni.a runtime/libasmrun_pic.a
+	for i in library otherlibs opt ocamlnat ocaml ocamldoc ocamldebugger
+	do
+		<<<MAKE>>> $i \
+		OCAMLRUN=ocamlrun NEW_OCAMLRUN=ocamlrun \
+		OPTCOMPILER="${PWD}/ocamlopt" \
+		MKLIB="ocamlrun \"${PWD}/tools/ocamlmklib\"" \
+		OCAMLYACC=ocamlyacc
+	done
+	<<<MAKE>>> -C tools ocamlmktop ocamlmktop.opt othertools OCAMLRUN=ocamlrun NEW_OCAMLRUN=ocamlrun CAMLC="`which ocamlc`"
+        mv boot/ocamlrun{,.orig}
+       	echo "qemu-loongarch64 ${PWD}/boot/ocamlrun.orig \"\$@\"" > boot/ocamlrun
+        chmod +x boot/ocamlrun
+	make DESTDIR=${SYSROOT_DIR} install
+        rm -f ${SYSROOT_DIR}/usr/lib64/*.la
+
+	make distclean
+
+	PATH=${CROSSTOOLS_DIR}/ocaml-cross/bin:${PATH}
+	./configure --host=${CROSS_TARGET} --prefix=/usr --libdir=/usr/lib64/ocaml --sysconfdir=/etc --datadir=/usr/share
+	<<<MAKE>>> runtime/sak SAK_CC=cc SAK_CFLAGS= SAK_LINK='cc -o $(1) $(2)'
+	<<<MAKE>>> ocamlopt ocamlc OCAMLRUN=ocamlrun NEW_OCAMLRUN=ocamlrun CAMLC="`which ocamlc`"
+	<<<MAKE>>> -C tools ocamlmklib OCAMLRUN=ocamlrun NEW_OCAMLRUN=ocamlrun CAMLC="`which ocamlc`"
+	<<<MAKE>>> boot/ocamlruns
+	<<<MAKE>>> runtime
+	<<<MAKE>>> -C stdlib OCAMLRUN=ocamlrun COMPILER="${PWD}/boot/ocamlc"
+	<<<MAKE>>> coldstart OCAMLRUN=ocamlrun NEW_OCAMLRUN=ocamlrun
+	<<<MAKE>>> runtime/libasmrun.a runtime/libasmrund.a runtime/libasmruni.a runtime/libasmrun_pic.a
+	for i in library otherlibs opt ocamlnat ocaml ocamldoc ocamldebugger
+	do
+		<<<MAKE>>> $i \
+		OCAMLRUN=ocamlrun NEW_OCAMLRUN=ocamlrun \
+		OPTCOMPILER="${PWD}/ocamlopt" \
+		MKLIB="ocamlrun \"${PWD}/tools/ocamlmklib\"" \
+		OCAMLYACC=ocamlyacc
+	done
+	<<<MAKE>>> -C tools ocamlmktop ocamlmktop.opt othertools OCAMLRUN=ocamlrun NEW_OCAMLRUN=ocamlrun CAMLC="`which ocamlc`"
+        mv boot/ocamlrun{,.orig}
+       	echo "qemu-loongarch64 ${PWD}/boot/ocamlrun.orig \"\$@\"" > boot/ocamlrun
+        chmod +x boot/ocamlrun
+	make DESTDIR=${SYSROOT_DIR} install
+        rm -f ${SYSROOT_DIR}/usr/lib64/*.la
+
+       	make DESTDIR=${PWD}/ocaml-$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")-${ARCH_NAME} install
+        mkdir -pv ${DIST_DIRECTORY}/host/${ARCH_NAME}/ocaml/$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")/
+       	tar -cJf ${DIST_DIRECTORY}/host/${ARCH_NAME}/ocaml/$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")/ocaml-$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")-${ARCH_NAME}.tar.xz ocaml-$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")-${ARCH_NAME}
+<<<CLEAR_DIR>>>
+
+
+[[[4.999.0]]]
+<<<TAR_UNCOMPRESS>>>
+        <<<PATCH>>>
+        for config_i in $(find -name "config.sub")
+        do
+                cp -a -f <<<CROSS_TOOLS_PREFIX>>>/share/automake*/config.* $(dirname ${config_i})/
+        done
+        if [ ! -f configure ]; then
+                autoreconf -ifv
+        fi
+        # CFLAGS="-Wno-error=incompatible-pointer-types -Wno-error=strict-prototypes" 
+	./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --libdir=/usr/lib${LIB_SUFF}/ocaml --datarootdir=/usr/share \
+                    --build=${CROSS_HOST} --host=${CROSS_TARGET} --enable-malloc0returnsnull
+        <<<MAKE>>> 
+        make DESTDIR=${SYSROOT_DIR} install
+        rm -f ${SYSROOT_DIR}/usr/lib64/*.la
+        make DESTDIR=${PWD}/ocaml-$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")-${ARCH_NAME} install
+	mkdir -pv ${DIST_DIRECTORY}/host/${ARCH_NAME}/ocaml/$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")/
+	tar -cJf ${DIST_DIRECTORY}/host/${ARCH_NAME}/ocaml/$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")/ocaml-$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")-${ARCH_NAME}.tar.xz ocaml-$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")-${ARCH_NAME}
+<<<CLEAR_DIR>>>
+

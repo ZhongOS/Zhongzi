@@ -1,0 +1,2 @@
+PACKAGE=kwayland
+BUILD_MODE=cmake

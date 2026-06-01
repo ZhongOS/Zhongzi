@@ -1,0 +1,2 @@
+PACKAGE=VTK
+BUILD_MODE=custom

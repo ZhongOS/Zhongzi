@@ -1,0 +1,2 @@
+PACKAGE=ocaml-findlib
+BUILD_MODE=custom

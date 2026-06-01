@@ -1,0 +1,2 @@
+PACKAGE=mbedtls
+BUILD_MODE=cmake

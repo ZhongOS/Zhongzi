@@ -1,0 +1,2 @@
+PACKAGE=KDE6-knotifyconfig
+BUILD_MODE=cmake

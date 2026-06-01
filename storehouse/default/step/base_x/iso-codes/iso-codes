@@ -1,0 +1,2 @@
+PACKAGE=iso-codes
+BUILD_MODE=gnu

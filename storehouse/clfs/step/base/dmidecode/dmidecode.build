@@ -1,0 +1,5 @@
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+    <<<MAKE>>> CC=${CROSS_TARGET}-gcc prefix=/usr
+    make DESTDIR=${SYSROOT_DIR} CC=${CROSS_TARGET}-gcc prefix=/usr install
+<<<CLEAR_DIR>>>

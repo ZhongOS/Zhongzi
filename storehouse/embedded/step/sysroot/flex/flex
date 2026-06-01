@@ -1,0 +1,2 @@
+PACKAGE=flex
+BUILD_MODE=gnu

@@ -1,0 +1,2 @@
+PACKAGE=polkit
+BUILD_MODE=custom

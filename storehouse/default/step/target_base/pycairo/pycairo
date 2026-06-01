@@ -1,0 +1,2 @@
+PACKAGE=pycairo
+BUILD_MODE=meson

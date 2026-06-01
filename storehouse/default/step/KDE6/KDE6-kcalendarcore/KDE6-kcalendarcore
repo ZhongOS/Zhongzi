@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kcalendarcore
+BUILD_MODE=cmake

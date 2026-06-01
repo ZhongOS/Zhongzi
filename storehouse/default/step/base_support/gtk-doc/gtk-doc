@@ -1,0 +1,6 @@
+PACKAGE=gtk-doc
+BUILD_MODE=meson
+
+[[[1.35.1]]]
+PACKAGE=gtk-doc
+BUILD_MODE=gnu

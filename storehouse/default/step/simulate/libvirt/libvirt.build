@@ -1,0 +1,20 @@
+<<<TAR_UNCOMPRESS>>>
+        <<<PATCH>>>
+        mkdir cross-build
+        pushd cross-build
+                meson ${MESON_CONFIG} -Drunstatedir=/run -Dinit_script=systemd -Ddriver_qemu=enabled -Ddriver_lxc=enabled -Dfuse=enabled -Dstorage_iscsi_direct=enabled -Dlibiscsi=enabled -Dlibssh2=enabled -Dpolkit=enabled -Dsasl=enabled -Ddriver_libvirtd=enabled -Ddriver_remote=enabled -Ddriver_network=enabled -Dstorage_fs=enabled -Dstorage_disk=enabled -Dnls=enabled -Dudev=enabled -Dlibpcap=enabled -Dlibnl=enabled -Dnss=enabled -Dqemu_user=qemu -Dqemu_group=qemu -Dqemu_datadir=/usr/share/qemu -Ddtrace=disabled \
+                      ..
+                <<<NINJA_AND_INSTALL>>>
+        popd
+        rm -f ${SYSROOT_DIR}/usr/lib64/*.la
+<<<CLEAR_DIR>>>
+
+# cat >> ${SYSROOT_DIR}/etc/libvirt/virtproxyd.conf << EOF
+# listen_tls = 0
+# EOF
+
+# cat >> ${SYSROOT_DIR}/etc/libvirt/libvirtd.conf << EOF
+# listen_tls = 0
+# EOF
+
+# EXTRA_PARM=-Drunstatedir=/run -Dinit_script=systemd -Ddriver_qemu=enabled -Ddriver_lxc=enabled -Dfuse=enabled -Dstorage_iscsi_direct=enabled -Dlibiscsi=enabled -Dlibssh2=enabled -Dpolkit=disabled -Dsasl=disabled -Ddriver_libvirtd=enabled -Ddriver_remote=enabled -Ddriver_network=enabled -Dstorage_fs=enabled -Dstorage_disk=enabled -Dnls=enabled -Dudev=enabled -Dlibpcap=enabled -Dlibnl=enabled -Dnss=enabled -Dqemu_user=qemu -Dqemu_group=qemu -Dqemu_datadir=/usr/share/qemu

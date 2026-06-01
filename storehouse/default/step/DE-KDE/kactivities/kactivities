@@ -1,0 +1,2 @@
+PACKAGE=kactivities
+BUILD_MODE=cmake

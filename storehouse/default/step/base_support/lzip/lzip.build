@@ -1,0 +1,4 @@
+<<<TAR_UNCOMPRESS>>>
+	./configure CC="${CROSS_TARGET}-gcc" CXX="${CROSS_TARGET}-g++" --prefix=/usr
+	<<<MAKE_AND_INSTALL>>>
+<<<CLEAR_DIR>>>

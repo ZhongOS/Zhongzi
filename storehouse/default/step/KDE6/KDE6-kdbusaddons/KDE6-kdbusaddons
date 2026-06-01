@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kdbusaddons
+BUILD_MODE=cmake

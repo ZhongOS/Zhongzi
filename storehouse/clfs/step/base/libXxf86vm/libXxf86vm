@@ -1,0 +1,2 @@
+PACKAGE=libXxf86vm
+BUILD_MODE=gnu

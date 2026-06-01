@@ -1,0 +1,2 @@
+PACKAGE=kpty
+BUILD_MODE=cmake

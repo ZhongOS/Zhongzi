@@ -1,0 +1,2 @@
+PACKAGE=linux_git
+BUILD_MODE=custom

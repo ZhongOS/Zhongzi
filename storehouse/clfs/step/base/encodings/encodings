@@ -1,0 +1,2 @@
+PACKAGE=encodings
+BUILD_MODE=gnu

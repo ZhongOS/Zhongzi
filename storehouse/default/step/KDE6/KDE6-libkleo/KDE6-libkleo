@@ -1,0 +1,2 @@
+PACKAGE=KDE6-libkleo
+BUILD_MODE=cmake

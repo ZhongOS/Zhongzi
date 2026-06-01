@@ -1,0 +1,4 @@
+<<<TAR_UNCOMPRESS>>>
+	mkdir -p ${SYSROOT_DIR}/opt/Wine-Collection
+	tar xvf ${RESOURCEDIR}/files/wine-lutris-GE-Proton8.tar.xz -C ${SYSROOT_DIR}/opt/Wine-Collection/
+<<<CLEAR_DIR>>>

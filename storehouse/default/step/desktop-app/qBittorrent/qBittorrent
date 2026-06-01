@@ -1,0 +1,2 @@
+PACKAGE=qBittorrent
+BUILD_MODE=cmake

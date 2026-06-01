@@ -1,0 +1,2 @@
+PACKAGE=pcre
+BUILD_MODE=gnu

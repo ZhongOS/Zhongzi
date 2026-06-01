@@ -1,0 +1,2 @@
+PACKAGE=libkexiv2
+BUILD_MODE=cmake

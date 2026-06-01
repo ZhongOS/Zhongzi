@@ -1,0 +1,2 @@
+PACKAGE=openpgl
+BUILD_MODE=cmake

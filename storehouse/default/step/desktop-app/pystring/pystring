@@ -1,0 +1,2 @@
+PACKAGE=pystring
+BUILD_MODE=cmake

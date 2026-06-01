@@ -1,0 +1,22 @@
+<<<TAR_UNCOMPRESS>>>
+	sed -i "s@if \./@if qemu-${QEMU_ARCH} \./@g" setup/setupdir.sh
+	sed -i "s@^\./ossvers@qemu-${QEMU_ARCH} \./ossvers@g" setup/setupdir.sh
+	mkdir -p cross-build
+	pushd cross-build
+		CC=${X86_HOST}-gcc LDFLAGS="-D_FILE_OFFSET_BITS=64" ../configure --enable-libsalsa=NO --config-vmix=FIXEDPOINT --config-midi=YES
+		make CC=${X86_HOST}-gcc LD=${X86_HOST}-ld CPLUSPLUS="${X86_HOST}-g++ -fno-rtti -fno-exceptions -I." ARCH=i686
+		make CC=${X86_HOST}-gcc LD=${X86_HOST}-ld CXX=${X86_HOST}-g++ ARCH=i686 DESTDIR=${X86_SYSROOT_DIR} copy
+	popd
+<<<CLEAR_DIR>>>
+
+# <<<TAR_UNCOMPRESS>>>
+#	mkdir -p cross-build
+#	pushd cross-build
+#		../configure --enable-libsalsa=NO --config-vmix=FIXEDPOINT --config-midi=YES
+#		pushd lib
+#			<<<MAKE>>> CC=${X86_HOST}-gcc CXX=${X86_HOST}-g++ ARCH=i686
+#		popd
+#		<<<MAKE>>> CC=${X86_HOST}-gcc CXX=${X86_HOST}-g++ build
+#		make CC=${X86_HOST}-gcc CXX=${X86_HOST}-g++ DESTDIR=${X86_SYSROOT_DIR} copy
+#	popd
+# <<<CLEAR_DIR>>>

@@ -1,0 +1,34 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+
+	export PATH=/usr/bin:/usr/sbin:/bin:/sbin
+
+	sed -i 's@\./fixinc\.sh@-c true@' gcc/Makefile.in
+	mkdir -pv build
+	pushd build
+		CC="/bin/gcc" CXX="/bin/g++" \
+#		../configure --prefix=${CROSSTOOLS_DIR}/build-tools \
+		../configure --prefix=${PREFIX} \
+		             --enable-__cxa_atexit --enable-threads=posix \
+		             --with-system-zlib --enable-libstdcxx-time \
+		             --enable-checking=release \
+		             --disable-multilib \
+		             --enable-shared --disable-libunwind-exceptions --enable-gnu-unique-object --enable-linker-build-id --with-linker-hash-style=gnu --enable-plugin --enable-initfini-array \
+		             --enable-languages=c,c++,ada
+		<<<MAKE>>>
+		make install-strip
+#		ln -sfv gcc ${CROSSTOOLS_DIR}/build-tools/bin/cc
+		ln -sfv gcc ${PREFIX}/bin/cc
+	popd
+#	rm -fv ${CROSSTOOLS_DIR}/build-tools/bin/$(${CROSSTOOLS_DIR}/build-tools/bin/gcc -dumpmachine)-*
+	rm -fv ${PREFIX}/bin/$(${PREFIX}/bin/gcc -dumpmachine)-*
+# 	rm -fv $(dirname $(realpath $(${PREFIX}/bin/gcc -print-file-name=libssp.so)))/libssp{,_nonshared}.*
+	rm -fv $(dirname $(realpath $(${PREFIX}/bin/gcc -print-file-name=libssp.a)))/libssp*
+	${PREFIX}/bin/gcc -dumpspecs > specs
+# 	CUSTOM_LIB_PATH="${HOST_TOOLS_DIR}/lib64:${HOST_TOOLS_DIR}/lib:${CROSSTOOLS_DIR}/lib64:${CROSSTOOLS_DIR}/lib"
+	CUSTOM_LIB_PATH="${HOST_TOOLS_DIR}/lib64:${HOST_TOOLS_DIR}/lib"
+	sed -i "/^\*link:/,/^$/ { 
+/--build-id/ s|\(--build-id[^ ]*\)|\1 -rpath=${CUSTOM_LIB_PATH//\//\\/}|;
+}" specs
+	mv specs $(dirname $(${PREFIX}/bin/gcc -print-libgcc-file-name))/specs
+<<<CLEAR_DIR>>>

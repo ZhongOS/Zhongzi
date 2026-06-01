@@ -1,0 +1,4 @@
+PACKAGE=lxml
+BUILD_MODE=custom
+# BUILD_MODE=pip
+# BUILD_MODE=python

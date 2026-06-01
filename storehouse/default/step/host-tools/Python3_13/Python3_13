@@ -1,0 +1,3 @@
+PACKAGE=Python
+BUILD_MODE=custom
+LOCK_VERSION=3.13.7

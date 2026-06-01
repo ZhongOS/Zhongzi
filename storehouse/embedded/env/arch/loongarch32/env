@@ -1,0 +1,7 @@
+export CROSS_TARGET="loongarch32-unknown-linux-gnu"
+export MABI="ilp32d"
+export LIB_SUFF="32"
+export ARCH_BIT=32
+export CFLAGS="-O3"
+export CXXFLAGS="-O3"
+export RUN_TARGET_ARCH=${HOST_ARCH_NAME}

@@ -1,0 +1,2 @@
+PACKAGE=KDE6-ktexttemplate
+BUILD_MODE=cmake

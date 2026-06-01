@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kwin
+BUILD_MODE=custom

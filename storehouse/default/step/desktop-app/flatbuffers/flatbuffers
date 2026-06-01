@@ -1,0 +1,2 @@
+PACKAGE=flatbuffers
+BUILD_MODE=custom

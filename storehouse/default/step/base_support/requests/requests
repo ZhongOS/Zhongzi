@@ -1,0 +1,2 @@
+PACKAGE=requests
+BUILD_MODE=pip

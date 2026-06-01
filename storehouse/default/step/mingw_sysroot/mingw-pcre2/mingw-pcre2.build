@@ -1,0 +1,2 @@
+# EXTRA_PARM=--enable-unicode --enable-pcre2-16 --enable-pcre2-32 --enable-pcre2grep-libz
+EXTRA_PARM=--enable-unicode --enable-pcre2-16 --enable-pcre2-32

@@ -1,0 +1,3 @@
+PACKAGE=glibc
+BUILD_MODE=custom
+LOCK_VERSION=2.28

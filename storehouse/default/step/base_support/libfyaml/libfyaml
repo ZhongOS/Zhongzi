@@ -1,0 +1,2 @@
+PACKAGE=libfyaml
+BUILD_MODE=gnu

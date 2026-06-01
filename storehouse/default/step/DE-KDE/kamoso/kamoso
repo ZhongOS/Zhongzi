@@ -1,0 +1,2 @@
+PACKAGE=kamoso
+BUILD_MODE=cmake

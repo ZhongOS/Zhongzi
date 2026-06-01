@@ -1,0 +1,6 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+	CFLAGS="${CFLAGS} -Wno-incompatible-pointer-types"
+	<<<HOST_TOOLS_PREFIX>>>/bin/pip3 wheel -w dist --no-build-isolation --no-deps ${PWD}
+	<<<HOST_TOOLS_PREFIX>>>/bin/pip3 install --no-index --find-links dist --no-cache-dir --no-deps --force-reinstall --no-user <<<PACKAGE_NAME>>>                                                             
+<<<CLEAR_DIR>>>

@@ -1,0 +1,2 @@
+PACKAGE=gi-docgen
+BUILD_MODE=meson

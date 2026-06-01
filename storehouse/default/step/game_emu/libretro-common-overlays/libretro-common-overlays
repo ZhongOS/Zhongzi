@@ -1,0 +1,2 @@
+PACKAGE=libretro-common-overlays
+BUILD_MODE=custom

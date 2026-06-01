@@ -1,0 +1,2 @@
+CONFIG_ENV=CXXFLAGS="${CXXFLAGS} -Wno-error=strict-aliasing"
+EXTRA_PARM=-Dtests=disabled

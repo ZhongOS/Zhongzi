@@ -1,0 +1,6 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+	sed -i "s@ uname @ cross-uname @g" Makefile{,.common}
+	<<<MAKE>>> CC="${CROSS_TARGET}-gcc -fpermissive" CXX="${CROSS_TARGET}-g++ -fpermissive" PTR64=1
+	cp -a mame2010_libretro.so ${SYSROOT_DIR}/usr/share/retroarch/cores/
+<<<CLEAR_DIR>>>

@@ -1,0 +1,2 @@
+PACKAGE=bluez
+BUILD_MODE=gnu

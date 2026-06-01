@@ -1,0 +1,2 @@
+PACKAGE=fcitx5-qt
+BUILD_MODE=custom

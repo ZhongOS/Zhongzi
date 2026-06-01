@@ -1,0 +1,21 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+	pushd src/basic
+        python3 missing_syscalls.py missing_syscall_def.h $(ls syscalls-*.txt)
+	popd
+	sed -i -e 's/GROUP="render"/GROUP="video"/' \
+           -e 's/GROUP="sgx", //' rules.d/50-udev-default.rules.in
+	sed -i "s@Werror=undef',@& '-Wno-error=format-overflow', '-Wno-error=implicit-function-declaration',@g" meson.build
+
+	mkdir -p build
+	pushd build
+		meson ${MESON_CONFIG} \
+		      -Ddefault-dnssec=no -Dfirstboot=false \
+		      -Dinstall-tests=false -Dldconfig=false -Dsysusers=false \
+		      -Drpmmacrosdir=no -Dhomed=false -Duserdb=false -Dman=false -Dmode=release \
+		      -Dpamconfdir=/etc/pam.d \
+		      -Ddbuspolicydir=/usr/share/dbus-1/system.d -Ddbussessionservicedir=/usr/share/dbus-1/services -Ddbussystemservicedir=/usr/share/dbus-1/system-services \
+		      ..
+		<<<NINJA_AND_INSTALL>>>
+	popd
+<<<CLEAR_DIR>>>

@@ -1,0 +1,2 @@
+PACKAGE=libnetfilter_conntrack
+BUILD_MODE=gnu

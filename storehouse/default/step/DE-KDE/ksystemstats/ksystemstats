@@ -1,0 +1,2 @@
+PACKAGE=ksystemstats
+BUILD_MODE=cmake

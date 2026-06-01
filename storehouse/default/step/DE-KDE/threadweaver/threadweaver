@@ -1,0 +1,2 @@
+PACKAGE=threadweaver
+BUILD_MODE=cmake

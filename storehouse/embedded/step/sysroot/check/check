@@ -1,0 +1,2 @@
+PACKAGE=check
+BUILD_MODE=gnu

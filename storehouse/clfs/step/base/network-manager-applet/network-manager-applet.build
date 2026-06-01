@@ -1,0 +1,1 @@
+EXTRA_PARM=-Dappindicator=no -Dselinux=false

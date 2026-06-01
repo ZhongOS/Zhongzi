@@ -1,0 +1,2 @@
+PACKAGE=libmediainfo
+BUILD_MODE=custom

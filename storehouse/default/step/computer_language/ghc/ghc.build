@@ -1,0 +1,4 @@
+<<<TAR_UNCOMPRESS>>>
+# hadrian/build "stage1.*.cc.*.opts += -mcmodel=extreme" "stage1.*.ghc.*.opts += -optc-mcmodel=extreme" --flavour=quick -j78
+# hadrian/build "stage1.*.cc.*.opts += -mcmodel=extreme" "stage1.*.ghc.*.opts += -optc-mcmodel=extreme"  "stage2.*.cc.*.opts += -mcmodel=extreme" "stage2.*.ghc.*.opts += -optc-mcmodel=extreme" stage2:lib:ghc -j178
+<<<CLEAR_DIR>>>

@@ -1,0 +1,2 @@
+PACKAGE=wine-nine-standalone
+BUILD_MODE=custom

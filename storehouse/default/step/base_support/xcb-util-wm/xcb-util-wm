@@ -1,0 +1,2 @@
+PACKAGE=xcb-util-wm
+BUILD_MODE=gnu

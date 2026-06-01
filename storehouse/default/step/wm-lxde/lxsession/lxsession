@@ -1,0 +1,2 @@
+PACKAGE=lxsession
+BUILD_MODE=custom

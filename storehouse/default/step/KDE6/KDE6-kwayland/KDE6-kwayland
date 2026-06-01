@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kwayland
+BUILD_MODE=cmake

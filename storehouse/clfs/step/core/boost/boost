@@ -1,0 +1,2 @@
+PACKAGE=boost
+BUILD_MODE=custom

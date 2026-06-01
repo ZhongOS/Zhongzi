@@ -1,0 +1,1 @@
+EXTRA_PARM=--with-keysymdefdir=${X86_SYSROOT_DIR}/usr/include/X11

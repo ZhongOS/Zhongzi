@@ -1,0 +1,2 @@
+PACKAGE=speex
+BUILD_MODE=gnu

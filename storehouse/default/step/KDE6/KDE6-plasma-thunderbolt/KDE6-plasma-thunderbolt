@@ -1,0 +1,2 @@
+PACKAGE=KDE6-plasma-thunderbolt
+BUILD_MODE=cmake

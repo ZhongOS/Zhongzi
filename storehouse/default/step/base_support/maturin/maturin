@@ -1,0 +1,2 @@
+PACKAGE=maturin
+BUILD_MODE=pip

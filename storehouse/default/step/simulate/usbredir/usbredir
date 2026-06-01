@@ -1,0 +1,2 @@
+PACKAGE=usbredir
+BUILD_MODE=meson

@@ -1,0 +1,14 @@
+NULL
+llvm-project|!llvm_git
+# clang|!llvm_git
+# compiler-rt|!llvm_git
+llvm_runtimes|!llvm_git
+# lld|!llvm_git
+# lldb|!llvm_git
+llvm-project_git|llvm_git
+# clang_git|llvm_git
+# compiler-rt_git|llvm_git
+llvm_runtimes_git|llvm_git
+# lld_git|llvm_git
+# lldb_git|llvm_git
+NULL

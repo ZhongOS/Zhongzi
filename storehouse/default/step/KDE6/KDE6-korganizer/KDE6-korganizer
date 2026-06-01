@@ -1,0 +1,2 @@
+PACKAGE=KDE6-korganizer
+BUILD_MODE=cmake

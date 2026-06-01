@@ -1,0 +1,3 @@
+PACKAGE=taglib
+# LOCK_VERSION=1.13.1
+BUILD_MODE=cmake

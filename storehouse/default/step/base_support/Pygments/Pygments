@@ -1,0 +1,2 @@
+PACKAGE=Pygments
+BUILD_MODE=pip

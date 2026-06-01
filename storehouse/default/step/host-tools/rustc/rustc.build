@@ -1,0 +1,40 @@
+<<<TAR_UNCOMPRESS>>>
+#       export CFLAGS="${CFLAGS} -mcmodel=medium"
+#       export CXXFLAGS="${CXXFLAGS} -mcmodel=medium"
+	<<<PATCH>>>
+# 	sed -i "s@ifdef LLVM_RUSTLLVM@if 0@g" compiler/rustc_llvm/llvm-wrapper/PassWrapper.cpp
+# 	find vendor -name .cargo-checksum.json \
+#           -exec sed -i.uncheck -e 's/"files":{[^}]*}/"files":{ }/' '{}' '+'
+	./configure --prefix=${HOST_TOOLS_DIR} --sysconfdir=${HOST_TOOLS_DIR}/etc \
+	            --local-rust-root=${CROSSTOOLS_DIR}/rust/usr/local \
+# 	            --enable-extended --enable-vendor --release-channel=stable \
+	            --enable-extended --enable-vendor --release-channel=dev \
+		    --disable-docs --disable-debug --disable-compiler-docs --disable-optimize-tests --disable-verbose-tests --disable-dist-src \
+	            --disable-codegen-tests --experimental-targets="" --enable-llvm-static-stdcpp --enable-profiler
+        <<<MAKE>>> HOST_CC="gcc"
+        <<<MAKE>>> HOST_CC="gcc" install
+<<<CLEAR_DIR>>>
+
+
+[[[0.0.0]]]
+<<<TAR_UNCOMPRESS>>>
+#       export CFLAGS="${CFLAGS} -mcmodel=medium"
+#       export CXXFLAGS="${CXXFLAGS} -mcmodel=medium"
+	<<<PATCH>>>
+	sed -i "s@ifdef LLVM_RUSTLLVM@if 0@g" compiler/rustc_llvm/llvm-wrapper/PassWrapper.cpp
+	find vendor -name .cargo-checksum.json \
+          -exec sed -i.uncheck -e 's/"files":{[^}]*}/"files":{ }/' '{}' '+'
+	./configure --target=${CROSS_TARGET},$(echo ${CROSS_HOST} | sed 's@cross@unknown@g') \
+	            --prefix=${CROSSTOOLS_DIR}/host-rust --sysconfdir=${CROSSTOOLS_DIR}/host-rust/etc \
+	            --local-rust-root=${CROSSTOOLS_DIR}/rust/usr/local \
+	            --enable-extended --enable-vendor --release-channel=dev \
+	            --disable-codegen-tests --experimental-targets="" --enable-llvm-static-stdcpp --enable-profiler \
+		    --set=target.${CROSS_TARGET}.linker="${CROSS_TARGET}-gcc" \
+		    --set=target.${CROSS_TARGET}.cc="${CROSS_TARGET}-gcc" \
+		    --set=target.${CROSS_TARGET}.cxx="${CROSS_TARGET}-g++"
+
+        export CARGO_TARGET_LOONGARCH64_UNKNOWN_LINUX_GNU_LINKER="${CROSS_TARGET}-gcc"
+        export CARGO_TARGET_LOONGARCH64_UNKNOWN_LINUX_GNU_RUSTFLAGS="-Ccode-model=large"
+        <<<MAKE>>> HOST_CC="gcc"
+        <<<MAKE>>> HOST_CC="gcc" install
+<<<CLEAR_DIR>>>

@@ -1,0 +1,2 @@
+PACKAGE=KDE6-solid
+BUILD_MODE=cmake

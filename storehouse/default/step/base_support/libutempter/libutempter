@@ -1,0 +1,2 @@
+PACKAGE=libutempter
+BUILD_MODE=custom

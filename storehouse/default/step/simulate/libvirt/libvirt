@@ -1,0 +1,3 @@
+PACKAGE=libvirt
+BUILD_MODE=custom
+# BUILD_MODE=meson

@@ -1,0 +1,15 @@
+# p1 0001-pyside6-remove-QHttpServer-afterRequest-for-Qt-6.8.0.patch
+# p1 0001-PySide6-remove-QSignalSpyWrapper-for-Qt-6.8.0.patch
+# p1 0001-pyside6-remove-some-definitions-from-QtHelp-for-Qt-6.patch
+# p1 0001-pyside6-remove-some-definitions-from-QtGraphs-for-Qt.patch
+
+# p1 0001-pyside6-remove-QtGraphs-qxyseries_wrapper-for-Qt-6.8.patch
+
+# p1 0001-fix-for-qt6-6.7.patch
+
+# p1	0001-pyside6-fix-compiler-error-for-Qt-6.8.1.patch
+
+p1      0001-Always-link-to-python-libraries.patch 
+p1      0001-Fix-installation.patch 
+p1      0001-Revert-Modify-headers-installation-for-CMake-builds.patch
+

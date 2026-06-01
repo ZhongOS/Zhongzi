@@ -1,0 +1,2 @@
+PACKAGE=pytest-runner
+BUILD_MODE=pip

@@ -1,0 +1,2 @@
+PACKAGE=xinit
+BUILD_MODE=gnu

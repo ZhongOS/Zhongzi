@@ -1,0 +1,6 @@
+EXTRA_PARM=-DBUILD_SHARED_LIBS=ON
+# EXTRA_PARM=-DBUILD_SHARED_LIBS=OFF
+
+
+[[[7.2.0]]]
+EXTRA_PARM=-Dbenchmark=disabled -Dintrospection=disabled -Dgraphite2=disabled -Dtests=disabled

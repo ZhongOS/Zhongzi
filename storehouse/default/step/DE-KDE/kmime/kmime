@@ -1,0 +1,2 @@
+PACKAGE=kmime
+BUILD_MODE=cmake

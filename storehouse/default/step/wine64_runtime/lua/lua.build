@@ -1,0 +1,27 @@
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+    sed -i '/#define LUA_ROOT/s:/usr/local/:/usr/:' src/luaconf.h
+    <<<MAKE>>> CC=${CROSS_TARGET}-gcc MYCFLAGS="-fPIC" linux
+    LUA_VERSION=$(grep "^V=" Makefile | awk -F'=' '{ print $2 }' | tr -d ' ')
+    LUA_VERSION_RELEASE=$(grep "^R=" Makefile | awk -F'=' '{ print $2 }' | tr -d ' ' | awk -F'.' '{ print $2 }')
+    make TO_LIB="liblua.so liblua.so.${LUA_VERSION} liblua.so.${LUA_VERSION}.${LUA_VERSION_RELEASE}" \
+         INSTALL_TOP=${X86_64_SYSROOT_DIR}/usr \
+         INSTALL_LIB=${X86_64_SYSROOT_DIR}/usr/lib${LIB_SUFF} \
+         INSTALL_MAN=${X86_64_SYSROOT_DIR}/usr/share/man/man1 install
+    ln -sf liblua.so.${LUA_VERSION}.${LUA_VERSION_RELEASE} ${X86_64_SYSROOT_DIR}/usr/lib${LIB_SUFF}/liblua.so.${LUA_VERSION}
+    ln -sf liblua.so.${LUA_VERSION} ${X86_64_SYSROOT_DIR}/usr/lib${LIB_SUFF}/liblua.so
+
+cat > ${X86_64_SYSROOT_DIR}/usr/lib${LIB_SUFF}/pkgconfig/lua.pc << EOF
+prefix=/usr
+exec_prefix=\${prefix}
+libdir=\${exec_prefix}/lib${LIB_SUFF}
+includedir=\${prefix}/include/lua
+
+Name: Lua
+Description: An Extensible Extension Language
+Version: ${LUA_VERSION}.${LUA_VERSION_RELEASE}
+Requires:
+Libs: -L\${libdir} -llua -lm -ldl
+Cflags: -I\${includedir}
+EOF
+<<<CLEAR_DIR>>>

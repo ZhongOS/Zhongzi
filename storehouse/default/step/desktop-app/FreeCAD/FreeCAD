@@ -1,0 +1,2 @@
+PACKAGE=FreeCAD
+BUILD_MODE=custom

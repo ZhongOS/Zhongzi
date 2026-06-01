@@ -1,0 +1,5 @@
+<<<TAR_UNCOMPRESS>>>
+	make EFIDIR=Yongbao EFI_LOADER=grubloongarch64.efi
+	exit 1
+#	make install EFIDIR=LFS
+<<<CLEAR_DIR>>>

@@ -1,0 +1,2 @@
+PACKAGE=ModemManager
+BUILD_MODE=custom

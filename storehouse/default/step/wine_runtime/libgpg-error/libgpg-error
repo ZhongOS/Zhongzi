@@ -1,0 +1,2 @@
+PACKAGE=libgpg-error
+BUILD_MODE=custom

@@ -1,0 +1,7 @@
+<<<TAR_UNCOMPRESS>>>
+    sed -i '/The name/,+2 d' src/global.c
+    CFLAGS="${CFLAGS} -Wno-implicit-function-declaration -std=gnu17" \
+    ./configure ${COMMON_CONFIG} --enable-mt \
+                --with-rmt=/usr/libexec/rmt
+    <<<MAKE_AND_INSTALL>>>
+<<<CLEAR_DIR>>>

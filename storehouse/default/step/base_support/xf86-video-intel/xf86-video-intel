@@ -1,0 +1,2 @@
+PACKAGE=xf86-video-intel
+BUILD_MODE=meson

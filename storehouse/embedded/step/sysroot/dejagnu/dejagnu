@@ -1,0 +1,2 @@
+PACKAGE=dejagnu
+BUILD_MODE=gnu

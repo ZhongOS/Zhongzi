@@ -1,0 +1,2 @@
+PACKAGE=xz
+BUILD_MODE=gnu

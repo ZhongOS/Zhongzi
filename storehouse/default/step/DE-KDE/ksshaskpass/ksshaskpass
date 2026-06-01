@@ -1,0 +1,2 @@
+PACKAGE=ksshaskpass
+BUILD_MODE=cmake

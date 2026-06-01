@@ -1,0 +1,3 @@
+PACKAGE=perl
+BUILD_MODE=custom
+# LOCK_VERSION=5.38.0

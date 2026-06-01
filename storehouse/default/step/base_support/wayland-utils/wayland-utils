@@ -1,0 +1,2 @@
+PACKAGE=wayland-utils
+BUILD_MODE=custom

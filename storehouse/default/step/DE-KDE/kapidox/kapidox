@@ -1,0 +1,2 @@
+PACKAGE=kapidox
+BUILD_MODE=pip

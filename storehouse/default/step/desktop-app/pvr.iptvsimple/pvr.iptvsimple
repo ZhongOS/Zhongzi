@@ -1,0 +1,3 @@
+PACKAGE=pvr.iptvsimple
+BUILD_MODE=custom
+# BUILD_MODE=cmake

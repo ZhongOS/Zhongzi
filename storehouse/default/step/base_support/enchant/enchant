@@ -1,0 +1,2 @@
+PACKAGE=enchant
+BUILD_MODE=gnu

@@ -1,0 +1,2 @@
+PACKAGE=gnupg
+BUILD_MODE=gnu

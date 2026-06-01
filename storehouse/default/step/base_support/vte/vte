@@ -1,0 +1,2 @@
+PACKAGE=vte
+BUILD_MODE=meson

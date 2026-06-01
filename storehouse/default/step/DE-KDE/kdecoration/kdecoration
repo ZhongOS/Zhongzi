@@ -1,0 +1,2 @@
+PACKAGE=kdecoration
+BUILD_MODE=cmake

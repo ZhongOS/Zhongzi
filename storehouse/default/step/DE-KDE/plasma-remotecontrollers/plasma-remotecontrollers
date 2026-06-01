@@ -1,0 +1,2 @@
+PACKAGE=plasma-remotecontrollers
+BUILD_MODE=cmake

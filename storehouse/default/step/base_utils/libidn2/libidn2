@@ -1,0 +1,2 @@
+PACKAGE=libidn2
+BUILD_MODE=gnu

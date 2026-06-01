@@ -1,0 +1,31 @@
+<<<TAR_UNCOMPRESS>>>
+        <<<PATCH>>>
+	export PATH=${SYSDIR}/cross-toolchains/x86_64-w64-mingw32/bin:${SYSDIR}/cross-toolchains/i686-w64-mingw32/bin:${PATH}
+
+cat > cross-wine64 << EOF
+[binaries]
+c = 'winegcc'
+ar = '${X86_64_HOST}-ar'
+strip = '${X86_64_HOST}-strip'
+pkgconfig = '${X86_64_HOST}-pkg-config'
+
+[properties]
+c_args = ['-m64']
+c_link_args = ['-m64', '-mwindows', '-L/nonexistant']
+needs_exe_wrapper = true
+
+[host_machine]
+system = 'linux'
+cpu_family = 'x86_64'
+cpu = 'x86_64'
+endian = 'little'
+EOF
+
+        mkdir cross-build
+        pushd cross-build
+                meson --cross-file ../cross-wine64 --buildtype release --prefix /opt/wine64 --libdir lib64 \
+		      --default-library=both \
+                      ..
+                <<<NINJA_AND_INSTALL>>>
+        popd
+<<<CLEAR_DIR>>>

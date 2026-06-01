@@ -1,0 +1,25 @@
+# create_commfile
+mingw-gmp
+mingw-mpfr
+mingw-mpc
+mingw-zlib
+mingw-libffi
+bzip2|bad
+mingw-pcre2
+mingw-libpng
+mingw-harfbuzz
+mingw-freetype
+mingw-pixman
+mingw-libiconv
+mingw-gettext
+mingw-glib
+mingw-zstd
+mingw-atk
+mingw-fribidi
+mingw-cairo
+mingw-pango
+mingw-gdk-pixbuf
+mingw-libepoxy
+mingw-gtk3
+mingw-SDL2
+Windows-QEMU|windows_qemu

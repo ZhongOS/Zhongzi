@@ -1,0 +1,2 @@
+PACKAGE=plasma-integration
+BUILD_MODE=cmake

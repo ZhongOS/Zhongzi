@@ -1,0 +1,2 @@
+PACKAGE=wayland-protocols
+BUILD_MODE=custom

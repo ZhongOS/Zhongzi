@@ -1,0 +1,2 @@
+PACKAGE=lightdm-gtk-greeter
+BUILD_MODE=gnu

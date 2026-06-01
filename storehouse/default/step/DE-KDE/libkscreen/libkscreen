@@ -1,0 +1,2 @@
+PACKAGE=libkscreen
+BUILD_MODE=cmake

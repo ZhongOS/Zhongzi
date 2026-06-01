@@ -1,0 +1,11 @@
+<<<TAR_UNCOMPRESS>>>
+	pushd squashfs-tools
+	    for i in mksquashfs unsquashfs sqfstar sqfscat
+	    do
+        	sed -i.orig "s@^\$1@qemu-${ARCH_NAME} \$1@g" ../generate-manpages/$i-manpage.sh
+	    done
+	    <<<MAKE>>> CC="${CROSS_TARGET}-gcc"
+	    make CC="${CROSS_TARGET}-gcc" INSTALL_PREFIX=${SYSROOT_DIR}/usr \
+        	 INSTALL_MANPAGES_DIR=${SYSROOT_DIR}/usr/share/man/man1 install
+	popd
+<<<CLEAR_DIR>>>

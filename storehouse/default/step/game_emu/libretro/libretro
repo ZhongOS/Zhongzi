@@ -1,0 +1,2 @@
+PACKAGE=libretro
+BUILD_MODE=custom

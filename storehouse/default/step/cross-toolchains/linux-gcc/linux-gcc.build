@@ -1,0 +1,39 @@
+<<<TAR_UNCOMPRESS>>>
+	case "${ARCH_NAME}" in
+		"loongarch64")
+			ABI_STRING="--with-abi=lp64"
+			;;
+		"i686")
+			ABI_STRING=""
+			;;
+		"x86_64")
+			ABI_STRING="--with-abi=${ARCH_ABI} --with-tune=generic"
+			;;
+		"aarch64")
+# 			sed -i "s@/lib/@/lib${LIB_SUFF}/@g" gcc/config/aarch64/aarch64-linux.h
+			ABI_STRING="--with-abi=lp64"
+			;;
+		*)
+			ABI_STRING="--with-abi=${ARCH_ABI}"
+			;;
+	esac
+	mkdir -p tools-build
+	pushd tools-build
+		AR=ar \
+# 		LDFLAGS="-Wl,-rpath,${CROSS_TOOLS_PREFIX}/lib" \
+		../configure --prefix=${PREFIX}/${LINUX_HOST} --build=${CROSS_HOST} --host=${CROSS_HOST} \
+		             --target=${LINUX_HOST} --disable-nls \
+		             --with-mpfr=<<<CROSS_TOOLS_PREFIX>>> --with-gmp=<<<CROSS_TOOLS_PREFIX>>> \
+		             --with-mpc=<<<CROSS_TOOLS_PREFIX>>> \
+		             --with-newlib --disable-shared \
+		             --enable-default-pie --disable-multilib ${ABI_STRING} \
+		             --with-sysroot=${SYSROOT_DIR}${RUNTIME_SYSROOT_DIR} \
+		             --disable-decimal-float --disable-libgomp --disable-libitm \
+		             --disable-libsanitizer --disable-libquadmath --disable-threads \
+		             --disable-target-zlib --with-system-zlib --enable-checking=release \
+			     --enable-linker-build-id --with-linker-hash-style=gnu --enable-gnu-unique-object --enable-initfini-array --enable-gnu-indirect-function \
+		             --enable-languages=c
+		<<<MAKE>>> all-gcc all-target-libgcc
+		make install-strip-gcc install-strip-target-libgcc
+	popd
+<<<CLEAR_DIR>>>

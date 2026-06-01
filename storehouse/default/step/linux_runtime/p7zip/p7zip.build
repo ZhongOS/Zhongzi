@@ -1,0 +1,5 @@
+<<<TAR_UNCOMPRESS>>>
+	sed -i "/OPTFLAGS/s@-O2@-O3@g" makefile.machine
+	<<<MAKE>>> CC=${LINUX_HOST}-gcc CXX=${LINUX_HOST}-g++ all3
+	make DEST_HOME=/usr DEST_SHARE=/usr/lib${LIB_SUFF}/p7zip DEST_MAN=/usr/share/man DEST_DIR=${LINUX_SYSROOT_DIR} install
+<<<CLEAR_DIR>>>

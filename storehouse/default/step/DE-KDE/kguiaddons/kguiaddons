@@ -1,0 +1,2 @@
+PACKAGE=kguiaddons
+BUILD_MODE=cmake

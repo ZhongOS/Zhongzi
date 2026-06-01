@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kgamma
+BUILD_MODE=cmake

@@ -1,0 +1,2 @@
+PACKAGE=libXcursor
+BUILD_MODE=gnu

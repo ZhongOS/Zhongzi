@@ -1,0 +1,6 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+	<<<MAKE>>> -f unix/Makefile CC="${CROSS_TARGET}-gcc -DLARGE_FILE_SUPPORT -Wno-incompatible-pointer-types" generic
+	make prefix=${SYSROOT_DIR}/usr MANDIR=${SYSROOT_DIR}/usr/share/man/man1 \
+         -f unix/Makefile install
+<<<CLEAR_DIR>>>

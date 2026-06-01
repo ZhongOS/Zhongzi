@@ -1,0 +1,2 @@
+PACKAGE=kdeclarative
+BUILD_MODE=cmake

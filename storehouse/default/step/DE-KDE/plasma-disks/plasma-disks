@@ -1,0 +1,2 @@
+PACKAGE=plasma-disks
+BUILD_MODE=cmake

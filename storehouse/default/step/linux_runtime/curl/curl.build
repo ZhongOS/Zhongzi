@@ -1,0 +1,1 @@
+EXTRA_PARM=--with-openssl --enable-threaded-resolver --with-ca-path=/etc/ssl/certs

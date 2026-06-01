@@ -1,0 +1,2 @@
+PACKAGE=rubberband
+BUILD_MODE=meson

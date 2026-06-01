@@ -1,0 +1,2 @@
+PACKAGE=kde-cli-tools
+BUILD_MODE=cmake

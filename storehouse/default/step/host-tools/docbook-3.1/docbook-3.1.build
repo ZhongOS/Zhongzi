@@ -1,0 +1,21 @@
+export PATH=${HOST_TOOLS_DIR}/bin:${PATH}
+rm -rf ${BUILD_DIRECTORY}/docbook-3.1
+mkdir -pv ${BUILD_DIRECTORY}/docbook-3.1
+pushd ${BUILD_DIRECTORY}/docbook-3.1
+    unzip ${DOWNLOADDIR}/docbk31.zip
+    sed -i -e '/ISO 8879/d' \
+           -e 's|DTDDECL "-//OASIS//DTD DocBook V3.1//EN"|SGMLDECL|g' \
+           docbook.cat
+    install -v -d -m755 ${PREFIX}/share/sgml/docbook/sgml-dtd-3.1
+    install -v docbook.cat ${PREFIX}/share/sgml/docbook/sgml-dtd-3.1/catalog
+    cp -v -af *.dtd *.mod *.dcl ${PREFIX}/share/sgml/docbook/sgml-dtd-3.1
+
+    install-catalog --add ${PREFIX}/etc/sgml/sgml-docbook-dtd-3.1.cat \
+        ${PREFIX}/share/sgml/docbook/sgml-dtd-3.1/catalog
+    install-catalog --add ${PREFIX}/etc/sgml/sgml-docbook-dtd-3.1.cat \
+        ${PREFIX}/etc/sgml/sgml-docbook.cat
+    
+cat >> ${PREFIX}/share/sgml/docbook/sgml-dtd-3.1/catalog << "EOF"
+PUBLIC "-//Davenport//DTD DocBook V3.0//EN" "docbook.dtd"
+EOF
+rm -rf ${BUILD_DIRECTORY}/docbook-3.1

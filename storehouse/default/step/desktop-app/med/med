@@ -1,0 +1,2 @@
+PACKAGE=med
+BUILD_MODE=cmake

@@ -1,0 +1,2 @@
+PACKAGE=libgusb
+BUILD_MODE=meson

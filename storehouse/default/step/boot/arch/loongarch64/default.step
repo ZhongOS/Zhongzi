@@ -1,0 +1,19 @@
+grub
+breeze-grub
+# linux-kernel|%config=advanced;!linux_git
+# linux-kernel|%config=compatible;!linux_git
+linux-kernel|%config=4kpage;!linux_git;opt;extra_kernel
+linux-kernel|%config=16kpage;!linux_git
+linux-kernel|%config=64kpage;!linux_git;opt;extra_kernel
+linux-kernel|%config=4kpage_rt;!linux_git;opt;extra_kernel
+linux-kernel|%config=16kpage_rt;!linux_git;opt;extra_kernel
+linux-kernel|%config=64kpage_rt;!linux_git;opt;extra_kernel
+# linux-kernel_git|%config=advanced;linux_git
+# linux-kernel_git|%config=compatible;linux_git
+linux-kernel_git|%config=4kpage;linux_git;opt;extra_kernel
+linux-kernel_git|%config=16kpage;linux_git
+linux-kernel_git|%config=64kpage;linux_git;opt;extra_kernel
+linux-kernel_git|%config=4kpage_rt;linux_git;opt;extra_kernel
+linux-kernel_git|%config=16kpage_rt;linux_git;opt;extra_kernel
+linux-kernel_git|%config=64kpage_rt;linux_git;opt;extra_kernel
+# extra-linux-kernel_git|none_status;%extra_str=compatible;extra_linux

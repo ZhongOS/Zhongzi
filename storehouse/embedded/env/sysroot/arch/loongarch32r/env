@@ -1,0 +1,9 @@
+export YONGBAO_TARGET_ARCH=loongarch32r
+export YONGBAO_TARGET_ARCH_NAME=loongarch
+export QEMU_TARGET_ARCH=loongarch32
+# export TARGET_ABI=ilp32s
+export ARCH_NAME=loongarch32
+export ARCH_FAMILY=loongarch
+# export ARCH_ABI=ilp32s
+export RUN_TARGET_ARCH=loongarch32
+export TARGET_WITH_ARCH=la32rv1.0

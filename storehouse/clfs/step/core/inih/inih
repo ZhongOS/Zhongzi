@@ -1,0 +1,2 @@
+PACKAGE=inih
+BUILD_MODE=meson

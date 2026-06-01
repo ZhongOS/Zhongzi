@@ -1,0 +1,13 @@
+<<<TAR_UNCOMPRESS>>>
+	sed -e 's/__attribute_nonnull__/__nonnull/' \
+	    -i gnulib/lib/malloc/dynarray-skeleton.c
+        for config_i in $(find -name "config.sub")
+        do
+                cp -a -f $(automake --print-libdir)/config.{sub,guess} $(dirname ${config_i})/
+        done
+	./configure --prefix=/usr --build=${CROSS_HOST} --host=${CROSS_TARGET} --without-libunistring-prefix texinfo_cv_sys_iconv_converts_euc_cn=y
+        <<<MAKE>>> -C tools/gnulib/lib
+        <<<MAKE>>> -C tools/info makedoc
+	<<<MAKE_AND_INSTALL>>>
+	make DESTDIR=${SYSROOT_DIR} TEXMF=/usr/share/texmf install-tex
+<<<CLEAR_DIR>>>

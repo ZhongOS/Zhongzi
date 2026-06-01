@@ -1,0 +1,2 @@
+PACKAGE=pangomm
+BUILD_MODE=meson

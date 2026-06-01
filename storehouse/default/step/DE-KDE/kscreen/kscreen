@@ -1,0 +1,2 @@
+PACKAGE=kscreen
+BUILD_MODE=cmake

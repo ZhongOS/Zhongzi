@@ -1,0 +1,2 @@
+PACKAGE=libnova
+BUILD_MODE=custom

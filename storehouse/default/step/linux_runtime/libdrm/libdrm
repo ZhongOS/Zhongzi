@@ -1,0 +1,2 @@
+PACKAGE=libdrm
+BUILD_MODE=meson

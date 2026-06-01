@@ -1,0 +1,2 @@
+PACKAGE=KDE6-plasma-workspace-wallpapers
+BUILD_MODE=cmake

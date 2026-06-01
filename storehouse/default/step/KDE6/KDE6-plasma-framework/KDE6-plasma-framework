@@ -1,0 +1,2 @@
+PACKAGE=KDE6-plasma-framework
+BUILD_MODE=cmake

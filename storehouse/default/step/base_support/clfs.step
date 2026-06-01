@@ -1,0 +1,522 @@
+util-macros
+xorgproto
+libXau
+libXdmcp
+xcb-proto
+libxcb
+
+xtrans
+libX11
+libXext
+libFS
+libICE
+libSM
+libXScrnSaver
+libXt
+libXmu
+libXpm
+libXaw
+libXfixes
+libXcomposite
+libXrender
+libXcursor
+libXdamage
+libfontenc
+libXfont2
+libXft
+libXi
+libXinerama
+libXrandr
+libXres
+libXtst
+libXv
+libXvMC
+libXxf86dga
+libXxf86vm
+libdmx
+libpciaccess
+libxkbfile
+libxshmfence
+
+xcb-util
+xcb-util-image
+xcb-util-keysyms
+xcb-util-renderutil
+xcb-util-wm
+xcb-util-cursor
+
+libxcb
+libdrm
+wayland
+wayland-protocols
+libvdpau
+libva
+libglvnd
+Mako
+
+libarchive
+
+# OpenCL-Headers
+# SPIRV-Headers
+# SPIRV-Tools
+# glslang
+# shaderc
+# omxil
+# log4c
+# mpg123
+
+libogg
+
+# liboggz
+# mad
+
+opus
+
+# opusfile
+
+libvorbis
+speex
+speexdsp
+libsndfile
+# libfishsound
+SDL2
+glu
+# sdl12-compat
+# faad2
+# utfcpp
+taglib
+libzen
+libmediainfo
+flac
+lame
+libsamplerate
+libvpx
+alsa-lib
+pulseaudio
+# tizonia-openmax-il
+lm-sensors
+# libconfig
+lua
+# pycparser
+# PyYAML
+
+mesa
+glew
+mesa-demos
+# freeglut
+# libva
+
+xbitmaps
+
+iceauth
+luit
+mkfontscale
+sessreg
+setxkbmap
+smproxy
+x11perf@/benchmark
+xauth
+xbacklight
+xcmsdb
+xcursorgen
+xdpyinfo
+xdriinfo
+xev
+xgamma
+xhost
+xinput
+xkbcomp
+xkbevd
+xkbutils
+xkill
+xlsatoms
+xlsclients
+xmessage
+xmodmap
+xpr
+xprop
+xrandr
+xrdb
+xrefresh
+xset
+xsetroot
+xvinfo
+xwd
+xwininfo
+xwud
+
+
+xcursor-themes
+
+font-util
+encodings
+font-alias
+font-adobe-utopia-type1
+font-bh-ttf
+font-bh-type1
+font-ibm-type1
+font-misc-ethiopic
+font-xfree86-type1
+
+wqy-zenhei
+wqy-microhei
+
+xkeyboard-config
+pixman
+libepoxy
+libxcvt
+libtirpc
+xwayland
+xorg-server
+mtdev
+libevdev
+libwacom
+xf86-input-wacom
+libinput
+
+xf86-input-evdev
+xf86-input-libinput
+xf86-input-synaptics
+xf86-video-amdgpu
+xf86-video-ati
+xf86-video-fbdev
+xf86-video-nouveau
+
+
+twm
+xterm
+xinit
+shared-mime-info
+gdk-pixbuf
+gdk-pixbuf-xlib
+
+
+graphene
+cairo
+pango
+dbus-glib
+libxkbcommon
+xdg-utils
+xdg-user-dirs
+libpaper
+cups
+iso-codes
+atk
+# attrs
+# libei
+at-spi2-core
+at-spi2-atk
+adwaita-icon-theme
+libsass
+sassc
+gtk2
+gtk3
+# libdecor
+# gsl
+gstreamer
+
+gst-plugins-base
+
+# openh264
+
+gtk-engines
+libcroco
+librsvg
+
+# cairo
+keybinder3
+imlib2
+
+libnotify
+# alsa-lib
+# libogg
+# flac
+# opus
+# libvorbis
+# speex
+# speexdsp
+# libsndfile
+# libsamplerate
+# pulseaudio
+# SDL2
+
+snappy
+libass
+fdk-aac
+# lame
+libtheora
+
+
+# libvpx
+# giflib
+libwebp
+x264
+x265
+
+# Vulkan-Headers
+# volk
+# Vulkan-Loader
+# Vulkan-Tools
+# aom
+ffmpeg
+
+gtk4
+
+# libcloudproviders
+# gsettings-desktop-schemas
+# nghttp2
+# glib-networking_pre
+# libsoup-2
+# libsoup
+# pycairo
+# pygobject
+# tracker
+
+alsa-plugins
+alsa-utils
+hicolor-icon-theme
+desktop-file-utils
+fltk
+alsa-tools
+alsa-firmware
+audiofile
+libzip
+slang
+libexif
+startup-notification
+libunique
+giflib
+
+# six
+# urllib3
+rpcsvc-proto
+libnsl
+sharutils
+cracklib
+linux-pam
+mozjs-115
+polkit
+libpwquality
+krb5
+cyrus-sasl
+# elogind
+lzip
+lz4
+# googletest
+# abseil-cpp
+protobuf
+# mosh|bad
+emacs
+apr
+apr-util
+scons
+serf
+subversion
+# double-conversion
+# Vulkan-Headers
+# volk
+# Vulkan-Loader
+# Vulkan-Tools
+# wayland-utils
+# ocl-icd
+# libical
+# bluez
+qt5@/cross-tools
+qt5
+sip4
+PyQt5
+libsecret
+gcr
+# gcr3
+gnome-keyring
+upower
+jansson
+libndp
+libmbim
+libqmi
+# wpa_supplicant
+ModemManager
+mobile-broadband-provider-info
+# libidn2
+popt
+newt
+# dnsmasq
+# ppp
+# libdaemon
+# libteam
+# avahi
+NetworkManager
+zsh
+fish-shell
+screen
+tmux
+which
+xscreensaver
+colord
+
+pipewire
+# seatd
+weston
+libxklavier
+cldr-emoji-annotation
+fmt
+KDE6-extra-cmake-modules
+
+xcb-imdkit
+
+json-c
+enchant
+dconf
+libhandy
+dconf-editor
+
+pycairo
+pygobject
+pyxdg
+dbus-python
+# PyQt5
+# libssh
+# cryptsetup
+systemd
+util-linux
+dbus
+# c-stdaux
+# c-utf8
+# c-dvar
+# c-list
+# c-rbtree
+# c-ini
+# c-shquote
+dbus-broker
+# lua
+# libdbusmenu
+ibus
+pyzy
+ibus-pinyin
+dmidecode
+rust-cbindgen@/cross-tools
+ripgrep
+a52dec
+# taglib
+lmdb
+qrencode
+libical
+
+xxHash
+rsync
+cscope
+lit
+
+
+# frei0r-plugins
+# potrace
+# glaxnimate
+# orc
+mlt
+xapian-core
+libssh2
+exiv2
+# lm-sensors
+libqalculate
+libcanberra
+libnma
+network-manager-applet
+lxml
+sphinx
+docutils
+sgml-common
+docbook-3.1
+docbook-4.5
+docbook-xsl-nons
+docbook-xml-4.5
+docbook-5.0.1
+docbook-5.1
+itstool
+xmlto
+asciidoc-py
+highlight
+
+frei0r
+gsettings-desktop-schemas
+
+# libzen
+# libmediainfo
+# mediainfo
+nghttp2
+# glib-networking_pre
+# libsoup-2
+libproxy
+glib-networking
+libsoup
+libwpe
+wpebackend-fdo
+# libyaml
+ruby
+Markdown
+toml
+typogrify
+# Pygments
+# packaging
+gi-docgen
+unifdef
+# libyuv
+libavif
+
+webkitgtk
+cdparanoia-III
+
+# highway
+# libjxl
+# libdv
+# libavtp
+# libmicrodns
+# libnice
+
+# libmpeg2
+# opencore-amr
+# libdvdread
+# libcddb
+# libcdio
+# libvisual
+# libvorbisidec
+# aalib
+# libcaca
+# libraw1394
+# libavc1394
+# libiec61883
+# libshout
+# twolame
+# wavpack
+
+# opencv
+# libltc
+# gst-plugins-good
+# gst-plugins-bad
+# gst-libav
+# gstreamer-vaapi
+# gst-plugins-ugly
+
+# hyphen
+# woff2
+# libmanette
+# flite|bad
+# webkitgtk
+# qtwebkit
+
+faac
+accountsservice
+libpcap
+ntfs-3g
+squashfs
+plymouth
+dracut
+v4l-utils
+
+jack2
+lttng-ust
+ccache
+
+node
+
+create_files
+final_run

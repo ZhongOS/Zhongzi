@@ -1,0 +1,2 @@
+PACKAGE=wine-ge-custom
+BUILD_MODE=custom

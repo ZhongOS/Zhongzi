@@ -1,0 +1,2 @@
+PACKAGE=ktp-desktop-applets
+BUILD_MODE=cmake

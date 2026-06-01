@@ -1,0 +1,1 @@
+EXTRA_PARM=-DUPDATE_MIME_DATABASE_EXECUTABLE=${SYSDIR}/cross-tools/bin/update-mime-database -DXSLTPROC_EXECUTABLE=/bin/xsltproc -DXAPIAN_SHARED_LIBRARY=${SYSROOT_DIR}/usr/lib64/libxapian.so

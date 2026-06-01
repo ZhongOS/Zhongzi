@@ -1,0 +1,78 @@
+if [ "x${LINUX_HOST}" == "x$(echo ${CROSS_HOST} | sed 's@cross@unknown@g')" ]; then
+	mkdir -p ${PREFIX}/${LINUX_HOST}/lib/rustlib/
+	cp -a ${HOST_TOOLS_DIR}/lib/rustlib/${LINUX_HOST} ${PREFIX}/${LINUX_HOST}/lib/rustlib
+else
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+	export PATH=${PREFIX}/${LINUX_HOST}/bin:${PATH}
+# 	./configure --target=${LINUX_HOST},$(echo ${CROSS_HOST} | sed 's@cross@unknown@g') \
+	./configure --target=${LINUX_HOST} \
+	            --prefix=${PREFIX}/${LINUX_HOST} --sysconfdir=${PREFIX}/${LINUX_HOST}/etc \
+# 	            --local-rust-root=${CROSSTOOLS_DIR}/rust/usr/local \
+# 	            --enable-extended --enable-vendor --disable-docs --disable-dist-src --release-channel=dev \
+	            --local-rust-root=${HOST_TOOLS_DIR} \
+# 	            --enable-extended --enable-vendor --release-channel=stable \
+	            --enable-extended --enable-vendor --release-channel=dev \
+		    --disable-docs --disable-debug --disable-compiler-docs --disable-optimize-tests --disable-verbose-tests --disable-dist-src \
+		    --set=target.${LINUX_HOST}.linker="${LINUX_HOST}-gcc" \
+		    --set=target.${LINUX_HOST}.cc="${LINUX_HOST}-gcc" \
+		    --set=target.${LINUX_HOST}.cxx="${LINUX_HOST}-g++" \
+		    --set=target.${LINUX_HOST}.llvm-config="${LINUX_HOST}-llvm-config" \
+	            --disable-codegen-tests --experimental-targets="" --enable-llvm-static-stdcpp --enable-profiler
+
+# #         export CARGO_TARGET_$(echo ${LINUX_HOST^^} | tr '-' '_')_LINKER="${LINUX_HOST}-gcc"
+# #         export CARGO_TARGET_$(echo ${LINUX_HOST^^} | tr '-' '_')_RUSTFLAGS="-Ccode-model=large -Clink-arg=-Wl,-rpath,${LINUX_SYSROOT_DIR}/lib${LIB_SUFF} -Clink-arg=-Wl,-rpath-link,${LINUX_SYSROOT_DIR}/lib${LIB_SUFF}"
+# #         <<<MAKE>>> HOST_CC="gcc"
+# #         <<<MAKE>>> HOST_CC="gcc" install
+        <<<MAKE>>>
+        <<<MAKE>>> install
+<<<CLEAR_DIR>>>
+
+save_package_version cross-toolchains_rustc "${PACKAGE_VERSION}-dev"
+
+
+#	export CARGO_TARGET_$(echo ${CROSS_HOST^^} | sed 's@CROSS@UNKNOWN@g' | tr '-' '_')_RUSTFLAGS="-Clink-arg=-Wl,-rpath,${CROSSTOOLS_DIR}/lib:${CROSSTOOLS_DIR}/lib64:${HOST_TOOLS_DIR}/lib:${HOST_TOOLS_DIR}/lib64:/usr/lib:/usr/lib64 -Clink-arg=-Wl,-rpath-link,${CROSSTOOLS_DIR}/lib:${CROSSTOOLS_DIR}/lib64:${HOST_TOOLS_DIR}/lib:${HOST_TOOLS_DIR}/lib64:/usr/lib:/usr/lib64"
+# CARGO_TARGET_ARMV7_UNKNOWN_LINUX_UCLIBCEABI_RUSTFLAGS='-Clink-arg=-s -Clink-arg=-Wl,--dynamic-linker=/mmc/lib/ld-uClibc.so.1 -Clink-arg=-Wl,-rpath,/mmc/lib'
+
+fi
+
+
+[[[1.80.0]]]
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+	export PATH=${PREFIX}/${LINUX_HOST}/bin:${PATH}
+# if [ "x${LINUX_HOST}" == "x$(echo ${CROSS_HOST} | sed 's@cross@unknown@g')" ]; then
+# 	./configure --target=${LINUX_HOST} \
+# 		    --prefix=${PREFIX}/${LINUX_HOST} --sysconfdir=${PREFIX}/${LINUX_HOST}/etc \
+# 		    --local-rust-root=${CROSSTOOLS_DIR}/rust/usr/local \
+# 		    --enable-extended --enable-vendor --disable-docs --disable-dist-src --release-channel=dev \
+# 		    --disable-codegen-tests --experimental-targets="" --enable-llvm-static-stdcpp --enable-profiler
+# else
+# 	./configure --target=${LINUX_HOST},$(echo ${CROSS_HOST} | sed 's@cross@unknown@g') \
+	./configure --target=${LINUX_HOST} \
+	            --prefix=${PREFIX}/${LINUX_HOST} --sysconfdir=${PREFIX}/${LINUX_HOST}/etc \
+# 	            --local-rust-root=${CROSSTOOLS_DIR}/rust/usr/local \
+# 	            --enable-extended --enable-vendor --disable-docs --disable-dist-src --release-channel=dev \
+	            --local-rust-root=${HOST_TOOLS_DIR} \
+	            --enable-extended --enable-vendor --release-channel=stable \
+		    --disable-docs --disable-debug --disable-compiler-docs --disable-optimize-tests --disable-verbose-tests --disable-dist-src \
+		    --set=target.${LINUX_HOST}.linker="${LINUX_HOST}-gcc" \
+		    --set=target.${LINUX_HOST}.cc="${LINUX_HOST}-gcc" \
+		    --set=target.${LINUX_HOST}.cxx="${LINUX_HOST}-g++" \
+		    --set=target.${LINUX_HOST}.llvm-config="${LINUX_HOST}-llvm-config" \
+	            --disable-codegen-tests --experimental-targets="" --enable-llvm-static-stdcpp --enable-profiler
+
+# #         export CARGO_TARGET_$(echo ${LINUX_HOST^^} | tr '-' '_')_LINKER="${LINUX_HOST}-gcc"
+# #         export CARGO_TARGET_$(echo ${LINUX_HOST^^} | tr '-' '_')_RUSTFLAGS="-Ccode-model=large -Clink-arg=-Wl,-rpath,${LINUX_SYSROOT_DIR}/lib${LIB_SUFF} -Clink-arg=-Wl,-rpath-link,${LINUX_SYSROOT_DIR}/lib${LIB_SUFF}"
+# fi
+# #         <<<MAKE>>> HOST_CC="gcc"
+# #         <<<MAKE>>> HOST_CC="gcc" install
+        <<<MAKE>>>
+        <<<MAKE>>> install
+<<<CLEAR_DIR>>>
+
+save_package_version cross-toolchains_rustc "${PACKAGE_VERSION}-dev"
+
+
+#	export CARGO_TARGET_$(echo ${CROSS_HOST^^} | sed 's@CROSS@UNKNOWN@g' | tr '-' '_')_RUSTFLAGS="-Clink-arg=-Wl,-rpath,${CROSSTOOLS_DIR}/lib:${CROSSTOOLS_DIR}/lib64:${HOST_TOOLS_DIR}/lib:${HOST_TOOLS_DIR}/lib64:/usr/lib:/usr/lib64 -Clink-arg=-Wl,-rpath-link,${CROSSTOOLS_DIR}/lib:${CROSSTOOLS_DIR}/lib64:${HOST_TOOLS_DIR}/lib:${HOST_TOOLS_DIR}/lib64:/usr/lib:/usr/lib64"
+# CARGO_TARGET_ARMV7_UNKNOWN_LINUX_UCLIBCEABI_RUSTFLAGS='-Clink-arg=-s -Clink-arg=-Wl,--dynamic-linker=/mmc/lib/ld-uClibc.so.1 -Clink-arg=-Wl,-rpath,/mmc/lib'

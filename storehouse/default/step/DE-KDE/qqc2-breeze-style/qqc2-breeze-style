@@ -1,0 +1,2 @@
+PACKAGE=qqc2-breeze-style
+BUILD_MODE=cmake

@@ -1,0 +1,2 @@
+PACKAGE=libpwquality
+BUILD_MODE=custom

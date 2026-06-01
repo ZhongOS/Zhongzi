@@ -1,0 +1,2 @@
+export PREFIX=${CROSSTOOLS_DIR}
+export MAKE_AND_INSTALL="make -j${JOBS} &&  make install"

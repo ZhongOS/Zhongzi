@@ -1,0 +1,63 @@
+<<<TAR_UNCOMPRESS>>>
+    TCL_VERSION="${PACKAGE_VERSION%\.*}"
+    SRCDIR=$(pwd)
+    pushd unix
+	    ./configure ${COMMON_CONFIG} --mandir=/usr/share/man \
+	                --enable-64bit
+	    check_gnu_Makefile
+	    <<<MAKE>>> TCLSH_PROG=${HOST_TOOLS_DIR}/bin/tclsh
+	    TDBC_VERSION=$(ls pkgs/ | grep -o "tdbc[[:digit:]]\([[:digit:]|\.]*\)" | sed "s@tdbc@@")
+	    ITCL_VERSION=$(ls pkgs/ | grep -o "itcl[[:digit:]]\([[:digit:]|\.]*\)" | sed "s@itcl@@")
+	    sed -i -e "s|$SRCDIR/unix|${LINUX_SYSROOT_DIR}/usr/lib${LIB_SUFF}|" \
+	           -e "s|$SRCDIR|${LINUX_SYSROOT_DIR}/usr/include|" \
+	           -e "/TCL_INCLUDE_SPEC/s|/usr/include|${LINUX_SYSROOT_DIR}/usr/include|" \
+		   -e "/TCL_STUB_LIB_SPEC/s|/usr/lib|${LINUX_SYSROOT_DIR}/usr/lib|" \
+                   -e "/TCL_LIB_SPEC/s|/usr/lib|${LINUX_SYSROOT_DIR}/usr/lib|" \
+	           tclConfig.sh
+	    sed -i -e "s|$SRCDIR/unix/pkgs/tdbc${TDBC_VERSION}|${LINUX_SYSROOT_DIR}/usr/lib${LIB_SUFF}/tdbc${TDBC_VERSION}|" \
+               -e "s|$SRCDIR/pkgs/tdbc${TDBC_VERSION}/generic|${LINUX_SYSROOT_DIR}/usr/include|"    \
+               -e "s|$SRCDIR/pkgs/tdbc${TDBC_VERSION}/library|${LINUX_SYSROOT_DIR}/usr/lib${LIB_SUFF}/tcl${TCL_VERSION}|" \
+               -e "s|$SRCDIR/pkgs/tdbc${TDBC_VERSION}|${LINUX_SYSROOT_DIR}/usr/include|"            \
+               pkgs/tdbc${TDBC_VERSION}/tdbcConfig.sh
+	    sed -i -e "s|$SRCDIR/unix/pkgs/itcl${ITCL_VERSION}|${LINUX_SYSROOT_DIR}/usr/lib${LIB_SUFF}/itcl${ITCL_VERSION}|" \
+               -e "s|$SRCDIR/pkgs/itcl${ITCL_VERSION}/generic|${LINUX_SYSROOT_DIR}/usr/include|"    \
+               -e "s|$SRCDIR/pkgs/itcl${ITCL_VERSION}|${LINUX_SYSROOT_DIR}/usr/include|"            \
+               pkgs/itcl${ITCL_VERSION}/itclConfig.sh
+	    unset SRCDIR
+	    make DESTDIR=${LINUX_SYSROOT_DIR} install
+	    make DESTDIR=${LINUX_SYSROOT_DIR} install-private-headers
+	    ln -sfv tclsh${TCL_VERSION} ${LINUX_SYSROOT_DIR}/usr/bin/tclsh
+    popd
+<<<CLEAR_DIR>>>
+
+
+[[[8.6.11]]]
+<<<TAR_UNCOMPRESS>>>
+    TCL_VERSION="${PACKAGE_VERSION%\.*}"
+    SRCDIR=$(pwd)
+    pushd unix
+	    ./configure ${COMMON_CONFIG} --mandir=/usr/share/man \
+	                --enable-64bit
+	    check_gnu_Makefile
+	    <<<MAKE>>>
+	    TDBC_VERSION=$(ls pkgs/ | grep -o "tdbc[[:digit:]]\([[:digit:]|\.]*\)" | sed "s@tdbc@@")
+	    ITCL_VERSION=$(ls pkgs/ | grep -o "itcl[[:digit:]]\([[:digit:]|\.]*\)" | sed "s@itcl@@")
+	    sed -i -e "s|$SRCDIR/unix|${LINUX_SYSROOT_DIR}/usr/lib${LIB_SUFF}|" \
+	           -e "s|$SRCDIR|${LINUX_SYSROOT_DIR}/usr/include|" \
+	           -e "/TCL_INCLUDE_SPEC/s|/usr/include|${LINUX_SYSROOT_DIR}/usr/include|" \
+	           tclConfig.sh
+	    sed -i -e "s|$SRCDIR/unix/pkgs/tdbc${TDBC_VERSION}|${LINUX_SYSROOT_DIR}/usr/lib${LIB_SUFF}/tdbc${TDBC_VERSION}|" \
+               -e "s|$SRCDIR/pkgs/tdbc${TDBC_VERSION}/generic|${LINUX_SYSROOT_DIR}/usr/include|"    \
+               -e "s|$SRCDIR/pkgs/tdbc${TDBC_VERSION}/library|${LINUX_SYSROOT_DIR}/usr/lib${LIB_SUFF}/tcl${TCL_VERSION}|" \
+               -e "s|$SRCDIR/pkgs/tdbc${TDBC_VERSION}|${LINUX_SYSROOT_DIR}/usr/include|"            \
+               pkgs/tdbc${TDBC_VERSION}/tdbcConfig.sh
+	    sed -i -e "s|$SRCDIR/unix/pkgs/itcl${ITCL_VERSION}|${LINUX_SYSROOT_DIR}/usr/lib${LIB_SUFF}/itcl${ITCL_VERSION}|" \
+               -e "s|$SRCDIR/pkgs/itcl${ITCL_VERSION}/generic|${LINUX_SYSROOT_DIR}/usr/include|"    \
+               -e "s|$SRCDIR/pkgs/itcl${ITCL_VERSION}|${LINUX_SYSROOT_DIR}/usr/include|"            \
+               pkgs/itcl${ITCL_VERSION}/itclConfig.sh
+	    unset SRCDIR
+	    make DESTDIR=${LINUX_SYSROOT_DIR} install
+	    make DESTDIR=${LINUX_SYSROOT_DIR} install-private-headers
+	    ln -sfv tclsh${TCL_VERSION} ${LINUX_SYSROOT_DIR}/usr/bin/tclsh
+    popd
+<<<CLEAR_DIR>>>

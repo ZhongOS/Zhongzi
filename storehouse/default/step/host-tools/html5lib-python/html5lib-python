@@ -1,0 +1,2 @@
+PACKAGE=html5lib-python
+BUILD_MODE=python

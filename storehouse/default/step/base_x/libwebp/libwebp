@@ -1,0 +1,2 @@
+PACKAGE=libwebp
+BUILD_MODE=gnu

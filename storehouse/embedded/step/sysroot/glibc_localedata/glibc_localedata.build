@@ -1,0 +1,12 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+        mkdir -p build-locale
+        pushd build-locale
+		export CFLAGS=""
+		export LDFLAGS=""
+                ../configure --prefix=/usr --libdir=/usr/lib${LIB_SUFF} --libexecdir=/usr/lib${LIB_SUFF}/glibc \
+                         --enable-stack-protector=strong --enable-add-ons \
+                         --disable-werror libc_cv_slibdir=/usr/lib${LIB_SUFF}
+                <<<MAKE>>>
+                <<<MAKE>>> DESTDIR=${SYSROOT_DIR} localedata/install-locales
+<<<CLEAR_DIR>>>

@@ -1,0 +1,2 @@
+PACKAGE=man-pages
+BUILD_MODE=custom

@@ -1,0 +1,2 @@
+PACKAGE=thc-hydra
+BUILD_MODE=gnu

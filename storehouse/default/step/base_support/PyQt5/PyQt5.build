@@ -1,0 +1,21 @@
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+    sed -i "s,@MinimumSipVersion@,4.19.25," configure.py
+    sed -i "s@dbus.mainloop.__path__\[0\]@'/usr/lib/python$(get_package_version Python3)/site-packages/dbus/mainloop'@g" configure.py
+#    _PYTHON_SYSCONFIGDATA_NAME=_sysconfigdata__linux_${CROSS_TARGET} \
+
+
+    ${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-python3 ./configure.py --confirm-license \
+              --bindir=/usr/bin --sipdir=/usr/share/sip/PyQt5 \
+              --destdir=/usr/lib64/python<<<PYTHON_VERSION>>>/site-packages \
+              --stubsdir=/usr/lib64/python<<<PYTHON_VERSION>>>/site-packages/PyQt5 \
+	      --qml-plugindir=/usr/lib64/qt5/plugins/PyQt5 \
+	      --designer-plugindir=/usr/lib64/qt5/plugins/designer \
+              --sip-incdir=${SYSROOT_DIR}/usr/include/python<<<PYTHON_VERSION>>> \
+	      --qmake=${SYSROOT_DIR}/usr/bin/qmake
+    <<<MAKE>>>
+    sed -i "s@${SYSROOT_DIR}/usr/bin/python3@${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-python3@g" Makefile
+    sed -i "/target\.path/s@${SYSROOT_DIR}@@g" dbus/dbus.pro
+    sed -i "s@/usr/bin/qmake.orig@/usr/bin/qmake@g" $(grep -rl "qmake.orig" $(find -name "*.mk" -name "Makefile"))
+    make INSTALL_ROOT=${SYSROOT_DIR} install
+<<<CLEAR_DIR>>>

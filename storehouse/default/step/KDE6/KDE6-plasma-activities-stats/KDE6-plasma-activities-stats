@@ -1,0 +1,2 @@
+PACKAGE=KDE6-plasma-activities-stats
+BUILD_MODE=cmake

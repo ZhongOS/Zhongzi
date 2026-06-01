@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kapidox
+BUILD_MODE=cmake

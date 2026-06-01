@@ -1,0 +1,2 @@
+PACKAGE=lz4
+BUILD_MODE=custom

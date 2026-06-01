@@ -1,0 +1,2 @@
+PACKAGE=libnotify
+BUILD_MODE=meson

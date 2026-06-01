@@ -1,0 +1,2 @@
+PACKAGE=orc
+BUILD_MODE=meson

@@ -1,0 +1,2 @@
+PACKAGE=libXv
+BUILD_MODE=gnu

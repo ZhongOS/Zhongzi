@@ -1,0 +1,4 @@
+<<<TAR_UNCOMPRESS>>>
+     <<<MAKE>>>
+    make PREFIX=${PREFIX} LIBDIR=${PREFIX}/lib64 install
+<<<CLEAR_DIR>>>

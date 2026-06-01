@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kidletime
+BUILD_MODE=cmake

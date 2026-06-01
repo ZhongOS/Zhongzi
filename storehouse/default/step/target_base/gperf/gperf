@@ -1,0 +1,2 @@
+PACKAGE=gperf
+BUILD_MODE=gnu

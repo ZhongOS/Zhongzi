@@ -1,0 +1,15 @@
+<<<TAR_UNCOMPRESS>>>
+	MINGW_HOST=$(archname_to_triple "$(get_user_set_env target ${MINGW_HOST})" "${MINGW_HOST}")
+
+	rm -rf gdb* libdecnumber readline sim
+	mkdir -p tools-build
+	pushd tools-build
+#     		CC=gcc AR=ar AS=as CFLAGS=$([[ $(gcc -dumpversion) -ge 13 ]] && echo "${CFLAGS} -Wno-error=dangling-pointer" || echo "${CFLAGS}") \
+    		CC=gcc AR=ar AS=as \
+		../configure --prefix=${PREFIX}/${MINGW_HOST} --build=${CROSS_HOST} --host=${CROSS_HOST} \
+	                     --target=${MINGW_HOST}  --disable-werror
+	    	<<<MAKE>>> configure-host
+    		<<<MAKE>>>
+		make install-strip
+	popd
+<<<CLEAR_DIR>>>

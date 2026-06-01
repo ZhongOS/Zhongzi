@@ -1,0 +1,2 @@
+PACKAGE=yaml-cpp
+BUILD_MODE=cmake

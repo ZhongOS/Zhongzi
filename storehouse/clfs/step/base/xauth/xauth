@@ -1,0 +1,2 @@
+PACKAGE=xauth
+BUILD_MODE=gnu

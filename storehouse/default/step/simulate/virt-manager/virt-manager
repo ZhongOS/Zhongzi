@@ -1,0 +1,3 @@
+PACKAGE=virt-manager
+BUILD_MODE=meson
+# BUILD_MODE=python

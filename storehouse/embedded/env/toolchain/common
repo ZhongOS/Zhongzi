@@ -1,0 +1,3 @@
+export PREFIX=${SYSDIR}/build/toolchain
+export COMMON_CONFIG="--prefix=${SYSDIR}/cross-tools/toolchains"
+export CROSS_TOOLCHAIN_PREFIX="/opt/yongbao-cross"

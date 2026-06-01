@@ -1,0 +1,2 @@
+PACKAGE=OCCT
+BUILD_MODE=custom

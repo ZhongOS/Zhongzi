@@ -1,0 +1,2 @@
+PACKAGE=KDE6-karchive
+BUILD_MODE=cmake

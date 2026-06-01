@@ -1,0 +1,2 @@
+PACKAGE=strace
+BUILD_MODE=gnu

@@ -1,0 +1,1 @@
+EXTRA_PARM=-Dbashcompletiondir=/usr/share/bash-completion/completions -Diniparserdir=${SYSROOT_DIR}/usr/include/iniparser

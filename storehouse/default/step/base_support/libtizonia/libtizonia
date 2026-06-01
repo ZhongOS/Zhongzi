@@ -1,0 +1,2 @@
+PACKAGE=tizonia-openmax-il
+BUILD_MODE=custom

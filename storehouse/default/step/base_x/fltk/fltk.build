@@ -1,0 +1,6 @@
+<<<TAR_UNCOMPRESS>>>
+    sed -i "/^DIRS/s@test@@g" Makefile
+    ./configure ${COMMON_CONFIG} --enable-shared
+    <<<MAKE_AND_INSTALL>>>
+    cp -v ${SYSROOT_DIR}/usr/bin/fltk-config ${CROSSTOOLS_DIR}/bin/
+<<<CLEAR_DIR>>>

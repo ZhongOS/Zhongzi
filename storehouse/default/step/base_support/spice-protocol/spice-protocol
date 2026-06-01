@@ -1,0 +1,2 @@
+PACKAGE=spice-protocol
+BUILD_MODE=meson

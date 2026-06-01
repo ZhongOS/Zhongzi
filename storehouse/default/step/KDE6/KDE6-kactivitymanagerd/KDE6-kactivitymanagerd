@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kactivitymanagerd
+BUILD_MODE=cmake

@@ -1,0 +1,2 @@
+PACKAGE=x11perf
+BUILD_MODE=gnu

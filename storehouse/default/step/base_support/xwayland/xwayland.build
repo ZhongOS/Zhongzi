@@ -1,0 +1,15 @@
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+    sed -i -e "/scanner_dep/s@, native: true@@g" \
+           -e "/scanner =/s@find_program\(.*\)\$@find_program('wayland-scanner')@g" \
+           hw/xwayland/meson.build 
+    mkdir cross-build
+    pushd cross-build
+        meson ${MESON_CONFIG} \
+              -Dxvfb=false -Dxkb_output_dir=/var/lib/xkb \
+	      -Dfontrootdir=/usr/share/fonts/X11 -Dxkb_dir=/usr/share/X11/xkb -Dxkb_bin_dir=/usr/bin \
+              ..
+	<<<NINJA_AND_INSTALL>>>
+    popd
+    mkdir -pv ${SYSROOT_DIR}/etc/X11/xorg.conf.d
+<<<CLEAR_DIR>>>

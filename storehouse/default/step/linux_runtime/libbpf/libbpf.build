@@ -1,0 +1,5 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+	<<<MAKE>>> CC="${LINUX_HOST}-gcc" -C src
+	make CC="${LINUX_HOST}-gcc" -C src DESTDIR=${LINUX_SYSROOT_DIR} install
+<<<CLEAR_DIR>>>

@@ -1,0 +1,2 @@
+PACKAGE=kdiagram
+BUILD_MODE=cmake

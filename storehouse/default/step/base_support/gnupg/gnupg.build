@@ -1,0 +1,1 @@
+EXTRA_PARM=GPG_ERROR_CONFIG=${CROSSTOOLS_DIR}/bin/gpg-error-config GPGRT_CONFIG=${CROSSTOOLS_DIR}/bin/gpgrt-config --disable-doc

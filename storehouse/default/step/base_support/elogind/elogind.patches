@@ -1,0 +1,4 @@
+p1 0001-Fix-loongarch64-double-float-define-to-loongarch64-l.patch
+
+[[[246.10]]]
+p1 elogind-246-add-loongarch64.patch

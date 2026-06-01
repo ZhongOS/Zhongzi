@@ -1,0 +1,29 @@
+<<<TAR_UNCOMPRESS>>>
+    for config_i in $(find -name "config.sub")
+    do
+            cp -a -f $(automake --print-libdir)/config.{sub,guess} $(dirname ${config_i})/
+    done
+
+    touch LICENSE
+    pushd icu4c/source
+    CC=gcc CXX=g++ ./configure --prefix=${PREFIX} --libdir=${PREFIX}/lib64 --enable-static
+    <<<MAKE_AND_INSTALL>>>
+    cp -av ${HOST_TOOLS_DIR}/sbin/{gensprep,icupkg} ${HOST_TOOLS_DIR}/bin/
+    popd
+<<<CLEAR_DIR>>>
+
+
+[[[77_1]]]
+<<<TAR_UNCOMPRESS>>>
+    for config_i in $(find -name "config.sub")
+    do
+            cp -a -f $(automake --print-libdir)/config.{sub,guess} $(dirname ${config_i})/
+    done
+
+    touch LICENSE
+    pushd source
+    CC=gcc CXX=g++ ./configure --prefix=${PREFIX} --libdir=${PREFIX}/lib64 --enable-static
+    <<<MAKE_AND_INSTALL>>>
+    cp -av ${HOST_TOOLS_DIR}/sbin/{gensprep,icupkg} ${HOST_TOOLS_DIR}/bin/
+    popd
+<<<CLEAR_DIR>>>

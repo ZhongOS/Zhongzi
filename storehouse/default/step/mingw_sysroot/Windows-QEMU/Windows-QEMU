@@ -1,0 +1,2 @@
+PACKAGE=qemu
+BUILD_MODE=custom

@@ -1,0 +1,15 @@
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+    ./configure ${COMMON_CONFIG} --enable-glamor \
+            --enable-suid-wrapper --disable-selective-werror \
+            --with-xkb-output=/var/lib/xkb \
+            --with-xkb-bin-directory=/usr/bin --with-xkb-path=/usr/share/X11/xkb \
+	    --with-fontrootdir=/usr/share/fonts/X11
+    <<<MAKE_AND_INSTALL>>>
+
+    cp -v ${SYSROOT_DIR}/usr/share/aclocal/xorg-server.m4 ${HOST_TOOLS_DIR}/share/aclocal/
+cat >> ${SYSROOT_DIR}/etc/sysconfig/createfiles << "EOF"
+/tmp/.ICE-unix dir 1777 root root
+/tmp/.X11-unix dir 1777 root root
+EOF
+<<<CLEAR_DIR>>>

@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kdenlive
+BUILD_MODE=cmake

@@ -1,0 +1,2 @@
+PACKAGE=gsl
+BUILD_MODE=gnu

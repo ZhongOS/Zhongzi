@@ -1,0 +1,1 @@
+EXTRA_PARM=--with-sdkdir=/usr/include/xorg --with-xorg-conf-dir=/usr/share/X11/xorg.conf.d

@@ -1,0 +1,2 @@
+PACKAGE=gst-plugins-good
+BUILD_MODE=meson

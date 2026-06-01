@@ -1,0 +1,2 @@
+PACKAGE=xvinfo
+BUILD_MODE=gnu

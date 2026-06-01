@@ -1,0 +1,4 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<MAKE>>> CC="${CROSS_TARGET}-gcc" CXFLAGS="${CFLAGS} -Wno-error=unterminated-string-initialization -Wno-error=format-truncation -Wno-error=format -Wno-error=unused-but-set-variable -Wno-error=format-overflow"
+	make DESTDIR=${SYSROOT_DIR} PKG_CONFIG=${CROSS_TARGET}-pkg-config install
+<<<CLEAR_DIR>>>

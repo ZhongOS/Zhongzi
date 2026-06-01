@@ -1,0 +1,2 @@
+PACKAGE=kruler
+BUILD_MODE=cmake

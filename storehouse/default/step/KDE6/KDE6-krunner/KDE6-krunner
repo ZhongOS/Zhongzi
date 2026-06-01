@@ -1,0 +1,2 @@
+PACKAGE=KDE6-krunner
+BUILD_MODE=cmake

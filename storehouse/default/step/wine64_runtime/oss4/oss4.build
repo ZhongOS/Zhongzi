@@ -1,0 +1,23 @@
+<<<TAR_UNCOMPRESS>>>
+	mkdir -p cross-build
+	pushd cross-build
+		../configure --enable-libsalsa=NO --config-vmix=FIXEDPOINT --config-midi=YES
+		make CC=${X86_64_HOST}-gcc LD=${X86_64_HOST}-ld CPLUSPLUS="${X86_64_HOST}-g++ -fno-rtti -fno-exceptions -I." ARCH=x86_64
+		make CC=${X86_64_HOST}-gcc CXX=${X86_64_HOST}-g++ ARCH=x86_64 DESTDIR=${X86_64_SYSROOT_DIR} copy
+	popd
+<<<CLEAR_DIR>>>
+
+# <<<TAR_UNCOMPRESS>>>
+#	mkdir -p cross-build
+#	pushd cross-build
+#		../configure --enable-libsalsa=NO --config-vmix=FIXEDPOINT
+#		pushd lib/libOSSlib
+#			<<<MAKE>>> CC=${X86_64_HOST}-gcc CXX=${X86_64_HOST}-g++ libOSSlib.so
+#		popd
+#		pushd lib/libsalsa
+#			<<<MAKE>>> CC=${X86_64_HOST}-gcc CXX=${X86_64_HOST}-g++
+#		popd
+#		<<<MAKE>>> CC=${X86_64_HOST}-gcc CXX=${X86_64_HOST}-g++ build
+#		make CC=${X86_64_HOST}-gcc CXX=${X86_64_HOST}-g++ DESTDIR=${X86_64_SYSROOT_DIR} copy
+#	popd
+# <<<CLEAR_DIR>>>

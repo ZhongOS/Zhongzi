@@ -1,0 +1,2 @@
+PACKAGE=libfakekey
+BUILD_MODE=gnu

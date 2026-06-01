@@ -1,0 +1,2 @@
+PACKAGE=protobuf3
+BUILD_MODE=gnu

@@ -1,0 +1,2 @@
+PACKAGE=libva
+BUILD_MODE=gnu

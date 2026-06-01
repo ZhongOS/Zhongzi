@@ -1,0 +1,2 @@
+PACKAGE=graphviz
+BUILD_MODE=cmake

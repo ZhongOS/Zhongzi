@@ -1,0 +1,10 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+	MINGW_HOST=$(archname_to_triple "$(get_user_set_env mingw_target ${MINGW_HOST})" "${MINGW_HOST}")
+	PATH=${TOOLCHAIN_DIRECTORY}/cross-target/${MINGW_HOST}/cross-tools/bin:${PATH}
+
+	CROSS_PREFIX=${MINGW_HOST}- ./configure --prefix=/mingw --static
+	<<<MAKE>>>
+	INSTALL_DIST_DIR="${TOOLCHAIN_DIRECTORY}/cross-target/${MINGW_HOST}/cross-tools/target"
+	make DESTDIR=${INSTALL_DIST_DIR} install
+<<<CLEAR_DIR>>>

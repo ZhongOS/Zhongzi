@@ -1,0 +1,28 @@
+export FFMPEG_ARCH=$(archname_to_anyparm "$(get_user_set_env target "x86_64")" "FFMPEG_ARCH" "${ARCH_NAME}")
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+	CFLAGS="${CFLAGS} -Wno-incompatible-pointer-types -Wno-int-conversion" \
+# 	LDFLAGS="${LDFLAGS} -Wl,-rpath-link=${LINUX_SYSROOT_DIR}/usr/lib${LIB_SUFF}/pulseaudio" \
+	./configure --prefix=/usr --libdir=/usr/lib${LIB_SUFF} \
+                --cross-prefix=${LINUX_HOST}- --sysroot=${LINUX_SYSROOT_DIR} \
+                --enable-gpl         \
+                --enable-version3    \
+                --enable-nonfree     \
+                --disable-static     \
+                --enable-shared      \
+                --disable-debug      \
+                --enable-libass      \
+                --enable-libfdk-aac  \
+                --enable-libfreetype \
+                --enable-libmp3lame  \
+                --enable-libopus     \
+                --enable-libtheora   \
+                --enable-libvorbis   \
+                --enable-libvpx      \
+                --enable-libx264     \
+                --enable-libx265     \
+                --enable-openssl --enable-libpulse --enable-libdrm --enable-vulkan \
+		--disable-htmlpages \
+                --arch=${FFMPEG_ARCH} --target-os=linux --cc=${LINUX_HOST}-gcc --host-cc=gcc
+	<<<MAKE_AND_INSTALL>>>
+<<<CLEAR_DIR>>>

@@ -1,0 +1,18 @@
+<<<TAR_UNCOMPRESS>>>
+pushd src
+	mkdir -pv cross-build-qt5
+	pushd cross-build-qt5
+		${SYSROOT_DIR}/usr/bin/qmake ..
+		<<<MAKE>>>
+		make QINSTALL="${SYSROOT_DIR}/usr/bin/qmake -install qinstall" QINSTALL_PROGRAM="${SYSROOT_DIR}/usr/bin/qmake -install qinstall -exe" install
+	popd
+	mkdir -pv cross-build-qt6
+	pushd cross-build-qt6
+		${SYSROOT_DIR}/usr/lib64/qt6/bin/host-qmake ..
+		sed -i "s@${SYSROOT_DIR}${SYSROOT_DIR}@${SYSROOT_DIR}@g" Makefile
+		sed -i "s@${CROSSTOOLS_DIR}/qt6/libexec/moc@/usr/lib64/qt6/libexec/moc@g" Makefile
+		make CC=${CROSS_TARGET}-gcc CXX=${CROSS_TARGET}-g++ LINK=${CROSS_TARGET}-g++ -j${JOBS}
+		make CC=${CROSS_TARGET}-gcc CXX=${CROSS_TARGET}-g++ LINK=${CROSS_TARGET}-g++ install
+	popd
+popd
+<<<CLEAR_DIR>>>

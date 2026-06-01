@@ -1,0 +1,2 @@
+PACKAGE=electron-bin
+BUILD_MODE=custom

@@ -1,0 +1,2 @@
+PACKAGE=linux-firmware
+BUILD_MODE=custom

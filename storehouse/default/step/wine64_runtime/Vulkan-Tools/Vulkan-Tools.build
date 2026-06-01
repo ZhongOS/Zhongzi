@@ -1,0 +1,14 @@
+<<<TAR_UNCOMPRESS>>>
+        <<<PATCH>>>
+	sed -i "s@pkg_get_variable(WAYLAND_SCANNER_EXECUTABLE wayland-scanner wayland_scanner)@set(WAYLAND_SCANNER_EXECUTABLE ${CROSSTOOLS_DIR}/bin/wayland-scanner)@g" cube/CMakeLists.txt
+        mkdir cross-build
+        pushd cross-build
+                CC="${X86_64_HOST}-gcc" CXX="${X86_64_HOST}-g++" \
+                cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release \
+                      -DCMAKE_INSTALL_LIBDIR=/usr/lib64 \
+                      -DCMAKE_TOOLCHAIN_FILE=${COMMON_DIR}/cmake-cross-x86_64.cmake \
+                      -DCMAKE_INSTALL_PREFIX=/usr <<<EXTRA_PARM>>> -Wno-dev ..
+                <<<MAKE_AND_INSTALL>>>
+        popd
+        rm -f ${X86_64_SYSROOT_DIR}/usr/lib64/*.la
+<<<CLEAR_DIR>>>

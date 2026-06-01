@@ -1,0 +1,2 @@
+PACKAGE=jsonschema
+BUILD_MODE=pip

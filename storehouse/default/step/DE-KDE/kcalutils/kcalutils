@@ -1,0 +1,2 @@
+PACKAGE=kcalutils
+BUILD_MODE=cmake

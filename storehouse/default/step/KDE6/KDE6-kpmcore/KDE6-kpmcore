@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kpmcore
+BUILD_MODE=cmake

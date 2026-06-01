@@ -1,0 +1,2 @@
+PACKAGE=pixman
+BUILD_MODE=meson

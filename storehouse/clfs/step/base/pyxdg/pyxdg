@@ -1,0 +1,2 @@
+PACKAGE=pyxdg
+BUILD_MODE=python

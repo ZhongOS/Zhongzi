@@ -1,0 +1,2 @@
+PACKAGE=Remmina
+BUILD_MODE=cmake

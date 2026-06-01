@@ -1,0 +1,2 @@
+EXTRA_PARM=--enable-libipq
+# EXTRA_PARM=--enable-libipq --disable-nftables

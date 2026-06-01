@@ -1,0 +1,4 @@
+<<<TAR_UNCOMPRESS>>>
+	CC=${LINUX_HOST}-gcc CXX=${LINUX_HOST}-g++ <<<MAKE>>> LIBDIR=/usr/lib${LIB_SUFF} SHLIBDIR=/usr/lib${LIB_SUFF}
+	CC=${LINUX_HOST}-gcc CXX=${LINUX_HOST}-g++ make DESTDIR=${LINUX_SYSROOT_DIR} LIBDIR=/usr/lib${LIB_SUFF} SHLIBDIR=/usr/lib${LIB_SUFF} install
+<<<CLEAR_DIR>>>

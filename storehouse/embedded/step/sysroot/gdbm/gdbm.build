@@ -1,0 +1,2 @@
+EXTRA_PARM=--disable-static --enable-libgdbm-compat
+CONFIG_ENV=CFLAGS="${CFLAGS} -std=gnu17"

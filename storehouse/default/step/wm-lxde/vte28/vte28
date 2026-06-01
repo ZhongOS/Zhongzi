@@ -1,0 +1,2 @@
+PACKAGE=vte28
+BUILD_MODE=gnu

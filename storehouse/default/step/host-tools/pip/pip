@@ -1,0 +1,6 @@
+PACKAGE=pip
+BUILD_MODE=custom
+
+[[[24.0.0]]]
+PACKAGE=pip
+BUILD_MODE=python

@@ -1,0 +1,2 @@
+PACKAGE=libltc
+BUILD_MODE=gnu

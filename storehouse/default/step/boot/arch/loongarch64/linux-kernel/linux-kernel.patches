@@ -1,0 +1,38 @@
+# p1 0001-UniVT-Double-tty-VT-screenbuf-for-univt.patch
+# p1 0002-UniVT-Add-several-function-for-Univt.patch
+# p1 0003-UniVT-Fix-charcount-limit.patch
+# p1 0004-UniVT-Add-a-old_screen_size-variable-saves-the-origi.patch
+# p1 0005-Univt-Add-support-for-writing-UTF-8-encoding.patch
+# p1 0006-UniVT-Add-support-for-displaying-UTF-8-text.patch
+# p1 0007-UniVT-Support-displaying-UTF-8-text-for-90-degree-ro.patch
+# p1 0008-UniVT-Support-displaying-UTF-8-text-for-180-degree-r.patch
+# p1 0009-UniVT-Support-displaying-UTF-8-text-for-270-degree-r.patch
+# p1 0001-UniVT-Add-Chinese-fonts-support-in-console.patch
+# p1 0001-remove-vc_uniscr_check-function-for-paste-selection.patch
+
+[[[6.17.0]]]
+p1 0001-double-tty-VT-screenbuf-for-univt.patch
+p1 0002-Add-several-function-for-Univt.patch
+p1 0003-UniVT-Fix-charcount-size-to-65536.patch
+p1 0004-UniVT-Add-a-old_screen_size-variable-saves-the-origi.patch
+p1 0005-Univt-Add-support-for-writing-UTF-8-encoding.patch
+p1 0006-UniVT-Add-support-for-displaying-UTF-8-text.patch
+p1 0007-UniVT-Support-displaying-UTF-8-text-for-90-degree-ro.patch
+p1 0008-UniVT-Support-displaying-UTF-8-text-for-180-degree-r.patch
+p1 0009-UniVT-Support-displaying-UTF-8-text-for-270-degree-r.patch
+p1 0001-UniVT-Add-Chinese-fonts-support-in-console.patch
+
+[[[6.4.9]]]
+p1 0001-double-tty-VT-screenbuf-for-univt.patch
+p1 0002-Add-several-function-for-Univt.patch
+p1 0003-UniVT-Fix-charcount-size-to-65536.patch
+p1 0004-UniVT-Add-a-old_screen_size-variable-saves-the-origi.patch
+p1 0005-Univt-Add-support-for-writing-UTF-8-encoding.patch
+p1 0006-UniVT-Add-support-for-displaying-UTF-8-text.patch
+p1 0007-UniVT-Support-displaying-UTF-8-text-for-90-degree-ro.patch
+p1 0008-UniVT-Support-displaying-UTF-8-text-for-180-degree-r.patch
+p1 0009-UniVT-Support-displaying-UTF-8-text-for-270-degree-r.patch
+p1 0001-UniVT-Add-Chinese-fonts-support-in-console.patch
+
+[[[6.0]]]
+p1 linux-kernel-fix-pgtable.patch

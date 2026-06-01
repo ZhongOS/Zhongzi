@@ -1,0 +1,3 @@
+PACKAGE=xdg-user-dirs
+BUILD_MODE=meson
+# BUILD_MODE=gnu

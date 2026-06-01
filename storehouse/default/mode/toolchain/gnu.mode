@@ -1,0 +1,9 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+	if [ ! -f configure ]; then
+		autoreconf -ifv
+	fi
+	<<<CONFIG_ENV>>> ./configure ${COMMON_CONFIG} <<<EXTRA_PARM>>>
+	<<<MAKE>>>
+        make install
+<<<CLEAR_DIR>>>

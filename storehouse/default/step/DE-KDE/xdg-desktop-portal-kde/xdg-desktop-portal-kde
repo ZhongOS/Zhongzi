@@ -1,0 +1,2 @@
+PACKAGE=xdg-desktop-portal-kde
+BUILD_MODE=cmake

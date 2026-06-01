@@ -1,0 +1,8 @@
+<<<TAR_UNCOMPRESS>>>
+	sed -i -e "s@\"grub-mkfont@\"${CROSS_TARGET}-grub-mkfont@g" \
+	       -e "s@\"/usr/share@\"${SYSROOT_DIR}/usr/share@g" \
+	       mkfont.sh
+	./mkfont.sh
+	mkdir -pv ${SYSROOT_DIR}/usr/share/grub/themes/
+	cp -a breeze ${SYSROOT_DIR}/usr/share/grub/themes/
+<<<CLEAR_DIR>>>

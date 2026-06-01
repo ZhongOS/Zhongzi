@@ -1,0 +1,5 @@
+<<<TAR_UNCOMPRESS>>>
+	./Configure --prefix=${HOST_TOOLS_DIR} \
+				--libdir=lib64 shared zlib linux-generic64
+	<<<MAKE_AND_INSTALL>>>
+<<<CLEAR_DIR>>>

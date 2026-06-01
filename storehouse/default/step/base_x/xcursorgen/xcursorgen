@@ -1,0 +1,2 @@
+PACKAGE=xcursorgen
+BUILD_MODE=gnu

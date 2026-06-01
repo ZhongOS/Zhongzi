@@ -1,0 +1,2 @@
+PACKAGE=libsigc++
+BUILD_MODE=meson

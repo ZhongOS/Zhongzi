@@ -1,0 +1,2 @@
+PACKAGE=vdpau-va-driver-vp9
+BUILD_MODE=gnu

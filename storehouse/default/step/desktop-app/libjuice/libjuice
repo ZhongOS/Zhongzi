@@ -1,0 +1,2 @@
+PACKAGE=libjuice
+BUILD_MODE=cmake

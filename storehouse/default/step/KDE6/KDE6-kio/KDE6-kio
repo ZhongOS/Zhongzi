@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kio
+BUILD_MODE=cmake

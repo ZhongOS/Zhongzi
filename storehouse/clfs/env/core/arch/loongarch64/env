@@ -1,0 +1,5 @@
+export ARCH_NAME=loongarch64
+export ARCH_FAMILY=loongarch
+export ARCH_ABI=lp64d
+export RUN_TARGET_ARCH=loongarch64
+export QEMU_ARCH=loongarch64

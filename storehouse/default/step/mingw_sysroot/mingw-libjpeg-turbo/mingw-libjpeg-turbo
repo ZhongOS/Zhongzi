@@ -1,0 +1,2 @@
+PACKAGE=libjpeg-turbo
+BUILD_MODE=cmake

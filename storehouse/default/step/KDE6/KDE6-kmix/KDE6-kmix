@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kmix
+BUILD_MODE=cmake

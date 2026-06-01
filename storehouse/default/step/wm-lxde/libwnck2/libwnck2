@@ -1,0 +1,2 @@
+PACKAGE=libwnck2
+BUILD_MODE=custom

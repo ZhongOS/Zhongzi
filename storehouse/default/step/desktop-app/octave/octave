@@ -1,0 +1,2 @@
+PACKAGE=octave
+BUILD_MODE=custom

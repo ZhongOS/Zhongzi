@@ -1,0 +1,2 @@
+PACKAGE=SPIRV-Tools
+BUILD_MODE=custom

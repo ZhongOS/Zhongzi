@@ -1,0 +1,2 @@
+PACKAGE=kded
+BUILD_MODE=cmake

@@ -1,0 +1,3 @@
+PACKAGE=newt
+BUILD_MODE=custom
+# BUILD_MODE=gnu

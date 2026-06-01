@@ -1,0 +1,2 @@
+PACKAGE=KDE6-baloo
+BUILD_MODE=cmake

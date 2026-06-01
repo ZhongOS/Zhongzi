@@ -1,0 +1,9 @@
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+    autoreconf -if
+    ./configure $COMMON_CONFIG --mandir=/usr/share/man
+    check_gnu_Makefile
+    make -j1
+    # make prefix=${SYSROOT_DIR}/usr LIBDIR=${SYSROOT_DIR}/usr/lib64 MANDIR=${SYSROOT_DIR}/usr/share/man install
+    make DESTDIR=${SYSROOT_DIR} install
+<<<CLEAR_DIR>>>

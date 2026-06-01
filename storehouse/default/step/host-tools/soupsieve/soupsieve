@@ -1,0 +1,2 @@
+PACKAGE=soupsieve
+BUILD_MODE=pip

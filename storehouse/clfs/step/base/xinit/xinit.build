@@ -1,0 +1,1 @@
+EXTRA_PARM= --with-xinitdir=/etc/X11/app-defaults

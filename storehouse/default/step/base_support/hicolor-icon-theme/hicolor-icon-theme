@@ -1,0 +1,2 @@
+PACKAGE=hicolor-icon-theme
+BUILD_MODE=meson

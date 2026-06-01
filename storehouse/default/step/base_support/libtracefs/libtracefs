@@ -1,0 +1,2 @@
+PACKAGE=libtracefs
+BUILD_MODE=meson

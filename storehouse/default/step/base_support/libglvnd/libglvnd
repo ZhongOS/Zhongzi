@@ -1,0 +1,2 @@
+PACKAGE=libglvnd
+BUILD_MODE=meson

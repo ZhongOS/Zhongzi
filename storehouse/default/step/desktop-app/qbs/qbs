@@ -1,0 +1,2 @@
+PACKAGE=qbs
+BUILD_MODE=custom

@@ -1,0 +1,1 @@
+CONFIG_ENV=CC="${CROSS_TARGET}-gcc -Wno-implicit-int"

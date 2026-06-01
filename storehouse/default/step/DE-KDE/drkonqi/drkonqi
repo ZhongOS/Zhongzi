@@ -1,0 +1,2 @@
+PACKAGE=drkonqi
+BUILD_MODE=cmake

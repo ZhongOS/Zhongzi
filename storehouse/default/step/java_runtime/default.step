@@ -1,0 +1,14 @@
+# jdk-latest-bootstrap@/bootstrap
+jdk24-bootstrap@/bootstrap
+# jdk
+jdk25|jdk25
+jdk20-bootstrap@/bootstrap|jdk21
+jdk21|jdk21
+jdk17-bootstrap@/bootstrap|jdk17,kodi
+jdk17|jdk17+kodi
+jdk11-bootstrap@/bootstrap|jdk11
+jdk11|jdk11
+jdk8-bootstrap@/bootstrap|jdk8
+jdk8|jdk8
+set-default-java|none_status
+dist_sysroot

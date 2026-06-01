@@ -1,0 +1,4 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<MAKE>>> CC="${CROSS_TARGET}-gcc" PREFIX=/usr LIBDIR=/usr/lib${LIB_SUFF}
+	make CC="${CROSS_TARGET}-gcc" PREFIX=/usr LIBDIR=/usr/lib${LIB_SUFF} DESTDIR=${SYSROOT_DIR} install
+<<<CLEAR_DIR>>>

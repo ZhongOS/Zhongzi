@@ -1,0 +1,2 @@
+PACKAGE=mednaffe
+BUILD_MODE=gnu

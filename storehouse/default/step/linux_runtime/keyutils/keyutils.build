@@ -1,0 +1,5 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+	CC=${LINUX_HOST}-gcc CXX=${LINUX_HOST}-g++ <<<MAKE>>>
+	make NO_ARLIB=1 LIBDIR=/usr/lib${LIB_SUFF} BINDIR=/usr/bin SBINDIR=/usr/sbin DESTDIR=${LINUX_SYSROOT_DIR} install
+<<<CLEAR_DIR>>>

@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kscreenlocker
+BUILD_MODE=cmake

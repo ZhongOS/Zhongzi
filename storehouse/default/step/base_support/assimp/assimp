@@ -1,0 +1,2 @@
+PACKAGE=assimp
+BUILD_MODE=cmake

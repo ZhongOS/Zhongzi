@@ -1,0 +1,2 @@
+PACKAGE=korganizer
+BUILD_MODE=cmake

@@ -1,0 +1,2 @@
+PACKAGE=golang
+BUILD_MODE=custom

@@ -1,0 +1,2 @@
+PACKAGE=tomli
+BUILD_MODE=pip

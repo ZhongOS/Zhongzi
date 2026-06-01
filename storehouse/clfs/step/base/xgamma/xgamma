@@ -1,0 +1,2 @@
+PACKAGE=xgamma
+BUILD_MODE=gnu

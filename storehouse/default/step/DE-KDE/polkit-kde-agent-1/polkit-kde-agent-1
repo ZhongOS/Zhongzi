@@ -1,0 +1,2 @@
+PACKAGE=polkit-kde-agent-1
+BUILD_MODE=cmake

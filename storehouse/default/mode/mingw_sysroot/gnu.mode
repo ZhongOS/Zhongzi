@@ -1,0 +1,10 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+	if [ ! -f configure ]; then
+		autoreconf -ifv
+	fi
+	<<<CONFIG_ENV>>> ./configure ${COMMON_CONFIG} --enable-static <<<EXTRA_PARM>>> --enable-malloc0returnsnull
+	CC="${MINGW_HOST}-gcc" CXX="${MINGW_HOST}-g++" <<<MAKE>>>
+        make DESTDIR=${MINGW_SYSROOT_DIR} install
+	rm -f ${MINGW_SYSROOT_DIR}/mingw/lib/*.la
+<<<CLEAR_DIR>>>

@@ -1,0 +1,2 @@
+PACKAGE=referencing
+BUILD_MODE=pip

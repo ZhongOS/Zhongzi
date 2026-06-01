@@ -1,0 +1,2 @@
+PACKAGE=xf86-video-amdgpu
+BUILD_MODE=gnu

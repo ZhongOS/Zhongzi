@@ -1,0 +1,1 @@
+EXTRA_PARM=-DKDE_INSTALL_QTPLUGINDIR=/usr/lib${LIB_SUFF}/qt5/plugins

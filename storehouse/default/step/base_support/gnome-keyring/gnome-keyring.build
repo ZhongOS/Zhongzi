@@ -1,0 +1,13 @@
+EXTRA_PARM=-Dpkcs11-config=/usr/share/p11-kit/modules -Dpkcs11-modules=/usr/lib${LIB_SUFF}/pkcs11
+
+[[[0.47]]]
+<<<TAR_UNCOMPRESS>>>
+    for config_i in $(find -name "config.sub")
+    do
+            cp -a -f $(automake --print-libdir)/config.{sub,guess} $(dirname ${config_i})/
+    done
+
+    sed -i 's:"/desktop:"/org:' schema/*.xml
+    ./configure ${COMMON_CONFIG} --with-pkcs11-modules=/usr/lib${LIB_SUFF}/pkcs11 --with-pkcs11-config=/usr/share/p11-kit/modules --disable-doc systemduserunitdir=/usr/lib/systemd/user
+    <<<MAKE_AND_INSTALL>>>
+<<<CLEAR_DIR>>>

@@ -1,0 +1,4 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<HOST_TOOLS_PREFIX>>>/bin/python3 setup.py build
+        <<<HOST_TOOLS_PREFIX>>>/bin/python3 setup.py install --optimize=1
+<<<CLEAR_DIR>>>

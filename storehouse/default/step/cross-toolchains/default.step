@@ -1,0 +1,8 @@
+# mingw-gcc-libc|mingw
+# i686-gcc-glibc|wine,wine64
+# x86_64-gcc-glibc|wine64
+llvm-project
+# clang
+# llvm_runtimes
+SPIRV-LLVM-Translator
+rustc

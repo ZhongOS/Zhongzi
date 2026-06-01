@@ -1,0 +1,2 @@
+PACKAGE=swig
+BUILD_MODE=gnu

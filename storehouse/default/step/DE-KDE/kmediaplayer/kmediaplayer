@@ -1,0 +1,2 @@
+PACKAGE=kmediaplayer
+BUILD_MODE=cmake

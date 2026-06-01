@@ -1,0 +1,2 @@
+PACKAGE=KDE6-libkdepim
+BUILD_MODE=cmake

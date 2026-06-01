@@ -1,0 +1,2 @@
+PACKAGE=fontforge
+BUILD_MODE=cmake

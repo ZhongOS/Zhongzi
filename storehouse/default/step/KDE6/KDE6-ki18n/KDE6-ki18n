@@ -1,0 +1,2 @@
+PACKAGE=KDE6-ki18n
+BUILD_MODE=cmake

@@ -1,0 +1,2 @@
+PACKAGE=KDE6-partitionmanager
+BUILD_MODE=cmake

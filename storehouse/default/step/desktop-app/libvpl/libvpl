@@ -1,0 +1,2 @@
+PACKAGE=libvpl
+BUILD_MODE=cmake

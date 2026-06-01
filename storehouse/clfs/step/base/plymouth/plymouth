@@ -1,0 +1,7 @@
+PACKAGE=plymouth
+BUILD_MODE=meson
+
+
+[[[22.02.122]]]
+PACKAGE=plymouth
+BUILD_MODE=custom

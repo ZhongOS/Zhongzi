@@ -1,0 +1,7 @@
+<<<TAR_UNCOMPRESS>>>
+    ${CROSSTOOLS_DIR}/bin/perl Makefile.PL CC=${CROSS_TARGET}-gcc LD=${CROSS_TARGET}-ld
+    sed -i "/^INSTALL/s@${CROSSTOOLS_DIR}@/usr@g" Makefile
+    sed -i "/^PERL_INC/s@${CROSSTOOLS_DIR}@${SYSROOT_DIR}/usr@g" Makefile
+    sed -i "/^LDDLFLAGS/s@/usr/local/lib@${SYSROOT_DIR}/usr/lib${LIB_SUFF}@g" Makefile
+    <<<MAKE_AND_INSTALL>>>
+<<<CLEAR_DIR>>>

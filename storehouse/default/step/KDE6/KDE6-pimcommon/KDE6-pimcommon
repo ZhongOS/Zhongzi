@@ -1,0 +1,2 @@
+PACKAGE=KDE6-pimcommon
+BUILD_MODE=cmake

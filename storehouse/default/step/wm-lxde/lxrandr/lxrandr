@@ -1,0 +1,2 @@
+PACKAGE=lxrandr
+BUILD_MODE=gnu

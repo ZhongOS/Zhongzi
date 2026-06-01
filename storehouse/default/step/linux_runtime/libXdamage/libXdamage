@@ -1,0 +1,2 @@
+PACKAGE=libXdamage
+BUILD_MODE=gnu

@@ -1,0 +1,46 @@
+p1 0001-rust-1.80.0-fix-for-gcc-15.patch
+
+
+[[[1.72.0]]]
+p1 d68eea61c3e3d249602d66d28e8f6dbd76e7c30f.diff
+
+[[[1.70.0]]]
+p1 0001-linux-raw-sys-0.1.4-add-loongarch64-support.patch
+p1 0001-fix-inconsistency-in-features-usage-of-dependency-sy.patch
+
+[[[1.69.0]]]
+p1 0001-rustc-1.69.0-add-loongarch-support.patch
+p1 0001-linux-raw-sys-add-loongarch64-support.patch
+p1 0001-rustc-1.69.0-vendor-nix-add-loongarch64-support.patch
+
+[[[1.68.2]]]
+p1 rustc-1.65.0-add-loongarch-support.patch
+p1 0001-linux-raw-sys-add-loongarch64-support.patch
+
+[[[1.67.1]]]
+p1 rustc-1.65.0-add-loongarch-support.patch
+p1 rustc-1.66.0-fix-llvm-wrapper.patch
+p1 rustc-vendor-object-fix-loongarch.patch
+p1 0001-Rustc-1.67.1-vendor-linux-raw-sys-add-loongarch64.patch
+
+[[[1.66.0]]]
+p1 rustc-1.65.0-add-loongarch-support.patch
+p1 rustc-1.63.0-fix-libc-for-loongarch-syscalls.patch
+p1 rustc-vendor-object-fix-loongarch.patch
+p1 rustc-1.66.0-fix-llvm-wrapper.patch
+p1 rustc-1.66.0-fix-install-miri-error.patch
+
+[[[1.65.0]]]
+p1 rustc-1.65.0-add-loongarch-support.patch
+p1 rustc-1.63.0-fix-libc-for-loongarch-syscalls.patch
+p1 rustc-vendor-object-fix-loongarch.patch
+p0 llvm-fix-reloc-sub64.patch
+
+[[[1.64.0]]]
+p1 rustc-1.64.0-add-loongarch-support.patch
+p1 rustc-1.63.0-fix-libc-for-loongarch-syscalls.patch
+
+[[[1.57.0]]]
+p1 rust-1.57-add-loongarch-support.patch
+p1 rust-1.57-add-libc-loongarch-support.patch
+p1 rustc-1.57.0-src-loongarch-build-fix.patch

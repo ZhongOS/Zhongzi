@@ -1,0 +1,5 @@
+<<<TAR_UNCOMPRESS>>>
+        <<<PATCH>>>
+        ./configure --prefix=${PREFIX}
+        <<<MAKE_AND_INSTALL>>>
+<<<CLEAR_DIR>>>

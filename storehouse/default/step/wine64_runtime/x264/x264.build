@@ -1,0 +1,1 @@
+EXTRA_PARM=--cross-prefix=${X86_64_HOST}- --sysroot=${X86_64_SYSROOT_DIR} --enable-shared --disable-cli --enable-pic --enable-lto

@@ -1,0 +1,2 @@
+PACKAGE=gtk-engines
+BUILD_MODE=gnu

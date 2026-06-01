@@ -1,0 +1,4 @@
+<<<TAR_UNCOMPRESS>>>
+	make INSTALLDIR=/usr/share/retroarch/database DESTDIR=${SYSROOT_DIR} install
+<<<CLEAR_DIR>>>
+

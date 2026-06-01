@@ -1,0 +1,10 @@
+p1	0001-PPSSPP-Add-LoongArch-Support.patch
+p1	0002-remove-cpu_features-support-for-loongarch64.patch
+p1	ppsspp-set_sdl_resolution_to_auto.patch
+p1	ppsspp-ffmpeg-add-loongarch64.patch
+p1	ppsspp-add-loongarch64-for-ffmpeg.patch
+p1	0001-ppsspp-fix-for-gcc-15.patch
+
+[[[1.11.3]]]
+p1	0001-ppsspp-remove-loongarch-lasx-and-lsx-option.patch
+p1	0001-ppsspp-1.11.3-fix-for-gcc-13.patch

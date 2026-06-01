@@ -1,0 +1,13 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+	MINGW_HOST=$(archname_to_triple "$(get_user_set_env mingw_target ${MINGW_HOST})" "${MINGW_HOST}")
+	PATH=${TOOLCHAIN_DIRECTORY}/cross-target/${MINGW_HOST}/cross-tools/bin:${PATH}
+
+	pushd lib
+	        <<<MAKE>>> CC="${MINGW_HOST}-gcc" PREFIX=/mingw
+
+        	INSTALL_DIST_DIR="${TOOLCHAIN_DIRECTORY}/cross-target/${MINGW_HOST}/cross-tools/target"
+	        make CC="${MINGW_HOST}-gcc" PREFIX=/mingw DESTDIR=${INSTALL_DIST_DIR} install
+	popd
+
+<<<CLEAR_DIR>>>

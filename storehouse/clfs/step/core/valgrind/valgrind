@@ -1,0 +1,2 @@
+PACKAGE=valgrind
+BUILD_MODE=gnu

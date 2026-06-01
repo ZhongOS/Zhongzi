@@ -1,0 +1,244 @@
+# p1	0001-qt6-6.11.0-webengine-configure-add-loongarch64-suppo.patch
+# p1	0002-qt-6.11.0-webengine-fix-loongarch64-define-because-c.patch
+# p1	0003-qt-6.11.0-webengine-chromium-add-some-define-for-loo.patch
+# p1	0004-qt-6.11.0-webengine-fix-chromium-boringssl-openssl-t.patch
+# p1	0005-qtwebengine-6.11.0-crashpad-add-support-for-loongarc.patch
+# p1	0006-qtwebengine-6.11.0-open-lsx-option-for-loongarch64.patch
+# p1	0007-qt-6.11.0-webengine-3rdparty-chromium-api-runtime-ad.patch
+# p1	0008-qt-6.11.0-webengine-3rdparty-chromium-enable-swiftsh.patch
+# p1	0001-qtwebengine-6.11.0-use-statx-for-sandbox-add-loongar.patch
+
+# p1	0001-qtwebengine-fix-filename-too-long-error-for-use-ninj.patch
+
+# p1	0001-qtwebengine-src-3rdparty-gn-config-add-loongarch64-d.patch
+
+# p1	0001-qtwebengine-6.11.0-chromium-skia-remove-lsx-support-.patch
+# p1	0001-qtwebengine-6.9.0-chromium-third_party-blink-remove-.patch
+
+p1	0001-qtquick3dphysics-6.10.1-PX_SIMD_DISABLED-add-loongar.patch
+
+# p1	0001-SYS_SECCOMP-has-already-been-defined-when-glibc-2.43.patch
+
+
+[[[6.10.1]]]
+p1	0001-qt6-6.10.1-webengine-configure-add-loongarch64-suppo.patch
+p1	0002-qt-6.10.1-webengine-fix-loongarch64-define-because-c.patch
+p1	0003-qt-6.10.1-webengine-chromium-add-some-define-for-loo.patch
+p1	0004-qt-6.10.1-webengine-fix-chromium-boringssl-openssl-t.patch
+p1	0005-qtwebengine-6.10.1-crashpad-add-support-for-loongarc.patch
+p1	0006-qtwebengine-6.10.1-open-lsx-option-for-loongarch64.patch
+p1	0007-qt-6.10.1-webengine-3rdparty-chromium-api-runtime-ad.patch
+p1	0008-qt-6.10.1-webengine-3rdparty-chromium-enable-swiftsh.patch
+
+p1	0001-qtwebengine-6.10.1-use-statx-for-sandbox-add-loongar.patch
+
+p1	0001-qtwebengine-fix-filename-too-long-error-for-use-ninj.patch
+
+p1	0001-qtwebengine-6.9.0-chromium-skia-remove-lsx-support-f.patch
+p1	0001-qtwebengine-6.9.0-chromium-third_party-blink-remove-.patch
+
+p1	0001-qtquick3dphysics-6.10.1-PX_SIMD_DISABLED-add-loongar.patch
+
+p1	0001-SYS_SECCOMP-has-already-been-defined-when-glibc-2.43.patch
+
+
+[[[6.9.3]]]
+p1      0001-qt6-6.9.2-webengine-configure-add-loongarch64-suppor.patch
+p1      0002-qt-6.9.2-webengine-fix-loongarch64-define-because-ch.patch
+p1      0003-qt-6.9.2-webengine-chromium-add-some-define-for-loon.patch
+p1      0004-qt-6.9.2-webengine-fix-chromium-boringssl-openssl-ta.patch
+p1      0005-qtwebengine-6.9.2-crashpad-add-support-for-loongarch.patch
+p1      0006-qtwebengine-6.9.2-open-lsx-and-lasx-option-for-loong.patch
+# p1      0007-qtwebengine-6.9.2-add-sandbox-syscalls-for-loongarch.patch
+p1      0008-qt-6.9.2-webengine-3rdparty-chromium-api-runtime-add.patch
+p1      0009-qt-6.9.2-webengine-3rdparty-chromium-enable-swiftsha.patch
+p1      0010-qtwebengine-fix-filename-too-long-error-for-use-ninj.patch
+# p1      0011-qtwebengine-6.9.2-sandbox-Add-loongarch64-architectu.patch
+
+# p1	0001-Chromium-140-sandbox-remove-statx-for-loongarch64.patch	qtwebengine/src/3rdparty/chromium
+# p1	0002-Chromium-140-remove-statx_default-for-loongarch64.patch	qtwebengine/src/3rdparty/chromium
+# p1	0003-Chromium-140-sandbox-remove-statx-for-loongarch64-fi.patch	qtwebengine/src/3rdparty/chromium
+
+# p1	0001-qtwebengine-6.9.2-use-newfstat-for-sandbox-add-loong.patch qtwebengine/src/3rdparty/chromium
+p1	0001-qtwebengine-6.9.2-use-statx-for-sandbox-add-loongarc.patch qtwebengine/src/3rdparty/chromium
+
+p1	0001-qtwebengine-6.9.0-fix-build-error-for-use-gcc.patch
+
+p1	0001-qtwebengine-6.9.0-chromium-skia-remove-lsx-support-f.patch
+p1	0001-qtwebengine-6.9.0-chromium-third_party-blink-remove-.patch
+
+
+
+[[[6.9.2]]]
+p1      0001-qt6-6.9.2-webengine-configure-add-loongarch64-suppor.patch
+p1      0002-qt-6.9.2-webengine-fix-loongarch64-define-because-ch.patch
+p1      0003-qt-6.9.2-webengine-chromium-add-some-define-for-loon.patch
+p1      0004-qt-6.9.2-webengine-fix-chromium-boringssl-openssl-ta.patch
+p1      0005-qtwebengine-6.9.2-crashpad-add-support-for-loongarch.patch
+p1      0006-qtwebengine-6.9.2-open-lsx-and-lasx-option-for-loong.patch
+# p1      0007-qtwebengine-6.9.2-add-sandbox-syscalls-for-loongarch.patch
+p1      0008-qt-6.9.2-webengine-3rdparty-chromium-api-runtime-add.patch
+p1      0009-qt-6.9.2-webengine-3rdparty-chromium-enable-swiftsha.patch
+p1      0010-qtwebengine-fix-filename-too-long-error-for-use-ninj.patch
+# p1      0011-qtwebengine-6.9.2-sandbox-Add-loongarch64-architectu.patch
+
+# p1	0001-Chromium-140-sandbox-remove-statx-for-loongarch64.patch	qtwebengine/src/3rdparty/chromium
+# p1	0002-Chromium-140-remove-statx_default-for-loongarch64.patch	qtwebengine/src/3rdparty/chromium
+# p1	0003-Chromium-140-sandbox-remove-statx-for-loongarch64-fi.patch	qtwebengine/src/3rdparty/chromium
+
+# p1	0001-qtwebengine-6.9.2-use-newfstat-for-sandbox-add-loong.patch qtwebengine/src/3rdparty/chromium
+p1	0001-qtwebengine-6.9.2-use-statx-for-sandbox-add-loongarc.patch qtwebengine/src/3rdparty/chromium
+
+p1	0001-qtwebengine-6.9.0-fix-build-error-for-use-gcc.patch
+
+p1	0001-qtwebengine-6.9.0-chromium-skia-remove-lsx-support-f.patch
+p1	0001-qtwebengine-6.9.0-chromium-third_party-blink-remove-.patch
+
+p1	qtwebengine-6.9.2-ffmpeg_8.0-1.patch	qtwebengine
+
+
+[[[6.9.1]]]
+p1	0001-qt6-6.9.1-webengine-configure-add-loongarch64-suppor.patch
+p1	0002-qt-6.9.1-webengine-fix-loongarch64-define-because-ch.patch
+p1	0003-qt-6.9.1-webengine-chromium-add-some-define-for-loon.patch
+p1	0004-qt-6.9.1-webengine-fix-chromium-boringssl-openssl-ta.patch
+p1	0005-qtwebengine-6.9.1-crashpad-add-support-for-loongarch.patch
+p1	0006-qtwebengine-6.9.1-sandbox-Add-loongarch64-architectu.patch
+p1	0007-qtwebengine-6.9.1-open-lsx-and-lasx-option-for-loong.patch
+p1	0008-qtwebengine-6.9.1-add-sandbox-syscalls-for-loongarch.patch
+p1	0009-qt-6.9.1-webengine-3rdparty-chromium-api-runtime-add.patch
+p1	0010-qt-6.9.1-webengine-3rdparty-chromium-enable-swiftsha.patch
+p1	0011-qtwebengine-fix-filename-too-long-error-for-use-ninj.patch
+
+# p1	0001-qtwebengine-6.9.0-fix-build-error-for-pipewire-1.3.x.patch
+
+p1	0001-qtwebengine-6.9.0-fix-build-error-for-use-gcc.patch
+
+p1	0001-qtwebengine-6.9.0-chromium-skia-remove-lsx-support-f.patch
+p1	0001-qtwebengine-6.9.0-chromium-third_party-blink-remove-.patch
+
+[[[6.9.0]]]
+p1      0001-qt6-6.9.0-webengine-configure-add-loongarch64-suppor.patch
+p1      0002-qtwebengine-fix-loongarch64-define-because-chromium-.patch
+p1      0003-qtwebengine-6.9.0-chromium-add-some-define-for-loong.patch
+p1      0004-qtwebengine-6.9.0-fix-chromium-boringssl-openssl-tar.patch
+p1      0005-qtwebengine-6.9.0-crashpad-add-support-for-loongarch.patch
+p1      0006-qtwebengine-6.9.0-sandbox-Add-loongarch64-architectu.patch
+p1      0007-qtwebengine-6.9.0-open-lsx-and-lasx-option-for-loong.patch
+p1      0008-qtwebengine-6.9.0-add-sandbox-syscalls-for-loongarch.patch
+p1      0009-qtwebengine-3rdparty-chromium-api-runtime-add-loonga.patch
+p1      0010-qtwebengine-3rdparty-chromium-enable-swiftshader-add.patch
+p1      0011-qtwebengine-fix-filename-too-long-error-for-use-ninj.patch
+
+p1	0001-qtwebengine-6.9.0-fix-build-error-for-pipewire-1.3.x.patch
+
+p1	0001-qtwebengine-6.9.0-fix-build-error-for-use-gcc.patch
+
+p1	0001-qtwebengine-6.9.0-chromium-skia-remove-lsx-support-f.patch
+p1	0001-qtwebengine-6.9.0-chromium-third_party-blink-remove-.patch
+
+[[[6.8.3]]]
+p1	0001-qt6-webengine-configure-add-loongarch64-support.patch
+p1	0002-qtwebengine-fix-loongarch64-define-because-chromium-.patch
+p1	0003-qtwebengine-6.8.0-chromium-add-some-define-for-loong.patch
+p1	0004-qt6webengine-add-host-ldflags-for-cross-build.patch
+p1	0005-qtwebengine-6.8.0-fix-chromium-boringssl-openssl-tar.patch
+p1	0006-qtwebengine-6.8.0-crashpad-add-support-for-loongarch.patch
+p1	0007-qtwebengine-ffmpeg-first_dts.-patch-form-Fedora-qt6-.patch
+# p1	0008-qtwebengine-sandbox-Add-loongarch64-architecture-sup.patch
+p1	0001-qtwebengine-6.8.3-use-statx-for-sandbox-add-loongarc.patch
+p1	0009-qtwebengine-6.8.0-blink-remove-lsx-support-for-loong.patch
+p1	0010-fix-spellcheck_buildflags.h-file-mission.patch
+p1	0011-qtwebengine-6.8.0-chromium-libyuv-add-loongarch_lsx-.patch
+p1	0012-qtwebengine-6.8.0-fix-libvpx-build-error.patch
+p1	0013-qtwebengine-6.8.0-fix-web_cache-build-error.patch
+p1	0014-qtwebengine-6.8.0-open-lsx-and-lasx-option-for-loong.patch
+# p1	0015-qtwebengine-6.8.0-add-sandbox-syscalls-for-loongarch.patch
+p1	0001-qt6-6.7.2-fix-for-gcc-15.patch
+p1	0001-qt-6.8.0-qtquick3d-3rdparty-openxr-add-loongarch64-d.patch
+p1	0001-qtwebengine-6.8.0-chromium-skia-add-ENABLE_OPTIMIZE_.patch
+p1	0001-qtwebengine-6.8.0-chromium-build-config-fix-for-loon.patch
+
+p1	0001-qtwebengine-3rdparty-chromium-api-runtime-add-loonga.patch
+p1	0002-qtwebengine-3rdparty-chromium-enable-swiftshader-add.patch
+# p1	qtwebengine-fix-building-with-system-ffmpeg.patch	qtwebengine
+# p1	qtwebengine-webrtc-system-openh264.patch		qtwebengine
+# p1	qtwebengine-media-system-openh264.patch			qtwebengine
+# p1	qtwebengine-blink-system-openh264.patch			qtwebengine
+
+p1	0001-fix-filename-too-long-error-for-use-ninja.patch
+
+
+[[[6.7.3]]]
+p1	0001-qt6-webengine-configure-add-loongarch64-support.patch
+p1	0002-qtwebengine-fix-loongarch64-define-because-chromium-.patch
+p1	0003-qtwebengine-6.7.0-chromium-add-some-define-for-loong.patch
+p1	0004-qt6webengine-add-host-ldflags-for-cross-build.patch
+p1	0005-qtwebengine-6.7.0-fix-chromium-boringssl-openssl-tar.patch
+p1	0007-qtwebengine-6.7.0-crashpad-add-support-for-loongarch.patch
+p1	0008-qtwebengine-6.7.0-fix-x11-has-not-been-declared.patch
+p1	0009-qtwebengine-6.7.0-libvpx-fix-for-loongarch64.patch
+p1	0010-qtwebengine-6.7.0-fix-regexp-macro-assembler-for-loo.patch
+p1	0011-qtwebengine-ffmpeg-first_dts.-patch-form-Fedora-qt6-.patch
+p1	0012-qtwebengine-sandbox-Add-loongarch64-architecture-sup.patch
+# p1	0012-qtwebengine-sandbox-Add-loongarch64-architecture-support-for-6.11.patch
+p1	0013-qtwebengine-6.7.0-fix-blink-for-loongarch64.patch
+p1	0014-fix-spellcheck_buildflags.h-file-mission.patch
+p1	0015-qtwebengine-6.7.0-chromium-libyuv-add-loongarch_lsx-.patch
+p1	0016-qtwebengine-6.7.0-fix-libvpx-build-error.patch
+p1	0017-qtwebengine-6.7.0-fix-web_cache-build-error.patch
+p1	0018-qtwebengine-6.7.0-open-lsx-and-lasx-option-for-loong.patch
+p1	0019-qtwebengine-6.7.0-add-sandbox-syscalls-for-loongarch.patch
+p1	0001-qt6-6.7.2-fix-for-gcc-15.patch
+p1	qtwebengine-fix-building-with-system-ffmpeg.patch	qtwebengine
+p1	qtwebengine-webrtc-system-openh264.patch		qtwebengine
+p1	qtwebengine-media-system-openh264.patch			qtwebengine
+p1	qtwebengine-blink-system-openh264.patch			qtwebengine
+p1	0001-qtwebengine-6.8.0-chromium-build-config-fix-for-loon.patch
+
+p1	0001-qtwebengine-3rdparty-chromium-api-runtime-add-loonga.patch
+p1	0002-qtwebengine-3rdparty-chromium-enable-swiftshader-add.patch
+
+# p1	0001-qtwebengine-6.7.2-fix-h264-for-ffmpeg-7.patch
+# p1	0001-qtwebengine-6.7.2-fix-h264-for-ffmpeg-7-patch-2.patch
+
+# p1	0001-Add-LSX-and-LASX-configure-detection.patch			qtbase
+# p1	0002-LSX-composition-and-blend-functions-optimizations.patch	qtbase
+# p1	0003-Complete-some-drawhelper-and-pixellayout-functions-o.patch	qtbase
+# p1	0004-Complete-convert_rgb888_to_rgb32-function-with-LSX.patch	qtbase
+# p1	0005-Complete-imageScale-function-with-LSX.patch		qtbase
+
+p1	0001-qt-6.7.3-fix-compile-for-clang-19.patch
+
+[[[6.6.3]]]
+p1	0001-qt6-qt3d-fix-for-gcc13.patch
+# p1	0001-qt6-fix-for-xkbcommon-1.6.0.patch
+p1	0001-sandbox-Add-loongarch64-architecture-support.patch
+p1	0001-crashpad-add-support-for-loongarch64.patch
+p1	0001-qtwebengine-ffmpeg-first_dts.patch
+p1	0001-add-compile-option-for-loongarch-gcc-14.patch
+p1	0001-fix-sysroot-setup-for-Yongbao-OS-or-CLFS.patch
+# p1	0001-qtwebengin-chromium-fix-for-Python-3.12.patch
+# p1	0001-qtwebengine-chromium-update-python-six-for-Python-3..patch
+p1	0001-qtwebengine-chromium-add-some-define-for-loongarch64.patch
+p1	0001-fix-filename-too-long-error-for-use-ninja.patch
+p1	0001-qtwebengine-fix-loongarch64-define-because-chromium-.patch
+p1	0001-qtwebengine-chromium-libyuv-add-loongarch64-lsx-defi.patch
+p1	0001-qt6-webengine-configure-add-loongarch64-support.patch
+p1	0001-qt6webengine-add-host-ldflags-for-cross-build.patch
+p1	0001-qt-6.6.2-fix-regexp-macro-assembler-for-loongarch64.patch
+
+[[[6.6.1]]]
+p1	0001-qt6-qt3d-fix-for-gcc13.patch
+# p1	0001-qt6-fix-for-xkbcommon-1.6.0.patch
+p1	0001-sandbox-Add-loongarch64-architecture-support.patch
+p1	0001-crashpad-add-support-for-loongarch64.patch
+p1	0001-qtwebengine-ffmpeg-first_dts.patch
+p1	0001-add-compile-option-for-loongarch-gcc-14.patch
+p1	0001-fix-sysroot-setup-for-Yongbao-OS-or-CLFS.patch
+p1	0001-qtwebengin-chromium-fix-for-Python-3.12.patch
+p1	0001-qtwebengine-chromium-update-python-six-for-Python-3..patch
+p1	0001-qtwebengine-chromium-add-some-define-for-loongarch64.patch
+p1	0001-fix-filename-too-long-error-for-use-ninja.patch
+p1	0001-qtwebengine-fix-loongarch64-define-because-chromium-.patch
+p1	0001-qtwebengine-chromium-libyuv-add-loongarch64-lsx-defi.patch

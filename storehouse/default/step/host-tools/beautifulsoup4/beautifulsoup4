@@ -1,0 +1,2 @@
+PACKAGE=beautifulsoup4
+BUILD_MODE=pip

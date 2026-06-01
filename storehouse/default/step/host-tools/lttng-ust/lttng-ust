@@ -1,0 +1,2 @@
+PACKAGE=lttng-ust
+BUILD_MODE=gnu

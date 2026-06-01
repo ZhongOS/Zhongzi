@@ -1,0 +1,2 @@
+PACKAGE=libnvme
+BUILD_MODE=meson

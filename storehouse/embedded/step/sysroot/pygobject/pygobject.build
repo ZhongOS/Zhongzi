@@ -1,0 +1,10 @@
+EXTRA_PARM=-Dtests=false
+
+<<<TAR_UNCOMPRESS>>>
+    mkdir cross-build
+    pushd cross-build
+        meson ${MESON_CONFIG} -Dtests=false ..
+        CC="${CROSS_TARGET}-gcc" ninja
+        DESTDIR=${SYSROOT_DIR} ninja install
+    popd
+<<<CLEAR_DIR>>>

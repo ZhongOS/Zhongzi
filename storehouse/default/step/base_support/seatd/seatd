@@ -1,0 +1,2 @@
+PACKAGE=seatd
+BUILD_MODE=meson

@@ -1,0 +1,4 @@
+<<<TAR_UNCOMPRESS>>>
+    mkdir -pv ${CROSSTOOLS_DIR}/jdk8-bootstrap
+    cp -af * ${CROSSTOOLS_DIR}/jdk8-bootstrap
+<<<CLEAR_DIR>>>

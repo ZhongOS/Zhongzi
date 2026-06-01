@@ -1,0 +1,6 @@
+PACKAGE=gettext
+BUILD_MODE=gnu
+
+[[[0.26]]]
+PACKAGE=gettext
+BUILD_MODE=custom

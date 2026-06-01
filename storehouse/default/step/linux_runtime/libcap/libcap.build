@@ -1,0 +1,5 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<MAKE>>> CROSS_COMPILE="${LINUX_HOST}-" BUILD_CC="gcc" GOLANG=no prefix=/usr lib=lib${LIB_SUFF} CFLAGS="${CFLAGS} ${TEST_LDFLAGS}"
+	make CROSS_COMPILE="${LINUX_HOST}-" BUILD_CC="gcc" GOLANG=no prefix=/usr lib=lib${LIB_SUFF} CFLAGS="${CFLAGS} ${TEST_LDFLAGS}" \
+		 DESTDIR=${LINUX_SYSROOT_DIR} install
+<<<CLEAR_DIR>>>

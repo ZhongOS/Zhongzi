@@ -1,0 +1,13 @@
+<<<TAR_UNCOMPRESS>>>
+    mkdir cross-build
+    pushd cross-build
+        ../configure ${COMMON_CONFIG} --program-suffix=-1 \
+                ac_cv_path_PKG_CONFIG=${CROSS_TARGET}-pkg-config --enable-introspection
+	check_gnu_Makefile
+        <<<MAKE>>> GETTEXT_PACKAGE=libwnck-1 \
+             INTROSPECTION_SCANNER=${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-g-ir-scanner \
+             INTROSPECTION_COMPILER=${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-g-ir-compiler \
+             INTROSPECTION_MAKEFILE=${SYSROOT_DIR}/usr/share/gobject-introspection-1.0/Makefile.introspection
+        make GETTEXT_PACKAGE=libwnck-1 DESTDIR=${SYSROOT_DIR} install
+    popd
+<<<CLEAR_DIR>>>

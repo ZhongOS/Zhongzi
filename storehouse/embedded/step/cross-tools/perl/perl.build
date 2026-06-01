@@ -1,0 +1,11 @@
+<<<TAR_UNCOMPRESS>>>
+    sed -i "s@/usr/include@<<<CROSS_TOOLS_PREFIX>>>/include@g" ext/Errno/Errno_pm.PL
+    CFLAGS="-D_LARGEFILE64_SOURCE" ./configure.gnu --prefix=<<<CROSS_TOOLS_PREFIX>>> \
+    	             -Dprivlib=<<<CROSS_TOOLS_PREFIX>>>/lib/perl5/5.4x/core_perl \
+	             -Darchlib=<<<CROSS_TOOLS_PREFIX>>>/lib${LIB_SUFF}/perl5/5.4x/core_perl \
+	             -Dsitelib=<<<CROSS_TOOLS_PREFIX>>>/lib/perl5/5.4x/site_perl \
+	             -Dsitearch=<<<CROSS_TOOLS_PREFIX>>>/lib${LIB_SUFF}/perl5/5.4x/site_perl \
+	             -Dvendorlib=<<<CROSS_TOOLS_PREFIX>>>/lib/perl5/5.4x/vendor_perl \
+	             -Dvendorarch=<<<CROSS_TOOLS_PREFIX>>>/lib${LIB_SUFF}/perl5/5.4x/vendor_perl
+    <<<MAKE_AND_INSTALL>>>
+<<<CLEAR_DIR>>>

@@ -1,0 +1,11 @@
+<<<TAR_UNCOMPRESS>>>
+	rm -rf gdb* libdecnumber readline sim
+	mkdir -pv cross-build
+	pushd cross-build
+		../configure --prefix=/usr --libdir=/usr/lib${LIB_SUFF} --build=${CROSS_HOST} \
+		             --host=${X86_HOST} --enable-shared --disable-werror \
+		             --with-system-zlib --enable-64-bit-bfd
+		<<<MAKE>>> tooldir=/usr
+		make DESTDIR=${X86_SYSROOT_DIR} tooldir=/usr install
+	popd
+<<<CLEAR_DIR>>>

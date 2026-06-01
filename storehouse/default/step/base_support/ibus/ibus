@@ -1,0 +1,2 @@
+PACKAGE=ibus
+BUILD_MODE=custom

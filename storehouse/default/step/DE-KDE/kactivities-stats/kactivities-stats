@@ -1,0 +1,2 @@
+PACKAGE=kactivities-stats
+BUILD_MODE=cmake

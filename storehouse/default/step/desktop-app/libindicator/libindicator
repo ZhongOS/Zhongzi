@@ -1,0 +1,2 @@
+PACKAGE=libindicator
+BUILD_MODE=custom

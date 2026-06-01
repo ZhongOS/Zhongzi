@@ -1,0 +1,100 @@
+p1 firefox-140.9.0esr-glibc-2.43.patch
+p1 firefox-140.9.0esr-llvm_22-1.patch
+p1 firefox-140.9.0esr-python_3.14_fixes-1.patch
+p1 0001-fixed-a-judgment-issue-when-libstdc-has-multiple-ver.patch
+
+
+[[[140.10.0esr]]]
+p1 firefox-140.9.0esr-ffmpeg-8.0.patch
+p1 firefox-140.9.0esr-glibc-2.43.patch
+p1 firefox-140.9.0esr-llvm_22-1.patch
+p1 firefox-140.9.0esr-python_3.14_fixes-1.patch
+p1 0001-fixed-a-judgment-issue-when-libstdc-has-multiple-ver.patch
+
+
+[[[140.9.0]]]
+p1 0001-fixed-a-judgment-issue-when-libstdc-has-multiple-ver.patch
+# p1 0001-firefox-119-set-vaapi-enabled-as-default.patch
+# p1 0001-firefox-128.8-fix-for-glean_parser-17.0.1-build-erro.patch
+
+[[[128.12.0]]]
+p1 0001-firefox-125-add-loongarch.patch
+p1 0001-fixed-a-judgment-issue-when-libstdc-has-multiple-ver.patch
+p1 0001-firefox-119-set-vaapi-enabled-as-default.patch
+p1 0001-firefox-128.8-fix-for-glean_parser-17.0.1-build-erro.patch
+
+[[[128.7.0]]]
+p1 0001-firefox-125-add-loongarch.patch
+p1 0001-fixed-a-judgment-issue-when-libstdc-has-multiple-ver.patch
+p1 0001-firefox-119-set-vaapi-enabled-as-default.patch
+# p1 0001-firefox-123.0-fix-for-glean_parser-13.0.0.patch
+p1 0001-firefox-128.6-fix-for-glean_parser-16.2.0-build-erro.patch
+
+
+[[[124.0.2]]]
+p1 firefox-100-add-loongarch.patch
+# p1 0001-firefox-119-fix-rust.patch
+p1 0001-fixed-a-judgment-issue-when-libstdc-has-multiple-ver.patch
+# p1 0001-firefox-119-fix-for-build-error.patch
+# p1 0001-firefox-119-enable-vaapi-for-loongarch64.patch
+p1 0001-firefox-119-set-vaapi-enabled-as-default.patch
+# p1 0001-firefox-120.0-fix-build-error-caused-by-warning.patch
+# p1 0006-Enable-WebRTC-for-LoongArch.patch
+p1 0001-firefox-123.0-fix-for-glean_parser-13.0.0.patch
+
+[[[121.0.0]]]
+p1 firefox-100-add-loongarch.patch
+p1 0001-firefox-119-fix-rust.patch
+p1 0001-fixed-a-judgment-issue-when-libstdc-has-multiple-ver.patch
+# p1 0001-firefox-119-fix-for-build-error.patch
+p1 0001-firefox-119-enable-vaapi-for-loongarch64.patch
+p1 0001-firefox-119-set-vaapi-enabled-as-default.patch
+# p1 0001-firefox-120.0-fix-build-error-caused-by-warning.patch
+p1 0006-Enable-WebRTC-for-LoongArch.patch
+
+[[[119.1.0]]]
+p1 firefox-100-add-loongarch.patch
+p1 0001-firefox-119-fix-rust.patch
+p1 0001-fixed-a-judgment-issue-when-libstdc-has-multiple-ver.patch
+p1 0001-firefox-118-fix-for-python3.12.patch
+p1 0001-firefox-119-fix-for-build-error.patch
+p1 0001-firefox-119-enable-vaapi-for-loongarch64.patch
+p1 0001-firefox-119-set-vaapi-enabled-as-default.patch
+
+[[[118.2.0]]]
+p1 firefox-100-add-loongarch.patch
+p1 firefox-118-fix-rust.patch
+p1 0001-fixed-a-judgment-issue-when-libstdc-has-multiple-ver.patch
+p1 0001-firefox-118-fix-for-python3.12.patch
+
+[[[117.2.0]]]
+p1 firefox-100-add-loongarch.patch
+p1 firefox-110-fix-rust.patch
+p1 0001_xpcom_add_loongarch64_support.patch
+p1 firefox-100-for-clfs.patch
+p1 firefox-105-fix-for-gcc13.patch
+p1 0001-fixed-a-judgment-issue-when-libstdc-has-multiple-ver.patch
+
+[[[115.2.0]]]
+p1 firefox-100-add-loongarch.patch
+p1 firefox-110-fix-rust.patch
+p1 0001_xpcom_add_loongarch64_support.patch
+p1 firefox-100-for-clfs.patch
+p1 firefox-105-fix-for-gcc13.patch
+
+[[[114.0.2]]]
+p1 firefox-100-add-loongarch.patch
+p1 firefox-110-fix-rust.patch
+p1 0001_xpcom_add_loongarch64_support.patch
+p1 firefox-100-for-clfs.patch
+p1 firefox-105-fix-for-gcc13.patch
+p1 firefox-105-fix-jit-for-loongarch64.patch
+
+[[[105.0.source]]]
+p1 firefox-100-add-loongarch.patch
+p1 firefox-105-fix-rust.patch
+p1 firefox-100-xpcom-add-loongarch.patch
+p1 firefox-100-for-clfs.patch
+p1 firefox-105-fix-for-gcc13.patch
+p1 firefox-build-for-python-3.11.patch
+p1 firefox-105-fix-jit-for-loongarch64.patch

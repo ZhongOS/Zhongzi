@@ -1,0 +1,52 @@
+<<<TAR_UNCOMPRESS>>>
+    sed -i "s@(defined LOONGARCH)@(defined LOONGARCH64)@g" src/hotspot/os/linux/os_linux.cpp
+    LDFLAGS="" CC="${CROSS_TARGET}-gcc" \
+    sh ./configure --prefix=/usr --host=${CROSS_TARGET} \
+                --with-zlib=system --with-libpng=system --enable-unlimited-crypto \
+                --with-extra-cxxflags="-fno-lifetime-dse -fcommon" \
+                --with-extra-cflags="-Wno-error -fno-lifetime-dse -fcommon" \
+#                 --with-extra-ldflags="-Wl,-rpath-link=${SYSROOT_DIR}/usr/lib64" \
+                --with-stdc++lib=dynamic \
+                --with-boot-jdk=${CROSSTOOLS_DIR}/jdk24-bootstrap \
+                --disable-warnings-as-errors
+    make JOBS=${JOBS} LP64=1 LDFLAGS="" BUILD_CC="gcc" images
+    pushd build/linux-${ARCH_NAME}-server-release/images/jdk/
+        find -type f -exec ${CROSS_TARGET}-strip --strip-unneeded '{}' ';'
+	cd ..
+	mv jdk jdk-laster
+	mkdir -pv ${DIST_DIRECTORY}/host/${ARCH_NAME}/jdk/$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")/
+        tar -cJf ${DIST_DIRECTORY}/host/${ARCH_NAME}/jdk/$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")/jdk-$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")-${ARCH_NAME}.tar.xz  --exclude=.git* jdk-laster
+        tar -xvf ${DIST_DIRECTORY}/host/${ARCH_NAME}/jdk/$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")/jdk-$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")-${ARCH_NAME}.tar.xz -C ${SYSROOT_DIR}/opt/
+	info_pool "生成了可发布的JDK <<<PACKAGE_VERSION>>> 虚拟机压缩包文件：${DIST_DIRECTORY}/host/${ARCH_NAME}/jdk/$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")/jdk-$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")-${ARCH_NAME}.tar.xz"
+    popd
+<<<CLEAR_DIR>>>
+
+default_set_conf "jdk" "laster" "JDK" "/usr/bin/java" "/opt/jdk-laster/bin/java"
+
+
+[[[20.0.1]]]
+<<<TAR_UNCOMPRESS>>>
+    sed -i "s@(defined LOONGARCH)@(defined LOONGARCH64)@g" src/hotspot/os/linux/os_linux.cpp
+#     LDFLAGS="" CC="${CROSS_TARGET}-gcc" BUILD_SYSROOT_LDFLAGS="-Wl,-rpath-link=${CROSSTOOLS_DIR}/lib:${CROSSTOOLS_DIR}/lib64:${HOST_TOOLS_DIR}/lib64 -Wl,-rpath=${CROSSTOOLS_DIR}/lib:${CROSSTOOLS_DIR}/lib64:${HOST_TOOLS_DIR}/lib64" \
+    LDFLAGS="" CC="${CROSS_TARGET}-gcc" \
+    sh ./configure --prefix=/usr --host=${CROSS_TARGET} \
+                --with-zlib=system --with-libpng=system --enable-unlimited-crypto \
+                --with-extra-cxxflags="-fno-lifetime-dse -fcommon" \
+                --with-extra-cflags="-Wno-error -fno-lifetime-dse -fcommon" \
+#                 --with-extra-ldflags="-Wl,-rpath-link=${SYSROOT_DIR}/usr/lib64" \
+                --with-stdc++lib=dynamic \
+                --with-boot-jdk=${CROSSTOOLS_DIR}/jdk-latest-bootstrap \
+                --disable-warnings-as-errors
+    make JOBS=${JOBS} LP64=1 LDFLAGS="" BUILD_CC="gcc" images
+    pushd build/linux-${ARCH_NAME}-server-release/images/jdk/
+        find -type f -exec ${CROSS_TARGET}-strip --strip-unneeded '{}' ';'
+	cd ..
+	mv jdk jdk-latest
+	mkdir -pv ${DIST_DIRECTORY}/host/${ARCH_NAME}/jdk/$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")/
+        tar -cJf ${DIST_DIRECTORY}/host/${ARCH_NAME}/jdk/$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")/jdk-$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")-${ARCH_NAME}.tar.xz  --exclude=.git* jdk-latest
+        tar -xvf ${DIST_DIRECTORY}/host/${ARCH_NAME}/jdk/$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")/jdk-$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")-${ARCH_NAME}.tar.xz -C ${SYSROOT_DIR}/opt/
+	info_pool "生成了可发布的JDK <<<PACKAGE_VERSION>>> 虚拟机压缩包文件：${DIST_DIRECTORY}/host/${ARCH_NAME}/jdk/$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")/jdk-$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")-${ARCH_NAME}.tar.xz"
+    popd
+<<<CLEAR_DIR>>>
+
+default_set_conf "jdk" "latest" "JDK 最新版" "/usr/bin/java" "/opt/jdk-latest/bin/java"

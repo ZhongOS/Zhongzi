@@ -1,0 +1,2 @@
+PACKAGE=alsa-oss
+BUILD_MODE=gnu

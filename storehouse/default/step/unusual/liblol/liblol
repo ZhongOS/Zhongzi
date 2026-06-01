@@ -1,0 +1,2 @@
+PACKAGE=liblol
+BUILD_MODE=custom

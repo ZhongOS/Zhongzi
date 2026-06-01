@@ -1,0 +1,2 @@
+PACKAGE=libssh
+BUILD_MODE=cmake

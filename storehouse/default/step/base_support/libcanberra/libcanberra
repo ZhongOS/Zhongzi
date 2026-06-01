@@ -1,0 +1,2 @@
+PACKAGE=libcanberra
+BUILD_MODE=gnu

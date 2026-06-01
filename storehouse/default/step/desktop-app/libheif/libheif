@@ -1,0 +1,2 @@
+PACKAGE=libheif
+BUILD_MODE=cmake

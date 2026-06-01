@@ -1,0 +1,2 @@
+PACKAGE=packaging
+BUILD_MODE=pip

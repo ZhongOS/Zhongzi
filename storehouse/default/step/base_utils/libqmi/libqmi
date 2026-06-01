@@ -1,0 +1,2 @@
+PACKAGE=libqmi
+BUILD_MODE=custom

@@ -1,0 +1,2 @@
+PACKAGE=libyaml
+BUILD_MODE=gnu

@@ -1,0 +1,2 @@
+PACKAGE=linuxdeploy
+BUILD_MODE=cmake

@@ -1,0 +1,2 @@
+PACKAGE=guile
+BUILD_MODE=custom

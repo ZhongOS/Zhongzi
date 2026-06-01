@@ -1,0 +1,12 @@
+<<<TAR_UNCOMPRESS>>>
+        <<<PATCH>>>
+        for config_i in $(find -name "config.sub")
+        do
+                cp -a -f $(automake --print-libdir)/config.{sub,guess} $(dirname ${config_i})/
+        done
+        autoreconf -ifv
+        ./configure ${COMMON_CONFIG} --enable-malloc0returnsnull
+        CC=${CROSS_TARGET}-gcc CXX=${CROSS_TARGET}-g++ <<<MAKE>>>
+        make DESTDIR=${SYSROOT_DIR} install
+        rm -f ${SYSROOT_DIR}/usr/lib64/*.la
+<<<CLEAR_DIR>>>

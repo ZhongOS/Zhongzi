@@ -1,0 +1,2 @@
+PACKAGE=font-misc-ethiopic
+BUILD_MODE=gnu

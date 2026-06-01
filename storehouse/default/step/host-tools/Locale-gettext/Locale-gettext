@@ -1,0 +1,2 @@
+PACKAGE=Locale-gettext
+BUILD_MODE=perl

@@ -1,0 +1,2 @@
+PACKAGE=cairomm
+BUILD_MODE=meson

@@ -1,0 +1,5 @@
+[[[0.194]]]
+p1	0001-elfutils-0.194-fix-build-error-for-glibc-2.43.patch
+
+[[[0.188]]]
+p1	0001-elfutils-fix-EF_LARCH-defined.patch

@@ -1,0 +1,107 @@
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+    if [ "x$(get_user_set_env target)" == "x" ]; then
+        CROSS_TARGET=$(archname_to_triple "$(get_user_set_env host ${CROSS_HOST})" "${CROSS_HOST}")
+        ARCH_MABI=$(archname_to_anyparm "$(get_user_set_env host ${CROSS_TARGET})" "MABI" "")
+    else
+#         CROSS_TARGET=$(archname_to_triple "$(get_user_set_env target ${CROSS_HOST})" "${CROSS_HOST}")
+#        CROSS_ARCH_BIT=$(archname_to_archbit "$(get_user_set_env target)" "${ARCH_BIT}")
+#        CROSS_ARCH_BIT=$(archname_to_archbit "$(get_user_set_env target ${CROSS_TARGET})" "${ARCH_BIT}")
+#        ARCH_ABI=$(archname_to_archabi "$(get_user_set_env target ${CROSS_TARGET})" "${ARCH_ABI}")
+        CROSS_TARGET=$(archname_to_triple "$(get_user_set_env target ${CROSS_TARGET})" "${CROSS_TARGET}")
+        ARCH_MABI=$(archname_to_anyparm "$(get_user_set_env target ${CROSS_TARGET})" "MABI" "")
+    fi
+    LIB_SUFF=$(archname_to_lib_suff "${CROSS_TARGET}")
+
+    TARGET_VENDOR=$(get_user_set_env vendor "unknown")
+
+    case "x${TARGET_VENDOR}" in
+	"xunknown")
+		;;
+	"xNULL")
+		CROSS_TARGET="$(echo "${CROSS_TARGET}" | sed "s@-unknown-@-@g")"
+		;;
+	*)
+		CROSS_TARGET="$(echo "${CROSS_TARGET}" | sed "s@unknown@${TARGET_VENDOR}@g")"
+		;;
+    esac
+#     if [ "x${TARGET_VENDOR}" != "xunknown" ]; then
+# 	CROSS_TARGET="$(echo "${CROSS_TARGET}" | sed "s@unknown@${TARGET_VENDOR}@g")"
+#     fi
+
+#     PATH=${TOOLCHAIN_DIRECTORY}/cross-target/${CROSS_TARGET}/cross-tools/bin:${PATH}
+    TARGET_CROSSTOOLCHAIN_DIR="${TOOLCHAIN_DIRECTORY}/cross-target/${CROSS_TARGET}/cross-tools"
+    PATH=${TARGET_CROSSTOOLCHAIN_DIR}/bin:${PATH}
+
+#    cp <<<CROSS_TOOLS_PREFIX>>>/share/automake*/config.* ./
+#     sed -i "s@5.15.0@4.15.0@g" sysdeps/unix/sysv/linux/loongarch/configure{,.ac}
+    mkdir -p build
+    pushd build
+        BUILD_CC="gcc" \
+# 	CC="${TOOLCHAIN_DIRECTORY}/cross-target/${CROSS_TARGET}/cross-tools/bin/${CROSS_TARGET}-gcc ${ARCH_MABI}" \
+#         CXX="${TOOLCHAIN_DIRECTORY}/cross-target/${CROSS_TARGET}/cross-tools/bin/${CROSS_TARGET}-gcc ${ARCH_MABI}" \
+	CC="${CROSS_TARGET}-gcc ${ARCH_MABI} -fno-link-libatomic" \
+        CXX="${CROSS_TARGET}-gcc ${ARCH_MABI} -fno-link-libatomic" \
+        AS="${CROSS_TARGET}-as" AR="${CROSS_TARGET}-ar" RANLIB="${CROSS_TARGET}-ranlib" \
+        ../configure --prefix=/usr --host=${CROSS_TARGET} --build=${CROSS_HOST} \
+	                 --libdir=/usr/lib${LIB_SUFF} --libexecdir=/usr/lib${LIB_SUFF}/glibc \
+# 	                 --with-binutils=${TOOLCHAIN_DIRECTORY}/cross-target/${CROSS_TARGET}/cross-tools/bin \
+# 	                 --with-headers=${TOOLCHAIN_DIRECTORY}/cross-target/${CROSS_TARGET}/cross-tools/target/usr/include \
+	                 --with-binutils=${TARGET_CROSSTOOLCHAIN_DIR}/bin \
+	                 --with-headers=${TARGET_CROSSTOOLCHAIN_DIR}/target/usr/include \
+	                 --enable-stack-protector=strong --enable-add-ons \
+	                 --disable-werror --disable-nscd libc_cv_slibdir=/usr/lib${LIB_SUFF} \
+	                 --enable-kernel=4.15
+	<<<MAKE>>>
+
+# 	mkdir -pv ${TOOLCHAIN_DIRECTORY}/cross-target/${CROSS_TARGET}/cross-tools/target/usr/lib{,64}
+	mkdir -pv ${TARGET_CROSSTOOLCHAIN_DIR}/target/usr/lib{,64}
+
+#         INSTALL_DIST_DIR="${TOOLCHAIN_DIRECTORY}/cross-target/${CROSS_TARGET}/cross-tools/target"
+	INSTALL_DIST_DIR="${TARGET_CROSSTOOLCHAIN_DIR}/target"
+	make DESTDIR=${INSTALL_DIST_DIR} install
+    popd
+<<<CLEAR_DIR>>>
+
+[[[2.34.0]]]
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+    CROSS_TARGET=$(archname_to_triple "$(get_user_set_env target ${CROSS_TARGET})" "${CROSS_TARGET}")
+    CROSS_ARCH_BIT=$(archname_to_archbit "$(get_user_set_env target ${})" "${CROSS_TARGET}")
+    LIB_SUFF=$(archbit_to_lib_suff "${CROSS_ARCH_BIT}")
+
+    if [ -d ${PREFIX}/cross-tools ]; then
+        mv ${PREFIX}/cross-tools{,.$(date +%Y%m%d%H%M%S)}
+    fi
+    mkdir -pv ${PREFIX}/cross-tools
+    mkdir -pv ${PREFIX}/cross-tools/target/lib{,64}
+    cp -a ${TOOLCHAIN_DIRECTORY}/${CROSS_HOST}/binutils/${CROSS_TARGET}/cross-tools/* ${PREFIX}/cross-tools/
+    cp -a ${TOOLCHAIN_DIRECTORY}/${CROSS_HOST}/gcc-newlib/${CROSS_TARGET}/cross-tools/* ${PREFIX}/cross-tools/
+    cp -a ${TOOLCHAIN_DIRECTORY}/${CROSS_TARGET}/linux-header/* ${PREFIX}/cross-tools/target/
+
+    PATH=${PREFIX}/cross-tools/bin:${PATH}
+
+
+    cp <<<CROSS_TOOLS_PREFIX>>>/share/automake*/config.* ./
+    sed -i "s@5.15.0@4.15.0@g" sysdeps/unix/sysv/linux/loongarch/configure{,.ac}
+    mkdir -p build
+    pushd build
+        BUILD_CC="gcc" CC="${CROSS_TARGET}-gcc" \
+        CXX="${CROSS_TARGET}-gcc" \
+        AS="${CROSS_TARGET}-as" AR="${CROSS_TARGET}-ar" RANLIB="${CROSS_TARGET}-ranlib" \
+        ../configure --prefix=/usr --host=${CROSS_TARGET} --build=${CROSS_HOST} \
+	                 --libdir=/usr/lib${LIB_SUFF} --libexecdir=/usr/lib${LIB_SUFF}/glibc \
+	                 --with-binutils=${PREFIX}/cross-tools/bin \
+	                 --with-headers=${PREFIX}/cross-tools/target/usr/include \
+	                 --enable-stack-protector=strong --enable-add-ons \
+	                 --disable-werror libc_cv_slibdir=/usr/lib${LIB_SUFF} \
+	                 --enable-kernel=4.15
+	<<<MAKE>>>
+
+        INSTALL_DIST_DIR="${TOOLCHAIN_DIRECTORY}/${CROSS_TARGET}/glibc"
+        if [ -d ${INSTALL_DIST_DIR} ] || [ -f ${INSTALL_DIST_DIR} ]; then
+                mv ${INSTALL_DIST_DIR} ${INSTALL_DIST_DIR}.$(date +%Y%m%d%H%M%S)
+        fi
+	make DESTDIR=${INSTALL_DIST_DIR} install
+    popd
+<<<CLEAR_DIR>>>

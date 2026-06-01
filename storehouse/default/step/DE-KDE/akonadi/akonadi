@@ -1,0 +1,2 @@
+PACKAGE=akonadi
+BUILD_MODE=custom

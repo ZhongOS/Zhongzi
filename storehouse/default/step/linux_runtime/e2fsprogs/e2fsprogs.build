@@ -1,0 +1,15 @@
+<<<TAR_UNCOMPRESS>>>
+	mkdir -v build
+	pushd build
+		../configure ${COMMON_CONFIG} \
+		             --enable-elf-shlibs --disable-libblkid \
+		             --disable-libuuid --disable-uuidd --disable-fsck \
+			     --with-systemd-unit-dir=/usr/lib/systemd/system \
+			     --with-udev-rules-dir=/usr/lib/udev/rules.d
+		<<<MAKE_AND_INSTALL>>>
+		rm -fv ${LINUX_SYSROOT_DIR}/usr/lib${LIB_SUFF}/{libcom_err,libe2p,libext2fs,libss}.la
+
+		cp -av ${LINUX_SYSROOT_DIR}/usr/bin/mk_cmds ${CROSS_TOOLS_PREFIX}/bin/
+		sed -i "s@=/usr@=${LINUX_SYSROOT_DIR}/usr@g" ${CROSS_TOOLS_PREFIX}/bin/mk_cmds
+	popd
+<<<CLEAR_DIR>>>

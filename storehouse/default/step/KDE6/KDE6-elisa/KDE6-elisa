@@ -1,0 +1,2 @@
+PACKAGE=KDE6-elisa
+BUILD_MODE=cmake

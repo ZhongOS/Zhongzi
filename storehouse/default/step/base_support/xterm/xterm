@@ -1,0 +1,2 @@
+PACKAGE=xterm
+BUILD_MODE=custom

@@ -1,0 +1,24 @@
+p2	0001-qt6-6.11.0-webengine-configure-add-loongarch64-suppo.patch
+p2	0002-qt-6.11.0-webengine-fix-loongarch64-define-because-c.patch
+p2	0003-qt-6.11.0-webengine-chromium-add-some-define-for-loo.patch
+p2	0004-qt-6.11.0-webengine-fix-chromium-boringssl-openssl-t.patch
+p2	0005-qtwebengine-6.11.0-crashpad-add-support-for-loongarc.patch
+p2	0006-qtwebengine-6.11.0-open-lsx-option-for-loongarch64.patch
+p2	0007-qt-6.11.0-webengine-3rdparty-chromium-api-runtime-ad.patch
+p2	0008-qt-6.11.0-webengine-3rdparty-chromium-enable-swiftsh.patch
+p2	0001-qtwebengine-6.11.0-use-statx-for-sandbox-add-loongar.patch
+
+p2	0001-qtwebengine-fix-filename-too-long-error-for-use-ninj.patch
+
+p2	0001-qtwebengine-src-3rdparty-gn-config-add-loongarch64-d.patch
+
+p2	0001-qtwebengine-6.11.0-chromium-skia-remove-lsx-support-.patch
+p2	0001-qtwebengine-6.9.0-chromium-third_party-blink-remove-.patch
+
+p2	0001-SYS_SECCOMP-has-already-been-defined-when-glibc-2.43.patch
+
+# p2	0001-qtwebengine-6.9.0-fix-build-error-for-use-gcc.patch
+
+p1	0001-qtwebengine-6.11.0-fix-build-error.patch
+p1	0001-fix-sigsys_handlers.cc-build-error.patch
+p1	0001-chromium-third_party-blink-renderer-add-cxxflags-Wno.patch

@@ -1,0 +1,2 @@
+PACKAGE=pulseaudio
+BUILD_MODE=meson

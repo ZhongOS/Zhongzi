@@ -1,0 +1,2 @@
+PACKAGE=sphinxcontrib-serializinghtml
+BUILD_MODE=pip

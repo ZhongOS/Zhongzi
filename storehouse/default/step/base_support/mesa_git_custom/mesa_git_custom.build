@@ -1,0 +1,22 @@
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+    tar xf ${RESOURCEDIR}/files/mesa_git-DirectX-Headers_git.tar.gz -C subprojects/
+    mv subprojects/{mesa_git-DirectX-Headers_git,DirectX-Headers-1.0}
+
+    sed -i -e "/dep_wl_scanner/s@, native: true@@g" \
+           -e "/prog_wl_scanner/s@find_program\(.*\)\$@'wayland-scanner'@g" meson.build
+
+    mkdir cross-build
+    pushd cross-build
+        meson ${MESON_CONFIG} \
+              -Dgallium-drivers="kmsro,radeonsi,r300,r600,nouveau,freedreno,swrast,v3d,vc4,etnaviv,tegra,svga,virgl,panfrost,iris,lima,zink,d3d12" \
+              -Dplatforms=x11,wayland \
+              -Dglx=dri -Dopengl=true -Degl=enabled -Dglvnd=true -Dosmesa=true \
+              -Dshared-glapi=enabled -Dgles2=enabled -Dgallium-vdpau=enabled -Dgallium-opencl=disabled \
+              -Dlibunwind=disabled -Dvulkan-drivers="virtio" \
+	      -Dvideo-codecs="vc1dec,h264dec,h264enc,h265dec,h265enc,av1dec,av1enc,vp9dec" \
+	      -Dgallium-nine=true -Dllvm=disabled \
+               ..
+	<<<NINJA_AND_INSTALL>>>
+    popd
+<<<CLEAR_DIR>>>

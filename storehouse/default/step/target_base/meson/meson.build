@@ -1,0 +1,5 @@
+<<<TAR_UNCOMPRESS>>>
+    ${HOST_TOOLS_DIR}/bin/python3 setup.py build
+    ${HOST_TOOLS_DIR}/bin/python3 setup.py install --root=${SYSROOT_DIR} --prefix=/usr
+    sed -i "s@${HOST_TOOLS_DIR}@@g" ${SYSROOT_DIR}/bin/meson
+<<<CLEAR_DIR>>>

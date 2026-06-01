@@ -1,0 +1,2 @@
+PACKAGE=libmicrodns
+BUILD_MODE=meson

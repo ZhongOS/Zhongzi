@@ -1,0 +1,2 @@
+PACKAGE=bc
+BUILD_MODE=custom

@@ -1,0 +1,2 @@
+PACKAGE=qmltermwidget
+BUILD_MODE=custom

@@ -1,0 +1,4 @@
+<<<TAR_UNCOMPRESS>>>
+	gem build asciidoctor.gemspec
+	gem install asciidoctor-<<<PACKAGE_VERSION>>>.gem
+<<<CLEAR_DIR>>>

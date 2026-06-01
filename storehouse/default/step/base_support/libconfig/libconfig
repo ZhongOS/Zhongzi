@@ -1,0 +1,2 @@
+PACKAGE=libconfig
+BUILD_MODE=gnu

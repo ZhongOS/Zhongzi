@@ -1,0 +1,12 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+        for config_i in $(find -name "config.sub")
+        do
+                cp -a -f $(automake --print-libdir)/config.{sub,guess} $(dirname ${config_i})/
+        done
+        if [ ! -f configure ]; then
+                autoreconf -ifv
+        fi
+	<<<CONFIG_ENV>>> ./configure --prefix=${PREFIX} --libdir=${PREFIX}/lib${LIB_SUFF} <<<EXTRA_PARM>>>
+	<<<MAKE_AND_INSTALL>>>
+<<<CLEAR_DIR>>>

@@ -1,0 +1,2 @@
+PACKAGE=kquickimageeditor
+BUILD_MODE=cmake

@@ -1,0 +1,19 @@
+<<<TAR_UNCOMPRESS>>>
+	cp -av ${RESOURCEDIR}/yb-default-select ${SYSROOT_DIR}/usr/bin/
+	cp -av ${RESOURCEDIR}/yb-default-select.desktop ${SYSROOT_DIR}/usr/share/applications/
+
+cat > ${SYSROOT_DIR}/usr/share/applications/x86_64-emu-select.desktop << "EOF"
+[Desktop Entry]
+Name=x86_64-emu-select
+GenericName=x86_64 二进制翻译默认程序设置器
+Comment=x86_64 二进制翻译默认程序设置器
+MimeType=
+Exec=yb-default-select x86_64-emu
+Icon=
+Type=Application
+Terminal=false
+Categories=Settings;
+StartupNotify=true
+EOF
+
+<<<CLEAR_DIR>>>

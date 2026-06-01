@@ -1,0 +1,2 @@
+PACKAGE=libretro-core-info
+BUILD_MODE=custom

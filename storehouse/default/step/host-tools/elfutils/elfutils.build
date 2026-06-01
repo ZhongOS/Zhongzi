@@ -1,0 +1,2 @@
+# CONFIG_ENV=CFLAGS="${CFLAGS} -Wno-error=unterminated-string-initialization"
+EXTRA_PARM= --disable-debuginfod --enable-libdebuginfod=dummy --enable-maintainer-mode

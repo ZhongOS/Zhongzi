@@ -1,0 +1,8 @@
+<<<TAR_UNCOMPRESS>>>
+    pushd Project/GNU/Library
+	    autoreconf -ifv
+	    ./configure $COMMON_CONFIG --enable-shared \
+        	        --enable-visibility --with-libcurl --with-libmms
+	    <<<MAKE_AND_INSTALL>>>
+    popd
+<<<CLEAR_DIR>>>

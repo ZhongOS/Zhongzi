@@ -1,0 +1,2 @@
+PACKAGE=sphinxcontrib-qthelp
+BUILD_MODE=pip

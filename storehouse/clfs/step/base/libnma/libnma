@@ -1,0 +1,2 @@
+PACKAGE=libnma
+BUILD_MODE=meson_cross_bool

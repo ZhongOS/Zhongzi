@@ -1,0 +1,3 @@
+PACKAGE=harfbuzz
+BUILD_MODE=meson
+LOCK_VERSION=10.4.0

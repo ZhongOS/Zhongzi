@@ -1,0 +1,2 @@
+PACKAGE=glibmm
+BUILD_MODE=meson

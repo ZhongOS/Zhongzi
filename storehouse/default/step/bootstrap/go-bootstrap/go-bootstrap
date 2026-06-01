@@ -1,0 +1,2 @@
+PACKAGE=go-bootstrap
+BUILD_MODE=custom

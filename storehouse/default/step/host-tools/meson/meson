@@ -1,0 +1,3 @@
+PACKAGE=meson
+# BUILD_MODE=custom
+BUILD_MODE=pip

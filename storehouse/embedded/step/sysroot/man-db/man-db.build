@@ -1,0 +1,1 @@
+EXTRA_PARM= --sysconfdir=/etc --disable-setuid  --enable-cache-owner=bin 	--with-browser=/usr/bin/lynax  --with-vgrind=/usr/bin/vgrind --with-grap=/usr/bin/grap --with-systemdtmpfilesdir=/usr/lib/tmpfiles.d --with-systemdsystemunitdir=/usr/lib/systemd/system

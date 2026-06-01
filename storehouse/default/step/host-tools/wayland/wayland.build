@@ -1,0 +1,12 @@
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+    mkdir -p native-build
+    pushd native-build
+        meson --prefix=${PREFIX} --libdir=${PREFIX}/lib${LIB_SUFF} -Ddocumentation=false \
+              --buildtype=release ..
+        ninja
+        ninja install
+    popd
+<<<CLEAR_DIR>>>
+# mkdir -p ${CROSSTOOLS_DIR}/host-tools/bin/
+# cp -a ${CROSSTOOLS_DIR}/bin/wayland-scanner ${CROSSTOOLS_DIR}/host-tools/bin/

@@ -1,0 +1,2 @@
+PACKAGE=hyphen
+BUILD_MODE=gnu

@@ -1,0 +1,2 @@
+PACKAGE=x265
+BUILD_MODE=custom

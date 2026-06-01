@@ -1,0 +1,6 @@
+<<<TAR_UNCOMPRESS>>>
+	sed '/prep :/a\\ttouch prep' -i src/Makefile
+	CC=${CROSS_TARGET}-gcc <<<MAKE>>> ERRORS=
+	exit
+#	make install LIBDIR=/usr/lib
+<<<CLEAR_DIR>>>

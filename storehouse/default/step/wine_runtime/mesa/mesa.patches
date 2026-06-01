@@ -1,0 +1,8 @@
+# p1 0001-fix-amdgpu-for-wine.patch
+# p1 0001-fix-amdgpu-for-wine-2.patch
+# p1 0001-mesa-fix-uint64-to-uint32-for-i686-arch-build.patch
+
+[[[23.2.0]]]
+p1 0001-fix-libdrm-and-mesa-multiple-definition-of-handle_ta.patch
+
+[[[22.0.0]]]

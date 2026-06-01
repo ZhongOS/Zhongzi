@@ -1,0 +1,2 @@
+PACKAGE=cracklib
+BUILD_MODE=custom

@@ -1,0 +1,192 @@
+<<<TAR_UNCOMPRESS>>>
+    if [ "x$(get_user_set_env target)" == "x" ]; then
+        CROSS_TARGET=$(archname_to_triple "$(get_user_set_env host ${CROSS_HOST})" "${CROSS_HOST}")
+        ARCH_ABI=$(archname_to_archabi "$(get_user_set_env host ${CROSS_TARGET})" "${ARCH_ABI}")
+    else
+        CROSS_TARGET=$(archname_to_triple "$(get_user_set_env target ${CROSS_HOST})" "${CROSS_HOST}")
+        ARCH_ABI=$(archname_to_archabi "$(get_user_set_env target ${CROSS_TARGET})" "${ARCH_ABI}")
+    fi
+    TARGET_VENDOR=$(get_user_set_env vendor "unknown")
+
+#    if [ "x$(get_user_set_env compat)" == "x1" ]; then
+#        COMPAT_TARGET="${CROSS_TARGET}-compat"
+#    else
+#        COMPAT_TARGET="${CROSS_TARGET}"
+#    fi
+
+    if [ "x$(get_user_set_env compat)" == "x1" ] || [ "x$(get_user_set_env target_compat)" == "x1" ]; then
+	COMPAT_TARGET="$(echo "${CROSS_TARGET}" | sed "s@unknown@compat@g")"
+    else
+	case "x${TARGET_VENDOR}" in
+		"xunknown")
+			COMPAT_TARGET="${CROSS_TARGET}"
+			;;
+		"xNULL")
+			COMPAT_TARGET="$(echo "${CROSS_TARGET}" | sed "s@-unknown-@-@g")"
+			;;
+		*)
+			COMPAT_TARGET="$(echo "${CROSS_TARGET}" | sed "s@unknown@${TARGET_VENDOR}@g")"
+			;;
+	esac
+    fi
+
+    <<<PATCH>>>
+    sed -i 's@\./fixinc\.sh@-c true@' gcc/Makefile.in
+    tar xvf $(ls ${DOWNLOADDIR}/gmp-*.tar.* | sort -V | tail -n1)
+    tar xvf $(ls ${DOWNLOADDIR}/mpfr-*.tar.* | sort -V | tail -n1)
+    tar xvf $(ls ${DOWNLOADDIR}/mpc-*.tar.* | sort -V | tail -n1)
+    mv gmp-* gmp
+    mv mpfr-* mpfr
+    mv mpc-* mpc
+    mkdir cross-build
+    pushd cross-build
+        AR=ar LDFLAGS="-static" \
+        ../configure --prefix=${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_TARGET}/cross-tools --build=${CROSS_HOST} --host=${CROSS_HOST} \
+                     --target=${COMPAT_TARGET} \
+                     --enable-__cxa_atexit --enable-threads=posix \
+                     --enable-libstdcxx-time \
+                     --enable-checking=release \
+                     --with-sysroot=${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_TARGET}/cross-tools/target \
+                     --enable-default-pie \
+#                     --enable-default-ssp \
+		     --disable-multilib --enable-linker-build-id \
+                     --with-abi=${ARCH_ABI} \
+                     --enable-languages=c,c++,fortran,objc,obj-c++,lto
+        <<<MAKE>>> all-gcc
+        <<<MAKE>>>
+        make install-strip
+	ln -sf ${COMPAT_TARGET}-gcc ${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_TARGET}/cross-tools/bin/${COMPAT_TARGET}-cc
+        rm -fv $(dirname $(realpath $(${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_TARGET}/cross-tools/bin/${COMPAT_TARGET}-gcc -print-file-name=libssp.so)))/libssp{,_nonshared}.*
+    popd
+<<<CLEAR_DIR>>>
+
+
+[[[14.1.0]]]
+<<<TAR_UNCOMPRESS>>>
+    CROSS_TARGET=$(archname_to_triple "$(get_user_set_env target ${CROSS_HOST})" "${CROSS_HOST}")
+#    CROSS_ARCH_BIT=$(archname_to_archbit "$(get_user_set_env target ${CROSS_TARGET})")
+#    LIB_SUFF=$(archname_to_lib_suff "${CROSS_ARCH_BIT}")
+    ARCH_ABI=$(archname_to_archabi "$(get_user_set_env target ${CROSS_TARGET})" "${ARCH_ABI}")
+
+#    if [ "x$(get_user_set_env compat)" == "x1" ]; then
+#        COMPAT_TARGET="${CROSS_TARGET}-compat"
+#    else
+#        COMPAT_TARGET="${CROSS_TARGET}"
+#    fi
+
+    if [ "x$(get_user_set_env compat)" == "x1" ]; then
+	COMPAT_TARGET="$(echo "${CROSS_TARGET}" | sed "s@unknown@compat@g")"
+    else
+	COMPAT_TARGET="${CROSS_TARGET}"
+    fi
+
+    <<<PATCH>>>
+    sed -i 's@\./fixinc\.sh@-c true@' gcc/Makefile.in
+    tar xvf $(ls ${DOWNLOADDIR}/gmp-*.tar.* | sort -V | tail -n1)
+    tar xvf $(ls ${DOWNLOADDIR}/mpfr-*.tar.* | sort -V | tail -n1)
+    tar xvf $(ls ${DOWNLOADDIR}/mpc-*.tar.* | sort -V | tail -n1)
+    mv gmp-* gmp
+    mv mpfr-* mpfr
+    mv mpc-* mpc
+    mkdir cross-build
+    pushd cross-build
+#        AR=ar LDFLAGS="-static" \
+#        AR=ar \
+        ../configure --prefix=${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_TARGET}/cross-tools --build=${CROSS_HOST} --host=${CROSS_HOST} \
+                     --target=${COMPAT_TARGET} \
+                     --enable-__cxa_atexit --enable-threads=posix \
+                     --enable-libstdcxx-time \
+                     --enable-checking=release \
+                     --with-sysroot=${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_TARGET}/cross-tools/target \
+                     --enable-default-pie \
+#                    --enable-default-ssp \
+		     --disable-multilib --enable-linker-build-id \
+                     --with-abi=${ARCH_ABI} \
+                     --enable-languages=c,c++,fortran,objc,obj-c++,lto,ada
+#        <<<MAKE>>> all-gcc LIBS="$([[ $(gcc -dumpversion) -ge 13 ]] && echo "${LIBS}" || echo "${LIBS} -lzstd -lpthread")"
+        <<<MAKE>>> all-gcc
+        <<<MAKE>>>
+        make install-strip
+	ln -sf ${COMPAT_TARGET}-gcc ${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_TARGET}/cross-tools/bin/${COMPAT_TARGET}-cc
+    popd
+<<<CLEAR_DIR>>>
+
+[[[14.0.0]]]
+<<<TAR_UNCOMPRESS>>>
+    CROSS_TARGET=$(archname_to_triple "$(get_user_set_env target ${CROSS_HOST})" "${CROSS_HOST}")
+#    CROSS_ARCH_BIT=$(archname_to_archbit "$(get_user_set_env target ${CROSS_TARGET})")
+#    LIB_SUFF=$(archname_to_lib_suff "${CROSS_ARCH_BIT}")
+    ARCH_ABI=$(archname_to_archabi "$(get_user_set_env target ${CROSS_TARGET})" "${ARCH_ABI}")
+
+    <<<PATCH>>>
+    sed -i 's@\./fixinc\.sh@-c true@' gcc/Makefile.in
+    tar xvf $(ls ${DOWNLOADDIR}/gmp-*.tar.* | sort -V | tail -n1)
+    tar xvf $(ls ${DOWNLOADDIR}/mpfr-*.tar.* | sort -V | tail -n1)
+    tar xvf $(ls ${DOWNLOADDIR}/mpc-*.tar.* | sort -V | tail -n1)
+    mv gmp-* gmp
+    mv mpfr-* mpfr
+    mv mpc-* mpc
+    mkdir cross-build
+    pushd cross-build
+#        AR=ar LDFLAGS="-static" \
+#        AR=ar \
+        ../configure --prefix=${TOOLCHAIN_DIRECTORY}/cross-target/${CROSS_TARGET}/cross-tools --build=${CROSS_HOST} --host=${CROSS_HOST} \
+                     --target=${CROSS_TARGET} \
+                     --enable-__cxa_atexit --enable-threads=posix \
+                     --enable-libstdcxx-time \
+                     --enable-checking=release \
+                     --with-sysroot=${TOOLCHAIN_DIRECTORY}/cross-target/${CROSS_TARGET}/cross-tools/target \
+                     --enable-default-pie \
+#                    --enable-default-ssp \
+		     --disable-multilib --enable-linker-build-id \
+                     --with-abi=${ARCH_ABI} \
+                     --enable-languages=c,c++,fortran,objc,obj-c++,lto,ada
+#        <<<MAKE>>> all-gcc LIBS="$([[ $(gcc -dumpversion) -ge 13 ]] && echo "${LIBS}" || echo "${LIBS} -lzstd -lpthread")"
+        <<<MAKE>>> all-gcc
+        <<<MAKE>>>
+        make install-strip
+	ln -sf ${CROSS_TARGET}-gcc ${TOOLCHAIN_DIRECTORY}/cross-target/${CROSS_TARGET}/cross-tools/bin/${CROSS_TARGET}-cc
+    popd
+<<<CLEAR_DIR>>>
+
+[[[13.0.0]]]
+<<<TAR_UNCOMPRESS>>>
+    CROSS_TARGET=$(archname_to_triple "$(get_user_set_env target ${CROSS_TARGET})" "${CROSS_TARGET}")
+    CROSS_ARCH_BIT=$(archname_to_archbit "$(get_user_set_env target ${})" "${CROSS_TARGET}")
+    LIB_SUFF=$(archbit_to_lib_suff "${CROSS_ARCH_BIT}")
+
+    <<<PATCH>>>
+    if [ -d ${PREFIX}/cross-tools ]; then
+	mv ${PREFIX}/cross-tools{,.$(date +%Y%m%d%H%M%S)}
+    fi
+    mkdir -pv ${PREFIX}/cross-tools
+    mkdir -pv ${PREFIX}/cross-tools/target/usr/lib{,64}
+    cp -a ${TOOLCHAIN_DIRECTORY}/${CROSS_HOST}/binutils/${CROSS_TARGET}/cross-tools/* ${PREFIX}/cross-tools/
+    cp -a ${TOOLCHAIN_DIRECTORY}/${CROSS_TARGET}/linux-header/* ${PREFIX}/cross-tools/target/
+    cp -a ${TOOLCHAIN_DIRECTORY}/${CROSS_TARGET}/glibc/* ${PREFIX}/cross-tools/target/
+
+    sed -i 's@\./fixinc\.sh@-c true@' gcc/Makefile.in
+    tar xvf $(ls ${DOWNLOADDIR}/gmp-*.tar.* | sort -V | tail -n1)
+    tar xvf $(ls ${DOWNLOADDIR}/mpfr-*.tar.* | sort -V | tail -n1)
+    tar xvf $(ls ${DOWNLOADDIR}/mpc-*.tar.* | sort -V | tail -n1)
+    mv gmp-* gmp
+    mv mpfr-* mpfr
+    mv mpc-* mpc
+    mkdir cross-build
+    pushd cross-build
+        AR=ar LDFLAGS="-static" \
+        ../configure --prefix=${PREFIX}/cross-tools --build=${CROSS_HOST} --host=${CROSS_HOST} \
+                     --target=${CROSS_TARGET} \
+                     --enable-__cxa_atexit --enable-threads=posix \
+                     --enable-libstdcxx-time \
+                     --enable-checking=release \
+                     --with-sysroot=${PREFIX}/cross-tools/target \
+                     --enable-default-pie --disable-multilib \
+                     --enable-languages=c,c++,fortran,objc,obj-c++,lto
+        <<<MAKE>>> all-gcc LIBS="$([[ $(gcc -dumpversion) -ge 13 ]] && echo "${LIBS}" || echo "${LIBS} -lzstd -lpthread")"
+        <<<MAKE>>>
+        make DESTDIR=${PWD}/dest install-strip
+	mkdir -pv ${TOOLCHAIN_DIRECTORY}/${CROSS_HOST}/gcc/${CROSS_TARGET}/
+        cp -a dest/${PREFIX}/* ${TOOLCHAIN_DIRECTORY}/${CROSS_HOST}/gcc/${CROSS_TARGET}/
+    popd
+<<<CLEAR_DIR>>>

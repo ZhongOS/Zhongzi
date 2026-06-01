@@ -1,0 +1,2 @@
+PACKAGE=OpenCL-Headers
+BUILD_MODE=cmake

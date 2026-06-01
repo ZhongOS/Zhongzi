@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kemoticons
+BUILD_MODE=cmake

@@ -1,0 +1,2 @@
+PACKAGE=KDE6-libkgapi
+BUILD_MODE=cmake

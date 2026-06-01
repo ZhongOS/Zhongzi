@@ -1,0 +1,2 @@
+PACKAGE=libavif
+BUILD_MODE=cmake

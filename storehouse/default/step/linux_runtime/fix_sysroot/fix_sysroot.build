@@ -1,0 +1,5 @@
+pushd ${LINUX_SYSROOT_DIR}
+	if [ -f usr/lib${LIB_SUFF}/libcurl.so.4 ] && [ ! -f usr/lib${LIB_SUFF}/libcurl-gnutls.so.4 ]; then
+		ln -sfv libcurl.so.4 usr/lib${LIB_SUFF}/libcurl-gnutls.so.4
+	fi
+popd

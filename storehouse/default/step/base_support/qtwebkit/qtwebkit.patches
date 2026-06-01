@@ -1,0 +1,5 @@
+p1	qt5-qtwebkit-glib-2.68.patch
+p1	webkit-offlineasm-warnings-ruby27.patch
+p1	0001-double-conversion-add-loongarch-support.patch
+p1	0002-qtwebkit-fix-icu-patch.patch
+p1	0003-qtwebkit-fix-for-gcc14.patch

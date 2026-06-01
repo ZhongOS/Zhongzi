@@ -1,0 +1,2 @@
+PACKAGE=OpenXR-SDK
+BUILD_MODE=cmake

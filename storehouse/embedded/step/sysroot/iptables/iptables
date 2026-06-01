@@ -1,0 +1,2 @@
+PACKAGE=iptables
+BUILD_MODE=gnu

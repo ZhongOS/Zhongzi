@@ -1,0 +1,5 @@
+<<<TAR_UNCOMPRESS>>>
+    cp ${RESOURCEDIR}/files/pyzy-database-1.0.0.tar.bz2 data/db/open-phrase
+    ./configure ${COMMON_CONFIG} --enable-db-open-phrase --disable-db-android
+    <<<MAKE_AND_INSTALL>>>
+<<<CLEAR_DIR>>>

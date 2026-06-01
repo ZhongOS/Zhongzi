@@ -1,0 +1,2 @@
+PACKAGE=psmisc
+BUILD_MODE=gnu

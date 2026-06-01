@@ -1,0 +1,2 @@
+PACKAGE=supermin
+BUILD_MODE=gnu

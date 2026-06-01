@@ -1,0 +1,2 @@
+PACKAGE=KDE6-konsole
+BUILD_MODE=cmake

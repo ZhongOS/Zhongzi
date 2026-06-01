@@ -1,0 +1,2 @@
+PACKAGE=wpa_supplicant
+BUILD_MODE=custom

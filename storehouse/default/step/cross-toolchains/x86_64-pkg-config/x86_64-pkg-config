@@ -1,0 +1,2 @@
+PACKAGE=pkg-config
+BUILD_MODE=custom

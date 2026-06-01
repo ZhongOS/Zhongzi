@@ -1,0 +1,2 @@
+PACKAGE=open-isns
+BUILD_MODE=meson

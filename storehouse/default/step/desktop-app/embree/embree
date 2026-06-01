@@ -1,0 +1,2 @@
+PACKAGE=embree
+BUILD_MODE=cmake

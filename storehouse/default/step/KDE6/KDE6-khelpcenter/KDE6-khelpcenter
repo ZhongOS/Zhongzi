@@ -1,0 +1,2 @@
+PACKAGE=KDE6-khelpcenter
+BUILD_MODE=cmake

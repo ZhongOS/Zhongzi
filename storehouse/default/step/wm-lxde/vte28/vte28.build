@@ -1,0 +1,2 @@
+EXTRA_PARM=--libexecdir=/usr/lib/vte --with-gtk=3.0
+CONFIG_ENV=CFLAGS="${CFLAGS} -Wno-incompatible-pointer-types"

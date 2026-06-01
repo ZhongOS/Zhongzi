@@ -1,0 +1,2 @@
+PACKAGE=ffmpeg
+BUILD_MODE=custom

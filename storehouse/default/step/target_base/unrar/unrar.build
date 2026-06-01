@@ -1,0 +1,5 @@
+<<<TAR_UNCOMPRESS>>>
+	sed -i "s@-march=native -O2@${CXXFLAGS}@g" makefile
+	<<<MAKE>>> CXX="${CROSS_TARGET}-g++" STRIP=${CROSS_TARGET}-strip -f makefile
+	install -v -m755 unrar ${SYSROOT_DIR}/usr/bin
+<<<CLEAR_DIR>>>

@@ -1,0 +1,2 @@
+PACKAGE=libsoup-2
+BUILD_MODE=meson

@@ -1,0 +1,2 @@
+PACKAGE=libretro-mupen64plus-nx
+BUILD_MODE=custom

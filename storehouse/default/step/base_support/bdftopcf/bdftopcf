@@ -1,0 +1,2 @@
+PACKAGE=bdftopcf
+BUILD_MODE=gnu

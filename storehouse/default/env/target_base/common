@@ -1,0 +1,13 @@
+export PREFIX=/usr
+# export LDFLAGS="-Wl,-rpath-link=${SYSROOT_DIR}/usr/lib${LIB_SUFF}"
+export PKG_CONFIG_SYSROOT_DIR=${SYSROOT_DIR}
+export PKG_CONFIG_PATH="${SYSROOT_DIR}/usr/lib${LIB_SUFF}/pkgconfig:${SYSROOT_DIR}/usr/share/pkgconfig"
+export PKG_CONFIG_LIBDIR="${SYSROOT_DIR}/usr/lib${LIB_SUFF}/pkgconfig:${SYSROOT_DIR}/usr/share/pkgconfig"
+export COMMON_CONFIG="--prefix=/usr --sysconfdir=/etc --localstatedir=/var --libdir=/usr/lib${LIB_SUFF} \
+                      --build=${CROSS_HOST} --host=${CROSS_TARGET} --with-sysroot=${SYSROOT_DIR}"
+export MAKE_AND_INSTALL="check_gnu_Makefile && make -j${JOBS} && run_step_package_check && make DESTDIR=${SYSROOT_DIR} install && rm -f ${SYSROOT_DIR}/usr/lib${LIB_SUFF}/*.la"
+export MESON_CONFIG="--prefix=/usr --libdir=/usr/lib${LIB_SUFF} --sysconfdir=/etc --localstatedir=/var --buildtype=release \
+			--cross-file ${COMMON_DIR}/meson-cross.txt"
+export NINJA_AND_INSTALL="CC=${CROSS_TARGET}-gcc ninja && run_step_package_check ninja && DESTDIR=${SYSROOT_DIR} ninja install"
+# export LD_LIBRARY_PATH=${CROSSTOOLS_DIR}/lib64:${CROSSTOOLS_DIR}/lib:/usr/lib64:/usr/lib
+export PATH=${CROSSTOOLS_DIR}/bin:${PATH}

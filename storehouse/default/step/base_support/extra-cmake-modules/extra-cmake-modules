@@ -1,0 +1,2 @@
+PACKAGE=extra-cmake-modules
+BUILD_MODE=cmake

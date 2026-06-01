@@ -1,0 +1,2 @@
+PACKAGE=KDE6-libkscreen
+BUILD_MODE=cmake

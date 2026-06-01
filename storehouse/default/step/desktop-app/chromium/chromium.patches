@@ -1,0 +1,287 @@
+p1	0001-Chromium-140-third_party-crashpad-add-loongarch64-su.patch
+
+# p1	0002-Chromium-140-sandbox-add-loongarch64-support.patch
+p1	0001-Chromium-140-sandbox-add-loongarch64-support.patch
+# p1	0001-Chromium-140-use-newfstat-sandbox-add-loongarch64-su.patch
+
+p1	0003-Chromium-140-components-add-loongarch64-support.patch
+p1	0004-Chromium-140-third_party-boringssl-add-loongarch64-s.patch
+p1	0005-Chromium-140-base-system-sys_info-add-loongarch64-su.patch
+p1	0006-Chromium-140-build-config-add-loongarch64-support.patch
+p1	0007-Chromium-140-rust-config-add-loongarch64-support.patch
+p1	0008-Chromium-140-fix-atspi2-version.patch
+p1	0009-Chromium-140-build-ffmpeg-scripts-add-loongarch64.patch
+
+p1	0001-Chromium-140-third_party-webrtc-add-loongarch64-supp.patch
+
+p1	0001-Chromium-136-set-clang-lib-from-lib-to-lib64.patch	
+
+p1	0001-chromium-128-third_party-libpng-fix-for-loongarch64-.patch
+
+
+[[[139.0.7258.154]]]
+p1	0001-Chromium-139-third_party-crashpad-add-loongarch64-su.patch
+p1	0002-Chromium-139-sandbox-add-loongarch64-support.patch
+p1	0003-Chromium-139-components-add-loongarch64-support.patch
+p1	0004-Chromium-139-third_party-boringssl-add-loongarch64-s.patch
+p1	0005-Chromium-139-base-system-sys_info-add-loongarch64-su.patch
+p1	0006-Chromium-139-build-config-add-loongarch64-support.patch
+p1	0007-Chromium-139-rust-config-add-loongarch64-support.patch
+p1	0008-Chromium-139-fix-atspi2-version.patch
+p1	0009-Chromium-139-build-ffmpeg-scripts-add-loongarch64.patch
+p1	0010-Chormium-139-get-pagesize-support-for-loongarch64.patch
+
+p1	0001-Chromium-136-set-clang-lib-from-lib-to-lib64.patch	
+
+[[[138.0.7204.92]]]
+p1 0001-Chromium-126-third_party-crashpad-add-loongarch64-su.patch
+p1 0002-Chromium-137-sandbox-add-loongarch64-support.patch
+p1 0003-Chromium-126-components-add-loongarch64-support.patch
+p1 0004-Chromium-126-third_party-boringssl-add-loongarch64-s.patch
+p1 0005-Chromium-126-base-system-sys_info-add-loongarch64-su.patch
+p1 0006-Chormium-133-get-pagesize-support-for-loongarch64.patch
+p1 0007-Chromium-126-build-config-add-loongarch64-support.patch
+# p1 0008-Chromium-126-clang-config-add-loongarch64.patch
+p1 0009-Chromium-131-rust-config-add-loongarch64-support.patch
+p1 0010-Chromium-126-fix-atspi2-version.patch
+p1 0011-Chromium-127-build-ffmpeg-scripts-add-loongarch64-su.patch
+p1 chromium-124-qt6.patch
+p1 0001-chromium-128-add-mlsx-and-mlasx-for-clang-build.patch
+p1 0002-chromium-128-use-lsx-and-lasx-for-libyuv.patch
+p1 0003-chromium-128-fix-libpng-lsx-define-error.patch
+p1 0001-chromium-128-third_party-libpng-fix-for-loongarch64-.patch
+
+p1 0001-Chromium-136-set-clang-lib-from-lib-to-lib64.patch
+p1 0001-chromium-130-api-runtime-add-loongarch64-support.patch
+
+
+[[[137.0.7151.55]]]
+p1 0001-Chromium-126-third_party-crashpad-add-loongarch64-su.patch
+p1 0002-Chromium-137-sandbox-add-loongarch64-support.patch
+p1 0003-Chromium-126-components-add-loongarch64-support.patch
+p1 0004-Chromium-126-third_party-boringssl-add-loongarch64-s.patch
+p1 0005-Chromium-126-base-system-sys_info-add-loongarch64-su.patch
+p1 0006-Chormium-133-get-pagesize-support-for-loongarch64.patch
+p1 0007-Chromium-126-build-config-add-loongarch64-support.patch
+p1 0008-Chromium-126-clang-config-add-loongarch64.patch
+p1 0009-Chromium-131-rust-config-add-loongarch64-support.patch
+p1 0010-Chromium-126-fix-atspi2-version.patch
+p1 0011-Chromium-127-build-ffmpeg-scripts-add-loongarch64-su.patch
+p1 chromium-124-qt6.patch
+p1 0001-chromium-128-add-mlsx-and-mlasx-for-clang-build.patch
+p1 0002-chromium-128-use-lsx-and-lasx-for-libyuv.patch
+p1 0003-chromium-128-fix-libpng-lsx-define-error.patch
+p1 0001-chromium-128-third_party-libpng-fix-for-loongarch64-.patch
+
+p1 0001-Chromium-136-set-clang-lib-from-lib-to-lib64.patch
+
+
+[[[136.0.7103.113]]]
+p1 0001-Chromium-126-third_party-crashpad-add-loongarch64-su.patch
+p1 0002-Chromium-135-sandbox-add-loongarch64-support.patch
+p1 0003-Chromium-126-components-add-loongarch64-support.patch
+p1 0004-Chromium-126-third_party-boringssl-add-loongarch64-s.patch
+p1 0005-Chromium-126-base-system-sys_info-add-loongarch64-su.patch
+p1 0006-Chormium-133-get-pagesize-support-for-loongarch64.patch
+p1 0007-Chromium-126-build-config-add-loongarch64-support.patch
+p1 0008-Chromium-126-clang-config-add-loongarch64.patch
+p1 0009-Chromium-131-rust-config-add-loongarch64-support.patch
+p1 0010-Chromium-126-fix-atspi2-version.patch
+p1 0011-Chromium-127-build-ffmpeg-scripts-add-loongarch64-su.patch
+p1 chromium-124-qt6.patch
+p1 0001-chromium-128-add-mlsx-and-mlasx-for-clang-build.patch
+p1 0002-chromium-128-use-lsx-and-lasx-for-libyuv.patch
+p1 0003-chromium-128-fix-libpng-lsx-define-error.patch
+# p1 0001-chromium-130-skia-fix-for-loongarch64.patch
+p1 0001-chromium-128-third_party-libpng-fix-for-loongarch64-.patch
+
+# p1 0001-fix-adler2-not-found-for-rust.patch
+# p1 0001-chromium-134-fix-std-max-error-for-swiftshader-use-l.patch
+
+p1 0001-Chromium-136-set-clang-lib-from-lib-to-lib64.patch
+
+
+
+[[[135.0.7049.114]]]
+p1 0001-Chromium-126-third_party-crashpad-add-loongarch64-su.patch
+p1 0002-Chromium-135-sandbox-add-loongarch64-support.patch
+p1 0003-Chromium-126-components-add-loongarch64-support.patch
+p1 0004-Chromium-126-third_party-boringssl-add-loongarch64-s.patch
+p1 0005-Chromium-126-base-system-sys_info-add-loongarch64-su.patch
+p1 0006-Chormium-133-get-pagesize-support-for-loongarch64.patch
+p1 0007-Chromium-126-build-config-add-loongarch64-support.patch
+p1 0008-Chromium-126-clang-config-add-loongarch64.patch
+p1 0009-Chromium-131-rust-config-add-loongarch64-support.patch
+p1 0010-Chromium-126-fix-atspi2-version.patch
+p1 0011-Chromium-127-build-ffmpeg-scripts-add-loongarch64-su.patch
+p1 chromium-124-qt6.patch
+p1 0001-chromium-128-add-mlsx-and-mlasx-for-clang-build.patch
+p1 0002-chromium-128-use-lsx-and-lasx-for-libyuv.patch
+p1 0003-chromium-128-fix-libpng-lsx-define-error.patch
+# p1 0001-chromium-130-skia-fix-for-loongarch64.patch
+p1 0001-chromium-128-third_party-libpng-fix-for-loongarch64-.patch
+p1 0001-chromium-130-fix-pthread_stack-for-loongarch64.patch
+p1 0001-Chromium-133-fix-build-error-for-pipewire-1.3.x.patch
+
+# p1 0001-fix-adler2-not-found-for-rust.patch
+# p1 0001-chromium-134-fix-std-max-error-for-swiftshader-use-l.patch
+
+
+[[[134.0.6998.165]]]
+p1 0001-Chromium-126-third_party-crashpad-add-loongarch64-su.patch
+p1 0002-Chromium-126-sandbox-add-loongarch64-support.patch
+p1 0003-Chromium-126-components-add-loongarch64-support.patch
+p1 0004-Chromium-126-third_party-boringssl-add-loongarch64-s.patch
+p1 0005-Chromium-126-base-system-sys_info-add-loongarch64-su.patch
+p1 0006-Chormium-133-get-pagesize-support-for-loongarch64.patch
+p1 0007-Chromium-126-build-config-add-loongarch64-support.patch
+p1 0008-Chromium-126-clang-config-add-loongarch64.patch
+p1 0009-Chromium-131-rust-config-add-loongarch64-support.patch
+p1 0010-Chromium-126-fix-atspi2-version.patch
+p1 0011-Chromium-127-build-ffmpeg-scripts-add-loongarch64-su.patch
+p1 chromium-124-qt6.patch
+p1 0001-chromium-128-add-mlsx-and-mlasx-for-clang-build.patch
+p1 0002-chromium-128-use-lsx-and-lasx-for-libyuv.patch
+p1 0003-chromium-128-fix-libpng-lsx-define-error.patch
+p1 0001-chromium-130-skia-fix-for-loongarch64.patch
+p1 0001-chromium-128-third_party-libpng-fix-for-loongarch64-.patch
+p1 0001-chromium-130-fix-pthread_stack-for-loongarch64.patch
+p1 0001-Chromium-133-fix-build-error-for-pipewire-1.3.x.patch
+
+p1 0001-fix-adler2-not-found-for-rust.patch
+p1 0001-chromium-134-fix-std-max-error-for-swiftshader-use-l.patch
+
+
+[[[133.0.6943.53]]]
+p1 0001-Chromium-126-third_party-crashpad-add-loongarch64-su.patch
+p1 0002-Chromium-126-sandbox-add-loongarch64-support.patch
+# p1 0002-Chromium-126-sandbox-add-loongarch64-support-for-6.11.patch
+p1 0003-Chromium-126-components-add-loongarch64-support.patch
+p1 0004-Chromium-126-third_party-boringssl-add-loongarch64-s.patch
+p1 0005-Chromium-126-base-system-sys_info-add-loongarch64-su.patch
+p1 0006-Chormium-133-get-pagesize-support-for-loongarch64.patch
+p1 0007-Chromium-126-build-config-add-loongarch64-support.patch
+p1 0008-Chromium-126-clang-config-add-loongarch64.patch
+p1 0009-Chromium-131-rust-config-add-loongarch64-support.patch
+p1 0010-Chromium-126-fix-atspi2-version.patch
+p1 0011-Chromium-127-build-ffmpeg-scripts-add-loongarch64-su.patch
+p1 chromium-124-qt6.patch
+p1 0001-chromium-128-add-mlsx-and-mlasx-for-clang-build.patch
+p1 0002-chromium-128-use-lsx-and-lasx-for-libyuv.patch
+p1 0003-chromium-128-fix-libpng-lsx-define-error.patch
+p1 0001-chromium-130-skia-fix-for-loongarch64.patch
+p1 0001-chromium-128-third_party-libpng-fix-for-loongarch64-.patch
+p1 0001-chromium-130-fix-pthread_stack-for-loongarch64.patch
+p1 0001-Chromium-133-fix-build-error-for-pipewire-1.3.x.patch
+
+[[[132.0.6834.159]]]
+p1 0001-Chromium-126-third_party-crashpad-add-loongarch64-su.patch
+p1 0002-Chromium-126-sandbox-add-loongarch64-support.patch
+# p1 0002-Chromium-126-sandbox-add-loongarch64-support-for-6.11.patch
+p1 0003-Chromium-126-components-add-loongarch64-support.patch
+p1 0004-Chromium-126-third_party-boringssl-add-loongarch64-s.patch
+p1 0005-Chromium-126-base-system-sys_info-add-loongarch64-su.patch
+p1 0006-Chormium-128-get-pagesize-support-for-loongarch64.patch
+p1 0007-Chromium-126-build-config-add-loongarch64-support.patch
+p1 0008-Chromium-126-clang-config-add-loongarch64.patch
+# p1 0009-Chromium-126-rust-config-add-loongarch64-support.patch
+p1 0009-Chromium-131-rust-config-add-loongarch64-support.patch
+p1 0010-Chromium-126-fix-atspi2-version.patch
+p1 0011-Chromium-127-build-ffmpeg-scripts-add-loongarch64-su.patch
+p1 chromium-124-qt6.patch
+p1 0001-chromium-128-add-mlsx-and-mlasx-for-clang-build.patch
+p1 0002-chromium-128-use-lsx-and-lasx-for-libyuv.patch
+p1 0003-chromium-128-fix-libpng-lsx-define-error.patch
+p1 0001-chromium-130-skia-fix-for-loongarch64.patch
+p1 0001-chromium-128-third_party-libpng-fix-for-loongarch64-.patch
+p1 0001-chromium-130-fix-pthread_stack-for-loongarch64.patch
+
+[[[130.0.6723.116]]]
+p1 0001-Chromium-126-third_party-crashpad-add-loongarch64-su.patch
+p1 0002-Chromium-126-sandbox-add-loongarch64-support.patch
+# p1 0002-Chromium-126-sandbox-add-loongarch64-support-for-6.11.patch
+p1 0003-Chromium-126-components-add-loongarch64-support.patch
+p1 0004-Chromium-126-third_party-boringssl-add-loongarch64-s.patch
+p1 0005-Chromium-126-base-system-sys_info-add-loongarch64-su.patch
+p1 0006-Chormium-128-get-pagesize-support-for-loongarch64.patch
+p1 0007-Chromium-126-build-config-add-loongarch64-support.patch
+p1 0008-Chromium-126-clang-config-add-loongarch64.patch
+p1 0009-Chromium-126-rust-config-add-loongarch64-support.patch
+p1 0010-Chromium-126-fix-atspi2-version.patch
+p1 0011-Chromium-127-build-ffmpeg-scripts-add-loongarch64-su.patch
+p1 chromium-124-qt6.patch
+p1 0001-chromium-128-add-mlsx-and-mlasx-for-clang-build.patch
+p1 0002-chromium-128-use-lsx-and-lasx-for-libyuv.patch
+# p1 0003-chromium-128-fix-libpng-lsx-define-error.patch
+p1 0001-chromium-130-skia-fix-for-loongarch64.patch
+p1 0001-chromium-128-third_party-libpng-fix-for-loongarch64-.patch
+p1 0001-chromium-130-fix-pthread_stack-for-loongarch64.patch
+
+p1 0001-chromium-130-api-runtime-add-loongarch64-support.patch
+# p1 0002-chromium-130-add-DRM_FORMAT_P010.patch
+p1 0003-chromium-130-enable-swiftshader-add-loongarch64.patch
+# p1 0004-chromium-130-third_party-protobuf-add-loongarch64.patch
+
+p1 0001-chromium-130-debian-package-deps-add-loongarch64-sup.patch
+
+
+[[[129.0.6668.100]]]
+p1 0001-Chromium-126-third_party-crashpad-add-loongarch64-su.patch
+p1 0002-Chromium-126-sandbox-add-loongarch64-support.patch
+# p1 0002-Chromium-126-sandbox-add-loongarch64-support-for-6.11.patch
+p1 0003-Chromium-126-components-add-loongarch64-support.patch
+p1 0004-Chromium-126-third_party-boringssl-add-loongarch64-s.patch
+p1 0005-Chromium-126-base-system-sys_info-add-loongarch64-su.patch
+p1 0006-Chormium-128-get-pagesize-support-for-loongarch64.patch
+p1 0007-Chromium-126-build-config-add-loongarch64-support.patch
+p1 0008-Chromium-126-clang-config-add-loongarch64.patch
+p1 0009-Chromium-126-rust-config-add-loongarch64-support.patch
+p1 0010-Chromium-126-fix-atspi2-version.patch
+p1 0011-Chromium-127-build-ffmpeg-scripts-add-loongarch64-su.patch
+p1 chromium-124-qt6.patch
+p1 0001-chromium-128-add-mlsx-and-mlasx-for-clang-build.patch
+p1 0002-chromium-128-use-lsx-and-lasx-for-libyuv.patch
+# p1 0003-chromium-128-fix-libpng-lsx-define-error.patch
+p1 0001-chromium-130-skia-fix-for-loongarch64.patch
+p1 0001-chromium-128-third_party-libpng-fix-for-loongarch64-.patch
+p1 0001-chromium-129.0.6668.100-fix-loongarch-define-miss-in.patch
+
+
+[[[128.0.6613.137]]]
+p1 0001-Chromium-126-third_party-crashpad-add-loongarch64-su.patch
+p1 0002-Chromium-126-sandbox-add-loongarch64-support.patch
+# p1 0002-Chromium-126-sandbox-add-loongarch64-support-for-6.11.patch
+p1 0003-Chromium-126-components-add-loongarch64-support.patch
+p1 0004-Chromium-126-third_party-boringssl-add-loongarch64-s.patch
+p1 0005-Chromium-126-base-system-sys_info-add-loongarch64-su.patch
+p1 0006-Chormium-128-get-pagesize-support-for-loongarch64.patch
+p1 0007-Chromium-126-build-config-add-loongarch64-support.patch
+p1 0008-Chromium-126-clang-config-add-loongarch64.patch
+p1 0009-Chromium-126-rust-config-add-loongarch64-support.patch
+p1 0010-Chromium-126-fix-atspi2-version.patch
+p1 0011-Chromium-127-build-ffmpeg-scripts-add-loongarch64-su.patch
+p1 chromium-124-qt6.patch
+p1 0001-chromium-128-add-mlsx-and-mlasx-for-clang-build.patch
+p1 0002-chromium-128-use-lsx-and-lasx-for-libyuv.patch
+# p1 0003-chromium-128-fix-libpng-lsx-define-error.patch
+p1 0001-chromium-128-skia-add-loongarch64-define.patch
+p1 0001-chromium-128-third_party-libpng-fix-for-loongarch64-.patch
+
+
+[[[128.0]]]
+p1 0001-Chromium-126-third_party-crashpad-add-loongarch64-su.patch
+p1 0002-Chromium-126-sandbox-add-loongarch64-support.patch
+p1 0003-Chromium-126-components-add-loongarch64-support.patch
+p1 0004-Chromium-126-third_party-boringssl-add-loongarch64-s.patch
+p1 0005-Chromium-126-base-system-sys_info-add-loongarch64-su.patch
+p1 0006-Chormium-127-get-pagesize-support-for-loongarch64.patch
+p1 0007-Chromium-126-build-config-add-loongarch64-support.patch
+p1 0008-Chromium-126-clang-config-add-loongarch64.patch
+p1 0009-Chromium-126-rust-config-add-loongarch64-support.patch
+p1 0010-Chromium-126-fix-atspi2-version.patch
+p1 0011-Chromium-127-build-ffmpeg-scripts-add-loongarch64-su.patch
+p1 chromium-124-qt6.patch
+p1 chromium-127-ninja-1.21.1-deps-part0.patch
+p1 chromium-127-ninja-1.21.1-deps-part1.patch
+p1 chromium-127-ninja-1.21.1-deps-part2.patch
+p1 chromium-127-ninja-1.21.1-deps-part3.patch

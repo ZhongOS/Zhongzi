@@ -1,0 +1,33 @@
+<<<TAR_UNCOMPRESS>>>
+	CONFIG_STR=$(get_user_set_env config "default")
+	<<<PATCH>>>
+	make mrproper
+	cp -af ${RESOURCEDIR}/linux-config-6.x_${CONFIG_STR} ./.config
+	sed -i "/^CONFIG_LOCALVERSION/s@=\"\(.*\)\"@=\"_${CONFIG_STR}\"@g" .config
+	make ARCH=${ARCH_FAMILY} CROSS_COMPILE=${CROSS_TARGET}- olddefconfig
+# 	PKG_CONFIG_SYSROOT_DIR="" HOSTLDFLAGS="-Wl,-rpath-link=${CROSSTOOLS_DIR}/lib:${CROSSTOOLS_DIR}/lib64 -Wl,-rpath=${CROSSTOOLS_DIR}/lib:${CROSSTOOLS_DIR}/lib64" \
+	PKG_CONFIG_SYSROOT_DIR="" \
+		<<<MAKE>>> ARCH=${ARCH_FAMILY} CROSS_COMPILE=${CROSS_TARGET}-
+	PKG_CONFIG_SYSROOT_DIR="" \
+		make ARCH=${ARCH_FAMILY} CROSS_COMPILE=${CROSS_TARGET}- INSTALL_MOD_PATH=dest modules_install
+	LINUX_KERNEL_VERSION=$(make kernelversion)
+
+#	mkdir -p ${SYSROOT_DIR}/lib/modules/
+#	cp -af dest/lib/modules/* ${SYSROOT_DIR}/lib/modules/
+#	cp -af arch/${ARCH_FAMILY}/boot/vmlinux.efi ${SYSROOT_DIR}/boot/vmlinux.efi
+
+        mkdir -p ${DIST_DIRECTORY}/os/linux-kernel/${LINUX_KERNEL_VERSION}/${CONFIG_STR}/img/usr/lib/modules/
+        mkdir -p ${DIST_DIRECTORY}/os/linux-kernel/${LINUX_KERNEL_VERSION}/${CONFIG_STR}/boot/
+        cp -af arch/${ARCH_FAMILY}/boot/vmlinux.efi ${DIST_DIRECTORY}/os/linux-kernel/${LINUX_KERNEL_VERSION}/${CONFIG_STR}/boot/vmlinux.efi
+	rm dest/lib/modules/*/build
+	find dest -name "*.ko" -exec ${CROSS_TARGET}-strip --strip-debug '{}' ';'
+        cp -af dest/lib/modules/* ${DIST_DIRECTORY}/os/linux-kernel/${LINUX_KERNEL_VERSION}/${CONFIG_STR}/img/usr/lib/modules/
+        cp -af .config ${DIST_DIRECTORY}/os/linux-kernel/${LINUX_KERNEL_VERSION}/${CONFIG_STR}/boot/vmlinux.config
+
+        if [ -f ${RESOURCEDIR}/linux-parm_${CONFIG_STR} ]; then
+                cat ${RESOURCEDIR}/linux-parm_${CONFIG_STR} | grep -v "^#" | head -n1  > ${DIST_DIRECTORY}/os/linux-kernel/${LINUX_KERNEL_VERSION}/${CONFIG_STR}/boot/boot.parm
+        fi
+
+	echo "${LINUX_KERNEL_VERSION}" > ${COMMON_DIR}/linux-kernel.version
+	echo "${LINUX_KERNEL_VERSION}" > ${COMMON_DIR}/linux.version
+<<<CLEAR_DIR>>>

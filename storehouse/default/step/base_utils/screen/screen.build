@@ -1,0 +1,8 @@
+<<<TAR_UNCOMPRESS>>>
+    ./autogen.sh
+    ./configure ${COMMON_CONFIG} --with-socket-dir=/run/screen \
+            --with-pty-group=5 --with-sys-screenrc=/etc/screenrc
+    sed -i -e "s%/usr/local/etc/screenrc%/etc/screenrc%" {etc,doc}/*
+    <<<MAKE_AND_INSTALL>>>
+    install -m 644 etc/etcscreenrc ${SYSROOT_DIR}/etc/screenrc
+<<<CLEAR_DIR>>>

@@ -1,0 +1,18 @@
+<<<TAR_UNCOMPRESS>>>
+        <<<PATCH>>>
+        for config_i in $(find -name "config.sub")
+        do
+                cp -a -f $(automake --print-libdir)/config.{sub,guess} $(dirname ${config_i})/
+        done
+        if [ ! -f configure ]; then
+                autoreconf -ifv
+        fi
+	CFLAGS="${CFLAGS} -Wno-incompatible-pointer-types -Wno-int-conversion" \
+	./configure --prefix=/usr --confdir=/etc --libdir=/usr/lib64 \
+		    --target=loongarch64-linux --enable-cross-compile --host-cc=${CROSS_TARGET}-gcc \
+		    --cc=${CROSS_TARGET}-gcc --strip=${CROSS_TARGET}-strip --yasm=''
+        <<<MAKE>>> HOST_CC=gcc
+        make DESTDIR=${SYSROOT_DIR} install
+        rm -f ${SYSROOT_DIR}/usr/lib64/*.la
+<<<CLEAR_DIR>>>
+

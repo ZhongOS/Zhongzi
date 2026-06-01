@@ -1,0 +1,2 @@
+PACKAGE=docbook-xsl-nons
+BUILD_MODE=custom

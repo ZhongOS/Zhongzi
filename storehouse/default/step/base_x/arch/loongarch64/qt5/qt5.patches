@@ -1,0 +1,14 @@
+p1 qt-everywhere-src-5.15.2-add-loongarch.patch
+p1 0001-QT-5.15.8-add-loongarch64-support.patch
+p1 0001-qt5-5.15-add-stdint-for-compiler-use-gcc-13.patch
+
+[[[5.15.8]]]
+p1 qt-everywhere-opensource-src-5.15.8-kf5-1.patch
+p1 qt-everywhere-src-5.15.2-add-loongarch.patch
+p1 0001-QT-5.15.8-add-loongarch64-support.patch
+p1 0001-qt5-5.15-add-stdint-for-compiler-use-gcc-13.patch
+
+[[[5.15.6]]]
+p1 qt-everywhere-opensource-src-5.15.6-kf5-1.patch
+p1 qt-everywhere-src-5.15.2-add-loongarch.patch
+p1 0001-qt5-5.15-add-stdint-for-compiler-use-gcc-13.patch

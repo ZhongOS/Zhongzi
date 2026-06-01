@@ -1,0 +1,2 @@
+PACKAGE=knotifications
+BUILD_MODE=cmake

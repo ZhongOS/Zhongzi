@@ -1,0 +1,12 @@
+
+
+[[[3.0.22]]]
+p1	0001-vlc-3.0.22-fix-for-ffmpeg-8.patch
+
+
+[[[3.0.21]]]
+p1	0001-VLC-fix-for-gcc13.patch
+p1	vlc-for-tablib-2.patch
+p1	0001-vlc-3.0.21-fix-for-ffmpeg-7.patch
+# p1	vlc-3.0.21-fedora_ffmpeg8-1.patch
+p1	0001-vlc-3.0.21-fix-for-ffmpeg-8.patch

@@ -1,0 +1,27 @@
+<<<TAR_UNCOMPRESS>>>
+        <<<PATCH>>>
+        for config_i in $(find -name "config.sub")
+        do
+                cp -a -f $(automake --print-libdir)/config.{sub,guess} $(dirname ${config_i})/
+        done
+        if [ ! -f configure ]; then
+                autoreconf -ifv
+        fi
+	CFLAGS="${CFLAGS} -Wno-incompatible-pointer-types" \
+	PYTHON=${CROSS_TARGET}-python3 ./configure ${COMMON_CONFIG} --enable-malloc0returnsnull
+	check_gnu_Makefile
+        CC="${CROSS_TARGET}-gcc" CXX="${CROSS_TARGET}-g++" <<<MAKE>>> \
+	RUBY_SITEARCHDIR=$(ruby -r rbconfig -e 'print RbConfig::CONFIG["sitearchdir"]' | sed -e "s@${HOST_TOOLS_DIR}@/usr@g" -e "s@$(uname -m)@${ARCH_NAME}@g") \
+	RUBY_SITELIBDIR=$(ruby -r rbconfig -e 'print RbConfig::CONFIG["sitelibdir"]' | sed "s@${HOST_TOOLS_DIR}@/usr@g") \
+	RUBY_CFLAGS="$(ruby -r mkmf -e 'conf = RbConfig::CONFIG.merge("hdrdir" => $hdrdir, "arch_hdrdir" => $arch_hdrdir); print RbConfig::expand("#$INCFLAGS", conf)' | sed "s@${HOST_TOOLS_DIR}@/usr@g")" \
+	RUBY_LIBS="-L$(ruby -r rbconfig -e 'print RbConfig::CONFIG["libdir"]' | sed "s@${HOST_TOOLS_DIR}@/usr@g") -l$(ruby -r rbconfig -e 'print RbConfig::CONFIG["RUBY_SO_NAME"]' | sed "s@${HOST_TOOLS_DIR}@/usr@g")"
+        make \
+	RUBY_SITEARCHDIR=$(ruby -r rbconfig -e 'print RbConfig::CONFIG["sitearchdir"]' | sed -e "s@${HOST_TOOLS_DIR}@/usr@g" -e "s@$(uname -m)@${ARCH_NAME}@g") \
+	RUBY_SITELIBDIR=$(ruby -r rbconfig -e 'print RbConfig::CONFIG["sitelibdir"]' | sed "s@${HOST_TOOLS_DIR}@/usr@g") \
+	RUBY_CFLAGS="$(ruby -r mkmf -e 'conf = RbConfig::CONFIG.merge("hdrdir" => $hdrdir, "arch_hdrdir" => $arch_hdrdir); print RbConfig::expand("#$INCFLAGS", conf)' | sed "s@${HOST_TOOLS_DIR}@/usr@g")" \
+	RUBY_LIBS="-L$(ruby -r rbconfig -e 'print RbConfig::CONFIG["libdir"]' | sed "s@${HOST_TOOLS_DIR}@/usr@g") -l$(ruby -r rbconfig -e 'print RbConfig::CONFIG["RUBY_SO_NAME"]' | sed "s@${HOST_TOOLS_DIR}@/usr@g")" \
+	DESTDIR=${SYSROOT_DIR} install
+
+        rm -f ${SYSROOT_DIR}/usr/lib64/*.la
+<<<CLEAR_DIR>>>
+

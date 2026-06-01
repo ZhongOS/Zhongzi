@@ -1,0 +1,2 @@
+PACKAGE=libXfont2
+BUILD_MODE=gnu

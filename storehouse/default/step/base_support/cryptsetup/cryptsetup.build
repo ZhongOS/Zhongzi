@@ -1,0 +1,4 @@
+EXTRA_PARM=--with-tmpfilesdir=/usr/lib/tmpfiles.d
+
+[[[2.6.0]]]
+EXTRA_PARM=--disable-asciidoc --disable-ssh-token --with-tmpfilesdir=/usr/lib/tmpfiles.d

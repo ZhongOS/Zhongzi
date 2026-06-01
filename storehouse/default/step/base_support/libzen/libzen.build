@@ -1,0 +1,7 @@
+<<<TAR_UNCOMPRESS>>>
+	pushd Project/GNU/Library
+	    autoreconf -ifv
+	    ./configure $COMMON_CONFIG
+	    <<<MAKE_AND_INSTALL>>>
+	popd
+<<<CLEAR_DIR>>>

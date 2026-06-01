@@ -1,0 +1,2 @@
+PACKAGE=phc-winner-argon2
+BUILD_MODE=custom

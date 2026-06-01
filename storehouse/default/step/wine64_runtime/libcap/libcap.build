@@ -1,0 +1,5 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<MAKE>>> CROSS_COMPILE="${X86_64_HOST}-" BUILD_CC="gcc" GOLANG=no prefix=/usr lib=lib64
+	make CROSS_COMPILE="${X86_64_HOST}-" BUILD_CC="gcc" GOLANG=no prefix=/usr lib=lib64 \
+		 DESTDIR=${X86_64_SYSROOT_DIR} install
+<<<CLEAR_DIR>>>

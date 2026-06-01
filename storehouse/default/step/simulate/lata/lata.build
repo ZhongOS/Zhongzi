@@ -1,0 +1,34 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+	git init
+	mkdir -p cross-build
+	pushd cross-build
+		../configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --libdir=/usr/lib${LIB_SUFF} \
+                      --build=${CROSS_HOST} --host=${CROSS_TARGET} --cross-prefix=${CROSS_TARGET}- \
+			     --target-list=aarch64-linux-user \
+# 			     --enable-capstone
+			     --enable-lata \
+# 			     --insts-pattern-opt --indirect-jmp-opt --split-tb-opt --lata-tu-opt \
+			     --disable-debug-info --disable-docs \
+# 			     --extra-ldflags="-lz" \
+			     --disable-werror
+		<<<NINJA_AND_INSTALL>>>
+	popd
+<<<CLEAR_DIR>>>
+
+mkdir -p ${SYSROOT_DIR}/etc/binfmt.d
+cp -a ${SYSROOT_DIR}/usr/bin/lata-aarch64{,.orig}
+rm -fv ${SYSROOT_DIR}/usr/bin/lata-aarch64
+
+cat > ${SYSROOT_DIR}/usr/bin/lata-aarch64 << EOF
+#!/bin/bash -e
+/usr/bin/lata-aarch64.orig "\$@"
+EOF
+
+chmod +x ${SYSROOT_DIR}/usr/bin/lata-aarch64
+
+if [ -f ${SYSROOT_DIR}/usr/bin/lata-aarch64 ]; then
+        ln -sfv lata-aarch64 ${SYSROOT_DIR}/usr/bin/aarch64-emu
+fi
+
+default_set_conf "aarch64-emu" "lata" "LATX AArch64 二进制翻译" "/usr/bin/aarch64-emu" "/usr/bin/lata-aarch64"

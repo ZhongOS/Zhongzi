@@ -1,0 +1,21 @@
+<<<TAR_UNCOMPRESS>>>
+	mkdir -p tools-build
+	pushd tools-build
+		AR=ar LDFLAGS="-Wl,-rpath,${CROSS_TOOLS_PREFIX}/lib" \
+		../configure --prefix=${PREFIX}/${X86_64_HOST} --build=${CROSS_HOST} --host=${CROSS_HOST} \
+		             --target=${X86_64_HOST} --disable-nls \
+		             --with-mpfr=<<<CROSS_TOOLS_PREFIX>>> --with-gmp=<<<CROSS_TOOLS_PREFIX>>> \
+		             --with-mpc=<<<CROSS_TOOLS_PREFIX>>> \
+		             --with-newlib --disable-shared \
+		             --enable-default-pie --disable-multilib --with-abi=64 \
+		             --with-sysroot=${SYSROOT_DIR}/usr/lib/x86_64/sys-root \
+		             --disable-decimal-float --disable-libgomp --disable-libitm \
+		             --disable-libsanitizer --disable-libquadmath --disable-threads \
+		             --disable-target-zlib --with-system-zlib --enable-checking=release \
+			     --enable-linker-build-id --with-linker-hash-style=gnu --enable-gnu-unique-object --enable-initfini-array --enable-gnu-indirect-function \
+			     --with-tune=generic \
+		             --enable-languages=c
+		<<<MAKE>>> all-gcc all-target-libgcc
+		make install-strip-gcc install-strip-target-libgcc
+	popd
+<<<CLEAR_DIR>>>

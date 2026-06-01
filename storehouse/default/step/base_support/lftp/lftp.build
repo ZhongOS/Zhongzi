@@ -1,0 +1,1 @@
+EXTRA_PARM=--with-readline=${SYSROOT_DIR} --with-zlib=${SYSROOT_DIR}/usr

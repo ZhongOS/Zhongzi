@@ -1,0 +1,8 @@
+linux-header|compat_libs;%OVERLAY=compat_libs
+glibc|compat_libs;%OVERLAY=compat_libs
+libxcrypt|compat_libs;%OVERLAY=compat_libs
+gmp|compat_libs;%OVERLAY=compat_libs
+mpfr|compat_libs;%OVERLAY=compat_libs
+mpc|compat_libs;%OVERLAY=compat_libs
+zlib|compat_libs;%OVERLAY=compat_libs
+gcc|compat_libs;%OVERLAY=compat_libs

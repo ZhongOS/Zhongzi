@@ -1,0 +1,2 @@
+PACKAGE=libgudev
+BUILD_MODE=meson

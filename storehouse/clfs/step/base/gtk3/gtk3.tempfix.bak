@@ -1,0 +1,5 @@
+touch ${TEMP_DIRECTORY}/strip-foo
+sed -i -e "s@/usr/bin/python3@${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-python3@g" \
+       $(find ${SYSROOT_DIR}/usr/bin/ -type f -name "gdbus-codegen") \
+       ${TEMP_DIRECTORY}/strip-foo
+rm -f ${TEMP_DIRECTORY}/strip-foo

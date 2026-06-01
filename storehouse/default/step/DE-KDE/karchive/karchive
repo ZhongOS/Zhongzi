@@ -1,0 +1,2 @@
+PACKAGE=karchive
+BUILD_MODE=cmake

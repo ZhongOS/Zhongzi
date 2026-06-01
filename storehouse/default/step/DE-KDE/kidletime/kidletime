@@ -1,0 +1,2 @@
+PACKAGE=kidletime
+BUILD_MODE=cmake

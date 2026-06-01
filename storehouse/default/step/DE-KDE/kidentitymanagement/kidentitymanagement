@@ -1,0 +1,2 @@
+PACKAGE=kidentitymanagement
+BUILD_MODE=cmake

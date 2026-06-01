@@ -1,0 +1,4 @@
+EXTRA_PARM=-Dudevdir=/usr/lib/udev -Dsystemdsystemunitdir=/usr/lib/systemd/system -Dgconv=disabled
+
+[[[1.25.0]]]
+EXTRA_PARM=--with-udevdir=/usr/lib/udev --with-systemdsystemunitdir=/usr/lib/systemd/system

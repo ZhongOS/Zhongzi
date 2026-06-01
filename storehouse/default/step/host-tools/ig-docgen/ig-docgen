@@ -1,0 +1,2 @@
+PACKAGE=ig-docgen
+BUILD_MODE=meson

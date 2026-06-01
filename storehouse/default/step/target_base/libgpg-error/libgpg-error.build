@@ -1,0 +1,10 @@
+<<<TAR_UNCOMPRESS>>>
+    cp -a -f $(automake --print-libdir)/config.{sub,guess} build-aux/
+    ./configure ${COMMON_CONFIG} --enable-install-gpg-error-config
+    <<<MAKE_AND_INSTALL>>>
+    rm -f ${SYSROOT_DIR}/usr/lib${LIB_SUFF}/*.la
+    cp -av ${SYSROOT_DIR}/bin/gpgrt-config  ${CROSSTOOLS_DIR}/bin/
+    cp -av ${SYSROOT_DIR}/bin/gpg-error-config  ${CROSSTOOLS_DIR}/bin/
+<<<CLEAR_DIR>>>
+sed -i "/^prefix/s@=\/usr@=${SYSROOT_DIR}\/usr@g" ${CROSSTOOLS_DIR}/bin/gpg-error-config
+sed -i "/^libdir/s@=\/usr@=${SYSROOT_DIR}\/usr@g" ${CROSSTOOLS_DIR}/bin/gpg-error-config

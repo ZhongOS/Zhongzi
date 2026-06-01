@@ -1,0 +1,2 @@
+PACKAGE=spice
+BUILD_MODE=meson

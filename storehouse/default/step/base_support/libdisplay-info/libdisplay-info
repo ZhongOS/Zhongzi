@@ -1,0 +1,2 @@
+PACKAGE=libdisplay-info
+BUILD_MODE=meson

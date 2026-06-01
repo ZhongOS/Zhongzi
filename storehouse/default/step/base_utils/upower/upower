@@ -1,0 +1,2 @@
+PACKAGE=upower
+BUILD_MODE=meson_cross

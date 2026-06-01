@@ -1,0 +1,2 @@
+PACKAGE=giflib
+BUILD_MODE=custom

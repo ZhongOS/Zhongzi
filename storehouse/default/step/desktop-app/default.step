@@ -1,0 +1,37 @@
+begin_run
+
+firefox|firefox
+
+thunderbird
+
+phc-winner-argon2
+# xmlsec1
+libreoffice|office
+
+NULL
+
+libgee
+appstream-glib
+libgit2
+
+NULL
+
+:Desktop-Tools
+:Desktop-MultiMedia
+
+:Design-ComputerLanguage|design
+:Science|science
+:Design-Art|design
+:Design-Electronic|design
+:Games|game
+
+# q5Go
+
+# Ventoy
+
+NULL
+ollama|golang
+
+create_files
+dist_sysroot
+final_run

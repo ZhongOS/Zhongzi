@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kdnssd
+BUILD_MODE=cmake

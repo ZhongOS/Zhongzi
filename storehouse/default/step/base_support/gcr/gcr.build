@@ -1,0 +1,4 @@
+EXTRA_PARM=-Dgtk_doc=false
+
+[[[4.0.0]]]
+EXTRA_PARM=-Dgtk_doc=false

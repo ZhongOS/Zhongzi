@@ -1,0 +1,1 @@
+EXTRA_PARM=--enable-library --with-systemdsystemunitdir=/usr/lib/systemd/system --with-systemduserunitdir=/usr/lib/systemd/user --with-dbusconfdir=/etc --with-dbussystembusdir=/usr/share/dbus-1/system-services --with-dbussessionbusdir=/usr/share/dbus-1/services --with-udevdir=/usr/lib/udev

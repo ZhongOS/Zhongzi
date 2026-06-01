@@ -1,0 +1,2 @@
+PACKAGE=dtc
+BUILD_MODE=custom

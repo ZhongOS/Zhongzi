@@ -1,0 +1,2 @@
+PACKAGE=kwayland-integration
+BUILD_MODE=cmake

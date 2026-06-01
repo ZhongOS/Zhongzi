@@ -1,0 +1,2 @@
+PACKAGE=vcs_versioning
+BUILD_MODE=pip

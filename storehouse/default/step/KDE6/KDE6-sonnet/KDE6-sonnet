@@ -1,0 +1,2 @@
+PACKAGE=KDE6-sonnet
+BUILD_MODE=cmake

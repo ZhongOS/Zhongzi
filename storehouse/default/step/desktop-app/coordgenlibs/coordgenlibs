@@ -1,0 +1,2 @@
+PACKAGE=coordgenlibs
+BUILD_MODE=cmake

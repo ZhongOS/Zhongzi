@@ -1,0 +1,2 @@
+PACKAGE=fribidi
+BUILD_MODE=meson

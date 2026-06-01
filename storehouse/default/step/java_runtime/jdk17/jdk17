@@ -1,0 +1,2 @@
+PACKAGE=jdk17
+BUILD_MODE=custom

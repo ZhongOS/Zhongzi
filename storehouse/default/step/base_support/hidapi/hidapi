@@ -1,0 +1,2 @@
+PACKAGE=hidapi
+BUILD_MODE=cmake

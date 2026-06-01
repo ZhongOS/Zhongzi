@@ -1,0 +1,1 @@
+EXTRA_PARM=-DCMAKE_UNAME=${CROSSTOOLS_DIR}/bin/cross-uname

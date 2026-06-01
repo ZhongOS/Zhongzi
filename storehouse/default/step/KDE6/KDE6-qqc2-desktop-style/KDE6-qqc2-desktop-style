@@ -1,0 +1,2 @@
+PACKAGE=KDE6-qqc2-desktop-style
+BUILD_MODE=cmake

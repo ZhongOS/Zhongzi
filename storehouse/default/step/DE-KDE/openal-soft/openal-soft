@@ -1,0 +1,2 @@
+PACKAGE=openal-soft
+BUILD_MODE=cmake

@@ -1,0 +1,2 @@
+PACKAGE=rust-bootstrap
+BUILD_MODE=custom

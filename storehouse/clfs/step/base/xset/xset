@@ -1,0 +1,2 @@
+PACKAGE=xset
+BUILD_MODE=gnu

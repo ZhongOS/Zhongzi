@@ -1,0 +1,2 @@
+PACKAGE=gc
+BUILD_MODE=gnu

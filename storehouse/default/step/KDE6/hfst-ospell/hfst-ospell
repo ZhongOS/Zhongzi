@@ -1,0 +1,2 @@
+PACKAGE=hfst-ospell
+BUILD_MODE=gnu

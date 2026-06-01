@@ -1,0 +1,2 @@
+PACKAGE=pycparser
+BUILD_MODE=pip

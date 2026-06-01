@@ -1,0 +1,2 @@
+PACKAGE=phonon-backend-vlc
+BUILD_MODE=cmake

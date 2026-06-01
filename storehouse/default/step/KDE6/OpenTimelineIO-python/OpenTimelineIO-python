@@ -1,0 +1,3 @@
+PACKAGE=OpenTimelineIO
+BUILD_MODE=custom
+LOCK_VERSION=git-default

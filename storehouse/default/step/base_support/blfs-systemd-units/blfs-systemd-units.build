@@ -1,0 +1,4 @@
+<<<TAR_UNCOMPRESS>>>
+#	make DESTDIR=${SYSROOT_DIR} install-samba
+#	make DESTDIR=${SYSROOT_DIR} install-winbindd
+<<<CLEAR_DIR>>>

@@ -1,0 +1,2 @@
+PACKAGE=abseil-cpp
+BUILD_MODE=cmake

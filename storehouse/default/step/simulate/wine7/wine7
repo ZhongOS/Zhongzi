@@ -1,0 +1,2 @@
+PACKAGE=wine7
+BUILD_MODE=custom

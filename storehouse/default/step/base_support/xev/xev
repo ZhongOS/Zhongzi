@@ -1,0 +1,2 @@
+PACKAGE=xev
+BUILD_MODE=gnu

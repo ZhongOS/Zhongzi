@@ -1,0 +1,2 @@
+PACKAGE=ghc
+BUILD_MODE=custom

@@ -1,0 +1,2 @@
+PACKAGE=wine-dev
+BUILD_MODE=custom

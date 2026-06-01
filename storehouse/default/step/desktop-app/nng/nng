@@ -1,0 +1,2 @@
+PACKAGE=nng
+BUILD_MODE=cmake

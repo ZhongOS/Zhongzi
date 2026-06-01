@@ -1,0 +1,8 @@
+<<<TAR_UNCOMPRESS>>>
+	mkdir -p build
+	pushd build
+		../configure --host=${MINGW_HOST} --prefix=/mingw --without-headers --without-crt --with-libraries
+		<<<MAKE>>>
+		make DESTDIR=${MINGW_SYSROOT_DIR} install
+	popd
+<<<CLEAR_DIR>>>

@@ -1,0 +1,2 @@
+PACKAGE=meson
+BUILD_MODE=custom

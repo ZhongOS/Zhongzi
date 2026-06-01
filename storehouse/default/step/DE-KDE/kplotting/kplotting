@@ -1,0 +1,2 @@
+PACKAGE=kplotting
+BUILD_MODE=cmake

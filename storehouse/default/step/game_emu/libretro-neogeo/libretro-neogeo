@@ -1,0 +1,2 @@
+PACKAGE=libretro-neogeo
+BUILD_MODE=cmake

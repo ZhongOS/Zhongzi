@@ -1,0 +1,2 @@
+PACKAGE=imagesize
+BUILD_MODE=pip

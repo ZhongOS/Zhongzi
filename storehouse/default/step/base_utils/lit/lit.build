@@ -1,0 +1,5 @@
+<<<TAR_UNCOMPRESS>>>
+    ${CROSSTOOLS_DIR}/bin/python3 setup.py build
+    ${CROSSTOOLS_DIR}/bin/python3 setup.py install --root=${SYSROOT_DIR} --prefix=/usr
+    sed -i "s@${CROSSTOOLS_DIR}@@g" ${SYSROOT_DIR}/bin/lit
+<<<CLEAR_DIR>>>

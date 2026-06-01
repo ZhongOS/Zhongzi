@@ -1,0 +1,2 @@
+PACKAGE=plasma-firewall
+BUILD_MODE=cmake

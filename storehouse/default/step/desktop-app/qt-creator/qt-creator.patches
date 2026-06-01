@@ -1,0 +1,7 @@
+p1	0001-qt-creator-19.0.1-add-loongarch64-support.patch
+
+[[[19.0.0]]]
+p1	0001-qt-creator-19.0.0-add-loongarch64-support.patch
+
+[[[15.0.1]]]
+p1 0001-qt-creator-12.0.2-add-loongarch-support.patch

@@ -1,0 +1,11 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+	mkdir cross-build
+	pushd cross-build
+                mkdir -p grub-core
+		touch grub-core/extra_deps.lst
+		PYTHON=${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-python3 ../configure ${COMMON_CONFIG} --with-platform=efi \
+		             --with-utils=host --disable-werror
+		<<<MAKE_AND_INSTALL>>>
+	popd
+<<<CLEAR_DIR>>>

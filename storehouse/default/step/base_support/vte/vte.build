@@ -1,0 +1,2 @@
+
+# EXTRA_PARM= -Dgir=false -Dvapi=false -Dgtk3=true -Dgtk4=false

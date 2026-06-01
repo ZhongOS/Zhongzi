@@ -1,0 +1,6 @@
+<<<TAR_UNCOMPRESS>>>
+    autoreconf -ifv
+    ./configure ${COMMON_CONFIG} \
+                --enable-jpeg --enable-jasper --enable-lcms
+    <<<MAKE_AND_INSTALL>>>
+<<<CLEAR_DIR>>>

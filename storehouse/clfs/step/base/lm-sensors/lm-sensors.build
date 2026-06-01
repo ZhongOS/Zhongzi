@@ -1,0 +1,5 @@
+<<<TAR_UNCOMPRESS>>>
+    <<<MAKE>>> CC=${CROSS_TARGET}-gcc PREFIX=/usr LIBDIR=/usr/lib64 MANDIR=/usr/share/man
+    make CC=${CROSS_TARGET}-gcc PREFIX=/usr LIBDIR=/usr/lib64 MANDIR=/usr/share/man \
+         DESTDIR=${SYSROOT_DIR} install
+<<<CLEAR_DIR>>>

@@ -1,0 +1,2 @@
+# CONFIG_ENV=LDFLAGS="-lcairo -lfreetype -lharfbuzz -lpthread -lpng -lpixman-1"
+EXTRA_PARM= --wrap-mode=nofallback

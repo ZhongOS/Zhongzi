@@ -1,0 +1,2 @@
+PACKAGE=sudo
+BUILD_MODE=custom

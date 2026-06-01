@@ -1,0 +1,2 @@
+PACKAGE=inputstream.ffmpegdirect
+BUILD_MODE=cmake

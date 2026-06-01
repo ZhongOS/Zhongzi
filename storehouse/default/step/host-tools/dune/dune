@@ -1,0 +1,2 @@
+PACKAGE=dune
+BUILD_MODE=custom

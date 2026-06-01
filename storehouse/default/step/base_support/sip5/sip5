@@ -1,0 +1,2 @@
+PACKAGE=sip5
+BUILD_MODE=pip

@@ -1,0 +1,2 @@
+PACKAGE=trove-classifiers
+BUILD_MODE=pip

@@ -1,0 +1,7 @@
+<<<TAR_UNCOMPRESS>>>
+    mkdir python3
+    pushd python3
+        ../configure ${COMMON_CONFIG}
+	<<<MAKE_AND_INSTALL>>>
+    popd
+<<<CLEAR_DIR>>>

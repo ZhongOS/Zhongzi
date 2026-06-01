@@ -1,0 +1,11 @@
+<<<TAR_UNCOMPRESS>>>
+    for config_i in $(find -name "config.sub")
+    do
+            cp -a -f $(automake --print-libdir)/config.{sub,guess} $(dirname ${config_i})/
+    done
+
+    ./configure ${COMMON_CONFIG} --with-readline=gnu
+    check_gnu_Makefile
+    make -j1
+    make DESTDIR=${SYSROOT_DIR} install
+<<<CLEAR_DIR>>>

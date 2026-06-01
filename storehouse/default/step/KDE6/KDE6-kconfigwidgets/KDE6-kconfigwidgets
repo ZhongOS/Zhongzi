@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kconfigwidgets
+BUILD_MODE=cmake

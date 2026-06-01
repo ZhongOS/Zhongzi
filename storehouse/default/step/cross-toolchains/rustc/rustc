@@ -1,0 +1,2 @@
+PACKAGE=rustc
+BUILD_MODE=custom

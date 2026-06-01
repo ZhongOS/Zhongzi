@@ -1,0 +1,2 @@
+PACKAGE=libplist
+BUILD_MODE=gnu

@@ -1,0 +1,2 @@
+PACKAGE=libSM
+BUILD_MODE=gnu

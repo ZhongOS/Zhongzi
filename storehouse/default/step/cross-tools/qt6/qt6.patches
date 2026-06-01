@@ -1,0 +1,15 @@
+p1	0001-qtwebengine-fix-filename-too-long-error-for-use-ninj.patch
+
+[[[6.9.3]]]
+p1	0001-fix-filename-too-long-error-for-use-ninja.patch
+
+[[[6.8.3]]]
+p1	0001-fix-filename-too-long-error-for-use-ninja.patch
+p1	0001-qt6-6.7.2-fix-for-gcc-15.patch
+p1	0004-qt6webengine-add-host-ldflags-for-cross-build.patch
+
+[[[6.7.3]]]
+p1	0001-fix-filename-too-long-error-for-use-ninja.patch
+p1	0001-qt6-6.7.2-fix-for-gcc-15.patch
+p1	0004-qt6webengine-add-host-ldflags-for-cross-build.patch
+p1	0001-qt-6.7.3-fix-compile-for-clang-19.patch

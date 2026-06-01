@@ -1,0 +1,4 @@
+<<<TAR_UNCOMPRESS>>>
+    <<<MAKE>>> CC="${CROSS_TARGET}-gcc"
+    make DESTDIR=${SYSROOT_DIR} libdir=/usr/lib${LIB_SUFF} install
+<<<CLEAR_DIR>>>

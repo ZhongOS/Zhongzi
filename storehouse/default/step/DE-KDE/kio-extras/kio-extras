@@ -1,0 +1,2 @@
+PACKAGE=kio-extras
+BUILD_MODE=custom

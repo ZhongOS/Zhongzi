@@ -1,0 +1,10 @@
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+    make mrproper
+    make defconfig
+    sed -i "/^# CONFIG_STATIC=/d" .config
+    echo "CONFIG_STATIC=y" >> .config
+    sed -i "/CONFIG_TC=y/s@=y@=n@g" .config
+    <<<MAKE>>> CROSS_COMPILE=${CROSS_TARGET}-
+    cp -v busybox ${SYSROOT_DIR}/usr/bin/
+<<<CLEAR_DIR>>>

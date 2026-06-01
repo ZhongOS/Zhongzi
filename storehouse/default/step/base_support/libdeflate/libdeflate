@@ -1,0 +1,2 @@
+PACKAGE=libdeflate
+BUILD_MODE=cmake

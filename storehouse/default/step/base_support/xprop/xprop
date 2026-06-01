@@ -1,0 +1,2 @@
+PACKAGE=xprop
+BUILD_MODE=gnu

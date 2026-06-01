@@ -1,0 +1,27 @@
+<<<TAR_UNCOMPRESS>>>
+#    sed -i "s@COMMAND \${ical-glib-src-generator_EXE}@COMMAND qemu-${ARCH_NAME} ../../bin/ical-glib-src-generator@g" \
+#           src/libical-glib/CMakeLists.txt
+#    mkdir cross-prebuild
+#    pushd cross-prebuild
+#        CC="${CROSS_TARGET}-gcc" CXX="${CROSS_TARGET}-g++" \
+#        cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release \
+#              -DCMAKE_INSTALL_PREFIX=/usr \
+#              -DSHARED_ONLY=yes -DICAL_BUILD_DOCS=false \
+#              -DGOBJECT_INTROSPECTION=false \
+#              -DICAL_GLIB_VAPI=false ..
+#	<<<MAKE_AND_INSTALL>>>
+#    popd
+    mkdir cross-build
+    pushd cross-build
+        CC="${CROSS_TARGET}-gcc" CXX="${CROSS_TARGET}-g++" \
+        cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=${COMMON_DIR}/cmake-cross.cmake \
+              -DCMAKE_INSTALL_PREFIX=/usr \
+              -DSHARED_ONLY=yes -DICAL_BUILD_DOCS=false \
+              -DGObjectIntrospection_SCANNER=${CROSS_TARGET}-g-ir-scanner \
+              -DGObjectIntrospection_COMPILER=${CROSS_TARGET}-g-ir-compiler \
+              -DVAPIGEN=${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-vapigen \
+              -DGOBJECT_INTROSPECTION=true \
+              -DICAL_GLIB_VAPI=true ..
+	<<<MAKE_AND_INSTALL>>>
+    popd
+<<<CLEAR_DIR>>>

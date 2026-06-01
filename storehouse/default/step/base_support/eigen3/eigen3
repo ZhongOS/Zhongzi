@@ -1,0 +1,2 @@
+PACKAGE=eigen3
+BUILD_MODE=cmake

@@ -1,0 +1,2 @@
+PACKAGE=kdsoap-ws-discovery-client
+BUILD_MODE=cmake

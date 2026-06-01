@@ -1,0 +1,2 @@
+PACKAGE=plasma-workspace
+BUILD_MODE=cmake

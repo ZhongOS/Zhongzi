@@ -1,0 +1,2 @@
+PACKAGE=akonadi-notes
+BUILD_MODE=cmake

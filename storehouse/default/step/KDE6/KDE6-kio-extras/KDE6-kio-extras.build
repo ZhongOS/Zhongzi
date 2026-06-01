@@ -1,0 +1,1 @@
+# CONFIG_ENV=LDFLAGS="${LDFLAGS} -Wl,-rpath-link=${SYSROOT_DIR}/usr/lib64/samba"

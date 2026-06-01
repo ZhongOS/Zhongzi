@@ -1,0 +1,3 @@
+PACKAGE=hatchling
+BUILD_MODE=pip
+# LOCK_VERSION=1.22.5

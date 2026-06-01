@@ -1,0 +1,1 @@
+EXTRA_PARM=-DJSON_BuildTests=OFF

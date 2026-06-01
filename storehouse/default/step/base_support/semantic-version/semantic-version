@@ -1,0 +1,2 @@
+PACKAGE=semantic-version
+BUILD_MODE=pip

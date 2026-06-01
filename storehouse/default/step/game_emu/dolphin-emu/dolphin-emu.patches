@@ -1,0 +1,4 @@
+p1 dolphin-emu-zlibng-add-loongarch.patch
+# p1 dolphin-emu-fix-for-gcc-14.patch
+p1 0002-dolphin-emu-use-built-in-fmt.patch
+# p1 0001-dolphin-emu-use-built-in-fmt.patch

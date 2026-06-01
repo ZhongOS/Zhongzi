@@ -1,0 +1,10 @@
+<<<TAR_UNCOMPRESS>>>
+    for config_i in $(find -name "config.sub")
+    do
+            cp -a -f $(automake --print-libdir)/config.{sub,guess} $(dirname ${config_i})/
+    done
+
+    cp ${RESOURCEDIR}/files/pyzy-database-1.0.0.tar.bz2 data/db/open-phrase
+    ./configure ${COMMON_CONFIG} --enable-db-open-phrase --disable-db-android
+    <<<MAKE_AND_INSTALL>>>
+<<<CLEAR_DIR>>>

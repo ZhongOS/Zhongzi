@@ -1,0 +1,5 @@
+set_strip_step "/usr/bin/"
+set_strip_step "/usr/sbin/" "0"
+set_strip_step "/usr/lib" "0" "*.ko" "--strip-unneeded"
+set_strip_step "/usr/lib${LIB_SUFF}/" "0" "*.mod" "--strip-unneeded"
+

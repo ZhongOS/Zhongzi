@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kcolorchooser
+BUILD_MODE=cmake

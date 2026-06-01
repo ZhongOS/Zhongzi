@@ -1,0 +1,2 @@
+PACKAGE=bridge-utils
+BUILD_MODE=gnu

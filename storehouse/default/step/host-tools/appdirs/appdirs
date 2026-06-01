@@ -1,0 +1,2 @@
+PACKAGE=appdirs
+BUILD_MODE=pip

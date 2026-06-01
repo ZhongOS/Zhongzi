@@ -1,0 +1,2 @@
+PACKAGE=kauth
+BUILD_MODE=custom

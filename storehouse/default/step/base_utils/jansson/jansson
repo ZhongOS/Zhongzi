@@ -1,0 +1,2 @@
+PACKAGE=jansson
+BUILD_MODE=gnu

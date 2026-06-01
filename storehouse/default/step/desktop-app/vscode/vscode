@@ -1,0 +1,2 @@
+PACKAGE=vscode
+BUILD_MODE=custom

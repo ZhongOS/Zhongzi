@@ -1,0 +1,2 @@
+PACKAGE=libXft
+BUILD_MODE=gnu

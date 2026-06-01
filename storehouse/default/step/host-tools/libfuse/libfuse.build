@@ -1,0 +1,1 @@
+EXTRA_PARM=-Dutils=true -Duseroot=false -Dudevrulesdir=${PREFIX}/lib/udev/rules.d -Dinitscriptdir=${PREFIX}/etc/init.d

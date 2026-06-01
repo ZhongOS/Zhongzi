@@ -1,0 +1,3 @@
+p1	cdparanoia-III-10.2-gcc_fixes-1.patch
+p1	cdparanoia-10.2-install.patch
+p1	cdparanoia-10.2-add-pkgconfig.patch

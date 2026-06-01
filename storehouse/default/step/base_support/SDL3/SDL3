@@ -1,0 +1,2 @@
+PACKAGE=SDL3
+BUILD_MODE=cmake

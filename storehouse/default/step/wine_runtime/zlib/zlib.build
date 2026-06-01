@@ -1,0 +1,6 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+	CROSS_PREFIX=${X86_HOST}- ./configure --prefix=/usr --libdir=/usr/lib${LIB_SUFF}
+	<<<MAKE>>>
+	make DESTDIR=${X86_SYSROOT_DIR} install
+<<<CLEAR_DIR>>>

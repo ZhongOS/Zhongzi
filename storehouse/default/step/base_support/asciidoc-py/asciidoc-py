@@ -1,0 +1,2 @@
+PACKAGE=asciidoc-py
+BUILD_MODE=python

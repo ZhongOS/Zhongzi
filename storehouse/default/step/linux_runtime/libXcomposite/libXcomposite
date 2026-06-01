@@ -1,0 +1,2 @@
+PACKAGE=libXcomposite
+BUILD_MODE=gnu

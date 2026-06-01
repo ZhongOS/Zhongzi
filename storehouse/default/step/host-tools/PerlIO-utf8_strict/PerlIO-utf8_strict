@@ -1,0 +1,2 @@
+PACKAGE=PerlIO-utf8_strict
+BUILD_MODE=perl

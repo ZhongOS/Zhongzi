@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kwallet
+BUILD_MODE=cmake

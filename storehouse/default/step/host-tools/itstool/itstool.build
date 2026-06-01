@@ -1,0 +1,1 @@
+CONFIG_ENV=PYTHON=${HOST_TOOLS_DIR}/bin/python3

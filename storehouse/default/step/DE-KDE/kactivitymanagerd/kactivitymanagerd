@@ -1,0 +1,2 @@
+PACKAGE=kactivitymanagerd
+BUILD_MODE=cmake

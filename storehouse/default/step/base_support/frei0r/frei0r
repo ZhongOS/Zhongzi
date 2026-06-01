@@ -1,0 +1,2 @@
+PACKAGE=frei0r
+BUILD_MODE=cmake

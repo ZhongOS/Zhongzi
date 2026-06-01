@@ -1,0 +1,2 @@
+PACKAGE=gsettings-desktop-schemas
+BUILD_MODE=meson

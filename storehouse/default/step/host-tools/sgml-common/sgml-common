@@ -1,0 +1,2 @@
+PACKAGE=sgml-common
+BUILD_MODE=custom

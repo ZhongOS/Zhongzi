@@ -1,0 +1,2 @@
+PACKAGE=c-ini
+BUILD_MODE=meson

@@ -1,0 +1,2 @@
+PACKAGE=inetutils
+BUILD_MODE=custom

@@ -1,0 +1,2 @@
+PACKAGE=file
+BUILD_MODE=gnu

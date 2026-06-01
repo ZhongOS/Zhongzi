@@ -1,0 +1,2 @@
+PACKAGE=mingw-w64
+BUILD_MODE=custom

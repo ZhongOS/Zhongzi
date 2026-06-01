@@ -1,0 +1,2 @@
+PACKAGE=libfuse
+BUILD_MODE=custom

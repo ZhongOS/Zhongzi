@@ -1,0 +1,2 @@
+PACKAGE=libxslt
+BUILD_MODE=gnu

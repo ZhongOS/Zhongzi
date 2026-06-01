@@ -1,0 +1,14 @@
+<<<TAR_UNCOMPRESS>>>
+        git init
+        tar xvf ${RESOURCEDIR}/files/wine-staging.tar.gz
+        wine-staging-v$(echo ${PACKAGE_VERSION} | sed "s@-default\$@@g")/staging/patchinstall.py DESTDIR=${PWD} --all
+
+        <<<PATCH>>>
+        if [ ! -f configure ]; then
+                autoreconf -ifv
+        fi
+        ./configure ${COMMON_CONFIG} --enable-archs=i386,x86_64 --disable-win16 --without-x
+	make __tooldeps__
+	mkdir -p ${CROSSTOOLS_DIR}/wine_dev-tools
+	cp -a ${PWD}/* ${CROSSTOOLS_DIR}/wine_dev-tools/
+<<<CLEAR_DIR>>>

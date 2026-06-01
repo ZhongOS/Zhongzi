@@ -1,0 +1,2 @@
+PACKAGE=KDE6-merkuro
+BUILD_MODE=cmake

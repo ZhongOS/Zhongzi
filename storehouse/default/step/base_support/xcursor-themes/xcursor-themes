@@ -1,0 +1,2 @@
+PACKAGE=xcursor-themes
+BUILD_MODE=gnu

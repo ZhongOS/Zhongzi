@@ -1,0 +1,4 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<MAKE>>> CC=${CROSS_TARGET}-gcc release
+	cp -a liblasx2lsx.so ${SYSROOT_DIR}/usr/lib${LIB_SUFF}/
+<<<CLEAR_DIR>>>

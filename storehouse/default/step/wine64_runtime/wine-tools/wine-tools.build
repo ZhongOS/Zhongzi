@@ -1,0 +1,10 @@
+<<<TAR_UNCOMPRESS>>>
+        <<<PATCH>>>
+        if [ ! -f configure ]; then
+                autoreconf -ifv
+        fi
+        ./configure ${COMMON_CONFIG} --enable-win64 --without-x
+	make __tooldeps__
+	mkdir -p ${CROSSTOOLS_DIR}/wine-tools
+	cp -a ${PWD}/* ${CROSSTOOLS_DIR}/wine-tools/
+<<<CLEAR_DIR>>>

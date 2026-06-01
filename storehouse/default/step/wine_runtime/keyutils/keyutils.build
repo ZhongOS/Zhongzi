@@ -1,0 +1,5 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+	CC=${CROSS_TARGET}-gcc CXX=${CROSS_TARGET}-g++ <<<MAKE>>>
+	make NO_ARLIB=1 LIBDIR=/usr/lib${LIB_SUFF} BINDIR=/usr/bin SBINDIR=/usr/sbin DESTDIR=${X86_SYSROOT_DIR} install
+<<<CLEAR_DIR>>>

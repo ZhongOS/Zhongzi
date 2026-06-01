@@ -1,0 +1,2 @@
+PACKAGE=libXtst
+BUILD_MODE=gnu

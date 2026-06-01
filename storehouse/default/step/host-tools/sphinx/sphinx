@@ -1,0 +1,2 @@
+PACKAGE=sphinx
+BUILD_MODE=pip

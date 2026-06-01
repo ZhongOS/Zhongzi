@@ -1,0 +1,1 @@
+EXTRA_PARM=--disable-numa --disable-examples --disable-man-pages

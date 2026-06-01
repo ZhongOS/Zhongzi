@@ -1,0 +1,7 @@
+<<<TAR_UNCOMPRESS>>>
+    sed -i '/#define LUA_ROOT/s:/usr/local/:/usr/:' src/luaconf.h
+    make MYCFLAGS="-fPIC" linux -j${JOBS}
+    make INSTALL_TOP=${PREFIX} \
+         INSTALL_LIB=${PREFIX}/lib${LIB_SUFF} \
+         INSTALL_MAN=${PREFIX}/share/man/man1 install
+<<<CLEAR_DIR>>>

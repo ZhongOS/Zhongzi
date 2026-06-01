@@ -1,0 +1,2 @@
+PACKAGE=kross
+BUILD_MODE=cmake

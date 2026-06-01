@@ -1,0 +1,2 @@
+PACKAGE=libxcrypt
+BUILD_MODE=gnu

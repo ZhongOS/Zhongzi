@@ -1,0 +1,2 @@
+PACKAGE=libgphoto2
+BUILD_MODE=gnu

@@ -1,0 +1,2 @@
+PACKAGE=libdmx
+BUILD_MODE=gnu

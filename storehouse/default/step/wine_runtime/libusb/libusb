@@ -1,0 +1,2 @@
+PACKAGE=libusb
+BUILD_MODE=gnu

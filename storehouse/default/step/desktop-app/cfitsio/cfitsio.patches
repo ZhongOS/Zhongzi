@@ -1,0 +1,7 @@
+
+
+[[[4.6.0]]]
+p1 0001-cfitsio-4.6.0-fix-lib-to-lib64.patch
+
+[[[4.5.0]]]
+p1 0001-fix-pkgconfig-file-install_dir.patch

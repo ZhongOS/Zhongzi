@@ -1,0 +1,2 @@
+PACKAGE=KDE6-aurorae
+BUILD_MODE=cmake

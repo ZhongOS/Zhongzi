@@ -1,0 +1,181 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+	sed -i "s@llvm-10.0@llvm-16.0@g" third_party/swiftshader/src/Reactor/BUILD.gn
+	${CROSSTOOLS_DIR}/qt6/libexec/moc ui/qt/qt_shim.h > ui/qt/qt6_shim_moc.cc
+	unset PKG_CONFIG_SYSROOT_DIR PKG_CONFIG_PATH PKG_CONFIG_LIBDIR LDFLAGS
+
+	export PATH=${PATH}:${CROSSTOOLS_DIR}/qt6/bin
+
+	if [ "x${ARCH_NAME}" == "xloongarch64" ]; then
+		ln -sfv ${SYSROOT_DIR} build/linux/loongarch64-sysroot
+		media/ffmpeg/scripts/build_ffmpeg.py linux x64 --branding=Chrome
+		media/ffmpeg/scripts/build_ffmpeg.py linux loong64 --branding=Chrome -- --disable-lasx
+		media/ffmpeg/scripts/generate_gn.py
+		mkdir -p third_party/ffmpeg/chromium/config/Chrome/linux/loong64/
+		cp -a third_party/ffmpeg/build.loong64.linux/Chrome/* third_party/ffmpeg/chromium/config/Chrome/linux/loong64/
+	fi
+
+	mkdir -p third_party/node/linux/node-linux-x64/bin/
+	cp -a ${HOST_TOOLS_DIR}/bin/node third_party/node/linux/node-linux-x64/bin/
+	sed -i "/^NODE_VERSION/s@v22.11.0@$(third_party/node/linux/node-linux-x64/bin/node -v)@g" third_party/node/update_node_binaries
+
+	HOST_LLVM_VERSION="$(${CROSSTOOLS_DIR}/host-llvm-project/bin/llvm-config --version)"
+	CLANG_MAIN_VERSION="$(echo ${HOST_LLVM_VERSION} | cut -d. -f1)"
+
+export GN_CONFIG=(
+'google_api_key="AIzaSyDxKL42zsPjbke5O8_rPVpVrLrJ8aeE9rQ"'
+'google_default_client_id="595013732528-llk8trb03f0ldpqq6nprjp1s79596646.apps.googleusercontent.com"'
+'google_default_client_secret="5ntt6GbbkjnTVXx-MSxbmx5e"'
+'enable_hangout_services_extension=true'
+'fatal_linker_warnings=false'
+'disable_fieldtrial_testing_config=true'
+'ffmpeg_branding="Chrome"'
+'proprietary_codecs=true'
+'is_debug=false'
+# 'use_gold=false'
+'is_clang=true'
+'clang_use_chrome_plugins=false'
+'link_pulseaudio=true'
+'symbol_level=0'
+'treat_warnings_as_errors=false'
+'use_pulseaudio=true'
+'use_sysroot=true'
+"target_sysroot=\"${SYSROOT_DIR}\""
+'host_cpu = "x64"'
+'target_cpu = "loong64"'
+'v8_target_cpu = "loong64"'
+'enable_libaom=true'
+'is_component_ffmpeg=true'
+'enable_ffmpeg_video_decoders=true'
+'media_use_ffmpeg=true'
+'use_system_libffi=false'
+"clang_base_path=\"${CROSSTOOLS_DIR}/host-llvm-project\""
+"clang_version=\"${CLANG_MAIN_VERSION}\""
+'enable_compose=true'
+'enable_rust=true'
+"rust_sysroot_absolute=\"${CROSSTOOLS_DIR}\""
+"rustc_version=\"$(get_package_version cross-tools_rustc)\""
+"rust_bindgen_root=\"${CROSSTOOLS_DIR}/host-llvm-project\""
+'enable_swiftshader=true'
+'angle_enable_swiftshader=true'
+'enable_swiftshader_vulkan=true'
+'dawn_use_swiftshader=true'
+'enable_widevine=false'
+# 'use_qt=true'
+'use_qt6=true'
+# "moc_qt6_path=\"${SYSROOT_DIR}/usr/lib64/qt6/libexec/\""
+'build_tflite_with_xnnpack=false'
+)
+
+	./buildtools/linux64/gn gen out/Release --args="${GN_CONFIG[*]}"
+	ninja -C out/Release chrome
+
+	mkdir -p out/dist/opt/chromium/{bin,lib64/chromium/locales,etc,share/man/man1}
+
+	CHROMIUM_OUT_DIR=${PWD}/out/Release
+	CHROMIUM_DIST_DIR=${PWD}/out/dist/opt/chromium
+
+#	mkdir -p %{buildroot}%{_bindir} \
+#         %{buildroot}%{chromium_path}/locales \
+#         %{buildroot}%{_sysconfdir}/%{name}
+
+#	mkdir -p %{buildroot}%{_mandir}/man1/
+
+pushd ${CHROMIUM_OUT_DIR}
+        cp -a chrom*.pak resources.pak icudtl.dat ${CHROMIUM_DIST_DIR}/lib64/chromium/
+        cp -a locales/*.pak ${CHROMIUM_DIST_DIR}/lib64/chromium//locales/
+        cp -a lib*.so ${CHROMIUM_DIST_DIR}/lib64/chromium/
+        cp -a libvulkan.so.1 ${CHROMIUM_DIST_DIR}/lib64/chromium/
+        cp -a vk_swiftshader_icd.json ${CHROMIUM_DIST_DIR}/lib64/chromium/
+
+
+        cp -a chrome ${CHROMIUM_DIST_DIR}/lib64/chromium/chromium-browser
+#        cp -a chrome_sandbox ${CHROMIUM_DIST_DIR}/lib64/chromium/chrome-sandbox
+        cp -a chrome_crashpad_handler ${CHROMIUM_DIST_DIR}/lib64/chromium/chrome_crashpad_handler
+        cp -a ../../chrome/app/resources/manpage.1.in ${CHROMIUM_DIST_DIR}/share/man/man1/chromium-browser.1
+
+        cp -a v8_context_snapshot.bin ${CHROMIUM_DIST_DIR}/lib64/chromium/
+
+#        %if %{use_qt6}
+#                cp -a libqt6_shim.so %{buildroot}%{chromium_path}
+#        %endif
+
+#        %if %{build_chromedriver}
+#                # chromedriver
+#                cp -a chromedriver %{buildroot}%{chromium_path}/chromedriver
+#                ln -s ../..%{chromium_path}/chromedriver %{buildroot}%{_bindir}/chromedriver
+#        %endif
+popd
+
+
+# cp -a out/Release/gen/chrome/app/policy/common/html/en-US/*.html .
+# cp -a out/Release/gen/chrome/app/policy/linux/examples/chrome.json .
+
+mkdir -pv ${CHROMIUM_DIST_DIR}/share/icons/hicolor/256x256/apps
+cp -a chrome/app/theme/chromium/product_logo_256.png ${CHROMIUM_DIST_DIR}/share/icons/hicolor/256x256/apps/chromium-browser.png
+mkdir -p ${CHROMIUM_DIST_DIR}/share/icons/hicolor/128x128/apps
+cp -a chrome/app/theme/chromium/product_logo_128.png ${CHROMIUM_DIST_DIR}/share/icons/hicolor/128x128/apps/chromium-browser.png
+mkdir -p ${CHROMIUM_DIST_DIR}/share/icons/hicolor/64x64/apps
+cp -a chrome/app/theme/chromium/product_logo_64.png ${CHROMIUM_DIST_DIR}/share/icons/hicolor/64x64/apps/chromium-browser.png
+mkdir -p ${CHROMIUM_DIST_DIR}/share/icons/hicolor/48x48/apps
+cp -a chrome/app/theme/chromium/product_logo_48.png ${CHROMIUM_DIST_DIR}/share/icons/hicolor/48x48/apps/chromium-browser.png
+mkdir -p ${CHROMIUM_DIST_DIR}/share/icons/hicolor/24x24/apps
+cp -a chrome/app/theme/chromium/product_logo_24.png ${CHROMIUM_DIST_DIR}/share/icons/hicolor/24x24/apps/chromium-browser.png
+
+
+# install -m 0644 %{SOURCE11} %{buildroot}%{_sysconfdir}/%{name}/
+
+mkdir -p ${CHROMIUM_DIST_DIR}/share/applications/
+# desktop-file-install --dir %{buildroot}%{_datadir}/applications %{SOURCE4}
+cp ${RESOURCEDIR}/chromium-browser.desktop ${CHROMIUM_DIST_DIR}/share/applications/
+
+# install -D -m0644 chrome/installer/linux/common/chromium-browser/chromium-browser.appdata.xml \
+#   ${RPM_BUILD_ROOT}%{_datadir}/metainfo/%{chromium_browser_channel}.appdata.xml
+# appstream-util validate-relax --nonet ${RPM_BUILD_ROOT}%{_datadir}/metainfo/%{chromium_browser_channel}.appdata.xml
+
+
+cat > ${CHROMIUM_DIST_DIR}/lib64/chromium/chromium-browser.sh << "EOF"
+#!/bin/bash
+export CHROME_WRAPPER="`readlink -f "$0"`"
+
+HERE="`dirname "$CHROME_WRAPPER"`"
+
+exec -a "$0" "$HERE/chromium-browser" "$@"
+EOF
+
+ln -sfv ../lib64/chromium/chromium-browser.sh ${CHROMIUM_DIST_DIR}/bin/chromium-browser
+
+chmod +x ${CHROMIUM_DIST_DIR}/lib64/chromium/chromium-browser.sh
+
+${CROSS_TARGET}-strip ${CHROMIUM_DIST_DIR}/lib64/chromium/*.so*
+${CROSS_TARGET}-strip ${CHROMIUM_DIST_DIR}/lib64/chromium/{chrome_crashpad_handler,chromium-browser}
+
+pushd ${CHROMIUM_DIST_DIR}/../
+	tar -cJf chromium-<<<PACKAGE_VERSION>>>-linux-${ARCH_NAME}.tar.xz chromium
+	mkdir -p ${SYSROOT_DIR}/opt/
+	tar xvf chromium-<<<PACKAGE_VERSION>>>-linux-${ARCH_NAME}.tar.xz \
+		-C ${SYSROOT_DIR}/opt/
+
+	mkdir -pv ${DIST_DIRECTORY}/host/${ARCH_NAME}/chromium/
+	cp -av chromium-<<<PACKAGE_VERSION>>>-linux-${ARCH_NAME}.tar.xz ${DIST_DIRECTORY}/host/${ARCH_NAME}/chromium/
+	info_pool "生成了可发布的Chromium浏览器压缩包文件：\
+	$(ls ${DIST_DIRECTORY}/host/${ARCH_NAME}/chromium/chromium-<<<PACKAGE_VERSION>>>-linux-${ARCH_NAME}.tar.xz)"
+popd
+
+ln -sfv /opt/chromium/bin/chromium-browser ${SYSROOT_DIR}/usr/bin/
+
+mkdir -p ${SYSROOT_DIR}/usr/share/icons/hicolor/256x256/apps
+cp -a chrome/app/theme/chromium/product_logo_256.png ${SYSROOT_DIR}/usr/share/icons/hicolor/256x256/apps/chromium-browser.png
+mkdir -p ${SYSROOT_DIR}/usr/share/icons/hicolor/128x128/apps
+cp -a chrome/app/theme/chromium/product_logo_128.png ${SYSROOT_DIR}/usr/share/icons/hicolor/128x128/apps/chromium-browser.png
+mkdir -p ${SYSROOT_DIR}/usr/share/icons/hicolor/64x64/apps
+cp -a chrome/app/theme/chromium/product_logo_64.png ${SYSROOT_DIR}/usr/share/icons/hicolor/64x64/apps/chromium-browser.png
+mkdir -p ${SYSROOT_DIR}/usr/share/icons/hicolor/48x48/apps
+cp -a chrome/app/theme/chromium/product_logo_48.png ${SYSROOT_DIR}/usr/share/icons/hicolor/48x48/apps/chromium-browser.png
+mkdir -p ${SYSROOT_DIR}/usr/share/icons/hicolor/24x24/apps
+cp -a chrome/app/theme/chromium/product_logo_24.png ${SYSROOT_DIR}/usr/share/icons/hicolor/24x24/apps/chromium-browser.png
+
+mkdir -p ${SYSROOT_DIR}/usr/share/applications/
+cp ${RESOURCEDIR}/chromium-browser.desktop ${SYSROOT_DIR}/usr/share/applications/
+
+<<<CLEAR_DIR>>>

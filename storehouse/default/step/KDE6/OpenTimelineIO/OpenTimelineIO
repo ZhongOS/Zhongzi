@@ -1,0 +1,2 @@
+PACKAGE=OpenTimelineIO
+BUILD_MODE=cmake

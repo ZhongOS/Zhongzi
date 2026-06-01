@@ -1,0 +1,2 @@
+PACKAGE=libxisf
+BUILD_MODE=cmake

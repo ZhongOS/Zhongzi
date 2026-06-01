@@ -1,0 +1,2 @@
+PACKAGE=anbox
+BUILD_MODE=custom

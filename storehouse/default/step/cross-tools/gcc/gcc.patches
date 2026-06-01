@@ -1,0 +1,13 @@
+[[[15.2.0]]]
+p1	0001-LoongArch-Fix-bug-simd_maddw_evod_-mode-_-su.patch
+p1	0001-Loongarch-Fix-ICE-for-PR122097.patch
+p1	0001-gcc-15.2.0-fix-build-error-for-glibc-2.43.patch
+
+[[[15.1.0]]]
+p1	do-not-use-the-cached-value-of-the-gcc_except_table_section-for-comdat-functions.patch
+p1      0001-gcc-15.1.0-build-error-for-glibc-2.42.patch
+
+[[[14.2.0]]]
+# p1	0001-fix-the-missing-include-file-when-using-gcc-plugins-.patch
+p1	0001-gcc-13-add-cmodule-medium-for-loongarch-libgcc.patch
+# p1	0001-LoongArch-Set-the-default-code-model-to-medium.patch

@@ -1,0 +1,12 @@
+<<<TAR_UNCOMPRESS>>>
+        <<<PATCH>>>
+        mkdir cross-build
+        pushd cross-build
+		meson ${MESON_CONFIG} ..
+		sed -i.orig "s@src/kooha\$@@g" build.ninja
+		ninja all
+		RUSTFLAGS="$RUSTFLAGS -C linker=${CROSS_TARGET}-gcc" CARGO_HOME=.cargo  cargo build --release --target ${CROSS_TARGET} --target-dir ${PWD}/src
+		cp -a src/${CROSS_TARGET}/release/kooha src/
+		DESTDIR=${SYSROOT_DIR} meson install --no-rebuild
+	popd
+<<<CLEAR_DIR>>>

@@ -1,0 +1,6 @@
+llvm-project@cross-tools|!llvm_git
+clang@cross-tools|!llvm_git
+lld@cross-tools|!llvm_git
+llvm-project_git@cross-tools|llvm_git
+clang_git@cross-tools|llvm_git
+lld_git@cross-tools|llvm_git

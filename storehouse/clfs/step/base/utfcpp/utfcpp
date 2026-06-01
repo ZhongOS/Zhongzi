@@ -1,0 +1,2 @@
+PACKAGE=utfcpp
+BUILD_MODE=cmake

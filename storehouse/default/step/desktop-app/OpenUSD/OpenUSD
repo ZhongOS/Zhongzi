@@ -1,0 +1,2 @@
+PACKAGE=OpenUSD
+BUILD_MODE=cmake

@@ -1,0 +1,21 @@
+cat > ${CROSSTOOLS_DIR}/bin/qemu-wrapper << "EOF"
+#!/bin/bash -e
+
+if [ "x${1}" != "x" ]; then
+        ARCH_NAME=$(file ${1} | awk -F',' '{ print $2 }' | sed "s@ @@g")
+        case ${ARCH_NAME} in
+                LoongArch)
+                        qemu-loongarch64 "$@"
+                        ;;
+                *)
+                        $@
+                        exit $?
+                        ;;
+        esac
+else
+        exit 0
+fi
+
+EOF
+
+chmod +x ${CROSSTOOLS_DIR}/bin/qemu-wrapper

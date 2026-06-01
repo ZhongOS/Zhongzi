@@ -1,0 +1,2 @@
+PACKAGE=ethtool
+BUILD_MODE=gnu

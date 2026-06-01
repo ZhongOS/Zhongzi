@@ -1,0 +1,2 @@
+PACKAGE=flac
+BUILD_MODE=custom

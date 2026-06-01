@@ -1,0 +1,7 @@
+<<<TAR_UNCOMPRESS>>>
+    ./configure ${COMMON_CONFIG} \
+                --datadir=/usr/share/hwdata
+    <<<MAKE_AND_INSTALL>>>
+    mkdir -pv ${SYSROOT_DIR}/usr/share/hwdata/
+    cp -a ${RESOURCEDIR}/files/usb.ids ${SYSROOT_DIR}/usr/share/hwdata/usb.ids
+<<<CLEAR_DIR>>>

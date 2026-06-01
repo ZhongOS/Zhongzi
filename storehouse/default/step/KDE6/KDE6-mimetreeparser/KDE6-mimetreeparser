@@ -1,0 +1,2 @@
+PACKAGE=KDE6-mimetreeparser
+BUILD_MODE=cmake

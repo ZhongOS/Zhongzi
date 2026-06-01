@@ -1,0 +1,6 @@
+PACKAGE=libqmi
+BUILD_MODE=meson
+
+# [[[1.30.8]]]
+# PACKAGE=libqmi
+# BUILD_MODE=custom

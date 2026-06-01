@@ -1,0 +1,2 @@
+linux-kernel|%config=la32r
+initramfs-for-squashfs|%config=la32r;none_status

@@ -1,0 +1,7 @@
+<<<TAR_UNCOMPRESS>>>
+	ABI=32 ./configure --build=${CROSS_HOST} --host=${X86_HOST} \
+                --prefix=/usr --libdir=/usr/lib${LIB_SUFF} --enable-cxx
+	<<<MAKE>>>
+	make DESTDIR=${X86_SYSROOT_DIR} install
+<<<CLEAR_DIR>>>
+rm ${X86_SYSROOT_DIR}/usr/lib${LIB_SUFF}/*.la

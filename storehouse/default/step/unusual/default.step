@@ -1,0 +1,10 @@
+compat-linux-header
+compat-glibc
+libstdc++
+mesa_nollvm
+ffmpeg_for_chromium
+qt5-qtbase
+qt6-qtbase
+gtk4
+# liblol
+# la_ow_syscall

@@ -1,0 +1,2 @@
+PACKAGE=libxmlb
+BUILD_MODE=meson

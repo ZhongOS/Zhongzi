@@ -1,0 +1,2 @@
+PACKAGE=kdelibs4support
+BUILD_MODE=custom

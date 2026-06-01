@@ -1,0 +1,2 @@
+PACKAGE=sdl12-compat
+BUILD_MODE=cmake

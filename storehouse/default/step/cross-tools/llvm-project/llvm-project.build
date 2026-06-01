@@ -1,0 +1,75 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+pushd llvm
+    mkdir -p native-build
+    pushd native-build
+#	LDFLAGS="-Wl,-rpath-link=${CROSSTOOLS_DIR}/lib:${CROSSTOOLS_DIR}/lib64 -Wl,-rpath=${CROSSTOOLS_DIR}/lib:${CROSSTOOLS_DIR}/lib64" \
+	LDFLAGS="${LDFLAGS} -lutil" \
+        PKG_CONFIG_SYSROOT_DIR="" \
+        cmake .. -G Ninja -DCMAKE_INSTALL_PREFIX:PATH=<<<CROSS_TOOLS_PREFIX>>> \
+                 -DCMAKE_CXX_COMPILER="g++" -DCMAKE_C_COMPILER="gcc" \
+                 -DLLVM_LIBDIR_SUFFIX=64 \
+                 -DBUILD_SHARED_LIBS:BOOL=OFF   -DCMAKE_BUILD_TYPE=Release  \
+                 -DCMAKE_C_FLAGS="-DNDEBUG" -DCMAKE_CXX_FLAGS="-DNDEBUG" \
+                 -DLLVM_ENABLE_LIBCXX:BOOL=OFF \
+		 -DLLVM_ENABLE_TERMINFO:BOOL=OFF \
+                 -DLLVM_ENABLE_RTTI:BOOL=ON -DLLVM_BUILD_LLVM_DYLIB:BOOL=ON  \
+                 -DLLVM_LINK_LLVM_DYLIB:BOOL=ON  \
+#                 -DCMAKE_INSTALL_RPATH="<<<CROSS_TOOLS_PREFIX>>>/lib64;<<<CROSS_TOOLS_PREFIX>>>/build-tools/lib64;\\\${ORIGIN}/../lib64" \
+#                 -DCMAKE_INSTALL_RPATH="${CROSSTOOLS_DIR}/lib64;${CROSSTOOLS_DIR}/build-tools/lib64;\\\${ORIGIN}/../lib64" \
+#                 -DCMAKE_INSTALL_RPATH="${CROSSTOOLS_DIR}/lib64;${HOST_TOOLS_DIR}/lib64;\\\${ORIGIN}/../lib64" \
+                 -DLLVM_BUILD_EXTERNAL_COMPILER_RT:BOOL=ON   \
+                 -DLLVM_INSTALL_TOOLCHAIN_ONLY:BOOL=OFF \
+		 -DLLVM_ENABLE_PER_TARGET_RUNTIME_DIR=ON \
+#		 -DDEFAULT_SYSROOT:PATH="${SYSROOT_DIR}" \
+#                 -DLLVM_DEFAULT_TARGET_TRIPLE=${CROSS_TARGET} \
+		 -DLLVM_ENABLE_PROJECTS='llvm;clang;lld;lldb'
+        ninja
+        ninja install
+#        cp -a <<<CROSS_TOOLS_PREFIX>>>/bin/llvm-config \
+#              ${SYSROOT_DIR}/usr/bin/${CROSS_TARGET}-llvm-config
+#        ln -sfv ${SYSROOT_DIR}/usr/bin/${CROSS_TARGET}-llvm-config \
+#                <<<CROSS_TOOLS_PREFIX>>>/bin/
+
+	LLVM_DIST_VERSION="$(${CROSSTOOLS_DIR}/bin/llvm-config --version)"
+	save_package_version cross-tools_llvm-project "${LLVM_DIST_VERSION}"
+#	save_package_version cross-tools_llvm-project "<<<PACKAGE_VERSION>>>"
+popd
+<<<CLEAR_DIR>>>
+
+
+
+[[[18.0.0]]]
+<<<TAR_UNCOMPRESS>>>
+<<<PATCH>>>
+pushd llvm
+    mkdir -p native-build
+    pushd native-build
+#	LDFLAGS="-Wl,-rpath-link=${CROSSTOOLS_DIR}/lib:${CROSSTOOLS_DIR}/lib64 -Wl,-rpath=${CROSSTOOLS_DIR}/lib:${CROSSTOOLS_DIR}/lib64" \
+        PKG_CONFIG_SYSROOT_DIR="" \
+        cmake .. -G Ninja -DCMAKE_INSTALL_PREFIX:PATH=<<<CROSS_TOOLS_PREFIX>>> \
+                 -DCMAKE_CXX_COMPILER="g++" -DCMAKE_C_COMPILER="gcc" \
+                 -DBUILD_SHARED_LIBS:BOOL=OFF   -DCMAKE_BUILD_TYPE=Release  \
+                 -DLLVM_LIBDIR_SUFFIX=64 \
+                 -DCMAKE_C_FLAGS="-DNDEBUG" -DCMAKE_CXX_FLAGS="-DNDEBUG" \
+                 -DLLVM_ENABLE_LIBCXX:BOOL=OFF \
+		 -DLLVM_ENABLE_TERMINFO:BOOL=OFF \
+                 -DLLVM_ENABLE_RTTI:BOOL=ON -DLLVM_BUILD_LLVM_DYLIB:BOOL=ON  \
+                 -DLLVM_LINK_LLVM_DYLIB:BOOL=ON  \
+#                 -DCMAKE_INSTALL_RPATH="<<<CROSS_TOOLS_PREFIX>>>/lib64;<<<CROSS_TOOLS_PREFIX>>>/build-tools/lib64;\\\${ORIGIN}/../lib64" \
+                 -DCMAKE_INSTALL_RPATH="${CROSSTOOLS_DIR}/lib64;${CROSSTOOLS_DIR}/build-tools/lib64;\\\${ORIGIN}/../lib64" \
+                 -DLLVM_BUILD_EXTERNAL_COMPILER_RT:BOOL=ON   \
+                 -DLLVM_INSTALL_TOOLCHAIN_ONLY:BOOL=OFF \
+                 -DLLVM_DEFAULT_TARGET_TRIPLE=${CROSS_TARGET}
+        ninja
+        ninja install
+#        cp -a <<<CROSS_TOOLS_PREFIX>>>/bin/llvm-config \
+#              ${SYSROOT_DIR}/usr/bin/${CROSS_TARGET}-llvm-config
+#        ln -sfv ${SYSROOT_DIR}/usr/bin/${CROSS_TARGET}-llvm-config \
+#                <<<CROSS_TOOLS_PREFIX>>>/bin/
+
+	LLVM_DIST_VERSION="$(${CROSSTOOLS_DIR}/bin/llvm-config --version)"
+	save_package_version cross-tools_llvm-project "${LLVM_DIST_VERSION}"
+#	save_package_version cross-tools_llvm-project "<<<PACKAGE_VERSION>>>"
+popd
+<<<CLEAR_DIR>>>

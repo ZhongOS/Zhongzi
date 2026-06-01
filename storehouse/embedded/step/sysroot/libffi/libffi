@@ -1,0 +1,3 @@
+PACKAGE=libffi
+BUILD_MODE=custom
+LOCK_VERSION=32bit-test

@@ -1,0 +1,2 @@
+PACKAGE=distlib
+BUILD_MODE=pip

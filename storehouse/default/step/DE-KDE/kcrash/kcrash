@@ -1,0 +1,2 @@
+PACKAGE=kcrash
+BUILD_MODE=cmake

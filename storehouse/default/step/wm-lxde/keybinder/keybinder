@@ -1,0 +1,2 @@
+PACKAGE=keybinder
+BUILD_MODE=gnu_gi

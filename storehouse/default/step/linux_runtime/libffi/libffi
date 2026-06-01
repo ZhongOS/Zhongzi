@@ -1,0 +1,2 @@
+PACKAGE=libffi
+BUILD_MODE=custom

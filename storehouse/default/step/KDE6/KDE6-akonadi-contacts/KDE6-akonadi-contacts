@@ -1,0 +1,2 @@
+PACKAGE=KDE6-akonadi-contacts
+BUILD_MODE=cmake

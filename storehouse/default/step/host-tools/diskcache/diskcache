@@ -1,0 +1,2 @@
+PACKAGE=diskcache
+BUILD_MODE=pip

@@ -1,0 +1,2 @@
+PACKAGE=coreutils
+BUILD_MODE=custom

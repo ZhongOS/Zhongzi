@@ -1,0 +1,10 @@
+<<<TAR_UNCOMPRESS>>>
+        for config_i in $(find -name "config.sub")
+        do
+                cp -a -f $(automake --print-libdir)/config.{sub,guess} $(dirname ${config_i})/
+        done
+
+	./configure ${COMMON_CONFIG}
+	<<<MAKE>>> DBUS_BINDING_TOOL=/bin/dbus-binding-tool
+	make DESTDIR=${SYSROOT_DIR} install
+<<<CLEAR_DIR>>>

@@ -1,0 +1,2 @@
+PACKAGE=inkscape
+BUILD_MODE=cmake

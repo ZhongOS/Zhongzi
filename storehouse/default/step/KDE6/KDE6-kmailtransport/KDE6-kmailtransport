@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kmailtransport
+BUILD_MODE=cmake

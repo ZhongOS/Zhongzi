@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kquickcharts
+BUILD_MODE=cmake

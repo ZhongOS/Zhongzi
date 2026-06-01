@@ -1,0 +1,2 @@
+PACKAGE=KDE6-messagelib
+BUILD_MODE=cmake

@@ -1,0 +1,15 @@
+<<<TAR_UNCOMPRESS>>>
+        <<<PATCH>>>
+	echo ${PACKAGE_VERSION} > .tarball-version
+        if [ ! -f configure ]; then
+                autoreconf -ifv
+        fi
+        CFLAGS="${CFLAGS} -std=gnu17" ./configure ${COMMON_CONFIG} --enable-static --enable-malloc0returnsnull
+	check_gnu_Makefile
+        CC="${LINUX_HOST}-gcc" CXX="${LINUX_HOST}-g++" <<<MAKE>>>
+        make DESTDIR=${LINUX_SYSROOT_DIR} install
+        rm -f ${LINUX_SYSROOT_DIR}/usr/lib${LIB_SUFF}/*.la
+        rm -f ${LINUX_SYSROOT_DIR}/usr/lib${LIB_SUFF}/sane/*.la
+<<<CLEAR_DIR>>>
+
+

@@ -1,0 +1,2 @@
+PACKAGE=glslang
+BUILD_MODE=cmake

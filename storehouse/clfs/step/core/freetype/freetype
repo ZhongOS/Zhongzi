@@ -1,0 +1,2 @@
+PACKAGE=freetype
+BUILD_MODE=custom

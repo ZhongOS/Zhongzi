@@ -1,0 +1,2 @@
+PACKAGE=jdk11
+BUILD_MODE=custom

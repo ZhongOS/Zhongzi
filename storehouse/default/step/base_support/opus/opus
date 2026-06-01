@@ -1,0 +1,2 @@
+PACKAGE=opus
+BUILD_MODE=gnu

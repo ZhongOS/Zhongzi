@@ -1,0 +1,2 @@
+PACKAGE=libgee
+BUILD_MODE=custom

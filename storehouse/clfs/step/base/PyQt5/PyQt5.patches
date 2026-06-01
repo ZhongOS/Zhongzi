@@ -1,0 +1,6 @@
+
+
+[[[5.15.10]]]
+p1	pyqt-5.15.6-cross_compiler.patch
+p1	pyqt-5.15.6-fix-sip.patch
+p1	0001-PyQt5-5.15.10-fix-for-sip4.patch

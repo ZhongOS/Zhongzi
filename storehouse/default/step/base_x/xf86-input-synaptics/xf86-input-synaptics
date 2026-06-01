@@ -1,0 +1,2 @@
+PACKAGE=xf86-input-synaptics
+BUILD_MODE=gnu

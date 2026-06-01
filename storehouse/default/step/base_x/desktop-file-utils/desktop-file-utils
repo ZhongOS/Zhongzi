@@ -1,0 +1,2 @@
+PACKAGE=desktop-file-utils
+BUILD_MODE=custom

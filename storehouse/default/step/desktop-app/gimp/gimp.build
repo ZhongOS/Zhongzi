@@ -1,0 +1,44 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+	sed -i "/build_by_default/s@true@false@g" gimp-data/images/meson.build
+	sed -i "s@<<QEMU_SHELL>>@qemu-${ARCH_NAME}@g" tools/in-build-gimp.py
+	mkdir cross-build
+	pushd cross-build
+		CC_FOR_BUILD=${CROSS_TARGET}-gcc \
+		VALAC_FOR_BUILD=loongarch64-unknown-linux-gnu-valac \
+		meson ${MESON_CONFIG} -Dcan-crosscompile-gir=true \
+                      ..
+		sed -i "s@gi-docgen \(index\|generate\|gen-index\|gen-deps\|search\|check\|serve\) @& --add-include-path ${SYSROOT_DIR}/usr/share/gir-1.0/ @g" build.ninja
+		sed -i "s@COMMAND = ${PWD}/plug-ins/file-bmp/generate-huffman@COMMAND = qemu-${ARCH_NAME} ${PWD}/plug-ins/file-bmp/generate-huffman@g" build.ninja
+		sed -i "s@COMMAND = ${PWD}/gimp-data/tools/colorsvg2png@COMMAND = qemu-${ARCH_NAME} ${PWD}/gimp-data/tools/colorsvg2png@g" build.ninja
+		sed -i "s@COMMAND = ${PWD}/tools/gen-languages@COMMAND = qemu-${ARCH_NAME} ${PWD}/tools/gen-languages@g" build.ninja
+		<<<NINJA_AND_INSTALL>>>
+	popd
+	convert https://www.gimp.org/news/2026/03/14/gimp-3-2-released/gimp-3.2-splash.jpg ${SYSROOT_DIR}/usr/share/gimp/3.0/images/gimp-splash.png
+	rm -f ${SYSROOT_DIR}/usr/lib64/*.la
+<<<CLEAR_DIR>>>
+
+[[[2.10.38]]]
+# CONFIG_ENV=CFLAGS="${CFLAGS} -fpermissive" 
+# EXTRA_PARM=--disable-python --without-appdata-test HOST_GLIB_COMPILE_RESOURCES=${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-glib-compile-resources
+<<<TAR_UNCOMPRESS>>>
+        <<<PATCH>>>
+        sed -i "/VAPIGEN_MAKEFILE=/s@\$PKG_CONFIG @/bin/pkg-config @g" configure
+        sed -i "/INTROSPECTION_MAKEFILE=/s@\$PKG_CONFIG @/bin/pkg-config @g" configure
+	sed -i -e "/^\t\$(libgimpmath)/a \\\t\$(libgimpmodule)\\t\\\\" -e "/^libgimpmath/a libgimpmodule = \$(top_builddir)/libgimpmodule/libgimpmodule-\$(GIMP_API_VERSION).la" $(grep -rl "^libgimpmath" $(find plug-ins -name "Makefile.in"))
+	sed -i -e "/^\t\$(libgimpcolor)/a \\\t\$(libgimpmath)\\t\\\\" -e "/^libgimpcolor/a libgimpmath = \$(top_builddir)/libgimpmath/libgimpmath-\$(GIMP_API_VERSION).la" plug-ins/file-raw/Makefile.in
+	sed -i "s@-I\$(includedir)@@g" $(find plug-ins -name "Makefile.in")
+        mkdir cross-build
+        pushd cross-build
+                CFLAGS="${CFLAGS} -fpermissive" CXXFLAGS="${CXXFLAGS} -fpermissive" \
+		../configure ${COMMON_CONFIG} --enable-introspection=yes \
+			     --disable-python HOST_GLIB_COMPILE_RESOURCES=${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-glib-compile-resources
+                <<<MAKE>>> INTROSPECTION_SCANNER=${CROSS_TARGET}-g-ir-scanner \
+                     INTROSPECTION_COMPILER=${CROSS_TARGET}-g-ir-compiler \
+                     GLIB_COMPILE_RESOURCES=${CROSS_TARGET}-glib-compile-resources \
+                     VAPIGEN=${CROSS_TARGET}-vapigen
+                make VAPIGEN=${CROSS_TARGET}-vapigen DESTDIR=${SYSROOT_DIR} install
+        popd
+        rm -f ${SYSROOT_DIR}/usr/lib64/*.la
+<<<CLEAR_DIR>>>
+

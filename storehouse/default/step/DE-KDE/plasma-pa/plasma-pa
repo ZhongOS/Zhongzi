@@ -1,0 +1,2 @@
+PACKAGE=plasma-pa
+BUILD_MODE=cmake

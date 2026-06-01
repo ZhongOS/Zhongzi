@@ -1,0 +1,2 @@
+PACKAGE=kImageAnnotator
+BUILD_MODE=cmake

@@ -1,0 +1,2 @@
+PACKAGE=kmix
+BUILD_MODE=cmake

@@ -1,0 +1,2 @@
+PACKAGE=dwarves
+BUILD_MODE=cmake

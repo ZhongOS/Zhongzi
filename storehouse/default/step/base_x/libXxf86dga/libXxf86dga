@@ -1,0 +1,2 @@
+PACKAGE=libXxf86dga
+BUILD_MODE=gnu

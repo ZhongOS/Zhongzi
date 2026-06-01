@@ -1,0 +1,2 @@
+PACKAGE=plank-player
+BUILD_MODE=cmake

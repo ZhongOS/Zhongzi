@@ -1,0 +1,13 @@
+<<<TAR_UNCOMPRESS>>>
+    pushd nspr
+    <<<PATCH>>>
+    for config_i in $(find -name "config.sub")
+    do
+            cp -a -f $(automake --print-libdir)/config.{sub,guess} $(dirname ${config_i})/
+    done
+    ./configure ${COMMON_CONFIG} \
+                --with-mozilla --with-pthreads
+    make CC="gcc" CFLAGS="" -C config
+    <<<MAKE_AND_INSTALL>>>
+    popd
+<<<CLEAR_DIR>>>

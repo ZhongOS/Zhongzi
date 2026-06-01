@@ -1,0 +1,2 @@
+PACKAGE=ktextaddons
+BUILD_MODE=cmake

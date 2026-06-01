@@ -1,0 +1,2 @@
+PACKAGE=OpenImageIO
+BUILD_MODE=cmake

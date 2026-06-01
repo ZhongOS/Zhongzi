@@ -1,0 +1,39 @@
+<<<TAR_UNCOMPRESS>>>
+    if [ "x$(get_user_set_env target)" == "x" ]; then
+        CROSS_TARGET=$(archname_to_triple "$(get_user_set_env host ${CROSS_HOST})" "${CROSS_HOST}")
+    else
+        CROSS_TARGET=$(archname_to_triple "$(get_user_set_env target ${CROSS_HOST})" "${CROSS_HOST}")
+    fi
+    TARGET_VENDOR=$(get_user_set_env vendor "unknown")
+
+    unpack_for_pkg_format "rpm" "${STEP_PACKAGENAME}" "$(archname_to_name "${CROSS_TARGET}")"
+
+    if [ "x$(get_user_set_env compat)" == "x1" ] || [ "x$(get_user_set_env target_compat)" == "x1" ]; then
+	COMPAT_TARGET="$(echo "${CROSS_TARGET}" | sed "s@unknown@compat@g")"
+    else
+	case "x${TARGET_VENDOR}" in
+		"xunknown")
+			COMPAT_TARGET="${CROSS_TARGET}"
+			;;
+		"xNULL")
+			COMPAT_TARGET="$(echo "${CROSS_TARGET}" | sed "s@-unknown-@-@g")"
+			;;
+		*)
+			COMPAT_TARGET="$(echo "${CROSS_TARGET}" | sed "s@unknown@${TARGET_VENDOR}@g")"
+			;;
+	esac
+    fi
+
+    <<<PATCH>>>
+    rm -rf gdb* libdecnumber readline sim
+    mkdir cross-build
+    pushd cross-build
+        CC=gcc \
+        ../configure --prefix=${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_TARGET}/cross-tools --build=${CROSS_HOST} --host=${CROSS_HOST} \
+                     --target=${COMPAT_TARGET} --with-sysroot=${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_TARGET}/cross-tools/target --enable-nls \
+                     --enable-64-bit-bfd --disable-shared --disable-werror
+        <<<MAKE>>> configure-host
+        <<<MAKE>>>
+        make install-strip
+    popd
+<<<CLEAR_DIR>>>

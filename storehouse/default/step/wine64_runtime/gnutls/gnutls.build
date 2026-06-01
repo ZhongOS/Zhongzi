@@ -1,0 +1,1 @@
+EXTRA_PARM=--enable-openssl-compatibility --enable-ssl3-support --with-libz-prefix=${X86_64_SYSROOT_DIR}/usr --disable-guile --disable-doc --without-p11-kit

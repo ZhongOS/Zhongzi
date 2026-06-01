@@ -1,0 +1,2 @@
+PACKAGE=inputstream.rtmp
+BUILD_MODE=cmake

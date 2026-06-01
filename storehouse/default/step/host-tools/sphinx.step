@@ -1,0 +1,33 @@
+NULL
+
+# flit_core
+sphinxcontrib-applehelp
+sphinx
+docutils
+Babel
+packaging|nouse
+snowballstemmer
+imagesize
+sphinxcontrib-serializinghtml
+requests
+# pathspec
+# pluggy
+# trove-classifiers
+editables
+# hatchling
+urllib3
+charset-normalizer
+idna
+certifi
+sphinxcontrib-devhelp
+sphinxcontrib-htmlhelp
+sphinxcontrib-qthelp
+alabaster
+Pygments
+sphinxcontrib-jsmath
+sphinx-rtd-theme
+sphinxcontrib-jquery
+# roman_numerals_py
+roman-numerals
+
+NULL

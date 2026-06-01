@@ -1,0 +1,2 @@
+PACKAGE=librtprocess
+BUILD_MODE=cmake

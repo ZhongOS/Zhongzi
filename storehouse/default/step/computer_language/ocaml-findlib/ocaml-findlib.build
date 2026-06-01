@@ -1,0 +1,11 @@
+<<<TAR_UNCOMPRESS>>>
+	pushd tools/extract_args
+                make clean
+                make
+        popd
+        PATH=${CROSSTOOLS_DIR}/ocaml-cross/bin:${PATH}
+	./configure -bindir /usr/bin -sitelib /usr/lib64/ocaml -mandir /usr/share/man -config /etc -no-topfind
+	make all
+	make opt
+	make DESTDIR=${SYSROOT_DIR} install
+<<<CLEAR_DIR>>>

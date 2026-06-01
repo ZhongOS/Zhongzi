@@ -1,0 +1,2 @@
+PACKAGE=vala
+BUILD_MODE=custom

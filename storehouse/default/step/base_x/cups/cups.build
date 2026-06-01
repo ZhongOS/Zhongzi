@@ -1,0 +1,11 @@
+<<<TAR_UNCOMPRESS>>>
+    sed -i 's#@CUPS_HTMLVIEW@#firefox#' desktop/cups.desktop.in
+    ./configure ${COMMON_CONFIG} --with-rcdir=/tmp/cupsinit   \
+            --with-system-groups=lpadmin
+    <<<MAKE_AND_INSTALL>>>
+    rm -rf ${SYSROOT_DIR}/tmp/cupsinit
+    echo "ServerName /run/cups/cups.sock" > ${SYSROOT_DIR}/etc/cups/client.conf
+
+cp -a ${SYSROOT_DIR}/bin/cups-config ${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-cups-config
+sed -i "s@${SYSROOT_DIR}@@g" ${SYSROOT_DIR}/usr/bin/cups-config
+<<<CLEAR_DIR>>>

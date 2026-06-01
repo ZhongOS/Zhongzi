@@ -1,0 +1,2 @@
+PACKAGE=libblockdev
+BUILD_MODE=custom

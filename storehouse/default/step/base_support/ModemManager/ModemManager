@@ -1,0 +1,6 @@
+PACKAGE=ModemManager
+BUILD_MODE=meson
+
+# [[[1.18.12]]]
+# PACKAGE=ModemManager
+# BUILD_MODE=custom

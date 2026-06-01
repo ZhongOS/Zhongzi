@@ -1,0 +1,2 @@
+PACKAGE=libkdcraw
+BUILD_MODE=cmake

@@ -1,0 +1,3 @@
+export CROSS_TARGET="loongarch64-unknown-linux-gnu"
+export MABI="lp64d"
+export LIB_SUFF="64"

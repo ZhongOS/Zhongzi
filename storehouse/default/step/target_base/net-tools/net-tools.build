@@ -1,0 +1,10 @@
+<<<TAR_UNCOMPRESS>>>
+    yes "" | make BINDIR='/usr/bin' SBINDIR='/usr/bin' CC=${CROSS_TARGET}-gcc
+    make BINDIR='/usr/bin' SBINDIR='/usr/bin' CC=${CROSS_TARGET}-gcc DESTDIR=${PWD}/dest install
+    rm -v dest/usr/bin/{nis,yp}domainname
+    rm -v dest/usr/bin/{hostname,dnsdomainname,domainname,ifconfig}
+    rm -rv dest/usr/share/man/man1
+    rm -rv dest/usr/share/man/man8/ifconfig.8
+    cp -av dest/usr/bin/* ${SYSROOT_DIR}/usr/bin/
+    cp -av dest/usr/share/man/man* ${SYSROOT_DIR}/usr/share/man/
+<<<CLEAR_DIR>>>

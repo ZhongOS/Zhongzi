@@ -1,0 +1,2 @@
+PACKAGE=wxPython
+BUILD_MODE=custom

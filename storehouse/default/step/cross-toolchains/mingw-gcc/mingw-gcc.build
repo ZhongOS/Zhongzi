@@ -1,0 +1,22 @@
+<<<TAR_UNCOMPRESS>>>
+	MINGW_HOST=$(archname_to_triple "$(get_user_set_env target ${MINGW_HOST})" "${MINGW_HOST}")
+	INSTALL_ARCH_NAME="mingw64ucrt"
+	INSTALL_ARCH_NAME=$(archname_to_name "$(get_user_set_env target ${MINGW_HOST})" "${MINGW_HOST}")
+
+	mkdir -p tools-build
+	pushd tools-build
+		AR=ar LDFLAGS="-Wl,-rpath,${CROSS_TOOLS_PREFIX}/lib" \
+		../configure --prefix=${PREFIX}/${MINGW_HOST} --build=${CROSS_HOST} --host=${CROSS_HOST} \
+		             --target=${MINGW_HOST} --disable-nls \
+		             --with-mpfr=<<<CROSS_TOOLS_PREFIX>>> --with-gmp=<<<CROSS_TOOLS_PREFIX>>> \
+		             --with-mpc=<<<CROSS_TOOLS_PREFIX>>> \
+		             --with-newlib --disable-shared \
+		             --with-sysroot=${SYSROOT_DIR}/usr/lib/${INSTALL_ARCH_NAME}/sys-root \
+		             --disable-decimal-float --disable-libgomp --disable-libitm \
+		             --disable-libsanitizer --disable-libquadmath --disable-threads \
+		             --disable-target-zlib --with-system-zlib --enable-checking=release \
+		             --enable-c99 --enable-languages=c
+		<<<MAKE>>> all-gcc
+		make install-strip-gcc
+	popd
+<<<CLEAR_DIR>>>

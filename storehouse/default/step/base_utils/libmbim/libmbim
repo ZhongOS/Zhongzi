@@ -1,0 +1,2 @@
+PACKAGE=libmbim
+BUILD_MODE=custom

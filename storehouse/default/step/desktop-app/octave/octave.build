@@ -1,0 +1,17 @@
+<<<TAR_UNCOMPRESS>>>
+        <<<PATCH>>>
+
+	export PATH=${PATH}:${CROSSTOOLS_DIR}/qt6/bin
+
+        for config_i in $(find -name "config.sub")
+        do
+                cp -a -f $(automake --print-libdir)/config.{sub,guess} $(dirname ${config_i})/
+        done
+        if [ ! -f configure ]; then
+                autoreconf -ifv
+        fi
+        ./configure ${COMMON_CONFIG} --with-qt=6 --enable-malloc0returnsnull
+        CC=${CROSS_TARGET}-gcc CXX=${CROSS_TARGET}-g++ <<<MAKE>>>
+        make DESTDIR=${SYSROOT_DIR} install
+        rm -f ${SYSROOT_DIR}/usr/lib64/*.la
+<<<CLEAR_DIR>>>

@@ -1,0 +1,2 @@
+PACKAGE=wireplumber
+BUILD_MODE=meson

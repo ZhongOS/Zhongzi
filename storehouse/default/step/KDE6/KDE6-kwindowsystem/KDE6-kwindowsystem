@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kwindowsystem
+BUILD_MODE=cmake

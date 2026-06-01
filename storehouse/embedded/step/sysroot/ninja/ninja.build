@@ -1,0 +1,6 @@
+<<<TAR_UNCOMPRESS>>>
+    CXX="${CROSS_TARGET}-g++" AR="${CROSS_TARGET}-ar" \
+    ${CROSSTOOLS_DIR}/bin/python3 configure.py
+    ninja
+    install -vm755 ninja ${SYSROOT_DIR}/usr/bin/
+<<<CLEAR_DIR>>>

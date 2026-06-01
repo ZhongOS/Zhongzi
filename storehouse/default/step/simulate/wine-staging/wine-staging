@@ -1,0 +1,2 @@
+PACKAGE=wine-staging
+BUILD_MODE=custom

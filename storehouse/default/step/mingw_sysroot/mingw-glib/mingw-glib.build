@@ -1,0 +1,21 @@
+<<<TAR_UNCOMPRESS>>>
+# 	sed -i "/libintl.type_name/d" meson.build
+# 	sed -i "s@libiconv = \[\]@libiconv = dependency\('iconv'\)@g" meson.build
+        <<<PATCH>>>
+        mkdir cross-build-static
+        pushd cross-build-static
+                meson ${MESON_CONFIG} --default-library=static -Dtests=false -Dman=false -Dselinux=disabled \
+                      ..
+		ninja
+		DESTDIR=${MINGW_SYSROOT_DIR} ninja install
+        popd
+        mkdir cross-build-shared
+        pushd cross-build-shared
+                meson ${MESON_CONFIG} --default-library=shared -Dtests=false -Dman=false -Dselinux=disabled \
+                      ..
+		ninja
+		DESTDIR=${MINGW_SYSROOT_DIR} ninja install
+        popd
+
+        rm -f ${MINGW_SYSROOT_DIR}/mingw/lib/*.la
+<<<CLEAR_DIR>>>

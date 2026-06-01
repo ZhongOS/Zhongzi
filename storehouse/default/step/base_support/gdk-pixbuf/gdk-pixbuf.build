@@ -1,0 +1,51 @@
+<<<TAR_UNCOMPRESS>>>
+    mkdir cross-build
+    pushd cross-build
+        meson ${MESON_CONFIG} --wrap-mode=nofallback -Dintrospection=enabled -Dman=false -Ddocumentation=false -Dglycin=disabled ..
+#	sed -i -e "s@\(${SYSROOT_DIR}/\)usr\(.*\)/\(g-ir-compiler\|g-ir-scanner\)@${CROSSTOOLS_DIR}/\2${CROSS_TARGET}-\3@g" build.ninja
+	<<<NINJA_AND_INSTALL>>>
+    popd
+
+echo "qemu-${ARCH_NAME} ${SYSROOT_DIR}/usr/bin/gdk-pixbuf-csource \"\$@\"" \
+                > ${CROSSTOOLS_DIR}/bin/gdk-pixbuf-csource
+chmod +x ${CROSSTOOLS_DIR}/bin/gdk-pixbuf-csource
+echo "qemu-${ARCH_NAME} ${SYSROOT_DIR}/usr/bin/gdk-pixbuf-pixdata \"\$@\"" \
+                > ${CROSSTOOLS_DIR}/bin/gdk-pixbuf-pixdata
+chmod +x ${CROSSTOOLS_DIR}/bin/gdk-pixbuf-pixdata
+<<<CLEAR_DIR>>>
+
+
+[[[2.43.2]]]
+<<<TAR_UNCOMPRESS>>>
+    mkdir cross-build
+    pushd cross-build
+        meson ${MESON_CONFIG} --wrap-mode=nofallback -Dintrospection=enabled -Dman=false -Ddocumentation=false ..
+#	sed -i -e "s@\(${SYSROOT_DIR}/\)usr\(.*\)/\(g-ir-compiler\|g-ir-scanner\)@${CROSSTOOLS_DIR}/\2${CROSS_TARGET}-\3@g" build.ninja
+	<<<NINJA_AND_INSTALL>>>
+    popd
+
+echo "qemu-${ARCH_NAME} ${SYSROOT_DIR}/usr/bin/gdk-pixbuf-csource \"\$@\"" \
+                > ${CROSSTOOLS_DIR}/bin/gdk-pixbuf-csource
+chmod +x ${CROSSTOOLS_DIR}/bin/gdk-pixbuf-csource
+echo "qemu-${ARCH_NAME} ${SYSROOT_DIR}/usr/bin/gdk-pixbuf-pixdata \"\$@\"" \
+                > ${CROSSTOOLS_DIR}/bin/gdk-pixbuf-pixdata
+chmod +x ${CROSSTOOLS_DIR}/bin/gdk-pixbuf-pixdata
+<<<CLEAR_DIR>>>
+
+
+[[[2.42.12]]]
+<<<TAR_UNCOMPRESS>>>
+    mkdir cross-build
+    pushd cross-build
+        meson ${MESON_CONFIG} --wrap-mode=nofallback -Dintrospection=enabled -Dman=false ..
+#	sed -i -e "s@\(${SYSROOT_DIR}/\)usr\(.*\)/\(g-ir-compiler\|g-ir-scanner\)@${CROSSTOOLS_DIR}/\2${CROSS_TARGET}-\3@g" build.ninja
+	<<<NINJA_AND_INSTALL>>>
+    popd
+
+echo "qemu-${ARCH_NAME} ${SYSROOT_DIR}/usr/bin/gdk-pixbuf-csource \"\$@\"" \
+                > ${CROSSTOOLS_DIR}/bin/gdk-pixbuf-csource
+chmod +x ${CROSSTOOLS_DIR}/bin/gdk-pixbuf-csource
+echo "qemu-${ARCH_NAME} ${SYSROOT_DIR}/usr/bin/gdk-pixbuf-pixdata \"\$@\"" \
+                > ${CROSSTOOLS_DIR}/bin/gdk-pixbuf-pixdata
+chmod +x ${CROSSTOOLS_DIR}/bin/gdk-pixbuf-pixdata
+<<<CLEAR_DIR>>>

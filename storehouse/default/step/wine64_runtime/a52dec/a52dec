@@ -1,0 +1,2 @@
+PACKAGE=a52dec
+BUILD_MODE=gnu

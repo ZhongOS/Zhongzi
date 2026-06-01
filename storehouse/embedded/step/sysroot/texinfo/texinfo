@@ -1,0 +1,2 @@
+PACKAGE=texinfo
+BUILD_MODE=custom

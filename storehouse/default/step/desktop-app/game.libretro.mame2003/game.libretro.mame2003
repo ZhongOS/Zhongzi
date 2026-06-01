@@ -1,0 +1,2 @@
+PACKAGE=game.libretro.mame2003
+BUILD_MODE=cmake

@@ -1,0 +1,2 @@
+PACKAGE=xtrans
+BUILD_MODE=gnu

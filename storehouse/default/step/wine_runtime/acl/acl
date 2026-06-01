@@ -1,0 +1,2 @@
+PACKAGE=acl
+BUILD_MODE=gnu

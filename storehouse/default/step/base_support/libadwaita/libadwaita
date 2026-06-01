@@ -1,0 +1,2 @@
+PACKAGE=libadwaita
+BUILD_MODE=meson

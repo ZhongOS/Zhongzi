@@ -1,0 +1,4 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<CROSS_TOOLS_PREFIX>>>/bin/perl Makefile.PL
+	<<<MAKE_AND_INSTALL>>>
+<<<CLEAR_DIR>>>

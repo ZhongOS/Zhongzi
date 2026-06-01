@@ -1,0 +1,2 @@
+PACKAGE=granite
+BUILD_MODE=meson_cross

@@ -1,0 +1,2 @@
+PACKAGE=aom
+BUILD_MODE=cmake

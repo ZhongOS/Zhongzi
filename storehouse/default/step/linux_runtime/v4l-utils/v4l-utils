@@ -1,0 +1,7 @@
+PACKAGE=v4l-utils
+BUILD_MODE=meson
+
+
+[[[1.25.0]]]
+PACKAGE=v4l-utils
+BUILD_MODE=gnu

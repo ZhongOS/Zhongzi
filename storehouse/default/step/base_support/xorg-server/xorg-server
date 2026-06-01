@@ -1,0 +1,2 @@
+PACKAGE=xorg-server
+BUILD_MODE=custom

@@ -1,0 +1,2 @@
+PACKAGE=libcloudproviders
+BUILD_MODE=meson

@@ -1,0 +1,9 @@
+
+
+[[[15.2.0]]]
+p1	do-not-use-the-cached-value-of-the-gcc_except_table_section-for-comdat-functions.patch
+
+# p1	0001-fix-the-missing-include-file-when-using-gcc-plugins-.patch
+# p1	0001-gcc-13-add-cmodule-medium-for-loongarch-libgcc.patch
+
+[[[14.2.0]]]

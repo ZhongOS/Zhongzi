@@ -1,0 +1,6 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+	PATH=${CROSSTOOLS_DIR}/ocaml-cross/bin:${PATH}
+	dune build -p ordering,stdune,xdg,dyn,dune-rpc,chrome-trace,dune-build-info,ocamlc-loc,dune-private-libs,dune-site,dune-action-plugin,dune-glob,dune
+	dune install --prefix /usr --docdir /usr/share/doc --destdir ${SYSROOT_DIR} dune
+<<<CLEAR_DIR>>>

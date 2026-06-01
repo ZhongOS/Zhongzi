@@ -1,0 +1,5 @@
+if [ -f ${SYSROOT_DIR}/usr/bin/wayland-scanner ]; then
+	mv ${SYSROOT_DIR}/usr/bin/wayland-scanner ${SYSROOT_DIR}/usr/bin/wayland-scanner.orig
+	echo "qemu-${ARCH_NAME} ${SYSROOT_DIR}/usr/bin/wayland-scanner.orig \"\$@\"" > ${SYSROOT_DIR}/usr/bin/wayland-scanner
+	chmod +x ${SYSROOT_DIR}/usr/bin/wayland-scanner
+fi

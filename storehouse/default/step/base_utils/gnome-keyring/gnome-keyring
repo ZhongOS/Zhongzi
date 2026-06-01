@@ -1,0 +1,2 @@
+PACKAGE=gnome-keyring
+BUILD_MODE=custom

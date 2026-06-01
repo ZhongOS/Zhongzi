@@ -1,0 +1,2 @@
+PACKAGE=libwnck
+BUILD_MODE=meson

@@ -1,0 +1,6 @@
+[submodule "gongju"]
+	path = gongju
+	url = https://github.com/ZhongOS/gongju.git
+[submodule "packages"]
+	path = packages
+	url = https://github.com/ZhongOS/packages.git

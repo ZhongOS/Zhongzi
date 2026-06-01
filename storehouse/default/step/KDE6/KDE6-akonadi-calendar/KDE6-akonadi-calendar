@@ -1,0 +1,2 @@
+PACKAGE=KDE6-akonadi-calendar
+BUILD_MODE=cmake

@@ -1,0 +1,325 @@
+<<<TAR_UNCOMPRESS>>>
+    if [ "x$(get_user_set_env target)" == "x" ]; then
+        CROSS_TARGET=$(archname_to_triple "$(get_user_set_env host ${CROSS_HOST})" "${CROSS_HOST}")
+        ARCH_MABI=$(archname_to_anyparm "$(get_user_set_env host ${CROSS_TARGET})" "MABI" "")
+    else
+#         CROSS_TARGET=$(archname_to_triple "$(get_user_set_env target ${CROSS_HOST})" "${CROSS_HOST}")
+        CROSS_TARGET=$(archname_to_triple "$(get_user_set_env target ${CROSS_TARGET})" "${CROSS_TARGET}")
+        ARCH_MABI=$(archname_to_anyparm "$(get_user_set_env target ${CROSS_TARGET})" "MABI" "")
+    fi
+    LIB_SUFF=$(archname_to_lib_suff "${CROSS_TARGET}")
+    INSTALL_PREFIX_DIR=$(archname_to_anyparm "${CROSS_TARGET}" "PREFIX_DIR" "/usr")
+
+    TARGET_VENDOR=$(get_user_set_env vendor "unknown")
+
+    if [ "x$(get_user_set_env compat)" == "x1" ] || [ "x$(get_user_set_env target_compat)" == "x1" ]; then
+	COMPAT_TARGET="$(echo "${CROSS_TARGET}" | sed "s@unknown@compat@g")"
+    else
+	case "x${TARGET_VENDOR}" in
+		"xunknown")
+			COMPAT_TARGET="${CROSS_TARGET}"
+			;;
+		"xNULL")
+			COMPAT_TARGET="$(echo "${CROSS_TARGET}" | sed "s@-unknown-@-@g")"
+			;;
+		*)
+			COMPAT_TARGET="$(echo "${CROSS_TARGET}" | sed "s@unknown@${TARGET_VENDOR}@g")"
+			;;
+	esac
+    fi
+
+#    HOST_HOST=$(archname_to_triple "$(get_user_set_env host ${CROSS_HOST})" "${CROSS_HOST}")
+#    HOST_TARGET=$(archname_to_triple "$(get_user_set_env target ${CROSS_TARGET})" "${CROSS_TARGET}")
+#    ARCH_ABI=$(archname_to_archabi "$(get_user_set_env target ${HOST_TARGET})" "${ARCH_ABI}")
+    <<<PATCH>>>
+
+#    INSTALL_DIST_DIR="${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_TARGET}/cross-tools/target"
+    INSTALL_DIST_DIR="${TOOLCHAIN_DIRECTORY}/${COMPAT_TARGET}/llvm-runtimes"
+
+#    PATH=${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_HOST}/cross-tools/bin:${TOOLCHAIN_DIRECTORY}/cross-target/${HOST_TARGET}/cross-tools/bin:${PATH}
+    PATH=${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_TARGET}/cross-tools/bin:${PATH}
+    PATH=${TOOLCHAIN_DIRECTORY}/cross-target/llvm-project/bin:${PATH}
+
+#    cp -a ${TOOLCHAIN_DIRECTORY}/cross-target/${HOST_HOST}/cross-tools/target ${PREFIX}/cross-tools/${HOST_HOST}_target
+#    cp -a ${TOOLCHAIN_DIRECTORY}/cross-target/${HOST_TARGET}/cross-tools/target ${PREFIX}/cross-tools/${HOST_TARGET}_target
+
+    LLVM_MARJO_VERSION="$(${TOOLCHAIN_DIRECTORY}/cross-target/llvm-project/bin/llvm-config --version | cut -d'.' -f1)"
+
+    pushd runtimes
+	mkdir cross-build
+	pushd cross-build
+		cmake .. -G Ninja -DCMAKE_INSTALL_PREFIX:PATH=/usr \
+			-DCMAKE_CXX_COMPILER="clang++" -DCMAKE_C_COMPILER="clang" \
+			-DBUILD_SHARED_LIBS:BOOL=OFF -DCMAKE_BUILD_TYPE=Release \
+			-DLLVM_CONFIG=${TOOLCHAIN_DIRECTORY}/cross-target/llvm-project/bin/llvm-config \
+# 			-DLLVM_LIBDIR_SUFFIX=64 \
+			-DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_ASM_COMPILER=clang \
+			-DCMAKE_ASM_FLAGS="-DNDEBUG -target ${COMPAT_TARGET} --gcc-toolchain=${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_TARGET}/cross-tools/ --sysroot=${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_TARGET}/cross-tools/target" \
+			-DCMAKE_C_FLAGS="-DNDEBUG -target ${COMPAT_TARGET} --gcc-toolchain=${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_TARGET}/cross-tools/ --sysroot=${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_TARGET}/cross-tools/target" \
+			-DCMAKE_CXX_FLAGS="-DNDEBUG -target ${COMPAT_TARGET} --gcc-toolchain=${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_TARGET}/cross-tools/ --sysroot=${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_TARGET}/cross-tools/target " \
+			-DCMAKE_AR="${TOOLCHAIN_DIRECTORY}/cross-target/llvm-project/bin/llvm-ar" \
+			-DCMAKE_RANLIB="${TOOLCHAIN_DIRECTORY}/cross-target/llvm-project/bin/llvm-ranlib" \
+			-DLIBCXX_INCLUDE_TESTS=OFF \
+			-DLLVM_ENABLE_RUNTIMES="compiler-rt;libunwind;libcxxabi;pstl;libcxx" \
+			-DCMAKE_MAKE_PROGRAM:PATH=${HOST_TOOLS_DIR}/bin/ninja \
+			-DPython3_EXECUTABLE=${HOST_TOOLS_DIR}/bin/python3 \
+ 			-DCOMPILER_RT_INSTALL_PATH:PATH=lib/clang/${LLVM_MARJO_VERSION} \
+			-DLLVM_ENABLE_PER_TARGET_RUNTIME_DIR=ON \
+			-DLLVM_DEFAULT_TARGET_TRIPLE=${COMPAT_TARGET} \
+			-DCMAKE_PASSTHROUGH_VARIABLES="-DLLVM_DEFAULT_TARGET_TRIPLE=${COMPAT_TARGET}"
+		ninja
+		if [ -d ${TOOLCHAIN_DIRECTORY}/${COMPAT_TARGET}/llvm-runtimes ]; then
+			mv ${TOOLCHAIN_DIRECTORY}/${COMPAT_TARGET}/llvm-runtimes{,.$(date +%Y%m%d%H%M%S)}
+		fi
+		DESTDIR=${INSTALL_DIST_DIR} ninja install/strip
+	popd
+    popd
+<<<CLEAR_DIR>>>
+
+
+[[[19.9.9]]]
+<<<TAR_UNCOMPRESS>>>
+    if [ "x$(get_user_set_env target)" == "x" ]; then
+        CROSS_TARGET=$(archname_to_triple "$(get_user_set_env host ${CROSS_HOST})" "${CROSS_HOST}")
+        ARCH_MABI=$(archname_to_anyparm "$(get_user_set_env host ${CROSS_TARGET})" "MABI" "")
+    else
+        CROSS_TARGET=$(archname_to_triple "$(get_user_set_env target ${CROSS_HOST})" "${CROSS_HOST}")
+        ARCH_MABI=$(archname_to_anyparm "$(get_user_set_env target ${CROSS_TARGET})" "MABI" "")
+    fi
+    LIB_SUFF=$(archname_to_lib_suff "${CROSS_TARGET}")
+    INSTALL_PREFIX_DIR=$(archname_to_anyparm "${CROSS_TARGET}" "PREFIX_DIR" "/usr")
+
+    if [ "x$(get_user_set_env compat)" == "x1" ]; then
+        COMPAT_TARGET="$(echo "${CROSS_TARGET}" | sed "s@unknown@compat@g")"
+    else
+        COMPAT_TARGET="${CROSS_TARGET}"
+    fi
+
+#    HOST_HOST=$(archname_to_triple "$(get_user_set_env host ${CROSS_HOST})" "${CROSS_HOST}")
+#    HOST_TARGET=$(archname_to_triple "$(get_user_set_env target ${CROSS_TARGET})" "${CROSS_TARGET}")
+#    ARCH_ABI=$(archname_to_archabi "$(get_user_set_env target ${HOST_TARGET})" "${ARCH_ABI}")
+    <<<PATCH>>>
+
+#    INSTALL_DIST_DIR="${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_TARGET}/cross-tools/target"
+    INSTALL_DIST_DIR="${TOOLCHAIN_DIRECTORY}/${COMPAT_TARGET}/llvm-runtimes"
+
+#    PATH=${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_HOST}/cross-tools/bin:${TOOLCHAIN_DIRECTORY}/cross-target/${HOST_TARGET}/cross-tools/bin:${PATH}
+    PATH=${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_TARGET}/cross-tools/bin:${PATH}
+    PATH=${TOOLCHAIN_DIRECTORY}/cross-target/llvm-project/bin:${PATH}
+
+#    cp -a ${TOOLCHAIN_DIRECTORY}/cross-target/${HOST_HOST}/cross-tools/target ${PREFIX}/cross-tools/${HOST_HOST}_target
+#    cp -a ${TOOLCHAIN_DIRECTORY}/cross-target/${HOST_TARGET}/cross-tools/target ${PREFIX}/cross-tools/${HOST_TARGET}_target
+
+    pushd compiler-rt
+	mkdir cross-build
+	pushd cross-build
+		cmake .. -G Ninja -DCMAKE_INSTALL_PREFIX=${INSTALL_DIST_DIR} -DCMAKE_BUILD_TYPE=Release \
+# 			-DLLVM_LIBDIR_SUFFIX=
+			-DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_ASM_COMPILER=clang \
+			-DCMAKE_ASM_FLAGS="-DNDEBUG -target ${COMPAT_TARGET} --gcc-toolchain=${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_TARGET}/cross-tools/ --sysroot=${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_TARGET}/cross-tools/target" \
+			-DCMAKE_C_FLAGS="-DNDEBUG -target ${COMPAT_TARGET} --gcc-toolchain=${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_TARGET}/cross-tools/ --sysroot=${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_TARGET}/cross-tools/target" \
+			-DCMAKE_CXX_FLAGS="-DNDEBUG -target ${COMPAT_TARGET} --gcc-toolchain=${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_TARGET}/cross-tools/ --sysroot=${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_TARGET}/cross-tools/target" \
+			-DCMAKE_MAKE_PROGRAM:PATH=${HOST_TOOLS_DIR}/bin/ninja \
+			-DLLVM_CONFIG=${TOOLCHAIN_DIRECTORY}/cross-target/llvm-project/bin/llvm-config \
+# 			-DCOMPILER_RT_INSTALL_PATH:PATH=lib/clang/21 \
+# 			-DCMAKE_C_COMPILER_LAUNCHER= \
+# 			-DCMAKE_CXX_COMPILER_LAUNCHER= \
+# 			-DLLVM_LIT_ARGS=-sv
+# 			-DCOMPILER_RT_INCLUDE_TESTS=ON \
+			-DCMAKE_ASM_COMPILER_TARGET="${COMPAT_TARGET}" \
+			-DLLVM_ENABLE_PER_TARGET_RUNTIME_DIR=ON \
+			-DLLVM_DEFAULT_TARGET_TRIPLE=${COMPAT_TARGET} \
+			-DCMAKE_PASSTHROUGH_VARIABLES="-DLLVM_DEFAULT_TARGET_TRIPLE=${COMPAT_TARGET}" \
+			-DCOMPILER_RT_DEFAULT_TARGET_TRIPLE=${COMPAT_TARGET}
+		ninja
+		DESTDIR=${INSTALL_DIST_DIR} ninja lib/install/strip
+
+#  -DCOMPILER_RT_OUTPUT_DIR=/opt/mylaos/Sunhaiyong/distro/Yongbao/loongarch64/workbase/build/llvm-project_git-main_git-default_git/llvm/cross-build/lib/clang/21
+#  -DCOMPILER_RT_EXEC_OUTPUT_DIR=/opt/mylaos/Sunhaiyong/distro/Yongbao/loongarch64/workbase/build/llvm-project_git-main_git-default_git/llvm/cross-build/./bin
+#  -DLLVM_RUNTIME_OUTPUT_INTDIR=/opt/mylaos/Sunhaiyong/distro/Yongbao/loongarch64/workbase/build/llvm-project_git-main_git-default_git/llvm/cross-build/./bin
+#  -DCOMPILER_RT_PREFIX=/opt/mylaos/Sunhaiyong/distro/Yongbao/loongarch64/workbase/build/llvm-project_git-main_git-default_git/llvm/cross-build/projects/compiler-rt
+#  -DCOMPILER_RT_SRC_ROOT=/opt/mylaos/Sunhaiyong/distro/Yongbao/loongarch64/workbase/build/llvm-project_git-main_git-default_git/llvm/../compiler-rt
+#  -S /opt/mylaos/Sunhaiyong/distro/Yongbao/loongarch64/workbase/build/llvm-project_git-main_git-default_git/llvm/../compiler-rt
+#  -B /opt/mylaos/Sunhaiyong/distro/Yongbao/loongarch64/workbase/build/llvm-project_git-main_git-default_git/llvm/cross-build/tools/clang/runtime/compiler-rt-bins
+
+	popd
+    popd
+
+    pushd openmp
+	mkdir cross-build
+	pushd cross-build
+		cmake .. -G Ninja -DCMAKE_INSTALL_PREFIX:PATH=${INSTALL_DIST_DIR} \
+			-DCMAKE_CXX_COMPILER="clang++" -DCMAKE_C_COMPILER="clang" \
+			-DBUILD_SHARED_LIBS:BOOL=OFF -DCMAKE_BUILD_TYPE=Release \
+			-DLLVM_CONFIG=${TOOLCHAIN_DIRECTORY}/cross-target/llvm-project/bin/llvm-config \
+#			-DLLVM_LIBDIR_SUFFIX=64 \
+#			-DOPENMP_LIBDIR_SUFFIX=64 \
+			-DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_ASM_COMPILER=clang \
+			-DCMAKE_ASM_FLAGS="-DNDEBUG -target ${COMPAT_TARGET} --gcc-toolchain=${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_TARGET}/cross-tools/ --sysroot=${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_TARGET}/cross-tools/target" \
+			-DCMAKE_C_FLAGS="-DNDEBUG -target ${COMPAT_TARGET} --gcc-toolchain=${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_TARGET}/cross-tools/ --sysroot=${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_TARGET}/cross-tools/target" \
+			-DCMAKE_CXX_FLAGS="-DNDEBUG -target ${COMPAT_TARGET} --gcc-toolchain=${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_TARGET}/cross-tools/ --sysroot=${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_TARGET}/cross-tools/target" \
+			-DCMAKE_AR="${TOOLCHAIN_DIRECTORY}/cross-target/llvm-project/bin/llvm-ar" \
+			-DCMAKE_RANLIB="${TOOLCHAIN_DIRECTORY}/cross-target/llvm-project/bin/llvm-ranlib" \
+# 			-DCMAKE_ASM_COMPILER_TARGET="${COMPAT_TARGET}" \
+			-DCMAKE_MAKE_PROGRAM:PATH=${HOST_TOOLS_DIR}/bin/ninja \
+			-DLLVM_DEFAULT_TARGET_TRIPLE=${COMPAT_TARGET} \
+			-DLIBOMP_OMPD_GDB_SUPPORT=OFF
+		ninja
+		DESTDIR=${INSTALL_DIST_DIR} ninja install/strip
+	popd
+    popd
+
+    pushd runtimes
+	mkdir cross-build
+	pushd cross-build
+		cmake .. -G Ninja -DCMAKE_INSTALL_PREFIX:PATH=${INSTALL_DIST_DIR} \
+			-DCMAKE_CXX_COMPILER="clang++" -DCMAKE_C_COMPILER="clang" \
+			-DBUILD_SHARED_LIBS:BOOL=OFF -DCMAKE_BUILD_TYPE=Release \
+			-DLLVM_CONFIG=${TOOLCHAIN_DIRECTORY}/cross-target/llvm-project/bin/llvm-config \
+# 			-DLLVM_LIBDIR_SUFFIX=64 \
+			-DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_ASM_COMPILER=clang \
+			-DCMAKE_ASM_FLAGS="-DNDEBUG -target ${COMPAT_TARGET} --gcc-toolchain=${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_TARGET}/cross-tools/ --sysroot=${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_TARGET}/cross-tools/target" \
+			-DCMAKE_C_FLAGS="-DNDEBUG -target ${COMPAT_TARGET} --gcc-toolchain=${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_TARGET}/cross-tools/ --sysroot=${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_TARGET}/cross-tools/target" \
+			-DCMAKE_CXX_FLAGS="-DNDEBUG -target ${COMPAT_TARGET} --gcc-toolchain=${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_TARGET}/cross-tools/ --sysroot=${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_TARGET}/cross-tools/target " \
+			-DCMAKE_AR="${TOOLCHAIN_DIRECTORY}/cross-target/llvm-project/bin/llvm-ar" \
+			-DCMAKE_RANLIB="${TOOLCHAIN_DIRECTORY}/cross-target/llvm-project/bin/llvm-ranlib" \
+# 			-DCMAKE_ASM_COMPILER_TARGET="${COMPAT_TARGET}" \
+			-DLLVM_DEFAULT_TARGET_TRIPLE=${COMPAT_TARGET} \
+			-DLLVM_ENABLE_RUNTIMES="libunwind;libcxxabi;pstl;libcxx" \
+# 			-DPython3_EXECUTABLE=${HOST_TOOLS_DIR}/bin/python3 \
+			-DCMAKE_MAKE_PROGRAM:PATH=${HOST_TOOLS_DIR}/bin/ninja
+		ninja
+		DESTDIR=${INSTALL_DIST_DIR} ninja install/strip
+	popd
+    popd
+<<<CLEAR_DIR>>>
+
+[[[19.9.0]]]
+pushd compiler-rt
+	mkdir cross-build
+	pushd cross-build
+#		CC="clang" CXX="clang++" \
+#		cmake .. -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release \
+#		cmake .. -G Ninja -DCMAKE_INSTALL_PREFIX:PATH=${TOOLCHAIN_DIRECTORY}/cross-target/llvm-project/target/${COMPAT_TARGET} \
+		cmake .. -G Ninja -DCMAKE_INSTALL_PREFIX:PATH=${INSTALL_DIST_DIR} \
+			-DCMAKE_CXX_COMPILER="clang++" -DCMAKE_C_COMPILER="clang" \
+			-DBUILD_SHARED_LIBS:BOOL=ON -DCMAKE_BUILD_TYPE=Release \
+			-DLLVM_CONFIG=${TOOLCHAIN_DIRECTORY}/cross-target/llvm-project/bin/llvm-config \
+#			-DLLVM_LIBDIR_SUFFIX=64 \
+			-DCMAKE_AR="${TOOLCHAIN_DIRECTORY}/cross-target/llvm-project/bin/llvm-ar" \
+			-DCMAKE_RANLIB="${TOOLCHAIN_DIRECTORY}/cross-target/llvm-project/bin/llvm-ranlib" \
+			-DCMAKE_C_FLAGS="-DNDEBUG -target ${COMPAT_TARGET} --gcc-toolchain=${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_TARGET}/cross-tools/ --sysroot=${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_TARGET}/cross-tools/target" \
+			-DCMAKE_CXX_FLAGS="-DNDEBUG -target ${COMPAT_TARGET} --gcc-toolchain=${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_TARGET}/cross-tools/ --sysroot=${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_TARGET}/cross-tools/target " \
+# 			-DCMAKE_ASM_FLAGS="-target ${COMPAT_TARGET}" \
+			-DCMAKE_MAKE_PROGRAM:PATH=${HOST_TOOLS_DIR}/bin/ninja \
+			-DPython3_EXECUTABLE=${HOST_TOOLS_DIR}/bin/python3 \
+#			-DCMAKE_SYSROOT=${SYSROOT_DIR} \
+#			-DCMAKE_FIND_ROOT_PATH=${SYSROOT_DIR}/usr \
+			-DCOMPILER_RT_BUILD_BUILTINS=ON \
+# 			-DCOMPILER_RT_DEFAULT_TARGET_ONLY=ON \
+			-DCOMPILER_RT_BUILD_CRT=ON -DCOMPILER_RT_HAS_CRT=ON \
+			-DLLVM_USE_SANITIZER:BOOL=ON \
+			-DLLVM_LINK_LLVM_DYLIB:BOOL=ON \
+			-DCOMPILER_RT_DEFAULT_TARGET_TRIPLE=${COMPAT_TARGET}
+		ninja
+		ninja install/strip
+	popd
+popd
+
+pushd openmp
+	mkdir cross-build
+	pushd cross-build
+#		CC="clang" CXX="clang++" \
+#		cmake .. -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release \
+		cmake .. -G Ninja -DCMAKE_INSTALL_PREFIX:PATH=${INSTALL_DIST_DIR} \
+			-DCMAKE_CXX_COMPILER="clang++" -DCMAKE_C_COMPILER="clang" \
+			-DBUILD_SHARED_LIBS:BOOL=OFF -DCMAKE_BUILD_TYPE=Release \
+			-DLLVM_CONFIG=${TOOLCHAIN_DIRECTORY}/cross-target/llvm-project/bin/llvm-config \
+#			-DLLVM_LIBDIR_SUFFIX=64 \
+#			-DOPENMP_LIBDIR_SUFFIX=64 \
+			-DCMAKE_C_FLAGS="-DNDEBUG -target ${COMPAT_TARGET} --gcc-toolchain=${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_TARGET}/cross-tools/ --sysroot=${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_TARGET}/cross-tools/target" \
+			-DCMAKE_CXX_FLAGS="-DNDEBUG -target ${COMPAT_TARGET} --gcc-toolchain=${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_TARGET}/cross-tools/ --sysroot=${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_TARGET}/cross-tools/target " \
+			-DCMAKE_AR="${TOOLCHAIN_DIRECTORY}/cross-target/llvm-project/bin/llvm-ar" \
+			-DCMAKE_RANLIB="${TOOLCHAIN_DIRECTORY}/cross-target/llvm-project/bin/llvm-ranlib" \
+			-DCMAKE_ASM_COMPILER_TARGET="${COMPAT_TARGET}" \
+# 
+#  			-DCMAKE_ASM_COMPILER_AR="${CROSSTOOLS_DIR}/bin/llvm-ar" \
+# 			-DCMAKE_ASM_FLAGS="-target ${CROSS_TARGET}" \
+#  			-DCMAKE_ASM_COMPILER_RANLIB="${CROSSTOOLS_DIR}/bin/llvm-ranlib" \
+# 			-DCMAKE_CXX_COMPILER_AR="${CROSSTOOLS_DIR}/bin/llvm-ar" \
+# 			-DCMAKE_C_COMPILER_AR="${CROSSTOOLS_DIR}/bin/llvm-ar" \
+# 			-DCMAKE_CXX_COMPILER_RANLIB="${CROSSTOOLS_DIR}/bin/llvm-ranlib" \
+# 			-DCMAKE_C_COMPILER_RANLIB="${CROSSTOOLS_DIR}/bin/llvm-ranlib" \
+# 			-DCLANG_TOOL=${CROSSTOOLS_DIR}/bin/clang \
+# 			-DLINK_TOOL=${CROSSTOOLS_DIR}/bin/llvm-link \
+# 			-DOPT_TOOL=${CROSSTOOLS_DIR}/bin/opt \
+# 			-DPACKAGER_TOOL=${CROSSTOOLS_DIR}/bin/clang-offload-packager \
+			-DCMAKE_MAKE_PROGRAM:PATH=${HOST_TOOLS_DIR}/bin/ninja \
+# 			-DPython3_EXECUTABLE=${HOST_TOOLS_DIR}/bin/python3 \
+# 			-DPERL_EXECUTABLE=${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-perl \
+# 			-DLIBOMPTARGET_NVPTX_ARCH=${CROSSTOOLS_DIR}/bin/nvptx-arch \
+# 			-DLIBOMPTARGET_AMDGPU_ARCH=${CROSSTOOLS_DIR}/bin/amdgpu-arch \
+# 			-DCMAKE_SYSROOT=${SYSROOT_DIR} \
+# 			-DCMAKE_FIND_ROOT_PATH=${SYSROOT_DIR}/usr \
+# 			-DLLVM_USE_SANITIZER:BOOL=ON \
+# 			-DLLVM_LINK_LLVM_DYLIB:BOOL=ON \
+# 			-DOPENMP_DEFAULT_TARGET_TRIPLE=${CROSS_TARGET}
+			-DLIBOMP_OMPD_GDB_SUPPORT=OFF
+		ninja
+		ninja install/strip
+	popd
+popd
+
+pushd runtimes
+	mkdir cross-build
+	pushd cross-build
+		cmake .. -G Ninja -DCMAKE_INSTALL_PREFIX:PATH=${INSTALL_DIST_DIR} \
+			-DCMAKE_CXX_COMPILER="clang++" -DCMAKE_C_COMPILER="clang" \
+			-DBUILD_SHARED_LIBS:BOOL=OFF -DCMAKE_BUILD_TYPE=Release \
+			-DLLVM_CONFIG=${TOOLCHAIN_DIRECTORY}/cross-target/llvm-project/bin/llvm-config \
+# 			-DLLVM_LIBDIR_SUFFIX=64 \
+			-DCMAKE_C_FLAGS="-DNDEBUG -target ${COMPAT_TARGET} --gcc-toolchain=${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_TARGET}/cross-tools/ --sysroot=${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_TARGET}/cross-tools/target" \
+			-DCMAKE_CXX_FLAGS="-DNDEBUG -target ${COMPAT_TARGET} --gcc-toolchain=${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_TARGET}/cross-tools/ --sysroot=${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_TARGET}/cross-tools/target " \
+			-DCMAKE_AR="${TOOLCHAIN_DIRECTORY}/cross-target/llvm-project/bin/llvm-ar" \
+			-DCMAKE_RANLIB="${TOOLCHAIN_DIRECTORY}/cross-target/llvm-project/bin/llvm-ranlib" \
+			-DCMAKE_ASM_COMPILER_TARGET="${COMPAT_TARGET}" \
+			-DLLVM_INCLUDE_TESTS=OFF \
+			-DLLVM_ENABLE_RUNTIMES="libunwind;libcxxabi;pstl;libcxx" \
+			-DPython3_EXECUTABLE=${HOST_TOOLS_DIR}/bin/python3 \
+			-DCMAKE_MAKE_PROGRAM:PATH=${HOST_TOOLS_DIR}/bin/ninja
+		ninja
+		ninja install/strip
+	popd
+popd
+
+
+# pushd llvm
+#     mkdir -p host-build
+#     pushd host-build
+#         export PKG_CONFIG_SYSROOT_DIR=""
+# 	export PKG_CONFIG_PATH=""
+# 	cmake .. -G Ninja -DCMAKE_INSTALL_PREFIX:PATH=${TOOLCHAIN_DIRECTORY}/cross-target/llvm-project/target/${HOST_TARGET} \
+#                  -DCMAKE_CXX_COMPILER="g++" -DCMAKE_C_COMPILER="gcc" \
+#                  -DBUILD_SHARED_LIBS:BOOL=OFF   -DCMAKE_BUILD_TYPE=Release  \
+# #                 -DLLVM_LIBDIR_SUFFIX=64 \
+#                  -DCMAKE_C_FLAGS="-DNDEBUG" -DCMAKE_CXX_FLAGS="-DNDEBUG" \
+# 		 -DLLVM_ENABLE_TERMINFO:BOOL=OFF \
+#                  -DLLVM_ENABLE_RTTI:BOOL=ON -DLLVM_BUILD_LLVM_DYLIB:BOOL=ON  \
+#                  -DLLVM_LINK_LLVM_DYLIB:BOOL=ON  \
+#                  -DLLVM_BUILD_EXTERNAL_COMPILER_RT:BOOL=ON   \
+# 		 -DLLVM_ENABLE_PROJECTS='llvm;clang;lld' \
+# 		 -DLLVM_INCLUDE_RUNTIMES:BOOL=ON \
+# #		 -DLLVM_ENABLE_RUNTIMES="libunwind;libcxxabi;libcxx;compiler-rt" \
+# #		 -DLLVM_RUNTIME_TARGETS="${HOST_HOST};${HOST_TARGET}" \
+# #		 -DLLVM_BUILTIN_TARGETS="${HOST_HOST};${HOST_TARGET}" \
+# #		 -DBUILTINS_${HOST_TARGET}_CMAKE_SYSROOT=${PREFIX}/cross-tools/${HOST_TARGET}_target \
+# #		 -DRUNTIMES_${HOST_TARGET}_CMAKE_SYSROOT=${PREFIX}/cross-tools/${HOST_TARGET}_target \
+# #		 -DBUILTINS_${HOST_HOST}_CMAKE_SYSROOT=${PREFIX}/cross-tools/${HOST_HOST}_target \
+# #		 -DRUNTIMES_${HOST_HOST}_CMAKE_SYSROOT=${PREFIX}/cross-tools/${HOST_HOST}_target \
+# 		 -DLLVM_DEFAULT_TARGET_TRIPLE=${HOST_HOST} \
+# 		 -DLLVM_HOST_TRIPLE=${HOST_HOST} \
+#                  -DLLVM_INSTALL_TOOLCHAIN_ONLY:BOOL=OFF
+#         ninja
+#         ninja install
+# popd
+<<<CLEAR_DIR>>>

@@ -1,0 +1,2 @@
+PACKAGE=MarkupSafe
+BUILD_MODE=custom

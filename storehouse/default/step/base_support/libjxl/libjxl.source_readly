@@ -1,0 +1,2 @@
+        tar xvf $(ls ${DOWNLOADDIR}/libjpeg-turbo-*.tar.* | sort -V | tail -n1)
+        mv libjpeg-turbo-*/*  third_party/libjpeg-turbo/

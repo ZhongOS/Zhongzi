@@ -1,0 +1,2 @@
+PACKAGE=linux-pam
+BUILD_MODE=custom

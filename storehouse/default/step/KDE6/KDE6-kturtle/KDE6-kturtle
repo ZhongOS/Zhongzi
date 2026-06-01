@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kturtle
+BUILD_MODE=cmake

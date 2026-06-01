@@ -1,0 +1,2 @@
+PACKAGE=FileZilla
+BUILD_MODE=gnu

@@ -1,0 +1,2 @@
+# seatd 使用std=gnu11进行编译，需要防止CFLAGS传递了高于gnu11的参数
+CONFIG_ENV=CFLAGS=""

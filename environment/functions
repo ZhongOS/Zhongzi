@@ -1,0 +1,1359 @@
+# 从文件名获取解压后的目录路径
+function filename_to_dir
+{
+#	echo "${1}" | sed -e "s@\(\.src\|\.source\)\{0,1\}\.tar\.\(bz2\|xz\|gz\)*\$@@g" -e "s@\.tgz\$@@g" -e "s@\.zip\$@@g"
+	echo "${1}" | sed -e "s@[-_\.]\{0,1\}\(source\|src\|stable\|orig\)\{0,1\}\.tar\.\(bz2\|xz\|gz\)*\$@@g" -e "s@\.tgz\$@@g" -e "s@\.zip\$@@g"
+}
+
+# 比较两个版本之间的大小
+# 相同返回0，第一个大于第二个返回1，否则返回-1
+function strversion_comp
+{
+        if [ "x${1}" == "x${2}" ]; then
+                echo "0"
+		return
+        fi
+MAX_VERSION=$(echo "${1}
+${2}" | sort -V -r | head -n 1)
+        if [ "x${MAX_VERSION}" == "x${1}" ]; then
+                echo "1"
+        else
+                echo "-1"
+        fi
+	return
+}
+
+#通过指定版本来获取指定文件中相应部分的内容
+#参数1: 文本文件名
+#参数2: 指定版本
+#返回内容: 在文本中使用“[[[版本]]]”定义的内容，当指定版本大于或者等于时获取并返回。
+function get_body_with_version_new
+{
+
+if [ "x${1}" == "x" ]; then
+        echo ""
+        return
+fi
+input_file="${1}"
+target=$(echo ${2} | sed "s@-default\$@@g")
+
+awk -v target="$target" '
+    # 语义化版本比较函数（仅比较数字部分）
+    function ver_compare(a, b,    a_parts, b_parts, n, i, a_num, b_num) {
+        split(a, a_parts, /[^0-9]+/)
+        split(b, b_parts, /[^0-9]+/)
+        n = length(a_parts) > length(b_parts) ? length(a_parts) : length(b_parts)
+        for (i=1; i<=n; i++) {
+            a_num = (i in a_parts) ? a_parts[i] + 0 : 0
+            b_num = (i in b_parts) ? b_parts[i] + 0 : 0
+            if (a_num < b_num) return -1
+            if (a_num > b_num) return 1
+        }
+        return 0
+    }
+
+    BEGIN {
+        first_unmarked = ""    # 首个无标记段落
+        best_ver = ""          # 符合条件的最小版本号
+        best_content = ""      # 目标版本内容
+        current_ver = ""       # 当前处理的版本号
+        has_versions = 0       # 是否遇到版本标记
+    }
+
+    # 匹配版本标记行 [[[x.x.x]]]
+    /^\[\[\[[0-9a-zA-Z.-]+\]\]\]$/ {
+        has_versions = 1
+        # 精确提取版本号
+        if (match($0, /^\[\[\[(.+)\]\]\]$/, arr)) {
+            ver = arr[1]
+        } else {
+            ver = ""
+            next
+        }
+
+        # 仅处理大于等于目标版本的标记
+        if (ver_compare(ver, target) >= 0) {
+            # 选择符合条件的最小版本
+            if (best_ver == "" || ver_compare(ver, best_ver) < 0) {
+                best_ver = ver
+                best_content = ""
+            }
+            current_ver = ver
+        } else {
+            current_ver = ""
+        }
+        next  # 跳过标记行
+    }
+
+    # 内容收集逻辑
+    {
+        if ($0 ~ /^#[[:blank:]]/) {
+            next
+        }
+
+        if (has_versions) {
+            if (current_ver == "" ) {
+                next
+            } else {
+                if (current_ver == best_ver) {
+                    best_content = best_content $0 "\n"
+                }
+            }
+        } else {
+            first_unmarked = first_unmarked $0 "\n"
+        }
+    }
+
+    END {
+        if (best_content != "") {
+            printf "%s", best_content
+        } else {
+            printf "%s", first_unmarked
+        }
+    }
+' "$input_file"
+}
+
+function get_body_with_version
+{
+	declare LINE_START=1
+	declare LINE_STOP=1
+	declare IF_LINE=""
+	declare VERSION=""
+
+	if [ "x${1}" == "x" ]; then
+        	echo ""
+	        return
+	fi
+
+	declare FORMAT_VERSION=$(echo ${2} | sed "s@-default\$@@g")
+
+	declare LINES=$(grep -n "^\[\[\[" ${1})
+	if [ "x${LINES}" == "x" ] || [ "x${FORMAT_VERSION}" == "x" ]; then
+        	cat ${1} | grep -v "^#[[:blank:]]"
+	        return
+	fi
+
+	for i in $LINES
+	do
+        	declare -i LINE_STOP=$(echo "$i" | gawk -F':' '{ print $1 }')-1
+	        VERSION=$(echo "$i" | gawk -F':' '{ print $2 }')
+        	IF_LINE=$(echo "${VERSION}" | sed "s@^\[\[\[\(.*\)\]\]\]\$@\1@g")
+	        if [ "$(strversion_comp "${FORMAT_VERSION}" "${IF_LINE}")" == "1" ]; then
+        	        break;
+	        else
+        	        declare -i LINE_START=$(echo "$i" | gawk -F':' '{ print $1 }')+1
+                	LINE_STOP=${LINE_START}
+	                continue;
+        	fi
+	done
+
+	if [ "x${LINE_START}" == "x${LINE_STOP}" ]; then
+        	sed -n "${LINE_START},\$p" ${1} | grep -v "^#[[:blank:]]"
+	else
+        	sed -n "${LINE_START},${LINE_STOP}p" ${1} | grep -v "^#[[:blank:]]"
+	fi
+}
+
+# 通过指定的路径架构名查寻是否存在架构相关的路径
+# 参数1: 指定的路径名
+# 参数2: 指定的后缀路径
+# 参数3: 指定的架构名
+# 返回： 0表示没有架构路径，1表示有架构路径。
+function find_arch_directory
+{
+        declare CAT_PATH="${1}"
+        declare CAT_FILE="${2}"
+        declare CAT_ARCH="${3}"
+        if [ -d ${1}/arch/${CAT_ARCH}/${2} ]; then
+		echo "1"
+	else
+		echo "0"
+	fi
+	return
+}
+
+# 通过指定的路径、文件名和架构名查寻是否存在架构相关的文件
+# 参数1: 指定的路径名
+# 参数2: 指定的文件名
+# 参数3: 指定的架构名
+# 返回： 0表示没有架构文件，1表示有架构文件。
+function find_arch_file
+{
+        declare CAT_PATH="${1}"
+        declare CAT_FILE="${2}"
+        declare CAT_ARCH="${3}"
+        if [ -f ${1}/arch/${CAT_ARCH}/${2} ]; then
+		echo "1"
+	else
+		echo "0"
+	fi
+	return
+}
+
+function get_arch_file
+{
+	if [ -f ${1}/arch/${3}/${2} ]; then
+		echo "${1}/arch/${3}/${2}"
+	else
+		if [ -f ${1}/${2} ];  then
+			echo "${1}/${2}"
+		else
+			echo "NULL"
+		fi
+	fi
+}
+
+function get_arch_directory
+{
+	if [ -d ${1}/arch/${3}/${2} ]; then
+		echo "${1}/arch/${3}/${2}"
+	else
+		if [ -d ${1}/${2} ];  then
+			echo "${1}/${2}"
+		else
+			echo "NULL"
+		fi
+	fi
+}
+
+function get_arch_file_or_directory
+{
+	if [ -f ${1}/arch/${3}/${2} ] || [ -d ${1}/arch/${3}/${2} ]; then
+		echo "${1}/arch/${3}/${2}"
+	else
+		if [ -f ${1}/${2} ] || [ -d ${1}/${2} ];  then
+			echo "${1}/${2}"
+		else
+			echo "NULL"
+		fi
+	fi
+}
+
+
+# 通过指定的路径、文件名和架构名自动探测是否存在架构相关的文件，如果有则返回架构相关的文件内容，如果没有则返回指定路径和文件名的文件内容。
+# 参数1: 指定的路径名
+# 参数2: 指定的文件名
+# 参数3: 指定的架构名
+# 返回: 文件的内容
+# 说明: 在查找指定架构相关文件时的搜索方式：${1}/arch/${3}/${2}对应的文件。
+
+function cat_arch_file
+{
+	declare CAT_PATH="${1}"
+	declare CAT_FILE="${2}"
+	declare CAT_ARCH="${3}"
+#	echo "${1}/arch/${CAT_ARCH}/${2}" >> /tmp/a.log
+	if [ -f ${1}/arch/${CAT_ARCH}/${2} ]; then
+		if [ "x${PACKAGE_VERSION}" == "x" ]; then
+			echo "$(cat ${1}/arch/${CAT_ARCH}/${2} | grep -v "^#[[:blank:]]")"
+		else
+			get_body_with_version ${1}/arch/${CAT_ARCH}/${2} "${PACKAGE_VERSION}"
+		fi
+	else
+		if [ -f ${1}/Settings/${2} ]; then
+			if [ "x${PACKAGE_VERSION}" == "x" ]; then
+				echo "$(cat ${1}/Settings/${2} | grep -v "^#[[:blank:]]")"
+			else
+				get_body_with_version ${1}/Settings/${2} "${PACKAGE_VERSION}"
+			fi
+		else
+			if [ -f ${1}/${2} ]; then
+	                        if [ "x${PACKAGE_VERSION}" == "x" ]; then
+        	                        echo "$(cat ${1}/${2} | grep -v "^#[[:blank:]]")"
+	                        else
+        		                get_body_with_version ${1}/${2} "${PACKAGE_VERSION}"
+                        	fi
+			else
+				echo ""
+			fi
+		fi
+	fi
+}
+
+
+#格式化组设置字符串
+function format_one_opt_str
+{
+	declare STEP_OPT="${1}"
+	declare OPT_FLAG="${2}"
+	declare OPT_STEP_NAME="${3}"
+	declare -a RET_OPT
+	declare RET_OPT_COUNT=0
+	declare APPEND_OPT=""
+	for opt in $(echo ${STEP_OPT} | tr "+" "\\n")
+	do
+		case "${opt}" in
+		opt)
+			RET_OPT[${RET_OPT_COUNT}]="${OPT_FLAG}_${opt}"
+			;;
+		bad)
+			RET_OPT[${RET_OPT_COUNT}]="${OPT_FLAG}_${OPT_STEP_NAME}_${opt}"
+			;;
+		\&*)
+			RET_OPT[${RET_OPT_COUNT}]="${OPT_FLAG}_${opt:1}"
+			;;
+		\**)
+			RET_OPT[${RET_OPT_COUNT}]="${OPT_FLAG}_${OPT_STEP_NAME}_${opt:1}"
+			;;
+		*)
+			if [ "x${opt}" != "x" ]; then
+				RET_OPT[${RET_OPT_COUNT}]="${opt}"
+			else
+				continue
+			fi
+			;;
+		esac
+		((RET_OPT_COUNT++))
+	done
+	APPEND_OPT="$(IFS='+'; echo "${RET_OPT[*]}")"
+	echo "${APPEND_OPT}"
+
+}
+
+#格式化组设置字符串
+function format_group_opt_str
+{
+	declare STEP_OPT="${1}"
+	declare OPT_FLAG="${2}"
+	declare OPT_STEP_NAME="${3}"
+	declare -a RET_OPT
+	declare RET_OPT_COUNT=0
+	declare APPEND_OPT=""
+	for opt in $(echo ${STEP_OPT} | tr "," "\\n")
+	do
+		if [ "x${opt}" != "x" ]; then
+			RET_OPT[${RET_OPT_COUNT}]=$(format_one_opt_str "${opt}" "${OPT_FLAG}" "${OPT_STEP_NAME}")
+		else
+			continue
+		fi
+		((RET_OPT_COUNT++))
+	done
+
+	APPEND_OPT="$(IFS=','; echo "${RET_OPT[*]}")"
+	echo "${APPEND_OPT}"
+}
+
+#格式化全部选项设置字符串
+function format_opt_str
+{
+	declare PARENT_OPT="${1}"
+	declare STEP_OPT="${2}"
+	declare OPT_FLAG="${3}"
+	declare OPT_STEP_NAME="${4}"
+	declare -a RET_OPT
+	declare RET_OPT_COUNT=0
+	declare APPEND_OPT=""
+	for opt in $(echo ${STEP_OPT} | tr ";" "\\n")
+	do
+		case "x${opt:0:1}" in
+			"x%")
+				RET_OPT[${RET_OPT_COUNT}]="${opt}"
+				;;
+			*)
+				if [ "x${opt}" != "x" ]; then
+					RET_OPT[${RET_OPT_COUNT}]=$(format_group_opt_str "${opt}" "${OPT_FLAG}" "${OPT_STEP_NAME}")
+				else
+					continue
+				fi
+				;;
+		esac
+		((RET_OPT_COUNT++))
+	done
+#	for opt in $(echo ${STEP_OPT} | tr "," "\\n")
+#	do
+#		case "${opt}" in
+#		opt)
+#			RET_OPT[${RET_OPT_COUNT}]="${OPT_FLAG}_${opt}"
+#			;;
+#		bad)
+#			RET_OPT[${RET_OPT_COUNT}]="${OPT_FLAG}_${OPT_STEP_NAME}_${opt}"
+#			;;
+#		\&*)
+#			RET_OPT[${RET_OPT_COUNT}]="${OPT_FLAG}_${opt:1}"
+#			;;
+#		\**)
+#			RET_OPT[${RET_OPT_COUNT}]="${OPT_FLAG}_${OPT_STEP_NAME}_${opt:1}"
+#			;;
+#		*)
+#			if [ "x${opt}" != "x" ]; then
+#				RET_OPT[${RET_OPT_COUNT}]="${opt}"
+#			else
+#				continue
+#			fi
+#			;;
+#		esac
+#		((RET_OPT_COUNT++))
+#	done
+	APPEND_OPT="$(IFS=';'; echo "${RET_OPT[*]}")"
+	if [ "x${PARENT_OPT}" == "x" ]; then
+		echo "${APPEND_OPT}"
+	else
+		if [ "x${APPEND_OPT}" == "x" ]; then
+			echo "${PARENT_OPT}"
+		else
+			echo "${PARENT_OPT};$(IFS=';'; echo "${RET_OPT[*]}")"
+		fi
+	fi
+}
+
+
+#通过指定step索引文件，从一组step文件重新整理出一个单一的steps文件。
+#参数1：开始的step索引文件。
+function get_stepfile_to_steps
+{
+	declare DIRNAME=""
+	declare FORMAT_STEP_OPT=""
+	if [ -f $1 ]; then
+		echo "获取$1"
+		for i in $(cat $1 | grep -v "^#[[:blank:]]" | grep -v "^$")
+		do
+			STEP_FULLSTR=${i}
+			STEP_STR=$(echo ${STEP_FULLSTR} | gawk -F'|' '{ print $1 }')
+			STEP_OPT=$(echo ${STEP_FULLSTR} | gawk -F'|' '{ print $2 }')
+			STR_TMP=$(echo ${STEP_STR} | gawk -F':' '{ print $1 }')
+			ARCH_AND_DIRECTORY_STEP=$(echo ${STEP_STR} | gawk -F':' '{ print $2 }')
+			FILE=$(echo $STR_TMP | gawk -F'@' '{ print $1 }')
+			DIRECTORY=$(echo $STR_TMP | gawk -F'@' '{ print $2 }')
+			if [ "x${DIRECTORY}" == "x" ]; then
+				DIRECTORY=
+			else
+				DIRECTORY=${DIRECTORY}/
+			fi
+                        if [ "x${ARCH_AND_DIRECTORY_STEP}" == "x" ]; then
+                                        DIRECTORY_STEP=default.step
+                        else
+                                DIRECTORY_STEP=${ARCH_AND_DIRECTORY_STEP##*>}
+                                if [ "x${DIRECTORY_STEP}" == "x" ]; then
+                                        DIRECTORY_STEP=default.step
+                                else
+                                        DIRECTORY_STEP=${DIRECTORY_STEP}.step
+                                fi
+                                ARCH_STEP=${ARCH_AND_DIRECTORY_STEP%%${DIRECTORY_STEP}*}
+                                if [ "x${ARCH_STEP}" == "x<ARCH>" ]; then
+                                        DIRECTORY_STEP="arch/${DISTRO_ARCH}/${DIRECTORY_STEP}"
+                                fi
+                        fi
+#			if [ "x${DIRECTORY_STEP}" == "x" ]; then
+#				DIRECTORY_STEP=default.step
+#			else
+#				DIRECTORY_STEP=${DIRECTORY_STEP}.step
+#			fi
+			if [ "x${FILE}" == "x" ]; then
+				FORMAT_STEP_OPT=$(format_opt_str "${3}" "${STEP_OPT}" "g" "${DIRECTORY%%/}")
+				echo "${DIRECTORY}(${DIRECTORY_STEP})"
+				get_stepfile_to_steps $(dirname $1)/${DIRECTORY}${DIRECTORY_STEP} $2 "${FORMAT_STEP_OPT}"
+			else
+#				if [ "x${STEP_OPT}" == "xopt" ] || [ "x${STEP_OPT}" == "xbad" ] ; then
+#					STEP_OPT="${3}+f${STEP_OPT}"
+#				else
+#					STEP_OPT="${3}"
+#				fi
+#				echo "%"$(dirname $1)/${DIRECTORY}${FILE}
+				if [ "x${DIRECTORY:0:1}" == "x/" ]; then
+					DIRNAME="step"
+					DIRECTORY="${DIRECTORY:1}"
+				else
+					DIRNAME=$(dirname $1)
+				fi
+				DIRNAME=$(echo ${DIRNAME} | sed "s@\/arch\/${DISTRO_ARCH}@@g")
+				FORMAT_STEP_OPT=$(format_opt_str "${3}" "${STEP_OPT}" "f" "${DIRNAME##*/}_${FILE}")
+				echo "%${DIRNAME#${2}*}/"${DIRECTORY}${FILE}"|"${FORMAT_STEP_OPT}
+			fi
+		done
+	fi
+}
+
+# get_stepfile_to_steps函数的一个封装函数。
+#参数1：开始的step索引文件。
+function get_steps
+{
+	if [ "x${1}" == "x" ]; then
+		echo ""
+		return
+	fi
+	if [ "x${2}" == "x" ]; then
+		echo ""
+		return
+	fi
+	get_stepfile_to_steps storehouse/$1/step/${2}.step storehouse/$1/ ""
+}
+
+
+function get_resources
+{
+	declare RESOURCES_FILE=""
+	declare TARGET_ARCH="${3}"
+	declare RESOURCES_BODY=$(cat_arch_file ${1} ${2#${1}*} ${3} | grep -v "^#[[:blank:]]")
+	if [ "x${RESOURCES_BODY}" != "x" ]; then
+		echo "${RESOURCES_BODY}" | while read line
+		do
+			RESOURCES_FILE=$(echo ${line} | awk -F' ' '{print $1}')
+			if [ "x${RESOURCES_FILE}" == "x" ]; then
+				continue;
+			else
+				echo "${RESOURCES_FILE}" | sed "s@<<<TARGET_ARCH>>>@${TARGET_ARCH}@g"
+			fi
+		done
+		echo " "
+	else
+		echo -n ""
+	fi
+	echo ""
+}
+
+
+
+function get_patches
+{
+	declare DEPTH=p1
+	declare PATCH_FILE=""
+	declare PATCH_DIR=""
+	declare TARGET_ARCH="${3}"
+# 	declare PATCH_BODY=$(cat_arch_file ${1} ${2#${1}*} ${3})
+	declare PATCH_BODY=$(cat_arch_file ${1} ${2#${1}*} ${3} | grep -v "^#[[:blank:]]")
+	if [ "x${PATCH_BODY}" != "x" ]; then
+		echo "${PATCH_BODY}" | while read line
+		do
+			DEPTH=$(echo ${line} | awk -F' ' '{ print $1 }')
+			PATCH_FILE=$(echo ${line} | awk -F' ' '{print $2}')
+			PATCH_DIR=$(echo ${line} | awk -F' ' '{print $3}')
+			if [ "x${PATCH_FILE}" == "x" ]; then
+				continue;
+			else
+				echo "${PATCH_FILE}"
+			fi
+		done
+		echo " "
+	else
+		echo -n ""
+	fi
+	echo ""
+}
+
+function replace_patches
+{
+	declare DEPTH=p1
+	declare PATCH_FILE=""
+	declare PATCH_DIR=""
+	declare TARGET_ARCH="${3}"
+	declare PATCH_BODY=$(cat_arch_file ${1} ${2#${1}*} ${3} | grep -v "^#[[:blank:]]")
+#	if [ -f ${1} ]; then
+	if [ "x${PATCH_BODY}" != "x" ]; then
+		echo "${PATCH_BODY}" | while read line
+		do
+			DEPTH=$(echo ${line} | awk -F' ' '{ print $1 }')
+			PATCH_FILE=$(echo ${line} | awk -F' ' '{print $2}')
+			PATCH_DIR=$(echo ${line} | awk -F' ' '{print $3}')
+			if [ "x${PATCH_FILE}" == "x" ]; then
+				continue;
+			else
+				if [ "x${PATCH_DIR}" == "x" ]; then
+					echo "patch -N${DEPTH} -i \${SYSDIR}/files/${STEP_BUILDNAME}/${STEP_PACKAGENAME}/${PACKAGE_VERSION}/patches/${PATCH_FILE} \\"
+					echo -n "	"
+				else
+					echo "patch -N${DEPTH} -i \${SYSDIR}/files/${STEP_BUILDNAME}/${STEP_PACKAGENAME}/${PACKAGE_VERSION}/patches/${PATCH_FILE} -d ${PATCH_DIR} \\"
+					echo -n "	"
+				fi
+			fi
+		done
+		echo " "
+	else
+		echo -n ""
+	fi
+	echo ""
+}
+
+# replace_script函数用来将指定的脚本文件进行关键字替换。
+# 参数1：指定的脚本文件
+# 参数2：指定包含替换内容的文件
+# 参数3：指定架构名称
+# 返回：替换后的脚本文件内容
+# 说明：对于指定的脚本文件会通过指定的架构名查找架构对应的文件，若没有则使用指定的文件。
+#	替换内容包括从参数2指定文件、默认patches文件，以及常规内容几个方面进行替换脚本内容。
+function replace_script
+{
+	declare EXTRA_PARM=""
+	declare CONFIG_ENV=""
+	declare PATCHES=""
+	declare TARGET_ARCH="${3}"
+	if [ -f $2 ]; then
+		EXTRA_PARM=$(get_body_with_version $2 "${PACKAGE_VERSION}" | grep "EXTRA_PARM=" | head -n1)
+		CONFIG_ENV=$(get_body_with_version $2 "${PACKAGE_VERSION}" | grep "CONFIG_ENV=" | head -n1)
+	fi
+#	if [ -f $(dirname ${STEPNAME})/${PACKAGE}.patches ]; then
+#		PATCHES=$(replace_patches $(dirname ${STEPNAME})/${PACKAGE}.patches)
+#	else
+#		PATCHES=""
+#	fi
+	PATCHES=$(replace_patches $(dirname ${STEP_PATH}) ${STEPNAME}.patches "${TARGET_ARCH}")
+
+#	declare SCRIPT_BODY="$(cat_arch_file $(dirname ${STEP_PATH}) ${1#$(dirname ${STEP_PATH})*}  ${3})"
+	declare SCRIPT_BODY="$(cat_arch_file ${1%\/${STEP_BUILDNAME}\/*}/${STEP_BUILDNAME} ${1#${1%\/${STEP_BUILDNAME}\/*}/${STEP_BUILDNAME}*}  ${3})"
+# 	cat $1 | sed \
+
+	if [ "x${PACKAGE_FILE}" != "xNULL" ]; then
+		echo "${SCRIPT_BODY}" | sed \
+			     -e "s@<<<TAR_UNCOMPRESS>>>@rm -rf \${BUILD_DIRECTORY}/<<<PACKAGE_DIR>>>\n\
+tar xvf \${DOWNLOADDIR}/<<<PACKAGE_FILE>>> -C \${BUILD_DIRECTORY} \n\
+pushd \${BUILD_DIRECTORY}/<<<PACKAGE_DIR>>>@g" \
+			     -e "s@<<<CLEAR_DIR>>>@popd \n\
+rm -rf \${BUILD_DIRECTORY}/<<<PACKAGE_DIR>>>@g" \
+			     -e "s@<<<PACKAGE_NAME>>>@${PACKAGE}@g" \
+			     -e "s@<<<PACKAGE_VERSION>>>@${PACKAGE_VERSION}@g" \
+			     -e "s@<<<PATCH>>>@${PATCHES}@g" \
+			     -e "s@<<<MAKE_AND_INSTALL>>>@eval \${MAKE_AND_INSTALL}@g" \
+			     -e "s@<<<NINJA_AND_INSTALL>>>@eval \${NINJA_AND_INSTALL}@g" \
+			     -e "s@<<<MAKE>>>@make -j\${JOBS}@g" \
+			     -e "s@<<<PACKAGE_FILE>>>@${PACKAGE_FILE}@g" \
+			     -e "s@<<<CONFIG_ENV>>>@${CONFIG_ENV#*=}@g" \
+			     -e "s@<<<EXTRA_PARM>>>@${EXTRA_PARM#*=}@g" \
+			     -e "s@<<<PYTHON_VERSION>>>@\$(get_package_version Python3)@g" \
+			     -e "s@<<<PACKAGE_DIR>>>@${PACKAGE_DIR}@g" \
+			     -e "s@<<<CROSS_TOOLS_PREFIX>>>@\${CROSSTOOLS_DIR}@g" \
+			     -e "s@<<<HOST_TOOLS_PREFIX>>>@\${HOST_TOOLS_DIR}@g"
+
+#			     -e "s@<<<JOBS>>>@-j\${JOBS}@g" \
+#			     -e "s@<<<MAKE_AND_INSTALL>>>@    make -j\${JOBS} \n\
+#    make install@g" \
+
+	else
+		echo "${SCRIPT_BODY}" | sed \
+			     -e "s@<<<TAR_UNCOMPRESS>>>@rm -rf \${BUILD_DIRECTORY}/step-${PACKAGE}-build\n\
+mkdir -pv \${BUILD_DIRECTORY}/step-${PACKAGE}-build \n\
+pushd \${BUILD_DIRECTORY}/step-${PACKAGE}-build@g" \
+			     -e "s@<<<CLEAR_DIR>>>@popd \n\
+rm -rf \${BUILD_DIRECTORY}/step-${PACKAGE}-build@g" \
+			     -e "s@<<<PACKAGE_NAME>>>@${PACKAGE}@g" \
+			     -e "s@<<<PACKAGE_VERSION>>>@${PACKAGE_VERSION}@g" \
+			     -e "s@<<<PATCH>>>@${PATCHES}@g" \
+			     -e "s@<<<MAKE_AND_INSTALL>>>@eval \${MAKE_AND_INSTALL}@g" \
+			     -e "s@<<<NINJA_AND_INSTALL>>>@eval \${NINJA_AND_INSTALL}@g" \
+			     -e "s@<<<MAKE>>>@make -j\${JOBS}@g" \
+			     -e "s@<<<PACKAGE_FILE>>>@${PACKAGE_FILE}@g" \
+			     -e "s@<<<CONFIG_ENV>>>@${CONFIG_ENV#*=}@g" \
+			     -e "s@<<<EXTRA_PARM>>>@${EXTRA_PARM#*=}@g" \
+			     -e "s@<<<PYTHON_VERSION>>>@\$(get_package_version Python3)@g" \
+			     -e "s@<<<PACKAGE_DIR>>>@${PACKAGE_DIR}@g" \
+			     -e "s@<<<CROSS_TOOLS_PREFIX>>>@\${CROSSTOOLS_DIR}@g"
+
+	fi
+}
+
+# 使用模式文件时的脚本内容替换
+# 参数1：模式文件
+# 参数2：替换内容文件
+# 参数3：指定架构
+function get_mode_script
+{
+	replace_script "$1" "$2" "$3"
+}
+
+
+# 对字符串的内容按照指定的字段进行替换后输出
+# 参数1：替换前的字符串内容
+# 参数2：替换字段设置
+# 输出：替换后的字符串
+function replace_package_info
+{
+	if [ "x${1}" == "x" ]; then
+		echo ""
+		return;
+	fi
+	if [ "x${2}" == "x" ]; then
+		echo "${1}"
+		return;
+	fi
+
+	REPO_INFO_NAME=$(echo "${1}" | grep -o "@.*@" | sed 's,@,,g')
+	if [ "x${REPO_INFO_NAME}" == "x" ]; then
+		echo "${1}"
+		return
+	fi
+
+	if [ ! -f git_repo_info/${REPO_INFO_NAME} ]; then
+		echo ""
+		return
+	fi
+
+	GIT_REPO_INFO_FIELD=$(cat git_repo_info/${REPO_INFO_NAME} | grep "^${2}=" | head -n1 | gawk -F'=' '{ print $2 }')
+
+	echo "${1}" | sed "s,@${REPO_INFO_NAME}@,${GIT_REPO_INFO_FIELD},g"
+	return;
+}
+
+
+# 获取package_version目录的名称
+# 从环境变量VERSIONS_NAME中获取，如未设置该变量将使用 "Default"
+function get_version_name
+{
+	if [ "x${VERSIONS_NAME}" == "x" ]; then
+		echo "Default"
+		return
+	else
+		echo "${VERSIONS_NAME}"
+		return
+	fi
+}
+
+
+# 通过指定步骤名称获取下载文件的URL路径。
+# 参数1：步骤名
+# 参数2：指定架构
+# 参数3：指定版本
+# 通过指定步骤和架构获取所对应的软件包版本的URL下载路径和存储文件名。
+function form_stepname_to_downloadurl
+{
+	declare PACKAGE=""
+	declare PACKAGE_URL=""
+	declare STEPNAME=""
+	declare PACKAGE_VERSION=""
+	declare LOCK_VERSION=""
+	declare PACKAGE_FILENAME=""
+	declare STEP_BUILDNAME=""
+	declare STEP_PACKAGENAME=""
+	declare VERSION_INFO_FILE=""
+	declare TARGET_ARCH=""
+	declare TYPE_FLAG="URL"
+	STEP_BUILDNAME=$(echo ${1} | awk -F'/' '{ print $2 }')
+	STEP_PACKAGENAME=$(echo ${1} | awk -F'/' '{ print $3 }')
+	TARGET_ARCH=${2}
+#	STEPNAME=storehouse/${ZZ_NAME}/${1}/${STEP_PACKAGENAME}
+	STEPNAME=$(get_arch_file storehouse/${ZZ_NAME}/step/${STEP_BUILDNAME} ${STEP_PACKAGENAME}/${STEP_PACKAGENAME} ${TARGET_ARCH})
+	if [ -f ${STEPNAME} ]; then
+		PACKAGE=$(cat ${STEPNAME} | grep "^PACKAGE=" | head -n1 | gawk -F'=' '{ print $2 }')
+		if [ "x${3}" == "x" ]; then
+			LOCK_VERSION=$(cat ${STEPNAME} | grep "^LOCK_VERSION=" | head -n1 | gawk -F'=' '{ print $2 }')
+		else
+			LOCK_VERSION="${3}"
+		fi
+		if [ "x$PACKAGE" != "xNULL" ]; then
+			if [ "x${LOCK_VERSION}" != "x" ]; then
+				PACKAGE_VERSION="${LOCK_VERSION}"
+			else
+				PACKAGE_VERSION=$(cat_arch_file package_version/$(get_version_name) ${PACKAGE}.version ${TARGET_ARCH})
+			fi
+			VERSION_INFO_FILE=$(get_arch_file sources/${PACKAGE} ${PACKAGE_VERSION}/info ${TARGET_ARCH})
+#			if [ -f sources/${PACKAGE}/${PACKAGE_VERSION}/info ]; then
+#				PACKAGE_URL=$(cat sources/${PACKAGE}/${PACKAGE_VERSION}/info | grep "^URL=" | head -n1 | gawk -F'=' '{ print $2 }')
+#                                PACKAGE_URL=$(cat_arch_file sources/${PACKAGE} ${PACKAGE_VERSION}/info ${TARGET_ARCH} | grep "URL=" | head -n1 | gawk -F'=' '{ print $2 }')
+			if [ -f ${VERSION_INFO_FILE} ]; then
+                                PACKAGE_URL_ORIG=$(cat ${VERSION_INFO_FILE} | grep "^URL=" | head -n1 | gawk -F'=' '{ print $2 }')
+				PACKAGE_URL=$(replace_package_info "${PACKAGE_URL_ORIG}" "URL")
+                                PACKAGE_FILENAME=$(cat ${VERSION_INFO_FILE} | grep "^FILE=" | head -n1 | gawk -F'=' '{ print $2 }')
+				if [ "x${PACKAGE_URL}" != "x" ]; then
+			                case "${PACKAGE_URL%%/*}" in
+			                file:)
+						TYPE_FLAG="FILE"
+						;;
+					*)
+						TYPE_FLAG="URL"
+						;;
+					esac
+				fi
+				GIT_TEST=$(cat ${VERSION_INFO_FILE} | grep "^GIT_BRANCH=" | head -n1)
+				if [ "x${GIT_TEST}" == "x" ]; then
+					TYPE_FLAG="URL"
+				else
+					TYPE_FLAG="GIT"
+# 					PKG_MANGER_FORMAT=$(cat ${VERSION_INFO_FILE} | grep "^PKG_FORMAT=" | head -n1 | gawk -F'=' '{ print $2 }')
+# 					case "x_${PKG_MANAGER_FORMAT}"
+# 						x_rpm)
+# 							TYPE_FLAG="RPM_GIT"
+# 							;;
+# 						*)
+# 							TYPE_FLAG="GIT"
+# 							;;
+# 					esac
+				fi
+				if [ "x${PACKAGE_URL}" == "x" ] || [ "x${PACKAGE_URL}" == "xNULL" ]; then
+					TYPE_FLAG="NULL"
+				fi
+				echo "${TYPE_FLAG}|${PACKAGE_URL}|${PACKAGE_FILENAME}"
+			else
+                                echo "${1}： 没有发现 ${PACKAGE_VERSION} 的版本信息文件 ${VERSION_INFO_FILE} 。" >> /tmp/error.log
+				return
+			fi
+			
+		else
+                                echo "${1}： 没有发现对应的软件包名。" >> /tmp/error.log
+				echo "NULL"
+		fi
+	else
+                echo "${1}：该步骤文件不存在。" >> /tmp/error.log
+		return
+	fi
+}
+
+
+# 通过指定步骤名称获取下载文件的URL路径。
+# 参数1：步骤名
+# 参数2：指定架构
+# 参数3：指定版本
+# 通过指定步骤和架构获取所对应的软件包版本的URL下载路径。
+function form_stepname_to_gitinfo
+{
+        declare PACKAGE=""
+        declare PACKAGE_GIT_BRANCH=""
+        declare PACKAGE_GIT_COMMIT=""
+        declare PACKAGE_GIT_SUBMODULE="0"
+        declare PACKAGE_GIT_UPDATE_MODE="手工"
+        declare STEPNAME=""
+        declare PACKAGE_VERSION=""
+        declare LOCK_VERSION=""
+        declare STEP_BUILDNAME=""
+        declare STEP_PACKAGENAME=""
+        declare VERSION_INFO_FILE=""
+        declare TARGET_ARCH=""
+        STEP_BUILDNAME=$(echo ${1} | awk -F'/' '{ print $2 }')
+        STEP_PACKAGENAME=$(echo ${1} | awk -F'/' '{ print $3 }')
+        TARGET_ARCH=${2}
+        STEPNAME=$(get_arch_file storehouse/${ZZ_NAME}/step/${STEP_BUILDNAME} ${STEP_PACKAGENAME}/${STEP_PACKAGENAME} ${TARGET_ARCH})
+        if [ -f ${STEPNAME} ]; then
+                PACKAGE=$(cat ${STEPNAME} | grep "^PACKAGE=" | head -n1 | gawk -F'=' '{ print $2 }')
+		if [ "x${3}" == "x" ]; then
+	                LOCK_VERSION=$(cat ${STEPNAME} | grep "^LOCK_VERSION=" | head -n1 | gawk -F'=' '{ print $2 }')
+		else
+			LOCK_VERSION="${3}"
+		fi
+                if [ "x$PACKAGE" != "xNULL" ]; then
+			if [ "x${LOCK_VERSION}" != "x" ]; then
+	                        PACKAGE_VERSION=${LOCK_VERSION}
+			else
+	                        PACKAGE_VERSION=$(cat_arch_file package_version/$(get_version_name) ${PACKAGE}.version ${TARGET_ARCH})
+			fi
+                        VERSION_INFO_FILE=$(get_arch_file sources/${PACKAGE} ${PACKAGE_VERSION}/info ${TARGET_ARCH})
+                        if [ -f ${VERSION_INFO_FILE} ]; then
+                                PACKAGE_GIT_BRANCH_ORIG=$(cat ${VERSION_INFO_FILE} | grep "^GIT_BRANCH=" | head -n1 | gawk -F'=' '{ print $2 }')
+				PACKAGE_GIT_BRANCH=$(replace_package_info "${PACKAGE_GIT_BRANCH_ORIG}" "GIT_BRANCH")
+				PACKAGE_GIT_COMMIT=$(cat ${VERSION_INFO_FILE} | grep "^GIT_COMMIT=" | head -n1 | gawk -F'=' '{ print $2 }')
+				PACKAGE_GIT_SUBMODULE=$(cat ${VERSION_INFO_FILE} | grep "^GIT_SUBMODULE=" | head -n1 | gawk -F'=' '{ print $2 }')
+				PACKAGE_GIT_UPDATE_MODE=$(cat ${VERSION_INFO_FILE} | grep "^GIT_UPDATE_MODE=" | head -n1 | gawk -F'=' '{ print $2 }')
+				PACKAGE_GIT_FORMAT_ORIG=$(cat ${VERSION_INFO_FILE} | grep "^PKG_FORMAT=" | head -n1 | gawk -F'=' '{ print $2 }')
+				PACKAGE_GIT_FORMAT=$(replace_package_info "${PACKAGE_GIT_FORMAT_ORIG}" "PKG_FORMAT")
+                                echo "${PACKAGE_GIT_BRANCH}|${PACKAGE_GIT_COMMIT}|${PACKAGE_GIT_SUBMODULE}|${PACKAGE_GIT_UPDATE_MODE}|${PACKAGE_GIT_FORMAT}"
+                        else
+                                echo "${1}： 没有发现 ${PACKAGE_VERSION} 的版本信息文件 ${VERSION_INFO_FILE} 。" >> /tmp/error.log
+                                return
+                        fi
+
+                else
+                                echo "${1}： 没有发现对应的软件包名。" >> /tmp/error.log
+                fi
+        else
+                echo "${1}：该步骤文件不存在。" >> /tmp/error.log
+                return
+        fi
+}
+
+# 通过指定步骤名称获取系统首次启动脚本文件的内容
+# 参数1：步骤名
+# 参数2：指定架构
+# 返回：获取脚本文件的内容
+function form_stepname_to_os_run
+{
+	declare PACKAGE=""
+	declare BUILD_MODE=""
+	declare RUN_SCRIPT=""
+	declare PACKAGE_FILE=""
+	declare PACKAGE_DIR=""
+	declare PACKAGE_VERSION=""
+	declare STEP_BUILDNAME=""
+	declare STEP_PACKAGENAME=""
+	declare VERSION_INFO_FILE=""
+	declare STEPNAME=""
+	declare TARGET_ARCH=""
+	declare STEP_PATH=""
+	declare OS_RUN_NAME=""
+	STEP_PATH=storehouse/${ZZ_NAME}/${1}
+	TARGET_ARCH=${2}
+	OS_RUN_NAME="${3}"
+	STEP_BUILDNAME=$(echo ${1} | awk -F'/' '{ print $2 }')
+	STEP_PACKAGENAME=$(echo ${1} | awk -F'/' '{ print $3 }')
+	STEPNAME=$(get_arch_file storehouse/${ZZ_NAME}/step/${STEP_BUILDNAME} ${STEP_PACKAGENAME}/${STEP_PACKAGENAME}.${OS_RUN_NAME} ${TARGET_ARCH})
+	if [ -f ${STEPNAME} ]; then
+		RUN_SCRIPT="${STEPNAME}"
+
+		replace_script ${RUN_SCRIPT} "custom" "${TARGET_ARCH}"
+	else
+		echo "1"
+		return
+	fi
+	return
+}
+
+# 通过指定步骤名称获取临时修改脚本文件的内容
+# 参数1：步骤名
+# 参数2：指定架构
+# 返回：获取临时修改脚本文件的内容
+function form_stepname_to_tempfix
+{
+	declare PACKAGE=""
+	declare BUILD_MODE=""
+	declare RUN_SCRIPT=""
+	declare PACKAGE_FILE=""
+	declare PACKAGE_DIR=""
+	declare PACKAGE_VERSION=""
+	declare STEP_BUILDNAME=""
+	declare STEP_PACKAGENAME=""
+	declare VERSION_INFO_FILE=""
+	declare STEPNAME=""
+	declare TARGET_ARCH=""
+	declare STEP_PATH=""
+	declare OS_RUN_NAME=""
+	STEP_PATH=storehouse/${ZZ_NAME}/${1}
+	TARGET_ARCH=${2}
+	OS_RUN_NAME="${3}"
+	STEP_BUILDNAME=$(echo ${1} | awk -F'/' '{ print $2 }')
+	STEP_PACKAGENAME=$(echo ${1} | awk -F'/' '{ print $3 }')
+	STEPNAME=$(get_arch_file storehouse/${ZZ_NAME}/step/${STEP_BUILDNAME} ${STEP_PACKAGENAME}/${STEP_PACKAGENAME}.${OS_RUN_NAME} ${TARGET_ARCH})
+	if [ -f ${STEPNAME} ]; then
+		RUN_SCRIPT="${STEPNAME}"
+
+		echo "source env/${STEP_BUILDNAME}/config"
+		echo "source env/distro.info"
+		echo "source env/function.sh"
+		if [ -f storehouse/${ZZ_NAME}/env/${STEP_BUILDNAME}/custom ]; then
+			echo "source env/${STEP_BUILDNAME}/custom"
+		fi
+		echo "export STEP_BUILDNAME=${STEP_BUILDNAME}"
+		echo "export STEP_PACKAGENAME=${STEP_PACKAGENAME}"
+		echo "export PACKAGE_VERSION=${PACKAGE_VERSION}"
+		echo "export RESOURCEDIR=\${NEW_TARGET_SYSDIR}/files/${STEP_BUILDNAME}/${STEP_PACKAGENAME}/${PACKAGE_VERSION}/"
+
+		replace_script ${RUN_SCRIPT} "custom" "${TARGET_ARCH}"
+	else
+		echo "1"
+		return
+	fi
+	return
+}
+
+# 通过指定步骤名称获取临时修改脚本文件的内容
+# 参数1：步骤名
+# 参数2：指定架构
+# 返回：获取临时修改脚本文件的内容
+function form_stepname_to_file
+{
+	declare PACKAGE=""
+	declare BUILD_MODE=""
+	declare RUN_SCRIPT=""
+	declare PACKAGE_FILE=""
+	declare PACKAGE_DIR=""
+	declare PACKAGE_VERSION=""
+	declare STEP_BUILDNAME=""
+	declare STEP_PACKAGENAME=""
+	declare VERSION_INFO_FILE=""
+	declare STEPNAME=""
+	declare TARGET_ARCH=""
+	declare STEP_PATH=""
+	declare OS_RUN_NAME=""
+	STEP_PATH=storehouse/${ZZ_NAME}/${1}
+	TARGET_ARCH=${2}
+	OS_RUN_NAME="${3}"
+	STEP_BUILDNAME=$(echo ${1} | awk -F'/' '{ print $2 }')
+	STEP_PACKAGENAME=$(echo ${1} | awk -F'/' '{ print $3 }')
+	STEPNAME=$(get_arch_file storehouse/${ZZ_NAME}/step/${STEP_BUILDNAME} ${STEP_PACKAGENAME}/${STEP_PACKAGENAME}.${OS_RUN_NAME} ${TARGET_ARCH})
+	if [ -f ${STEPNAME} ]; then
+		RUN_SCRIPT="${STEPNAME}"
+
+		replace_script ${RUN_SCRIPT} "custom" "${TARGET_ARCH}"
+	else
+		echo "1"
+		return
+	fi
+	return
+}
+
+
+# 通过指定步骤名称获取脚本文件的内容
+# 参数1：步骤名
+# 参数2：指定架构
+# 参数3：指定版本
+# 返回：获取脚本文件的内容
+function form_stepname_to_script
+{
+	declare PACKAGE=""
+	declare BUILD_MODE=""
+	declare RUN_SCRIPT=""
+	declare PACKAGE_FILE=""
+	declare PACKAGE_DIR=""
+	declare PACKAGE_VERSION=""
+	declare PACKAGE_FORMAT=""
+	declare LOCK_VERSION=""
+	declare STEP_BUILDNAME=""
+	declare STEP_PACKAGENAME=""
+	declare VERSION_INFO_FILE=""
+	declare STEPNAME=""
+	declare TARGET_ARCH=""
+	declare STEP_PATH=""
+	STEP_PATH=storehouse/${ZZ_NAME}/${1}
+	MODE_PATH=$(dirname $(echo ${STEP_PATH} | sed "s@/step/@/mode/@g"))
+	TARGET_ARCH=${2}
+	STEP_BUILDNAME=$(echo ${1} | awk -F'/' '{ print $2 }')
+	STEP_PACKAGENAME=$(echo ${1} | awk -F'/' '{ print $3 }')
+	STEPNAME=$(get_arch_file storehouse/${ZZ_NAME}/step/${STEP_BUILDNAME} ${STEP_PACKAGENAME}/${STEP_PACKAGENAME} ${TARGET_ARCH})
+	if [ -f ${STEPNAME} ]; then
+		PACKAGE=$(cat ${STEPNAME} | grep "^PACKAGE=" | head -n1 | gawk -F'=' '{ print $2 }')
+		if [ "x${3}" == "x" ]; then
+	                LOCK_VERSION=$(cat ${STEPNAME} | grep "^LOCK_VERSION=" | head -n1 | gawk -F'=' '{ print $2 }')
+		else
+			LOCK_VERSION="${3}"
+		fi
+		BUILD_MODE=$(cat ${STEPNAME} | grep "^BUILD_MODE=" | head -n1 | gawk -F'=' '{ print $2 }')
+		RUN_SCRIPT="${STEPNAME}.build"
+		if [ x$(cat ${STEPNAME} | grep "^RUN_SCRIPT=") != x ]; then
+			RUN_SCRIPT=$(cat $i | grep "^RUN_SCRIPT=" | head -n1 | gawk -F'=' '{ print $2 }')
+		fi
+		if [ "x$PACKAGE" != "xNULL" ]; then
+			if [ "x${LOCK_VERSION}" != "x" ]; then
+				PACKAGE_VERSION=${LOCK_VERSION}
+			else
+				PACKAGE_VERSION=$(cat_arch_file package_version/$(get_version_name) ${PACKAGE}.version ${TARGET_ARCH})
+			fi
+			VERSION_INFO_FILE=$(get_arch_file sources/${PACKAGE} ${PACKAGE_VERSION}/info ${TARGET_ARCH})
+#			if [ -f sources/${PACKAGE}/${PACKAGE_VERSION}/info ]; then
+#				PACKAGE_FILE=$(cat sources/${PACKAGE}/${PACKAGE_VERSION}/info | grep "^FILE=" | head -n1 | gawk -F'=' '{ print $2 }')
+#				PACKAGE_DIR=$(cat sources/${PACKAGE}/${PACKAGE_VERSION}/info | grep "^DIR=" | head -n1 | gawk -F'=' '{ print $2 }')
+#                                PACKAGE_FILE=$(cat_arch_file sources/${PACKAGE} ${PACKAGE_VERSION}/info ${TARGET_ARCH} | grep "^FILE=" | head -n1 | gawk -F'=' '{ print $2 }')
+#                                PACKAGE_DIR=$(cat_arch_file sources/${PACKAGE} ${PACKAGE_VERSION}/info ${TARGET_ARCH} | grep "^DIR=" | head -n1 | gawk -F'=' '{ print $2 }')
+			if [ -f ${VERSION_INFO_FILE} ]; then
+                                PACKAGE_FILE=$(cat ${VERSION_INFO_FILE} | grep "^FILE=" | head -n1 | gawk -F'=' '{ print $2 }')
+                                PACKAGE_DIR=$(cat ${VERSION_INFO_FILE} | grep "^DIR=" | head -n1 | gawk -F'=' '{ print $2 }')
+                                PACKAGE_FORMAT=$(cat ${VERSION_INFO_FILE} | grep "^PKG_FORMAT=" | head -n1 | gawk -F'=' '{ print $2 }')
+				if [ "x${PACKAGE_DIR}" == "x" ]; then
+#					PACKAGE_DIR="${PACKAGE}-${PACKAGE_VERSION}"
+					PACKAGE_DIR=$(filename_to_dir "${PACKAGE_FILE}")
+					if [ "x${PACKAGE_DIR}" == "x" ]; then
+						PACKAGE_DIR="${PACKAGE}-${PACKAGE_VERSION}"
+					fi
+				fi
+			else
+#				echo "sources/${PACKAGE}/${PACKAGE_VERSION}/info文件 不存在!" >> /tmp/error.log
+				PACKAGE_FILE="${PACKAGE}-${PACKAGE_VERSION}.tar.gz"
+				PACKAGE_DIR=$(filename_to_dir "${PACKAGE_FILE}")
+				if [ "x${PACKAGE_DIR}" == "x" ]; then
+					PACKAGE_DIR="${PACKAGE}-${PACKAGE_VERSION}"
+				fi
+				echo "2"
+				return
+			fi
+		else
+			PACKAGE_FILE="foo"
+			PACKAGE_DIR="foo"
+			PACKAGE_VERSION=""
+		fi
+		echo "source env/${STEP_BUILDNAME}/config"
+		echo "source env/distro.info"
+		echo "source env/function.sh"
+		if [ -f storehouse/${ZZ_NAME}/env/${STEP_BUILDNAME}/custom ]; then
+			echo "source env/${STEP_BUILDNAME}/custom"
+		fi
+
+		STEP_PACKAGE_ENV_STR=$(form_stepname_to_file ${1} ${2} "env")
+		if [ "x${STEP_PACKAGE_ENV_STR}" != "x1" ]; then
+			echo "source scripts/${1}.env"
+		fi
+		
+		echo "export STEP_BUILDNAME=${STEP_BUILDNAME}"
+		echo "export STEP_PACKAGENAME=${STEP_PACKAGENAME}"
+		echo "export PACKAGE_VERSION=${PACKAGE_VERSION}"
+		if [ "x${PACKAGE_FORMAT}" != "x" ]; then
+			echo "export PACKAGE_FORMAT=$(replace_package_info "${PACKAGE_FORMAT}" "PKG_FORMAT")"
+		fi
+		echo "export RESOURCEDIR=\${NEW_TARGET_SYSDIR}/files/${STEP_BUILDNAME}/${STEP_PACKAGENAME}/${PACKAGE_VERSION}/"
+		case "x${BUILD_MODE}" in
+		xgnu)
+#			get_mode_script $(dirname ${STEP_PATH})/gnu.mode "${RUN_SCRIPT}" "${TARGET_ARCH}"
+			get_mode_script ${MODE_PATH}/gnu.mode "${RUN_SCRIPT}" "${TARGET_ARCH}"
+			;;
+		xgnu_build)
+#			get_mode_script $(dirname ${STEP_PATH})/gnu_build.mode "${RUN_SCRIPT}" "${TARGET_ARCH}"
+			get_mode_script ${MODE_PATH}/gnu_build.mode "${RUN_SCRIPT}" "${TARGET_ARCH}"
+			;;
+		xgnu_gi)
+#			get_mode_script $(dirname ${STEP_PATH})/gnu_gi.mode "${RUN_SCRIPT}" "${TARGET_ARCH}"
+			get_mode_script ${MODE_PATH}/gnu_gi.mode "${RUN_SCRIPT}" "${TARGET_ARCH}"
+			;;
+		xperl)
+#			get_mode_script $(dirname ${STEP_PATH})/perl.mode "${RUN_SCRIPT}" "${TARGET_ARCH}"
+			get_mode_script ${MODE_PATH}/perl.mode "${RUN_SCRIPT}" "${TARGET_ARCH}"
+			;;
+		xpython)
+#			get_mode_script $(dirname ${STEP_PATH})/python.mode "${RUN_SCRIPT}" "${TARGET_ARCH}"
+			get_mode_script ${MODE_PATH}/python.mode "${RUN_SCRIPT}" "${TARGET_ARCH}"
+			;;
+		xpip)
+#			get_mode_script $(dirname ${STEP_PATH})/pip.mode "${RUN_SCRIPT}" "${TARGET_ARCH}"
+			get_mode_script ${MODE_PATH}/pip.mode "${RUN_SCRIPT}" "${TARGET_ARCH}"
+			;;
+		xmeson)
+#			get_mode_script $(dirname ${STEP_PATH})/meson.mode "${RUN_SCRIPT}" "${TARGET_ARCH}"
+			get_mode_script ${MODE_PATH}/meson.mode "${RUN_SCRIPT}" "${TARGET_ARCH}"
+			;;
+		xmeson_cross)
+#			get_mode_script $(dirname ${STEP_PATH})/meson_cross.mode "${RUN_SCRIPT}" "${TARGET_ARCH}"
+			get_mode_script ${MODE_PATH}/meson_cross.mode "${RUN_SCRIPT}" "${TARGET_ARCH}"
+			;;
+		xmeson_cross_bool)
+#			get_mode_script $(dirname ${STEP_PATH})/meson_cross_bool.mode "${RUN_SCRIPT}" "${TARGET_ARCH}"
+			get_mode_script ${MODE_PATH}/meson_cross_bool.mode "${RUN_SCRIPT}" "${TARGET_ARCH}"
+			;;
+		xcmake) 
+#			get_mode_script $(dirname ${STEP_PATH})/cmake.mode "${RUN_SCRIPT}" "${TARGET_ARCH}"
+			get_mode_script ${MODE_PATH}/cmake.mode "${RUN_SCRIPT}" "${TARGET_ARCH}"
+			;;
+		xcmake_ninja) 
+			get_mode_script ${MODE_PATH}/cmake_ninja.mode "${RUN_SCRIPT}" "${TARGET_ARCH}"
+			;;
+		*)
+			replace_script ${RUN_SCRIPT} "custom" "${TARGET_ARCH}"
+			;;
+		esac
+	else
+		echo "${1} 步骤文件不存在!" >> /tmp/error.log
+		echo "1"
+		return
+	fi
+	return
+}
+
+
+
+# 从步骤名获取所需的资源文件并复制到指定路径中
+# 参数1：步骤名
+# 参数2：指定路径
+# 参数3：指定架构
+# 参数4：版本号
+
+function form_stepname_copy_files
+{
+        declare PACKAGE=""
+        declare PACKAGE_URL=""
+	declare PACKAGE_VERSION=""
+	declare LOCK_VERSION=""
+	declare PACKAGE_DIR=""
+        declare STEPNAME=""
+	declare STEP_BUILDNAME=""
+	declare STEP_PACKAGENAME=""
+        declare TARGET_ARCH=""
+	declare SRC_PATH="NULL"
+	declare DES_PATH="NULL"
+	declare PATCHES=""
+	DES_PATH="${2}"
+        TARGET_ARCH=${3}
+	STEP_PATH=storehouse/${ZZ_NAME}/${1}
+	STEP_BUILDNAME=$(echo ${1} | awk -F'/' '{ print $2 }')
+	STEP_PACKAGENAME=$(echo ${1} | awk -F'/' '{ print $3 }')
+#	STEPNAME=storehouse/${ZZ_NAME}/${1}/${STEP_PACKAGENAME}
+	STEPNAME=$(get_arch_file storehouse/${ZZ_NAME}/step/${STEP_BUILDNAME} ${STEP_PACKAGENAME}/${STEP_PACKAGENAME} ${TARGET_ARCH})
+        if [ -f ${STEPNAME} ]; then
+                PACKAGE=$(cat ${STEPNAME} | grep "^PACKAGE=" | head -n1 | gawk -F'=' '{ print $2 }')
+		if [ "x${4}" == "x" ]; then
+			LOCK_VERSION=$(cat ${STEPNAME} | grep "^LOCK_VERSION=" | head -n1 | gawk -F'=' '{ print $2 }')
+		else
+			LOCK_VERSION=${4}
+		fi
+
+                if [ "x$PACKAGE" != "xNULL" ]; then
+			if [ "x${LOCK_VERSION}" != "x" ]; then
+				PACKAGE_VERSION=${LOCK_VERSION}
+			else
+				PACKAGE_VERSION=$(cat_arch_file package_version/$(get_version_name) ${PACKAGE}.version ${TARGET_ARCH})
+			fi
+			PACKAGE_DIR=$(get_arch_directory sources/${PACKAGE} ${PACKAGE_VERSION} ${TARGET_ARCH})
+			echo "${1}: package_dir ${PACKAGE_DIR}" >> /tmp/info.log
+#                        if [ -d sources/${PACKAGE} ]; then
+                        if [ -d ${PACKAGE_DIR} ]; then
+				SRC_PATH=$(get_arch_directory sources/${PACKAGE} ${PACKAGE_VERSION}/files ${TARGET_ARCH})
+				echo "${1}: src_path ${SRC_PATH}" >> /tmp/info.log
+				if [ "x${SRC_PATH}" != "xNULL" ] && [ "x${DES_PATH}" != "x" ]; then
+					mkdir -p ${DES_PATH}/${STEP_PACKAGENAME}/${PACKAGE_VERSION}/
+					RESOURCES=$(get_resources $(dirname ${STEP_PATH}) ${STEPNAME}.resources "${TARGET_ARCH}")
+# 					echo "x${RESOURCES} get_resouces $(dirname ${STEP_PATH}) ${STEPNAME}.resources \"${TARGET_ARCH}\""
+# 					if [ -f ${STEPNAME}.resources ]; then
+					if [ "x${RESOURCES}" != "x" ]; then
+						if [ ! -d ${DES_PATH}/${STEP_PACKAGENAME}/${PACKAGE_VERSION} ]; then
+							mkdir -p ${DES_PATH}/${STEP_PACKAGENAME}/${PACKAGE_VERSION}
+						else
+							find ${DES_PATH}/${STEP_PACKAGENAME}/${PACKAGE_VERSION}/ -maxdepth 1 -type f -exec rm '{}' ';'
+						fi
+# 						RESOURCES=$(get_patches $(dirname ${STEP_PATH}) ${STEPNAME}.resources "${TARGET_ARCH}")
+						for resource_file in ${RESOURCES}
+						do
+							if [ "x${resource_file}" == "xNULL" ]; then
+								continue;
+							fi
+							if [ -f ${SRC_PATH}/${resource_file} ]; then
+# 								cp -a ${SRC_PATH}/* ${DES_PATH}/${STEP_PACKAGENAME}/${PACKAGE_VERSION}/
+								cp -a ${SRC_PATH}/${resource_file} ${DES_PATH}/${STEP_PACKAGENAME}/${PACKAGE_VERSION}/
+							else
+								echo "缺少 ${SRC_PATH}/${resource_file} 资源文件。"
+							fi
+						done
+					else
+						cp -a ${SRC_PATH}/* ${DES_PATH}/${STEP_PACKAGENAME}/${PACKAGE_VERSION}/
+					fi
+#					sed -i "s@<<<PACKAGE_VERSION>>>@${PACKAGE_VERSION}@g" ${DES_PATH}/${STEP_PACKAGENAME}/${PACKAGE_VERSION}/*.url
+					if [ "x$?" != "x0" ]; then
+						echo "${1}： 在从 ${SRC_PATH} 路径复制文件时出错！" >> /tmp/error.log
+						retrun
+					fi
+					if [ -d ${DES_PATH}/${STEP_PACKAGENAME}/${PACKAGE_VERSION}/patches ]; then
+						rm -f ${DES_PATH}/${STEP_PACKAGENAME}/${PACKAGE_VERSION}/patches/*.{patch*,diff*}
+					fi
+					PATCHES=$(get_patches $(dirname ${STEP_PATH}) ${STEPNAME}.patches "${TARGET_ARCH}")
+# 					if [ -f ${STEPNAME}.patches ]; then
+					if [ "x${PATCHES}" != "x" ]; then
+						if [ ! -d ${DES_PATH}/${STEP_PACKAGENAME}/${PACKAGE_VERSION}/patches ]; then
+							mkdir -p ${DES_PATH}/${STEP_PACKAGENAME}/${PACKAGE_VERSION}/patches
+						fi
+# 						PATCHES=$(get_patches $(dirname ${STEP_PATH}) ${STEPNAME}.patches "${TARGET_ARCH}")
+						for patch_file in ${PATCHES}
+						do
+							if [ -f ${SRC_PATH}/patches/${patch_file} ]; then
+#								echo "复制 ${SRC_PATH}/patches/${patch_file} 到 ${DES_PATH}/${STEP_PACKAGENAME}/${PACKAGE_VERSION}/patches/"
+								cp -a ${SRC_PATH}/patches/${patch_file} ${DES_PATH}/${STEP_PACKAGENAME}/${PACKAGE_VERSION}/patches/
+							else
+								echo "缺少 ${SRC_PATH}/patches/${patch_file} 补丁文件。"
+							fi
+						done
+					fi
+				else
+					if [ -f ${STEPNAME}.patches ]; then
+						PATCHES=$(get_patches $(dirname ${STEP_PATH}) ${STEPNAME}.patches "${TARGET_ARCH}")
+                                                for patch_file in ${PATCHES}
+						do
+							echo "${STEP_PACKAGENAME} ${PACKAGE_VERSION} 版本缺少 ${patch_file} 补丁文件。"
+						done
+					fi
+				fi
+                        else
+                                echo "${1}： 没有发现 ${PACKAGE_VERSION} 的版本相关文件目录 ${PACKAGE_DIR} 。" >> /tmp/error.log
+                                return
+                        fi
+
+                else
+                                echo "${1}： 没有发现对应的软件包名。" >> /tmp/error.log
+				return
+                fi
+        else
+                echo "${1}：该步骤文件不存在。" >> /tmp/error.log
+                return
+        fi
+}
+
+function form_stepname_to_version
+{
+        declare PACKAGE=""
+        declare PACKAGE_VERSION=""
+        declare LOCK_VERSION=""
+        declare STEP_BUILDNAME=""
+        declare STEP_PACKAGENAME=""
+        declare STEPNAME=""
+        declare ORIG_NAME=""
+        declare TARGET_ARCH=""
+	declare RET_STR="NULL"
+        TARGET_ARCH=${2}
+        STEP_BUILDNAME=$(echo ${1} | awk -F'/' '{ print $2 }')
+        STEP_PACKAGENAME=$(echo ${1} | awk -F'/' '{ print $3 }')
+#        STEPNAME=storehouse/${ZZ_NAME}/${1}/${STEP_PACKAGENAME}
+	STEPNAME=$(get_arch_file storehouse/${ZZ_NAME}/step/${STEP_BUILDNAME} ${STEP_PACKAGENAME}/${STEP_PACKAGENAME} ${TARGET_ARCH})
+        if [ -f ${STEPNAME} ]; then
+                PACKAGE=$(cat ${STEPNAME} | grep "^PACKAGE=" | head -n1 | gawk -F'=' '{ print $2 }')
+                LOCK_VERSION=$(cat ${STEPNAME} | grep "^LOCK_VERSION=" | head -n1 | gawk -F'=' '{ print $2 }')
+                if [ "x$PACKAGE" != "xNULL" ] && [ "x${PACKAGE}" != "x" ]; then
+			if [ "x${LOCK_VERSION}" != "x" ]; then
+                        	PACKAGE_VERSION=${LOCK_VERSION}
+			else
+                        	PACKAGE_VERSION=$(cat_arch_file package_version/$(get_version_name) ${PACKAGE}.version ${TARGET_ARCH})
+			fi
+                else
+                        PACKAGE_VERSION="NULL"
+                fi
+		ORIG_NAME="$(cat_arch_file package_version/$(get_version_name) ${PACKAGE}.origname ${TARGET_ARCH})"
+		if [ "x${ORIG_NAME}" == "x" ]; then
+			ORIG_NAME="${PACKAGE}"
+		fi
+		if [ "x$(find_arch_file package_version/$(get_version_name) ${PACKAGE}.version ${TARGET_ARCH})" == "x1" ]; then
+			RET_STR="${PACKAGE_VERSION}|${PACKAGE}|${ORIG_NAME}|${TARGET_ARCH}"
+		else
+			RET_STR="${PACKAGE_VERSION}|${PACKAGE}|${ORIG_NAME}|NULL"
+		fi
+		if [ "x${LOCK_VERSION}" != "x" ]; then
+			RET_STR="${PACKAGE_VERSION}|${PACKAGE}|${ORIG_NAME}|LOCK_VERSION"
+		fi
+        else
+                echo "${1} 步骤文件不存在!" >> /tmp/error.log
+                RET_STR="NULL"
+        fi
+	echo "${RET_STR}"
+        return
+}
+
+function soft_lock_mode
+{
+        declare PACKAGE=""
+        declare PACKAGE_VERSION=""
+        declare LOCK_VERSION=""
+        declare STEP_BUILDNAME=""
+        declare STEP_PACKAGENAME=""
+        declare STEPNAME=""
+        declare ORIG_NAME=""
+        declare TARGET_ARCH=""
+	declare RET_STR="NULL"
+        TARGET_ARCH=${2}
+        STEP_BUILDNAME=$(echo ${1} | awk -F'/' '{ print $2 }')
+        STEP_PACKAGENAME=$(echo ${1} | awk -F'/' '{ print $3 }')
+	if [ -f storehouse/${ZZ_NAME}/env/${STEP_BUILDNAME}/lock ]; then
+		LOCK_GROUP=$(cat storehouse/${ZZ_NAME}/env/${STEP_BUILDNAME}/lock | grep "^lock=" | head -n1 | gawk -F'=' '{ print $2 }')
+		if [ "x${LOCK_GROUP}" == "x1" ]; then
+			echo "GROUP"
+			return
+		fi
+	fi
+#        STEPNAME=storehouse/${ZZ_NAME}/${1}/${STEP_PACKAGENAME}
+	STEPNAME=$(get_arch_file storehouse/${ZZ_NAME}/step/${STEP_BUILDNAME} ${STEP_PACKAGENAME}/${STEP_PACKAGENAME} ${TARGET_ARCH})
+        if [ -f ${STEPNAME} ]; then
+                PACKAGE=$(cat ${STEPNAME} | grep "^PACKAGE=" | head -n1 | gawk -F'=' '{ print $2 }')
+                LOCK_VERSION=$(cat ${STEPNAME} | grep "^LOCK_MODE=" | head -n1 | gawk -F'=' '{ print $2 }')
+		if [ "x${LOCK_VERSION}" == "xAUTO" ]; then
+			RET_STR="AUTO"
+		else
+			RET_STR="NULL"
+		fi
+        else
+                RET_STR="NULL"
+        fi
+	echo "${RET_STR}"
+        return
+}
+
+
+function load_common_env
+{
+	echo ""
+	return
+}
+
+
+# 暂时弃用的函数
+function form_list_to_zz
+{
+	echo -n "" > /tmp/error.log
+	for i in $(cat $1 | grep -v "^#[[:blank:]]" | sed "s@^%@@g")
+	do
+		RET="$(form_stepname_to_script $i)"
+		if [ "x${RET}" == "x2" ]; then
+			echo "sources/${PACKAGE}/$(cat package_version/${PACKAGE}.version)/.info文件 不存在!" >> /tmp/error.log
+		else
+			if [ "x${RET}" == "x1" ]; then
+				echo "$i 不存在!" >> /tmp/error.log
+			else
+				printf "${RET}"
+				echo  ""
+			fi
+		fi
+	done
+	return
+}

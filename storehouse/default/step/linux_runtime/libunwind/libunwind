@@ -1,0 +1,2 @@
+PACKAGE=libunwind
+BUILD_MODE=gnu

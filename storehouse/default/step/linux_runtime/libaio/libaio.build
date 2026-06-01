@@ -1,0 +1,4 @@
+<<<TAR_UNCOMPRESS>>>
+    <<<MAKE>>> CC="${LINUX_HOST}-gcc"
+    make DESTDIR=${LINUX_SYSROOT_DIR} libdir=/usr/lib${LIB_SUFF} install
+<<<CLEAR_DIR>>>

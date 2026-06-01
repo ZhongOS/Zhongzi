@@ -1,0 +1,2 @@
+PACKAGE=ccache
+BUILD_MODE=cmake

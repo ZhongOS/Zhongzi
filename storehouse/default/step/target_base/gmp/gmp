@@ -1,0 +1,3 @@
+PACKAGE=gmp
+# BUILD_MODE=custom
+BUILD_MODE=gnu

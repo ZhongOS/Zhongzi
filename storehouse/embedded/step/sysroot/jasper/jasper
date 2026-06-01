@@ -1,0 +1,2 @@
+PACKAGE=jasper
+BUILD_MODE=cmake

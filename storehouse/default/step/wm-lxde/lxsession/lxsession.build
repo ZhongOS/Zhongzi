@@ -1,0 +1,7 @@
+<<<TAR_UNCOMPRESS>>>
+    sed -i "s@GtkObject@GtkWidget@g" lxsession-default-apps/{main,combobox}.c
+    sed -i "s@gtk_object_destroy@gtk_widget_destroy@g" lxsession-default-apps/combobox.c
+    CFLAGS="${CFLAGS} -Wno-incompatible-pointer-types" ./configure ${COMMON_CONFIG} --enable-gtk --enable-gtk3 \
+                --enable-buildin-clipboard --enable-buildin-polkit
+    <<<MAKE_AND_INSTALL>>>
+<<<CLEAR_DIR>>>

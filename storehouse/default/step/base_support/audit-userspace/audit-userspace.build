@@ -1,0 +1,27 @@
+<<<TAR_UNCOMPRESS>>>
+        <<<PATCH>>>
+        for config_i in $(find -name "config.sub")
+        do
+                cp -a -f $(automake --print-libdir)/config.{sub,guess} $(dirname ${config_i})/
+        done
+        if [ ! -f configure ]; then
+                autoreconf -ifv
+        fi
+        PYTHON=${CROSS_TARGET}-python3 ./configure ${COMMON_CONFIG} --enable-malloc0returnsnull
+	<<<MAKE_AND_INSTALL>>>
+#         CC="${CROSS_TARGET}-gcc" CXX="${CROSS_TARGET}-g++" <<<MAKE>>>
+#         make DESTDIR=${SYSROOT_DIR} install
+#         rm -f ${SYSROOT_DIR}/usr/lib64/*.la
+
+	mkdir -pv ${SYSROOT_DIR}/etc/audit/rules.d
+	if [ -f ${SYSROOT_DIR}/usr/share/audit-rules/10-base-config.rules ]; then
+		cp ${SYSROOT_DIR}/usr/share/audit-rules/10-base-config.rules ${SYSROOT_DIR}/etc/audit/rules.d/audit.rules
+	        chmod 0600 ${SYSROOT_DIR}/etc/audit/rules.d/audit.rules
+	fi
+	mkdir --mode=0700 -p ${SYSROOT_DIR}/var/log/audit
+	mkdir -p ${SYSROOT_DIR}/var/spool/audit
+
+<<<CLEAR_DIR>>>
+
+
+# EXTRA_PARM=--without-python

@@ -1,0 +1,2 @@
+PACKAGE=kgamma5
+BUILD_MODE=cmake

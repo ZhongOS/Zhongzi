@@ -1,0 +1,2 @@
+PACKAGE=libtirpc
+BUILD_MODE=gnu

@@ -1,0 +1,3 @@
+PACKAGE=setuptools
+BUILD_MODE=pip
+# LOCK_VERSION=73.0.1

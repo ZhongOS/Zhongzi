@@ -1,0 +1,4 @@
+p1 0001-appstream-1.0.6-fix-for-cross-build.patch
+
+[[[1.0.5]]]
+p1 0001-appstream-1.0.0-fix-for-cross-build.patch

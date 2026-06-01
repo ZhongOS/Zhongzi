@@ -1,0 +1,2 @@
+PACKAGE=ibus-pinyin
+BUILD_MODE=gnu

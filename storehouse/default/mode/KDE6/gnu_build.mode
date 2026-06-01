@@ -1,0 +1,16 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+	for config_i in $(find -name "config.sub")
+	do
+		cp -a -f $(automake --print-libdir)/config.{sub,guess} $(dirname ${config_i})/
+	done
+	if [ ! -f configure ]; then
+		autoreconf -ifv
+	fi
+	mkdir -p cross-build
+	pushd cross-build
+		<<<CONFIG_ENV>>> ../configure ${COMMON_CONFIG} <<<EXTRA_PARM>>>
+		<<<MAKE_AND_INSTALL>>>
+	popd
+# 	rm -f ${SYSROOT_DIR}/usr/lib64/*.la
+<<<CLEAR_DIR>>>

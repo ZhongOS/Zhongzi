@@ -1,0 +1,2 @@
+PACKAGE=lxmenu-data
+BUILD_MODE=gnu

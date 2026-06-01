@@ -1,0 +1,1 @@
+EXTRA_PARM=-Dpython=${CROSS_TARGET}-python3

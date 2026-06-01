@@ -1,0 +1,2 @@
+PACKAGE=libavtp
+BUILD_MODE=meson

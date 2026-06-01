@@ -1,0 +1,2 @@
+PACKAGE=poppler
+BUILD_MODE=custom

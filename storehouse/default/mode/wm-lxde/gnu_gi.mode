@@ -1,0 +1,21 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+        for config_i in $(find -name "config.sub")
+        do
+                cp -a -f $(automake --print-libdir)/config.{sub,guess} $(dirname ${config_i})/
+        done
+        if [ ! -f configure ]; then
+                autoreconf -ifv
+        fi
+	mkdir cross-build
+	pushd cross-build
+	        ../configure ${COMMON_CONFIG} --enable-introspection=yes <<<EXTRA_PARM>>>
+		check_gnu_Makefile
+        	<<<MAKE>>> INTROSPECTION_SCANNER=${CROSS_TARGET}-g-ir-scanner \
+	             INTROSPECTION_COMPILER=${CROSS_TARGET}-g-ir-compiler \
+        	     VAPIGEN=${CROSS_TARGET}-vapigen \
+		     INTROSPECTION_MAKEFILE=${SYSROOT_DIR}/usr/share/gobject-introspection-1.0/Makefile.introspection
+	        make VAPIGEN=${CROSS_TARGET}-vapigen DESTDIR=${SYSROOT_DIR} install
+	popd
+	rm -f ${SYSROOT_DIR}/usr/lib64/*.la
+<<<CLEAR_DIR>>>

@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kitemmodels
+BUILD_MODE=cmake

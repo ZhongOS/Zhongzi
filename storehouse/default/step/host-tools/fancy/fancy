@@ -1,0 +1,2 @@
+PACKAGE=fancy
+BUILD_MODE=pip

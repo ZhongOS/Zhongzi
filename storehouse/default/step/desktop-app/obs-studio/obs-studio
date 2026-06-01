@@ -1,0 +1,6 @@
+PACKAGE=obs-studio
+BUILD_MODE=cmake
+
+[[[32.1.0]]]
+PACKAGE=obs-studio
+BUILD_MODE=custom

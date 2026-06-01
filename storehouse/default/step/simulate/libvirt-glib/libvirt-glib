@@ -1,0 +1,2 @@
+PACKAGE=libvirt-glib
+BUILD_MODE=meson_cross

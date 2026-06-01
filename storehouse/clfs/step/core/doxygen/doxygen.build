@@ -1,0 +1,12 @@
+<<<TAR_UNCOMPRESS>>>
+    mkdir cross-build
+    pushd cross-build
+        CC="${CROSS_TARGET}-gcc" CXX="${CROSS_TARGET}-g++" \
+        cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release \
+	      -DPYTHON_EXECUTABLE=${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-python3 \
+              -DCMAKE_INSTALL_PREFIX=/usr -Wno-dev ..
+	make generate_configvalues_header
+	<<<MAKE>>>
+        make DESTDIR=${SYSROOT_DIR} install
+    popd
+<<<CLEAR_DIR>>>

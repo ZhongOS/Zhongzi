@@ -1,0 +1,7 @@
+PACKAGE=alabaster
+BUILD_MODE=pip
+
+
+[[[0.7.13]]]
+PACKAGE=alabaster
+BUILD_MODE=python

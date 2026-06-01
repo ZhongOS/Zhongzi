@@ -1,0 +1,6 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+	autoreconf -if
+	./configure ${COMMON_CONFIG} --with-ogg-includes=${SYSROOT_DIR}/usr/include
+	<<<MAKE_AND_INSTALL>>>
+<<<CLEAR_DIR>>>

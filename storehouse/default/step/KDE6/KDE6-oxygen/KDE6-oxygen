@@ -1,0 +1,2 @@
+PACKAGE=KDE6-oxygen
+BUILD_MODE=cmake

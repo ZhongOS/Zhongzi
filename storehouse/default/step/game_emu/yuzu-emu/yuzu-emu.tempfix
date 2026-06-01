@@ -1,0 +1,9 @@
+export RUNTIME_SYSROOT_DIR=$(archname_to_anyparm "$(get_user_set_env target "x86_64")" "RUNTIME_SYSROOT_DIR" "/usr/lib/x86_64/sys-root")
+export LINUX_SYSROOT_DIR="${SYSROOT_DIR}${RUNTIME_SYSROOT_DIR}"
+
+for cmake_file in $(grep -rl "\.a\"" $(find ${LINUX_SYSROOT_DIR}/usr/lib64/cmake/ -name "*-release.cmake") ${TEMP_DIRECTORY}/strip-foo) ${TEMP_DIRECTORY}/strip-foo
+do
+        if [ -f ${cmake_file} ]; then
+                sed -i.orig "s@\"/usr@\"${LINUX_SYSROOT_DIR}/usr@g" ${cmake_file}
+        fi
+done

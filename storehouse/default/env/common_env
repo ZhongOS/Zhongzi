@@ -1,0 +1,7 @@
+export CROSS_TARGET="<<<TRIPLE>>>"
+export MABI="<<<ABI>>>"
+export LIB_SUFF="<<<LIB_SUFF>>>"
+export ARCH_BIT=<<<BIT>>>
+export CFLAGS="-O3"
+export CXXFLAGS="-O3"
+export RUN_TARGET_ARCH=${HOST_ARCH_NAME}

@@ -1,0 +1,5 @@
+<<<TAR_UNCOMPRESS>>>
+	./configure --mandir=${CROSSTOOLS_DIR}/share/man --docdir=${CROSSTOOLS_DIR}/share/doc --etcdir=${CROSSTOOLS_DIR}/etc --datadir=${CROSSTOOLS_DIR}/share --sbindir=${CROSSTOOLS_DIR}/sbin --bindir=${CROSSTOOLS_DIR}/bin --libexecdir=${CROSSTOOLS_DIR}/libexec --libdir=${CROSSTOOLS_DIR}/lib
+	<<<MAKE>>> release
+	make install
+<<<CLEAR_DIR>>>

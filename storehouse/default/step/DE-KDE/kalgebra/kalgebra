@@ -1,0 +1,2 @@
+PACKAGE=kalgebra
+BUILD_MODE=cmake

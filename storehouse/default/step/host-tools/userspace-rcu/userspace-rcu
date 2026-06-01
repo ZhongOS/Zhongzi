@@ -1,0 +1,2 @@
+PACKAGE=userspace-rcu
+BUILD_MODE=custom

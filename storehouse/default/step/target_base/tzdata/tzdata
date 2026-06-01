@@ -1,0 +1,2 @@
+PACKAGE=tzdata
+BUILD_MODE=custom

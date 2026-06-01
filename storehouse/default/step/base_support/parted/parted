@@ -1,0 +1,2 @@
+PACKAGE=parted
+BUILD_MODE=gnu

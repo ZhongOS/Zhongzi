@@ -1,0 +1,3 @@
+PACKAGE=pluggy
+# BUILD_MODE=python
+BUILD_MODE=pip

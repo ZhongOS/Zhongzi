@@ -1,0 +1,10 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+	pushd tools/bpf
+#		sed -i "/\$(HOSTCC)/s@(LDFLAGS)@(HOST_LDFLAGS)@g" bpftool/Makefile
+		unset CFLAGS
+#		<<<MAKE>>> HOSTCC="gcc" LDFLAGS="" HOST_LDFLAGS="-L${CROSSTOOLS_DIR}/lib64 -Wl,-rpath=${CROSSTOOLS_DIR}/lib64 -Wl,-rpath=${CROSSTOOLS_DIR}/build-tools/lib64" ARCH=${ARCH_FAMILY} CROSS_COMPILE=${CROSS_TARGET}- bpftool
+		<<<MAKE>>> HOSTCC="gcc" LDFLAGS="" ARCH=${ARCH_FAMILY} CROSS_COMPILE=${CROSS_TARGET}- bpftool
+		cp -a bpftool/bpftool ${SYSROOT_DIR}/usr/bin/
+	popd
+<<<CLEAR_DIR>>>

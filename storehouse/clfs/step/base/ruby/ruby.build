@@ -1,0 +1,1 @@
+EXTRA_PARM=--enable-shared --with-rubylibprefix=/usr/lib${LIB_SUFF}/ruby

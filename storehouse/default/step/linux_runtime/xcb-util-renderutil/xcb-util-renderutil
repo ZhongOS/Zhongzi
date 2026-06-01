@@ -1,0 +1,2 @@
+PACKAGE=xcb-util-renderutil
+BUILD_MODE=gnu

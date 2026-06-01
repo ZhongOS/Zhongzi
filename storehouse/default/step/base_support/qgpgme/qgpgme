@@ -1,0 +1,2 @@
+PACKAGE=qgpgme
+BUILD_MODE=cmake

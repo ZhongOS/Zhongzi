@@ -1,0 +1,2 @@
+PACKAGE=libzip
+BUILD_MODE=cmake

@@ -1,0 +1,9 @@
+<<<TAR_UNCOMPRESS>>>
+    sed -i "/NOPASSWD/s@^# %wheel@%wheel@g" plugins/sudoers/sudoers.in
+    ./configure ${COMMON_CONFIG} \
+                --with-secure-path --with-all-insults --with-env-editor \
+                --with-passprompt="[sudo] password for %p: " ac_cv_have_working_vsnprintf=no
+    sed -i "/^install_uid/s@= 0@= $(id -u)@g" Makefile
+    sed -i "/^install_gid/s@= 0@= $(id -g)@g" Makefile
+    <<<MAKE_AND_INSTALL>>>
+<<<CLEAR_DIR>>>

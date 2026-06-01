@@ -1,0 +1,2 @@
+PACKAGE=lxde-common
+BUILD_MODE=gnu

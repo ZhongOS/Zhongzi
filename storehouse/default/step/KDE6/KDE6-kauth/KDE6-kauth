@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kauth
+BUILD_MODE=custom

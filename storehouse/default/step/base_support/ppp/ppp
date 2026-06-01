@@ -1,0 +1,2 @@
+PACKAGE=ppp
+BUILD_MODE=gnu

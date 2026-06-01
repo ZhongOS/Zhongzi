@@ -1,0 +1,2 @@
+PACKAGE=akonadi-mime
+BUILD_MODE=cmake

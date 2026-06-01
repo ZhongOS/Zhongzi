@@ -1,0 +1,2 @@
+PACKAGE=discover
+BUILD_MODE=cmake

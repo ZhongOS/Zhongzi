@@ -1,0 +1,2 @@
+PACKAGE=libpng
+BUILD_MODE=custom

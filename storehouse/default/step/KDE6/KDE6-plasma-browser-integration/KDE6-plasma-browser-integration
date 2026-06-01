@@ -1,0 +1,2 @@
+PACKAGE=KDE6-plasma-browser-integration
+BUILD_MODE=cmake

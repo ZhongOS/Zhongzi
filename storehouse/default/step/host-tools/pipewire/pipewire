@@ -1,0 +1,2 @@
+PACKAGE=pipewire
+BUILD_MODE=meson

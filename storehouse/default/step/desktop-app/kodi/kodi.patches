@@ -1,0 +1,9 @@
+p1 0001-kodi-fix-build-error-for-gcc-14.patch
+p1 0001-fix-xbmc-Settings-undefine-error.patch
+p1 0001-change-font-setting-from-Default-to-Arial.patch
+
+[[[21.2-Omega]]]
+p1 0001-kodi-fix-build-error-for-gcc-14.patch
+p1 0001-fix-xbmc-Settings-undefine-error.patch
+p1 0002-kodi-internal-spdlog-update-to-1.12.0.patch
+p1 0001-change-font-setting-from-Default-to-Arial.patch

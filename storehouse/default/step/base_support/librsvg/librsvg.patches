@@ -1,0 +1,9 @@
+p1	0001-librsvg-2.59.91-fix-for-cross-build.patch
+p1	0001-add-sysroot-for-rust-cross-build.patch
+
+[[[2.59.90]]]
+p1	0001-librsvg-2.58.94-fix-for-cross-build.patch
+
+[[[2.58.0]]]
+# p1 0001-librsvg-2.54.5-fix-loongarch64-support.patch
+p1 0001-librsvg-fix-gdk-pixbuf-dir-for-cross-build.patch

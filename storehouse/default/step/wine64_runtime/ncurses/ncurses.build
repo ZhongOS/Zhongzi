@@ -1,0 +1,22 @@
+<<<TAR_UNCOMPRESS>>>
+	./configure --prefix=/usr --libdir=/usr/lib64 --build=${CROSS_HOST} \
+	            --host=${X86_64_HOST} --with-shared --without-debug \
+	            --without-normal --enable-pc-files --without-ada \
+	            --with-pkg-config-libdir=/usr/lib64/pkgconfig --enable-widec \
+	            --disable-stripping
+	<<<MAKE>>>
+	make DESTDIR=${X86_64_SYSROOT_DIR} install
+	
+	for lib in ncurses form panel menu ; do
+	    rm -vf                    ${X86_64_SYSROOT_DIR}/usr/lib64/lib${lib}.so
+	    echo "INPUT(-l${lib}w)" > ${X86_64_SYSROOT_DIR}/usr/lib64/lib${lib}.so
+	    ln -sfv ${lib}w.pc        ${X86_64_SYSROOT_DIR}/usr/lib64/pkgconfig/${lib}.pc
+	done
+	
+	rm -vf  ${X86_64_SYSROOT_DIR}/usr/lib64/libcursesw.so
+	echo "INPUT(-lncursesw)" > ${X86_64_SYSROOT_DIR}/usr/lib64/libcursesw.so
+	ln -sfv libncurses.so      ${X86_64_SYSROOT_DIR}/usr/lib64/libcurses.so
+	rm -fv ${X86_64_SYSROOT_DIR}/usr/lib64/libncurses++w.a
+<<<CLEAR_DIR>>>
+cp -v ${X86_64_SYSROOT_DIR}/usr/bin/ncursesw6-config ${CROSS_TOOLS_PREFIX}/bin/
+sed -i "s@-L\$libdir@@g" ${CROSS_TOOLS_PREFIX}/bin/ncursesw6-config

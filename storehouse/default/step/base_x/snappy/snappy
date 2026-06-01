@@ -1,0 +1,2 @@
+PACKAGE=snappy
+BUILD_MODE=cmake

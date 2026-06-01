@@ -1,0 +1,11 @@
+p1 0001-Add-loongarch-architecture-support.patch
+# p1 0003-Hygiene.patch
+# p1 0004-update-Makefile.patch
+# p1 0005-add-Ispecific-Isqrtf.patch
+# p1 0006-Share-some-duplicate-files-with-riscv.patch
+
+[[[5.0.0]]]
+p1 ocaml-5.0.0-add-loongarch64-support.patch
+
+[[[4.999.0]]]
+p1 0001-Add-qemu-wrap-for-cross-build.patch

@@ -1,0 +1,1 @@
+EXTRA_PARM=-DXSLTPROC_EXECUTABLE=/bin/xsltproc

@@ -1,0 +1,2 @@
+PACKAGE=openvdb
+BUILD_MODE=cmake

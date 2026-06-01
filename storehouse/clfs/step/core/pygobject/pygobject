@@ -1,0 +1,2 @@
+PACKAGE=pygobject
+BUILD_MODE=custom

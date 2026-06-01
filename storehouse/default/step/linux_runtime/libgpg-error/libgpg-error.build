@@ -1,0 +1,4 @@
+<<<TAR_UNCOMPRESS>>>
+    ./configure ${COMMON_CONFIG} --enable-install-gpg-error-config
+    <<<MAKE_AND_INSTALL>>>
+<<<CLEAR_DIR>>>

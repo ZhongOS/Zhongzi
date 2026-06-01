@@ -1,0 +1,2 @@
+PACKAGE=libdecor
+BUILD_MODE=meson

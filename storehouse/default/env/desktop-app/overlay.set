@@ -1,0 +1,3 @@
+overlay_dir=desk_app
+parent_dirs=sysroot
+# parent_dirs=game_emu java_runtime sysroot

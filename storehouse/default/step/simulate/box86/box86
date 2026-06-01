@@ -1,0 +1,2 @@
+PACKAGE=box86
+BUILD_MODE=cmake

@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kparts
+BUILD_MODE=cmake

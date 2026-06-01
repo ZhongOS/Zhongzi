@@ -1,0 +1,1 @@
+EXTRA_PARM=--libexecdir=/usr/lib/lightdm --sbindir=/usr/bin --with-libxklavier --enable-kill-on-sigterm --disable-libido --disable-libindicator --disable-maintainer-mode

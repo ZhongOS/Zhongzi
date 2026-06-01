@@ -1,0 +1,6 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+        <<<HOST_TOOLS_PREFIX>>>/bin/perl Build.PL
+	./Build
+	./Build install
+<<<CLEAR_DIR>>>

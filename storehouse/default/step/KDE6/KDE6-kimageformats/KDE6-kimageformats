@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kimageformats
+BUILD_MODE=cmake

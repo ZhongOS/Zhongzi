@@ -1,0 +1,5 @@
+
+
+[[[1.1.0]]]
+p1 0001-rapidjson-1.1.0-remove-march-native-flag-for-cross-b.patch
+p1 rapidjson-1.1.0-c++20.patch

@@ -1,0 +1,2 @@
+PACKAGE=emacs
+BUILD_MODE=custom

@@ -1,0 +1,2 @@
+PACKAGE=xf86-input-evdev
+BUILD_MODE=gnu

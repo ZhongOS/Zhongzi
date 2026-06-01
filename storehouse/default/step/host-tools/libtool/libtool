@@ -1,0 +1,2 @@
+PACKAGE=libtool
+BUILD_MODE=gnu

@@ -1,0 +1,5 @@
+<<<TAR_UNCOMPRESS>>>
+	python3 configure.py --bootstrap
+#	install -vm755 ninja <<<CROSS_TOOLS_PREFIX>>>/bin/
+	install -vm755 ninja ${PREFIX}/bin/
+<<<CLEAR_DIR>>>

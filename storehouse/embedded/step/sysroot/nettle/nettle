@@ -1,0 +1,2 @@
+PACKAGE=nettle
+BUILD_MODE=gnu

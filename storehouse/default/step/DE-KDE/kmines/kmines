@@ -1,0 +1,2 @@
+PACKAGE=kmines
+BUILD_MODE=cmake

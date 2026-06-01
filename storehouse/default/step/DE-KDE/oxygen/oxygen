@@ -1,0 +1,2 @@
+PACKAGE=oxygen
+BUILD_MODE=cmake

@@ -1,0 +1,2 @@
+PACKAGE=KDE6-attica
+BUILD_MODE=cmake

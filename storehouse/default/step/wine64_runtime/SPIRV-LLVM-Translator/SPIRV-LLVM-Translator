@@ -1,0 +1,2 @@
+PACKAGE=SPIRV-LLVM-Translator
+BUILD_MODE=custom

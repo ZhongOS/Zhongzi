@@ -1,0 +1,5 @@
+<<<TAR_UNCOMPRESS>>>
+	sed -i "s@ uname @ cross-uname @g" Makefile{,.common}
+	<<<MAKE>>> CC=${CROSS_TARGET}-gcc CXX=${CROSS_TARGET}-g++ PTR64=1
+	cp -a mame2003_plus_libretro.so ${SYSROOT_DIR}/usr/share/retroarch/cores/
+<<<CLEAR_DIR>>>

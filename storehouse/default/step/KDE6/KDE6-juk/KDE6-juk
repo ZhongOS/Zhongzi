@@ -1,0 +1,2 @@
+PACKAGE=KDE6-juk
+BUILD_MODE=cmake

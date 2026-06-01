@@ -1,0 +1,2 @@
+PACKAGE=vdpau-driver
+BUILD_MODE=gnu

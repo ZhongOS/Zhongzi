@@ -1,0 +1,2 @@
+PACKAGE=avahi
+BUILD_MODE=custom

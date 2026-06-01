@@ -1,0 +1,5 @@
+<<<TAR_UNCOMPRESS>>>
+    ./configure ${COMMON_CONFIG}
+    make DESTDIR=${SYSROOT_DIR} install
+    cp -v ${SYSROOT_DIR}/usr/share/aclocal/xorg-macros.m4 ${CROSSTOOLS_DIR}/share/aclocal/
+<<<CLEAR_DIR>>>

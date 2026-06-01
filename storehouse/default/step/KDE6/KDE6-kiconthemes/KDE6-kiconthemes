@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kiconthemes
+BUILD_MODE=cmake

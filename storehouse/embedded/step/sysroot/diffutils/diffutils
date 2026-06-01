@@ -1,0 +1,2 @@
+PACKAGE=diffutils
+BUILD_MODE=gnu

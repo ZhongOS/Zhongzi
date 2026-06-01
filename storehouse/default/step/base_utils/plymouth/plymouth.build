@@ -1,0 +1,6 @@
+<<<TAR_UNCOMPRESS>>>
+    cp ${CROSSTOOLS_DIR}/share/automake-1.16/config.* build-tools/
+    sed -i "/linux\/fs.h/d" src/libply/ply-utils.c
+    ./configure ${COMMON_CONFIG}
+    <<<MAKE_AND_INSTALL>>>
+<<<CLEAR_DIR>>>

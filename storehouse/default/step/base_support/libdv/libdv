@@ -1,0 +1,2 @@
+PACKAGE=libdv
+BUILD_MODE=gnu

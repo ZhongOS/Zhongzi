@@ -1,0 +1,5 @@
+<<<TAR_UNCOMPRESS>>>
+    cp fontconfig/*.conf ${SYSROOT_DIR}/usr/share/fontconfig/conf.avail/
+    install -dv ${SYSROOT_DIR}/usr/share/fonts/DejaVu/
+    cp -v ttf/* ${SYSROOT_DIR}/usr/share/fonts/DejaVu/
+<<<CLEAR_DIR>>>

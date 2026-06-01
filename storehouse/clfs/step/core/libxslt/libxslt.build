@@ -1,0 +1,1 @@
+EXTRA_PARM=$(if [ -f ${SYSROOT_DIR}/usr/bin/python3 ]; then echo PYTHON=python3; else echo --with-python=no; fi)

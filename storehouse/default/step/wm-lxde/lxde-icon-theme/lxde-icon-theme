@@ -1,0 +1,2 @@
+PACKAGE=lxde-icon-theme
+BUILD_MODE=gnu

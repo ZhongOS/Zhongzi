@@ -1,0 +1,2 @@
+PACKAGE=gnutls
+BUILD_MODE=gnu

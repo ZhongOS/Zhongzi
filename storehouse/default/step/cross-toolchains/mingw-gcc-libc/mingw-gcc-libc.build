@@ -1,0 +1,21 @@
+<<<TAR_UNCOMPRESS>>>
+        MINGW_HOST=$(archname_to_triple "$(get_user_set_env target ${MINGW_HOST})" "${MINGW_HOST}")
+        INSTALL_ARCH_NAME="mingw64ucrt"
+        INSTALL_ARCH_NAME=$(archname_to_name "$(get_user_set_env target ${MINGW_HOST})" "${MINGW_HOST}")
+
+	mkdir -p tools-build-all
+	pushd tools-build-all
+		../configure --prefix=${PREFIX}/${MINGW_HOST} --build=${CROSS_HOST} --host=${CROSS_HOST} \
+			     --target=${MINGW_HOST} --disable-nls \
+                             --with-mpfr=<<<CROSS_TOOLS_PREFIX>>> --with-gmp=<<<CROSS_TOOLS_PREFIX>>> \
+                             --with-mpc=<<<CROSS_TOOLS_PREFIX>>> \
+                             --with-sysroot=${SYSROOT_DIR}/usr/lib/${INSTALL_ARCH_NAME}/sys-root \
+                             --with-system-zlib \
+			     --disable-multilib --enable-c99 \
+		             --enable-languages=c,c++,fortran,objc,obj-c++,lto
+		<<<MAKE>>>
+		make install-strip
+	popd
+	ln -sf ${MINGW_HOST}-gcc ${PREFIX}/${MINGW_HOST}/bin/${MINGW_HOST}-cc
+        rm -fv $(dirname $(realpath $(${PREFIX}/${MINGW_HOST}/bin/${MINGW_HOST}-gcc -print-file-name=libssp.a)))/libssp*
+<<<CLEAR_DIR>>>

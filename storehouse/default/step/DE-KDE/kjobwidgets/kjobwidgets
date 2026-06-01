@@ -1,0 +1,2 @@
+PACKAGE=kjobwidgets
+BUILD_MODE=cmake

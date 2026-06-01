@@ -1,0 +1,10 @@
+<<<TAR_UNCOMPRESS>>>
+    for config_i in $(find -name "config.sub")
+    do
+            cp -a -f $(automake --print-libdir)/config.{sub,guess} $(dirname ${config_i})/
+    done
+
+    ./configure ${COMMON_CONFIG} --with-TERM=screen
+    <<<MAKE_AND_INSTALL>>>
+    install -m 644 example_tmux.conf ${SYSROOT_DIR}/etc/example_tmux.conf
+<<<CLEAR_DIR>>>

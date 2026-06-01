@@ -1,0 +1,23 @@
+<<<TAR_UNCOMPRESS>>>
+	CFLAGS="${CFLAGS} -fPIC"
+	./configure --prefix=<<<CROSS_TOOLS_PREFIX>>> --with-platlibdir=lib64 \
+	            --disable-shared --with-system-expat --with-system-ffi \
+	            --with-ensurepip=yes --enable-optimizations \
+	            ac_cv_broken_sem_getvalue=yes LIBSQLITE3_LIBS="-L${CROSSTOOLS_DIR}/lib${LIB_SUFF} -Wl,-rpath=${CROSSTOOLS_DIR}/lib${LIB_SUFF} -lsqlite3"
+	<<<MAKE_AND_INSTALL>>>
+
+#	echo "${PACKAGE_VERSION%\.*}" > ${COMMON_DIR}/Python3.version
+	save_package_version Python3 "${PACKAGE_VERSION%\.*}"
+	PYTHON_VERSION="<<<PYTHON_VERSION>>>"
+
+	sed -i "s@-lutil @@g" <<<CROSS_TOOLS_PREFIX>>>/bin/python<<<PYTHON_VERSION>>>-config
+
+#	PYTHON_EXT="$(python3-config --extension-suffix | grep -o "$(echo <<<PYTHON_VERSION>>> | sed "s@\.@@g")\(.*\).so" | sed "s@^$(echo <<<PYTHON_VERSION>>> | sed "s@\.@@g")@@g" | sed "s@\.so\$@@g" | sed "s@^-@@g")"
+#	cp <<<CROSS_TOOLS_PREFIX>>>/lib64/python<<<PYTHON_VERSION>>>/_sysconfigdata__linux_{${PYTHON_EXT},${CROSS_TARGET}}.py
+#	sed -i -e "/'CC'/s@'gcc@'${CROSS_TARGET}-gcc@g" \
+#	       -e "/'CXX'/s@'g++@'${CROSS_TARGET}-g++@g" \
+#	       -e "/'LDSHARED'/s@'gcc@'${CROSS_TARGET}-gcc@g" \
+#	       -e "/'SOABI'/s@-$(uname -m)-linux-gnu@@g" \
+#	       -e "/'EXT_SUFFIX'/s@-$(uname -m)-linux-gnu@@g" \
+#	       <<<CROSS_TOOLS_PREFIX>>>/lib64/python<<<PYTHON_VERSION>>>/_sysconfigdata__linux_${CROSS_TARGET}.py
+<<<CLEAR_DIR>>>

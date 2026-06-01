@@ -1,0 +1,15 @@
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+    pushd src
+#        sed -i "s@error=discarded-qualifiers@@g" configure
+	CFLAGS="${CFLAGS} -std=gnu17" \
+        ./configure ${COMMON_CONFIG} --runstatedir=/run \
+                    --with-system-ss --with-system-verto=no \
+                    --enable-dns-for-realm \
+                    krb5_cv_attr_constructor_destructor=yes,yes \
+                    ac_cv_func_regcomp=yes ac_cv_printf_positional=yes
+        <<<MAKE_AND_INSTALL>>>
+    popd
+<<<CLEAR_DIR>>>
+cp -v ${LINUX_SYSROOT_DIR}/usr/bin/krb5-config ${CROSS_TOOLS_PREFIX}/bin/
+sed -i "s@-L\$libdir@@g" ${CROSS_TOOLS_PREFIX}/bin/krb5-config

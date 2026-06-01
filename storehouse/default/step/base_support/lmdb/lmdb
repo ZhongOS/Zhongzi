@@ -1,0 +1,2 @@
+PACKAGE=lmdb
+BUILD_MODE=custom

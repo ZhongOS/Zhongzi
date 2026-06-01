@@ -1,0 +1,4 @@
+# PACKAGE=python-certifi
+# BUILD_MODE=python
+PACKAGE=certifi
+BUILD_MODE=pip

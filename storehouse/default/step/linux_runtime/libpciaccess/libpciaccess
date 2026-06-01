@@ -1,0 +1,6 @@
+PACKAGE=libpciaccess
+BUILD_MODE=meson
+
+[[[0.17]]]
+PACKAGE=libpciaccess
+BUILD_MODE=gnu

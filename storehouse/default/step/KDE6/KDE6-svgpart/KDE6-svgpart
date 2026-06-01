@@ -1,0 +1,2 @@
+PACKAGE=KDE6-svgpart
+BUILD_MODE=cmake

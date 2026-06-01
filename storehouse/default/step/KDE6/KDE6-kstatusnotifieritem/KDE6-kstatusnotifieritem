@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kstatusnotifieritem
+BUILD_MODE=cmake

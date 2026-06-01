@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kactivities
+BUILD_MODE=cmake

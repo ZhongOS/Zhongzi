@@ -1,0 +1,11 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+	mkdir cross-build
+	pushd cross-build
+		meson ${MESON_CONFIG} <<<EXTRA_PARM>>> \
+                      ..
+		ninja
+		DESTDIR=${CROSS_TOOLS_PREFIX}/sys-root ninja install
+	popd
+	rm -f ${CROSS_TOOLS_PREFIX}/sys-root/mingw/lib/*.la
+<<<CLEAR_DIR>>>

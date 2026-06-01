@@ -1,0 +1,2 @@
+PACKAGE=xdg-desktop-portal
+BUILD_MODE=meson

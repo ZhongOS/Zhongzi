@@ -1,0 +1,105 @@
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+#    LDFLAGS="" \
+    PKG_CONFIG_SYSROOT_DIR="" \
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var \
+                --host=${CROSS_TARGET} \
+                --local-rust-root=${CROSSTOOLS_DIR} \
+#                 --enable-extended --enable-vendor --release-channel=stable \
+		--enable-extended --enable-vendor --disable-docs --release-channel=dev \
+                --disable-codegen-tests --experimental-targets="" \
+		--enable-llvm-static-stdcpp --enable-cargo-native-static --disable-llvm-link-shared
+# #    LDFLAGS="-static" \
+	export CARGO_TARGET_$(echo ${CROSS_TARGET^^} | tr '-' '_')_RUSTFLAGS="$RUSTFLAGS -C link-args=-static -C link-args=-lz -C link-args=-lzstd -C link-args=-lLLVM -Ccode-model=medium"
+    PKG_CONFIG_SYSROOT_DIR="" \
+# #    RUSTFLAGS="$RUSTFLAGS -C link-args=-lz" \
+# #    RUSTFLAGS="$RUSTFLAGS -C link-args=-static -C link-args=-lz -C link-args=-Wl,-rpath=${CROSSTOOLS_DIR}/lib:${CROSSTOOLS_DIR}/lib64:${CROSSTOOLS_DIR}/build-tools/lib:${CROSSTOOLS_DIR}/build-tools/lib64:/usr/lib:/usr/lib64" \
+#    HOST_RUSTFLAGS="$RUSTFLAGS -C link-args=-lz -C link-args=-Wl,-rpath=${CROSSTOOLS_DIR}/lib:${CROSSTOOLS_DIR}/lib64:${CROSSTOOLS_DIR}/build-tools/lib:${CROSSTOOLS_DIR}/build-tools/lib64:/usr/lib:/usr/lib64" \
+# #    CARGO_TARGET_LOONGARCH64_UNKNOWN_LINUX_GNU_RUSTFLAGS="$RUSTFLAGS -C link-args=-static -C link-args=-lz" \
+    <<<MAKE>>> HOST_CC="gcc" CC="${CROSS_TARGET}-gcc" \
+         HOST_CXX="g++" CXX="${CROSS_TARGET}-g++" \
+         LOONGARCH64_UNKNOWN_LINUX_GNU_OPENSSL_INCLUDE_DIR=${SYSROOT_DIR}/usr/include \
+         LOONGARCH64_UNKNOWN_LINUX_GNU_OPENSSL_LIB_DIR=${SYSROOT_DIR}/usr/lib64
+# #    LDFLAGS="-static" \
+    PKG_CONFIG_SYSROOT_DIR="" \
+# #    RUSTFLAGS="$RUSTFLAGS -C link-args=-lz" \
+# #    RUSTFLAGS="$RUSTFLAGS -C link-args=-static -C link-args=-lz -C link-args=-Wl,-rpath=${CROSSTOOLS_DIR}/lib:${CROSSTOOLS_DIR}/lib64:${CROSSTOOLS_DIR}/build-tools/lib:${CROSSTOOLS_DIR}/build-tools/lib64:/usr/lib:/usr/lib64" \
+#    HOST_RUSTFLAGS="$RUSTFLAGS -C link-args=-lz -C link-args=-Wl,-rpath=${CROSSTOOLS_DIR}/lib:${CROSSTOOLS_DIR}/lib64:${CROSSTOOLS_DIR}/build-tools/lib:${CROSSTOOLS_DIR}/build-tools/lib64:/usr/lib:/usr/lib64" \
+# #    CARGO_TARGET_LOONGARCH64_UNKNOWN_LINUX_GNU_RUSTFLAGS="$RUSTFLAGS -C link-args=-static -C link-args=-lz" \
+    <<<MAKE>>> HOST_CC="gcc" CC="${CROSS_TARGET}-gcc" \
+         HOST_CXX="g++" CXX="${CROSS_TARGET}-g++" \
+         LOONGARCH64_UNKNOWN_LINUX_GNU_OPENSSL_INCLUDE_DIR=${SYSROOT_DIR}/usr/include \
+         LOONGARCH64_UNKNOWN_LINUX_GNU_OPENSSL_LIB_DIR=${SYSROOT_DIR}/usr/lib64 \
+         dist
+    mkdir -pv ${DIST_DIRECTORY}/host/${ARCH_NAME}/rust/$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")/
+    find build/dist -name "*.xz" -exec mv -v '{}' ${DIST_DIRECTORY}/host/${ARCH_NAME}/rust/$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")/ ';'
+<<<CLEAR_DIR>>>
+
+
+[[[1.70.0]]]
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+    cargo update -p cargo
+    find vendor -name .cargo-checksum.json \
+          -exec sed -i.uncheck -e 's/"files":{[^}]*}/"files":{ }/' '{}' '+'
+    LDFLAGS="" \
+    PKG_CONFIG_SYSROOT_DIR="" \
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var \
+                --host=${CROSS_TARGET} \
+                --local-rust-root=${CROSSTOOLS_DIR} \
+                --enable-extended --enable-vendor --release-channel=stable \
+                --disable-codegen-tests --experimental-targets=""
+    LDFLAGS="" \
+    PKG_CONFIG_SYSROOT_DIR="" \
+    RUSTFLAGS="$RUSTFLAGS -C link-args=-lz" \
+    <<<MAKE>>> HOST_CC="gcc" CC="${CROSS_TARGET}-gcc" \
+         HOST_CXX="g++" CXX="${CROSS_TARGET}-g++" \
+         LOONGARCH64_UNKNOWN_LINUX_GNU_OPENSSL_INCLUDE_DIR=${SYSROOT_DIR}/usr/include \
+         LOONGARCH64_UNKNOWN_LINUX_GNU_OPENSSL_LIB_DIR=${SYSROOT_DIR}/usr/lib64
+    LDFLAGS="" \
+    PKG_CONFIG_SYSROOT_DIR="" \
+    RUSTFLAGS="$RUSTFLAGS -C link-args=-lz" \
+    <<<MAKE>>> HOST_CC="gcc" CC="${CROSS_TARGET}-gcc" \
+         HOST_CXX="g++" CXX="${CROSS_TARGET}-g++" \
+         LOONGARCH64_UNKNOWN_LINUX_GNU_OPENSSL_INCLUDE_DIR=${SYSROOT_DIR}/usr/include \
+         LOONGARCH64_UNKNOWN_LINUX_GNU_OPENSSL_LIB_DIR=${SYSROOT_DIR}/usr/lib64 \
+         dist
+    mkdir -pv ${DIST_DIRECTORY}/host/${ARCH_NAME}/rust/$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")/
+    find build/dist -name "*.xz" -exec mv -v '{}' ${DIST_DIRECTORY}/host/${ARCH_NAME}/rust/$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")/ ';'
+<<<CLEAR_DIR>>>
+
+
+[[[1.69.0]]]
+<<<TAR_UNCOMPRESS>>>
+    rm -rf src/llvm-project
+    tar xvf ${RESOURCEDIR}/files/llvm-project-16.0.4.src.tar.xz -C src/
+    mv src/llvm-project-16.0.4.src src/llvm-project
+    <<<PATCH>>>
+    sed -i "s@ifdef LLVM_RUSTLLVM@if 0@g" compiler/rustc_llvm/llvm-wrapper/PassWrapper.cpp
+    find vendor -name .cargo-checksum.json \
+          -exec sed -i.uncheck -e 's/"files":{[^}]*}/"files":{ }/' '{}' '+'
+    LDFLAGS="" \
+    PKG_CONFIG_SYSROOT_DIR="" \
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var \
+                --host=${CROSS_TARGET} \
+                --local-rust-root=${CROSSTOOLS_DIR} \
+                --enable-extended --enable-vendor --release-channel=stable \
+                --disable-codegen-tests --experimental-targets="LoongArch"
+    LDFLAGS="" \
+    PKG_CONFIG_SYSROOT_DIR="" \
+    RUSTFLAGS="$RUSTFLAGS -C link-args=-lz" \
+    <<<MAKE>>> HOST_CC="gcc" CC="${CROSS_TARGET}-gcc" \
+         HOST_CXX="g++" CXX="${CROSS_TARGET}-g++" \
+         LOONGARCH64_UNKNOWN_LINUX_GNU_OPENSSL_INCLUDE_DIR=${SYSROOT_DIR}/usr/include \
+         LOONGARCH64_UNKNOWN_LINUX_GNU_OPENSSL_LIB_DIR=${SYSROOT_DIR}/usr/lib64
+    LDFLAGS="" \
+    PKG_CONFIG_SYSROOT_DIR="" \
+    RUSTFLAGS="$RUSTFLAGS -C link-args=-lz" \
+    <<<MAKE>>> HOST_CC="gcc" CC="${CROSS_TARGET}-gcc" \
+         HOST_CXX="g++" CXX="${CROSS_TARGET}-g++" \
+         LOONGARCH64_UNKNOWN_LINUX_GNU_OPENSSL_INCLUDE_DIR=${SYSROOT_DIR}/usr/include \
+         LOONGARCH64_UNKNOWN_LINUX_GNU_OPENSSL_LIB_DIR=${SYSROOT_DIR}/usr/lib64 \
+         dist
+    mkdir -pv ${DIST_DIRECTORY}/host/${ARCH_NAME}/rust/$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")/
+    find build/dist -name "*.xz" -exec mv -v '{}' ${DIST_DIRECTORY}/host/${ARCH_NAME}/rust/$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")/ ';'
+<<<CLEAR_DIR>>>

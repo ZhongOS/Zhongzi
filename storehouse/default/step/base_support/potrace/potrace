@@ -1,0 +1,2 @@
+PACKAGE=potrace
+BUILD_MODE=gnu

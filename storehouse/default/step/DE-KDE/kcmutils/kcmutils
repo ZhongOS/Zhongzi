@@ -1,0 +1,2 @@
+PACKAGE=kcmutils
+BUILD_MODE=custom

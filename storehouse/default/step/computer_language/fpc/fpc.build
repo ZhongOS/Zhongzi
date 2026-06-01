@@ -1,0 +1,7 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<MAKE>>> FPC=/usr/bin/fpc CPU_TARGET=${ARCH_NAME} OS_TARGET=linux BINUTILSPREFIX=${CROSS_TARGET}- all
+	make FPC=/usr/bin/fpc CPU_TARGET=${ARCH_NAME} OS_TARGET=linux BINUTILSPREFIX=${CROSS_TARGET}- PREFIX=${PWD}/fpc-$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")-${ARCH_NAME} install
+	mv -v fpc-$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")-${ARCH_NAME}/lib/fpc/*/ppc* fpc-$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")-${ARCH_NAME}/bin/
+	mkdir -pv ${DIST_DIRECTORY}/host/${ARCH_NAME}/fpc/$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")/
+	tar -cJf ${DIST_DIRECTORY}/host/${ARCH_NAME}/fpc/$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")/fpc-$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")-${ARCH_NAME}.tar.xz fpc-$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")-${ARCH_NAME}
+<<<CLEAR_DIR>>>

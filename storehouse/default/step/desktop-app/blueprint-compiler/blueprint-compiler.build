@@ -1,0 +1,14 @@
+<<<TAR_UNCOMPRESS>>>
+        <<<PATCH>>>
+        mkdir cross-build
+        pushd cross-build
+                meson ${MESON_CONFIG} \
+                      ..
+                sed -i "s@gi-docgen \(index\|generate\|gen-index\|gen-deps\|search\|check\|serve\) @& --add-include-path ${SYSROOT_DIR}/usr/share/gir-1.0/ @g" build.ninja
+                <<<NINJA_AND_INSTALL>>>
+        popd
+        rm -f ${SYSROOT_DIR}/usr/lib64/*.la
+<<<CLEAR_DIR>>>
+cp -a ${SYSROOT_DIR}/usr/bin/blueprint-compiler ${CROSSTOOLS_DIR}/bin/
+sed -i "/^libdir/s@r\"/usr/lib@r\"${SYSROOT_DIR}/usr/lib@g" ${CROSSTOOLS_DIR}/bin/blueprint-compiler
+sed -i "s@env python3@env ${CROSS_TARGET}-python3@g" ${CROSSTOOLS_DIR}/bin/blueprint-compiler

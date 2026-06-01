@@ -1,0 +1,2 @@
+PACKAGE=ImageMagick
+BUILD_MODE=gnu

@@ -1,0 +1,5 @@
+<<<TAR_UNCOMPRESS>>>
+    ./configure ${COMMON_CONFIG}
+    <<<MAKE_AND_INSTALL>>>
+    cp -av ${SYSROOT_DIR}/bin/libgcrypt-config ${CROSSTOOLS_DIR}/bin/
+<<<CLEAR_DIR>>>

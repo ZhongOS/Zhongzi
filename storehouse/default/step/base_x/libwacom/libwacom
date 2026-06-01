@@ -1,0 +1,2 @@
+PACKAGE=libwacom
+BUILD_MODE=meson

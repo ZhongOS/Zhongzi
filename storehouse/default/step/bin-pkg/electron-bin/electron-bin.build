@@ -1,0 +1,5 @@
+<<<TAR_UNCOMPRESS>>>
+	mkdir -p ${SYSROOT_DIR}/opt/electron-bin/bin
+	unzip ${RESOURCEDIR}/files/electron-v22.3.27-linux-loong64.zip -d ${SYSROOT_DIR}/opt/electron-bin/
+	ln -sv ../electron ${SYSROOT_DIR}/opt/electron-bin/bin/
+<<<CLEAR_DIR>>>

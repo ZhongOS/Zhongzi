@@ -1,0 +1,2 @@
+PACKAGE=taglib
+BUILD_MODE=cmake

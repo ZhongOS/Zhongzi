@@ -1,0 +1,11 @@
+<<<TAR_UNCOMPRESS>>>
+    sed -i 's:"/desktop:"/org:' schema/*.xml
+    mkdir cross-build
+    pushd cross-build
+        meson ${MESON_CONFIG} \
+              -Dgtk_doc=false -Dsystemd=disabled \
+              ..
+        CC="${CROSS_TARGET}-gcc" ninja
+        DESTDIR=${SYSROOT_DIR} ninja install
+    popd
+<<<CLEAR_DIR>>>

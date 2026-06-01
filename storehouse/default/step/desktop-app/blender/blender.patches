@@ -1,0 +1,11 @@
+p1	0001-blender-5.1.1-fix-for-Eigen-3.4.patch
+
+[[[4.5.3]]]
+p1	0001-blender-4.5.3-fix-for-ffmpeg-8.patch
+
+[[[4.4.3]]]
+# p1 0001-blender-fix-use-urllib-error.patch
+# p1 0001-blender-fix-for-python3.12.patch
+# p1 0001-blender-4.1-git-fix-for-gcc-14.patch
+# p1 0001-blender-fix-for-ffmpeg-7.patch
+p1 0002-blender-BLI-build-config-add-loongarch64-define.patch

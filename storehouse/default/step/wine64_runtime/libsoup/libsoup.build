@@ -1,0 +1,1 @@
+EXTRA_PARM=-Dvapi=disabled -Dgssapi=disabled -Dsysprof=disabled -Ddocs=disabled -Dintrospection=disabled -Dtests=false

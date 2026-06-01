@@ -1,0 +1,10 @@
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+    mkdir -p build
+    pushd build
+#         ../configure --cross-prefix=${MINGW_HOST}- --target-list=${ARCH_NAME}-softmmu --static
+        ../configure --cross-prefix=${MINGW_HOST}- --target-list=${ARCH_NAME}-softmmu
+        ninja
+	DESTDIR=${MINGW_SYSROOT_DIR} ninja install
+    popd
+<<<CLEAR_DIR>>>

@@ -1,0 +1,2 @@
+PACKAGE=stellarsolver
+BUILD_MODE=cmake

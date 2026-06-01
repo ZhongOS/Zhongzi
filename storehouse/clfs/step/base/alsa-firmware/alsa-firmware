@@ -1,0 +1,2 @@
+PACKAGE=alsa-firmware
+BUILD_MODE=gnu

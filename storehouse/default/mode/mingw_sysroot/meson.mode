@@ -1,0 +1,11 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+	mkdir cross-build
+	pushd cross-build
+# 		<<<CONFIG_ENV>>> meson ${MESON_CONFIG} --default-library=static <<<EXTRA_PARM>>> \
+		<<<CONFIG_ENV>>> meson ${MESON_CONFIG} --default-library=both <<<EXTRA_PARM>>> \
+                      ..
+		<<<NINJA_AND_INSTALL>>>
+	popd
+	rm -f ${MINGW_SYSROOT_DIR}/mingw/lib/*.la
+<<<CLEAR_DIR>>>

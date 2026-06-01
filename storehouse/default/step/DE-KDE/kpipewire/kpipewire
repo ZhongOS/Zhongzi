@@ -1,0 +1,2 @@
+PACKAGE=kpipewire
+BUILD_MODE=cmake

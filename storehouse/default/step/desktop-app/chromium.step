@@ -1,0 +1,10 @@
+NULL
+# # rust-bindgen@/host-tools|opt
+# llvm-project@/host-tools|%host=?x86_64;%target=?loongarch64;%PARENT=sysroot,x86_64_runtime
+# # compiler-rt@host-tools|chromium
+# # llvm_runtimes@host-tools|chromium
+# # rustc@/host-tools|%PARENT=sysroot
+chromium
+# # vscode
+
+NULL

@@ -1,0 +1,2 @@
+PACKAGE=KDE6-polkit-qt-1
+BUILD_MODE=cmake

@@ -1,0 +1,16 @@
+NULL
+
+yaml-cpp
+scikit-build-core
+pybind11-python
+pybind11
+
+qbs
+qt-creator
+
+# PurC
+# webkitgtk4.0
+# xGUI-Pro
+# HVML-FPM
+
+NULL

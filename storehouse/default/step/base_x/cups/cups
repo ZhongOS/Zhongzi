@@ -1,0 +1,2 @@
+PACKAGE=cups
+BUILD_MODE=custom

@@ -1,0 +1,2 @@
+PACKAGE=nftables
+BUILD_MODE=custom

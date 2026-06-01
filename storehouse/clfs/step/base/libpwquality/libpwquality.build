@@ -1,0 +1,26 @@
+<<<TAR_UNCOMPRESS>>>
+    cp -a -f $(automake --print-libdir)/config.{sub,guess} ./
+    _PYTHON_HOST_PLATFORM=linux-loongarch64 \
+    _PYTHON_SYSCONFIGDATA_NAME=_sysconfigdata__linux_${CROSS_TARGET} \
+    ./configure ${COMMON_CONFIG} --with-securedir=/usr/lib/security \
+                --with-python-binary=python3
+    _PYTHON_HOST_PLATFORM=linux-loongarch64 \
+    _PYTHON_SYSCONFIGDATA_NAME=_sysconfigdata__linux_${CROSS_TARGET} \
+    <<<MAKE>>>
+    _PYTHON_HOST_PLATFORM=linux-loongarch64 \
+    _PYTHON_SYSCONFIGDATA_NAME=_sysconfigdata__linux_${CROSS_TARGET} \
+    make DESTDIR=${SYSROOT_DIR} install
+<<<CLEAR_DIR>>>
+
+[[[1.4.4]]]
+<<<TAR_UNCOMPRESS>>>
+    cp -v ${CROSSTOOLS_DIR}/share/automake-*/config.* ./
+    ./autogen.sh
+    _PYTHON_SYSCONFIGDATA_NAME=_sysconfigdata__linux_${CROSS_TARGET} \
+    ./configure ${COMMON_CONFIG} --with-securedir=/usr/lib/security \
+                --with-python-binary=python3
+    _PYTHON_SYSCONFIGDATA_NAME=_sysconfigdata__linux_${CROSS_TARGET} \
+    <<<MAKE>>>
+    _PYTHON_SYSCONFIGDATA_NAME=_sysconfigdata__linux_${CROSS_TARGET} \
+    make DESTDIR=${SYSROOT_DIR} install
+<<<CLEAR_DIR>>>

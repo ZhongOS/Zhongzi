@@ -1,0 +1,41 @@
+rm -f <OVERLAY_SYSROOT_DIR>/usr/lib${LIB_SUFF}/perl5/5.4x/site_perl/auto/XML/Parser/.packlist
+rm -f <OVERLAY_SYSROOT_DIR>/usr/lib${LIB_SUFF}/perl5/5.4x/site_perl/auto/URI/.packlist
+rm -f <OVERLAY_SYSROOT_DIR>/usr/lib/rustlib/install.log
+
+# sed -i -e "s@${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-@/usr/bin/@g" \
+
+touch ${TEMP_DIRECTORY}/strip-foo
+
+# sed -i.sed_fix \
+# 	-e "s@bin/${CROSS_TARGET}-@bin/@g" \
+# 	-e "s@${CROSSTOOLS_DIR}/bin@/usr/bin@g" \
+# 	-e "s@${HOST_TOOLS_DIR}/bin@/usr/bin@g" \
+# 	-e "s@${SYSROOT_DIR}/lib@/usr/lib@g" \
+# 	-e "s@${SYSROOT_DIR}/usr@/usr@g" \
+# 	-e "s@${SYSROOT_DIR}@@g" \
+# 	$(file <OVERLAY_SYSROOT_DIR>/usr/{bin,sbin,libexec}/* | grep "text executable" | awk -F':' '{ print $1 }') \
+# 	$(find <OVERLAY_SYSROOT_DIR>/usr -type f -name "*.pc" \
+# 		-o -type f -name "*.cmake" \
+# 		-o -type f -name "Makefile*" \
+# 		-o -type f -name "*.service" \
+# 		-o -type f -name "*.pri" \
+# 		-o -type f -name "*.pl" \
+# 		-o -type f -name "*.desktop" \
+# 		) \
+# 		${TEMP_DIRECTORY}/strip-foo
+
+sed -i -e "s@${SYSROOT_DIR}@@g" \
+       -e "s@${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-@/usr/bin/@g" \
+       $(file <OVERLAY_SYSROOT_DIR>/usr/lib${LIB_SUFF}/rustlib/* | grep ASCII | awk -F':' '{ print $1 }') \
+       ${TEMP_DIRECTORY}/strip-foo
+
+
+sed -i -e "s@${CROSSTOOLS_DIR}/qt6/bin@/usr/bin@g" \
+       $(find <OVERLAY_SYSROOT_DIR>/usr/lib/ -type f -name "*.service") \
+       ${TEMP_DIRECTORY}/strip-foo
+
+if [ -d <OVERLAY_SYSROOT_DIR>/usr/lib${LIB_SUFF}/ ]; then
+        find <OVERLAY_SYSROOT_DIR>/usr/lib${LIB_SUFF}/ -type f -name "*.la" -exec rm '{}' ';'
+        find <OVERLAY_SYSROOT_DIR>/usr/lib${LIB_SUFF}/ -type f -name "*.prl" -exec rm '{}' ';'
+fi
+

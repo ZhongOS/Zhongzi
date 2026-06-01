@@ -1,0 +1,2 @@
+PACKAGE=krb5
+BUILD_MODE=custom

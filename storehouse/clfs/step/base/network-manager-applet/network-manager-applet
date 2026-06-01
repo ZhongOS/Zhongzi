@@ -1,0 +1,2 @@
+PACKAGE=network-manager-applet
+BUILD_MODE=meson

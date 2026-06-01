@@ -1,0 +1,2 @@
+PACKAGE=libevdev
+BUILD_MODE=gnu

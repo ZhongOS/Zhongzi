@@ -1,0 +1,2 @@
+PACKAGE=dconf-editor
+BUILD_MODE=custom

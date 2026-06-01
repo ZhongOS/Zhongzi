@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kinit
+BUILD_MODE=cmake

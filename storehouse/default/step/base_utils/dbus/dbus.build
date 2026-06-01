@@ -1,0 +1,10 @@
+<<<TAR_UNCOMPRESS>>>
+	./configure ${COMMON_CONFIG} --runstatedir=/run \
+	            --enable-user-session \
+	            --disable-static --disable-doxygen-docs --disable-xml-docs \
+	            --with-console-auth-dir=/run/console \
+	            --with-system-socket=/run/dbus/system_bus_socket
+	<<<MAKE_AND_INSTALL>>>
+	rm -f ${SYSROOT_DIR}/usr/lib64/libdbus*.la
+	chmod -v 4750 ${SYSROOT_DIR}/usr/libexec/dbus-daemon-launch-helper
+<<<CLEAR_DIR>>>

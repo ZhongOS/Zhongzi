@@ -1,0 +1,2 @@
+PACKAGE=cargo-c
+BUILD_MODE=custom

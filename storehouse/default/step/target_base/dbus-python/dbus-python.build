@@ -1,0 +1,10 @@
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+    autoreconf -ifv
+    mkdir python3
+    pushd python3
+        PYTHON=${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-python3 \
+        ../configure ${COMMON_CONFIG} --docdir=/usr/share/doc/dbus-python
+	<<<MAKE_AND_INSTALL>>>
+    popd
+<<<CLEAR_DIR>>>

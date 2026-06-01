@@ -1,0 +1,12 @@
+<<<TAR_UNCOMPRESS>>>
+	rm -rf gdb* libdecnumber readline sim
+	mkdir -p tools-build
+	pushd tools-build
+    		CC=gcc AR=ar AS=as CFLAGS=$([[ $(gcc -dumpversion) -ge 13 ]] && echo "${CFLAGS} -Wno-error=dangling-pointer" || echo "${CFLAGS}") \
+		../configure --prefix=${PREFIX}/${CROSS_TARGET} --build=${CROSS_HOST} --host=${CROSS_HOST} \
+	                     --target=${CROSS_TARGET} 
+	    	<<<MAKE>>> configure-host
+    		<<<MAKE>>>
+		make install-strip
+	popd
+<<<CLEAR_DIR>>>

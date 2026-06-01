@@ -1,0 +1,2 @@
+PACKAGE=openbabel
+BUILD_MODE=cmake

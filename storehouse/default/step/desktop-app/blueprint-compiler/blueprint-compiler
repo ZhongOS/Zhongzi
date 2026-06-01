@@ -1,0 +1,2 @@
+PACKAGE=blueprint-compiler
+BUILD_MODE=custom

@@ -1,0 +1,2 @@
+PACKAGE=imp3
+BUILD_MODE=pip

@@ -1,0 +1,2 @@
+PACKAGE=xmodmap
+BUILD_MODE=gnu

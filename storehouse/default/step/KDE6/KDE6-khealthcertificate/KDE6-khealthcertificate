@@ -1,0 +1,2 @@
+PACKAGE=KDE6-khealthcertificate
+BUILD_MODE=cmake

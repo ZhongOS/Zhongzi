@@ -1,0 +1,2 @@
+PACKAGE=libiscsi
+BUILD_MODE=gnu

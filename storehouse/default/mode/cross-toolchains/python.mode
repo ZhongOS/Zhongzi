@@ -1,0 +1,6 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+	export PATH=${PREFIX}/${LINUX_HOST}/bin:${PATH}
+	${PREFIX}/${LINUX_HOST}/bin/python3 setup.py build
+        ${PREFIX}/${LINUX_HOST}/bin/python3 setup.py install
+<<<CLEAR_DIR>>>

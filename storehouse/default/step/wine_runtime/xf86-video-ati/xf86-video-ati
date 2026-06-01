@@ -1,0 +1,2 @@
+PACKAGE=xf86-video-ati
+BUILD_MODE=gnu

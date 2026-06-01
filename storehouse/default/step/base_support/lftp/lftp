@@ -1,0 +1,2 @@
+PACKAGE=lftp
+BUILD_MODE=gnu

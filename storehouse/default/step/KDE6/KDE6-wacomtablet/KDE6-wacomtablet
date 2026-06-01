@@ -1,0 +1,2 @@
+PACKAGE=KDE6-wacomtablet
+BUILD_MODE=cmake

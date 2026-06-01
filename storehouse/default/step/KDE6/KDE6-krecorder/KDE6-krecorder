@@ -1,0 +1,2 @@
+PACKAGE=KDE6-krecorder
+BUILD_MODE=cmake

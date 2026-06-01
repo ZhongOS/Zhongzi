@@ -1,0 +1,3 @@
+PACKAGE=Catch2
+# BUILD_MODE=cmake
+BUILD_MODE=custom

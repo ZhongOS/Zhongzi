@@ -1,0 +1,2 @@
+PACKAGE=fstrcmp
+BUILD_MODE=custom

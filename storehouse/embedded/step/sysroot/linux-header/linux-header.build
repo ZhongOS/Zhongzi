@@ -1,0 +1,8 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+	make ARCH=${ARCH_FAMILY} mrproper
+	make ARCH=${ARCH_FAMILY} INSTALL_HDR_PATH=dest headers_install
+	find dest/include -name '.*' -delete
+	mkdir -pv ${SYSROOT_DIR}/usr/include
+	cp -rv dest/include/* ${SYSROOT_DIR}/usr/include
+<<<CLEAR_DIR>>>

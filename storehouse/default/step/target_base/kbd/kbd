@@ -1,0 +1,2 @@
+PACKAGE=kbd
+BUILD_MODE=custom

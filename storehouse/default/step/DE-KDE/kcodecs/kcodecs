@@ -1,0 +1,2 @@
+PACKAGE=kcodecs
+BUILD_MODE=cmake

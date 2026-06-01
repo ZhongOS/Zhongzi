@@ -1,0 +1,2 @@
+PACKAGE=libmypaint
+BUILD_MODE=custom

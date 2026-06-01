@@ -1,0 +1,2 @@
+PACKAGE=libXi
+BUILD_MODE=gnu

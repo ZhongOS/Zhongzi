@@ -1,0 +1,37 @@
+NULL
+binutils|%host=?
+gcc|%host=?
+linux-header|%host=?
+# compat_make|%host=?
+# compat_glibc|%host=?
+glibc|%host=?
+libxcrypt|%host=?
+gcc-libc|%host=?
+gmp|%host=?
+mpfr|%host=?
+mpc|%host=?
+zlib|%host=?
+zstd|%host=?
+
+NULL
+binutils|%target=loongarch32r
+gcc|%target=loongarch32r
+linux-header|%target=loongarch32r
+glibc|%target=loongarch32r
+libxcrypt|%target=loongarch32r
+gcc-libc|%target=loongarch32r
+gmp|%target=loongarch32r
+mpfr|%target=loongarch32r
+mpc|%target=loongarch32r
+zlib|%target=loongarch32r
+zstd|%target=loongarch32r
+
+NULL
+cross-binutils|%host=?;%target=loongarch32r;%shared=?1;gcc
+cross-gcc|%host=?;%target=loongarch32r;%shared=?1;gcc
+cross-elfutils|%host=?;%target=loongarch32r;%shared=?1;gcc
+cross-gcc-libc|%host=?;%target=loongarch32r;%shared=?1;gcc+libc
+
+NULL
+dist-cross-gcc|%host=?;%target=loongarch32r;%shared=?1;none_status;gcc
+dist-cross-gcc-libc|%host=?;%target=loongarch32r;%shared=?1;none_status;gcc+libc

@@ -1,0 +1,2 @@
+PACKAGE=virt-viewer
+BUILD_MODE=meson

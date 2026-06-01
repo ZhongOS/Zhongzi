@@ -1,0 +1,2 @@
+PACKAGE=fftw
+BUILD_MODE=custom

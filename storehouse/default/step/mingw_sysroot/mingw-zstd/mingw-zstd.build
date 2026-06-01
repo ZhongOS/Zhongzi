@@ -1,0 +1,15 @@
+<<<TAR_UNCOMPRESS>>>
+	pushd build/meson
+
+        mkdir cross-build
+        pushd cross-build
+#                 meson ${MESON_CONFIG} --default-library=static \
+                meson ${MESON_CONFIG} --default-library=both \
+                      ..
+                ninja
+                DESTDIR=${MINGW_SYSROOT_DIR} ninja install
+        popd
+        rm -f ${MINGW_SYSROOT_DIR}/mingw/lib/*.la
+
+	popd
+<<<CLEAR_DIR>>>

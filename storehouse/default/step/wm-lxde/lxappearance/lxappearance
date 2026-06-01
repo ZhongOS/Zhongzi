@@ -1,0 +1,2 @@
+PACKAGE=lxappearance
+BUILD_MODE=gnu

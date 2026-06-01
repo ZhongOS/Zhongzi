@@ -1,0 +1,13 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+	for config_i in $(find -name "config.sub")
+	do
+		cp -a -f $(automake --print-libdir)/config.{sub,guess} $(dirname ${config_i})/
+	done
+	if [ ! -f configure ]; then
+		autoreconf -ifv
+	fi
+	CHECK_GNU_MAKEFILE_DISABLE=1
+	./configure ${COMMON_CONFIG} --enable-malloc0returnsnull
+	<<<MAKE_AND_INSTALL>>>
+<<<CLEAR_DIR>>>

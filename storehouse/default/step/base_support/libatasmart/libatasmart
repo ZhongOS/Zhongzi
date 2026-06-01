@@ -1,0 +1,2 @@
+PACKAGE=libatasmart
+BUILD_MODE=gnu

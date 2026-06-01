@@ -1,0 +1,20 @@
+<<<TAR_UNCOMPRESS>>>
+        <<<PATCH>>>
+        for config_i in $(find -name "config.sub")
+        do
+                cp -a -f $(automake --print-libdir)/config.{sub,guess} $(dirname ${config_i})/
+        done
+        if [ ! -f configure ]; then
+                autoreconf -ifv
+        fi
+        ./configure --prefix=<<<CROSS_TOOLS_PREFIX>>> --build=${CROSS_HOST} \
+                --host=${CROSS_HOST} --target=${CROSS_TARGET} \
+                --with-pc_path=${SYSROOT_DIR}/usr/lib64/pkgconfig:${SYSROOT_DIR}/usr/share/pkgconfig --program-prefix=${CROSS_TARGET}- --with-internal-glib --disable-host-tool
+#        <<<MAKE_AND_INSTALL>>>
+	ln -sf pkgconf ${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-pkg-config
+
+
+
+#	mkdir -p ${CROSSTOOLS_DIR}/tmp/bin
+#	ln -sf /bin/pkg-config ${CROSSTOOLS_DIR}/tmp/bin/${CROSS_TARGET}-pkg-config
+<<<CLEAR_DIR>>>

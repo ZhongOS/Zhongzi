@@ -1,0 +1,2 @@
+PACKAGE=scikit-build-core
+BUILD_MODE=pip

@@ -1,0 +1,12 @@
+PACKAGE=brotli
+BUILD_MODE=custom
+
+
+[[[1.1.0]]]
+PACKAGE=brotli
+BUILD_MODE=cmake
+
+
+[[[1.0.9]]]
+PACKAGE=brotli
+BUILD_MODE=custom

@@ -1,0 +1,9 @@
+<<<TAR_UNCOMPRESS>>>
+	make ARCH=${LINUX_NAME} mrproper
+	make ARCH=${LINUX_NAME} INSTALL_HDR_PATH=dest headers_install
+	find dest/include -name '.*' -delete
+	mkdir -pv ${LINUX_SYSROOT_DIR}/usr/include
+	cp -rv dest/include/* ${LINUX_SYSROOT_DIR}/usr/include
+        mkdir -pv ${TOOLCHAIN_DIRECTORY}/${ARCH_NAME}/linux-header/usr/include
+        cp -rv dest/include/* ${TOOLCHAIN_DIRECTORY}/${ARCH_NAME}/linux-header/usr/include/
+<<<CLEAR_DIR>>>

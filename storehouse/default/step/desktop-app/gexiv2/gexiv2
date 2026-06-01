@@ -1,0 +1,4 @@
+PACKAGE=gexiv2
+BUILD_MODE=meson
+# BUILD_MODE=custom
+LOCK_VERSION=0.14.5

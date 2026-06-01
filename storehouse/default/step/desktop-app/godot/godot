@@ -1,0 +1,2 @@
+PACKAGE=godot
+BUILD_MODE=custom

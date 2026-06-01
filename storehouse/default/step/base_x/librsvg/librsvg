@@ -1,0 +1,2 @@
+PACKAGE=librsvg
+BUILD_MODE=custom

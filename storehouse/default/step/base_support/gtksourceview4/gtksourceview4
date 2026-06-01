@@ -1,0 +1,2 @@
+PACKAGE=gtksourceview4
+BUILD_MODE=meson

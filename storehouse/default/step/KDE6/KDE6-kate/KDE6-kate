@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kate
+BUILD_MODE=cmake

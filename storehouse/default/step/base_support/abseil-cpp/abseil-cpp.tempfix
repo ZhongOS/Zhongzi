@@ -1,0 +1,6 @@
+if [ -f ${SYSROOT_DIR}/usr/lib${LIB_SUFF}/cmake/GTest/GTestTargets.cmake ]; then
+	sed -i.orig "s@_IMPORT_PREFIX \"/usr\"@_IMPORT_PREFIX \"${SYSROOT_DIR}/usr\"@g" ${SYSROOT_DIR}/usr/lib${LIB_SUFF}/cmake/GTest/GTestTargets.cmake
+fi
+if [ -f ${SYSROOT_DIR}/usr/lib${LIB_SUFF}/cmake/GTest/GTestTargets-release.cmake ]; then
+	sed -i.orig "s@\"/usr@\"${SYSROOT_DIR}/usr@g" ${SYSROOT_DIR}/usr/lib${LIB_SUFF}/cmake/GTest/GTestTargets-release.cmake
+fi

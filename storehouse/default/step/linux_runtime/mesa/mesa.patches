@@ -1,0 +1,15 @@
+
+
+[[[25.2.5]]]
+# p1	0001-fix-search-clang-include-miss-for-i686.patch
+p1	37027.patch
+
+
+[[[23.3.0]]]
+# p1 0001-fix-amdgpu-for-wine.patch
+# p1 0001-fix-amdgpu-for-wine-2.patch
+
+[[[23.2.0]]]
+p1 0001-fix-libdrm-and-mesa-multiple-definition-of-handle_ta.patch
+
+[[[22.0.0]]]

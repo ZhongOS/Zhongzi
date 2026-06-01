@@ -1,0 +1,2 @@
+PACKAGE=kemoticons
+BUILD_MODE=cmake

@@ -1,0 +1,2 @@
+PACKAGE=fish-shell
+BUILD_MODE=cmake

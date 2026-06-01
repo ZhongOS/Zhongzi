@@ -1,0 +1,2 @@
+PACKAGE=audiofile
+BUILD_MODE=gnu

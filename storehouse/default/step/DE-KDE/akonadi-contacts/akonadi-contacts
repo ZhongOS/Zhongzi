@@ -1,0 +1,2 @@
+PACKAGE=akonadi-contacts
+BUILD_MODE=cmake

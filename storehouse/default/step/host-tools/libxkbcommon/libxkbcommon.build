@@ -1,0 +1,2 @@
+# EXTRA_PARM=-Denable-wayland=false -Denable-bash-completion=false
+EXTRA_PARM=-Denable-wayland=false -Denable-bash-completion=false -Denable-x11=false

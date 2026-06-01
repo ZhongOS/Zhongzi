@@ -1,0 +1,2 @@
+PACKAGE=squashfs
+BUILD_MODE=custom

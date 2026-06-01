@@ -1,0 +1,6 @@
+PACKAGE=glslang
+BUILD_MODE=custom
+
+[[[14.3.0]]]
+PACKAGE=glslang
+BUILD_MODE=cmake

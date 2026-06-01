@@ -1,0 +1,52 @@
+<<<TAR_UNCOMPRESS>>>
+        <<<PATCH>>>
+        for config_i in $(find -name "config.sub")
+        do
+                cp -a -f $(automake --print-libdir)/config.{sub,guess} $(dirname ${config_i})/
+        done
+        if [ ! -f configure ]; then
+                autoreconf -ifv
+        fi
+        ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --libdir=/usr/lib${LIB_SUFF} \
+		    --build=${CROSS_HOST} --host=${CROSS_TARGET} \
+		    --enable-config  --with-liblzma --with-sdl --enable-stl --enable-printfposparam --enable-glcanvasegl
+        <<<MAKE>>>
+        make DESTDIR=${SYSROOT_DIR} install
+        rm -f ${SYSROOT_DIR}/usr/lib64/*.la
+
+# 	cp -f ${SYSROOT_DIR}/$(readlink ${SYSROOT_DIR}/usr/bin/wx-config) ${CROSSTOOLS_DIR}/bin/wx-config
+	cp -f $(readlink -e ${SYSROOT_DIR}/usr/bin/wx-config) ${CROSSTOOLS_DIR}/bin/wx-config
+	sed -i.orig -e "/^libdir/s@\"/usr@\"\${prefix}@g" -e "/_target=/d" -e "/target=/d" ${CROSSTOOLS_DIR}/bin/wx-config
+	cp ${CROSSTOOLS_DIR}/bin/wx-config ${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-wx-config
+	sed -i "/^prefix=/s@-/usr@-${SYSROOT_DIR}/usr@g" ${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-wx-config
+
+	echo "qemu-loongarch64 ${SYSROOT_DIR}/usr/bin/wxrc \"\$@\"" \
+        	> ${CROSSTOOLS_DIR}/bin/wxrc
+	chmod +x ${CROSSTOOLS_DIR}/bin/wxrc
+<<<CLEAR_DIR>>>
+
+[[[3.2.8]]]
+<<<TAR_UNCOMPRESS>>>
+        <<<PATCH>>>
+        for config_i in $(find -name "config.sub")
+        do
+                cp -a -f $(automake --print-libdir)/config.{sub,guess} $(dirname ${config_i})/
+        done
+        if [ ! -f configure ]; then
+                autoreconf -ifv
+        fi
+        ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --libdir=/usr/lib${LIB_SUFF} \
+		    --build=${CROSS_HOST} --host=${CROSS_TARGET} --enable-config  --with-liblzma --with-sdl --enable-stl --enable-printfposparam --enable-glcanvasegl
+        <<<MAKE>>>
+        make DESTDIR=${SYSROOT_DIR} install
+        rm -f ${SYSROOT_DIR}/usr/lib64/*.la
+
+	cp -f ${SYSROOT_DIR}/$(readlink ${SYSROOT_DIR}/usr/bin/wx-config) ${CROSSTOOLS_DIR}/bin/wx-config
+	sed -i.orig -e "/^libdir/s@\"/usr@\"\${prefix}@g" -e "/_target=/d" -e "/target=/d" ${CROSSTOOLS_DIR}/bin/wx-config
+	cp ${CROSSTOOLS_DIR}/bin/wx-config ${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-wx-config
+	sed -i "/^prefix=/s@-/usr@-${SYSROOT_DIR}/usr@g" ${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-wx-config
+
+	echo "qemu-loongarch64 ${SYSROOT_DIR}/usr/bin/wxrc \"\$@\"" \
+        	> ${CROSSTOOLS_DIR}/bin/wxrc
+	chmod +x ${CROSSTOOLS_DIR}/bin/wxrc
+<<<CLEAR_DIR>>>

@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kmines
+BUILD_MODE=cmake

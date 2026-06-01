@@ -1,0 +1,2 @@
+PACKAGE=nss
+BUILD_MODE=custom

@@ -1,0 +1,2 @@
+PACKAGE=imlib2
+BUILD_MODE=gnu

@@ -1,0 +1,2 @@
+PACKAGE=libxkbfile
+BUILD_MODE=meson

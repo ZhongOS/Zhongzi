@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kglobalaccel
+BUILD_MODE=cmake

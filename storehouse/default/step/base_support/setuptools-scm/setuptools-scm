@@ -1,0 +1,2 @@
+PACKAGE=setuptools-scm
+BUILD_MODE=pip

@@ -1,0 +1,2 @@
+PACKAGE=libXpm
+BUILD_MODE=gnu

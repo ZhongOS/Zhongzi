@@ -1,0 +1,2 @@
+PACKAGE=kolourpaint
+BUILD_MODE=cmake

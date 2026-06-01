@@ -1,0 +1,2 @@
+PACKAGE=xrandr
+BUILD_MODE=gnu

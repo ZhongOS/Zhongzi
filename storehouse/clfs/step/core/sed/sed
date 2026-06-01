@@ -1,0 +1,2 @@
+PACKAGE=sed
+BUILD_MODE=gnu

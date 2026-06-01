@@ -1,0 +1,2 @@
+PACKAGE=sassc
+BUILD_MODE=gnu

@@ -1,0 +1,2 @@
+PACKAGE=cryptsetup
+BUILD_MODE=gnu

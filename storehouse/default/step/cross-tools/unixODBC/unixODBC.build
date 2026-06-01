@@ -1,0 +1,7 @@
+<<<TAR_UNCOMPRESS>>>
+        <<<PATCH>>>
+        ./configure --prefix=${SYSROOT_DIR} --libdir=${SYSROOT_DIR}/usr/lib${LIB_SUFF}
+	<<<MAKE>>>
+	cp -a exe/odbc_config ${CROSSTOOLS_DIR}/bin/
+<<<CLEAR_DIR>>>
+

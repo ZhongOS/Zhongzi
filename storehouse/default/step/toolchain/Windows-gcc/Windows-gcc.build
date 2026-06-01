@@ -1,0 +1,10 @@
+<<<TAR_UNCOMPRESS>>>
+	mkdir -p target-build
+	pushd target-build
+		../configure --prefix=/Windows/gcc --host=${MINGW_HOST} \
+			     --target=${MINGW_HOST} --with-system-zlib \
+		             --enable-languages=c,c++
+		<<<MAKE>>>
+		make DESTDIR=${MINGW_SYSROOT_DIR} install-strip
+	popd
+<<<CLEAR_DIR>>>

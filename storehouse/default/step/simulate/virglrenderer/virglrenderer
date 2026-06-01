@@ -1,0 +1,2 @@
+PACKAGE=virglrenderer
+BUILD_MODE=meson

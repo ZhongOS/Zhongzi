@@ -1,0 +1,41 @@
+overlay_temp_fix_run
+# fuseiso
+# icoutils
+# q4wine
+RetroArch
+retroarch-assets
+libretro-database
+# SDL_ttf
+libretro-common-overlays
+libretro-core-info
+
+libretro-mame2003-plus
+libretro-bsnes
+# libretro-mupen64plus-nx|bad
+libretro-mame2010
+libretro-snes9x2010
+libretro-dosbox
+libretro-beetle-psx
+# libretro-neogeo|bad
+
+# libretro-mame|bad
+# dolphin-emu|bad
+
+# game.libretro@/desktop-app|kodi
+# game.libretro.mame2003@/desktop-app|kodi
+# game.libretro.mame2003_plus@/desktop-app|kodi
+
+Catch2
+
+# json
+# yuzu-emu|bad
+# suyu-emu|bad
+
+mednafen
+mednaffe
+
+# winetricks
+
+# ppsspp
+
+final_run

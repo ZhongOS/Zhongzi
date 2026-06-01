@@ -1,0 +1,2 @@
+PACKAGE=cfitsio
+BUILD_MODE=cmake

@@ -1,0 +1,2 @@
+PACKAGE=dolphin
+BUILD_MODE=cmake

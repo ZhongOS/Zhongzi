@@ -1,0 +1,2 @@
+PACKAGE=lxterminal
+BUILD_MODE=gnu

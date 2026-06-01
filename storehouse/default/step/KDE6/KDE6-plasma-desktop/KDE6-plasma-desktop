@@ -1,0 +1,2 @@
+PACKAGE=KDE6-plasma-desktop
+BUILD_MODE=custom

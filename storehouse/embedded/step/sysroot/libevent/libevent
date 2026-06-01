@@ -1,0 +1,2 @@
+PACKAGE=libevent
+BUILD_MODE=gnu

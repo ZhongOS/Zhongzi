@@ -1,0 +1,2 @@
+PACKAGE=node
+BUILD_MODE=custom

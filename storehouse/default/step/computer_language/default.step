@@ -1,0 +1,12 @@
+golang|target-dist+golang
+fpc|target-dist+fpc
+# rustc|target-dist;%PARENT=compat_libs
+rustc|target-dist
+ocaml|ocaml
+dune|ocaml
+ocaml-findlib|ocaml
+bubblewrap|ocaml
+opam|ocaml
+# ghc|ghc
+# dotnet|dotnet
+llvm-project|target-dist+llvm

@@ -1,0 +1,2 @@
+PACKAGE=lm-sensors
+BUILD_MODE=custom

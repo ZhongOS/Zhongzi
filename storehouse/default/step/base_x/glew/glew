@@ -1,0 +1,2 @@
+PACKAGE=glew
+BUILD_MODE=custom

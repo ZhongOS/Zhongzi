@@ -1,0 +1,2 @@
+PACKAGE=charset-normalizer
+BUILD_MODE=pip

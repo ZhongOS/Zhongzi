@@ -1,0 +1,4 @@
+# p1 0001-glean_parser-remove-precise_timestamps-args.patch
+
+[[[8.1.1]]]
+p1 0001-glean_parser-fix-MarkupSafe-requires-version.patch

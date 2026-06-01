@@ -1,0 +1,2 @@
+PACKAGE=gpm
+BUILD_MODE=custom

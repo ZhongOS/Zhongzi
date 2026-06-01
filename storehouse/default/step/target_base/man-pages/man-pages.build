@@ -1,0 +1,3 @@
+<<<TAR_UNCOMPRESS>>>
+	make prefix=${PREFIX} DESTDIR=${SYSROOT_DIR} install -R
+<<<CLEAR_DIR>>>

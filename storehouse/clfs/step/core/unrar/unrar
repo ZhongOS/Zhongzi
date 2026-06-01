@@ -1,0 +1,2 @@
+PACKAGE=unrar
+BUILD_MODE=custom

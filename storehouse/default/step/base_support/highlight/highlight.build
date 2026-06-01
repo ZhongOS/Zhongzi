@@ -1,0 +1,6 @@
+<<<TAR_UNCOMPRESS>>>
+    <<<MAKE>>> CXX="${CROSS_TARGET}-g++" AR="${CROSS_TARGET}-ar"
+    <<<MAKE>>> CXX="${CROSS_TARGET}-g++" AR="${CROSS_TARGET}-ar" QMAKE=${SYSROOT_DIR}/usr/bin/qmake gui
+    make CXX="${CROSS_TARGET}-g++" AR="${CROSS_TARGET}-ar" DESTDIR=${SYSROOT_DIR} install
+    make CXX="${CROSS_TARGET}-g++" AR="${CROSS_TARGET}-ar" DESTDIR=${SYSROOT_DIR} install-gui
+<<<CLEAR_DIR>>>

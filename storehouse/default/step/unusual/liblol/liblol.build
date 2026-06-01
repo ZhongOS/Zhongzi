@@ -1,0 +1,17 @@
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+    mkdir -p build-64
+    pushd build-64
+        BUILD_CC="gcc" CC="${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-gcc" \
+        CXX="${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-g++" \
+        AS="${CROSS_TARGET}-as" AR="${CROSS_TARGET}-ar" RANLIB="${CROSS_TARGET}-ranlib" \
+        ../configure --prefix=/usr --host=${CROSS_TARGET} --build=${CROSS_HOST} \
+	                 --libdir=/usr/lib --libexecdir=/usr/lib/glibc \
+	                 --with-binutils=<<<CROSS_TOOLS_PREFIX>>>/bin \
+	                 --with-headers=${SYSROOT_DIR}/usr/include \
+	                 --enable-stack-protector=strong --enable-add-ons \
+	                 --disable-werror libc_cv_slibdir=/usr/lib
+		<<<MAKE>>>
+		make DESTDIR=${SYSROOT_DIR} install
+    popd
+<<<CLEAR_DIR>>>

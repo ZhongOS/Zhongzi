@@ -1,0 +1,6 @@
+<<<TAR_UNCOMPRESS>>>
+    cp ${SYSROOT_DIR}/usr/share/automake-*/config.* build-aux/
+    ./configure ${COMMON_CONFIG}
+    <<<MAKE_AND_INSTALL>>>
+    rm -f ${SYSROOT_DIR}/usr/lib64/*.la
+<<<CLEAR_DIR>>>

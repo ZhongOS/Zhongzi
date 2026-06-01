@@ -1,0 +1,2 @@
+PACKAGE=liboggz
+BUILD_MODE=gnu

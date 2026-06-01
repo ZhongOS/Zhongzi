@@ -1,0 +1,2 @@
+PACKAGE=libass
+BUILD_MODE=gnu

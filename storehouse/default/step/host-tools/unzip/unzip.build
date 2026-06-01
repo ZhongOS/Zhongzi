@@ -1,0 +1,6 @@
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+    sed -i "s@-DNO_LCHMOD@@g" unix/configure
+    <<<MAKE>>> -f unix/Makefile CC="gcc -DLARGE_FILE_SUPPORT -DUNICODE_WCHAR -DUNICODE_SUPPORT -std=gnu17" generic
+    make prefix=${HOST_TOOLS_DIR} -f unix/Makefile install
+<<<CLEAR_DIR>>>

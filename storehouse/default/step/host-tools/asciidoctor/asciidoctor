@@ -1,0 +1,2 @@
+PACKAGE=asciidoctor
+BUILD_MODE=custom

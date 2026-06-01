@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kfilemetadata
+BUILD_MODE=cmake

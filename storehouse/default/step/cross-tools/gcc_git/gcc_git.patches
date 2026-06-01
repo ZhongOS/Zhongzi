@@ -1,0 +1,4 @@
+p1	0001-gcc-13-add-cmodule-medium-for-loongarch-libgcc.patch
+# p1	fix-any-div.patch
+# p1	0001-Fix-ICE-when-compiling-openh264.patch
+# p1	0001-LoongArch-Use-simplify_gen_subreg-instead-of-gen_rtx.patch

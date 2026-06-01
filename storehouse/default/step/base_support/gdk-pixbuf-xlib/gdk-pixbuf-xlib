@@ -1,0 +1,2 @@
+PACKAGE=gdk-pixbuf-xlib
+BUILD_MODE=meson

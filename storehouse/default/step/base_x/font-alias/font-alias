@@ -1,0 +1,2 @@
+PACKAGE=font-alias
+BUILD_MODE=gnu

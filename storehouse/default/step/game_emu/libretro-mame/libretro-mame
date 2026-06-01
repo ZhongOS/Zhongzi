@@ -1,0 +1,2 @@
+PACKAGE=libretro-mame
+BUILD_MODE=custom

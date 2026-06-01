@@ -1,0 +1,19 @@
+<<<TAR_UNCOMPRESS>>>
+	pushd tools/extract_args
+		make clean
+		make
+	popd
+	PATH=${CROSSTOOLS_DIR}/ocaml-cross/bin:${PATH}
+	./configure -bindir ${CROSSTOOLS_DIR}/ocaml-cross/bin -sitelib ${SYSROOT_DIR}/usr/lib64/ocaml
+	<<<MAKE>>> all
+	<<<MAKE>>> opt
+	make DESTDIR=${PWD}/dest install
+	cp -a ${PWD}/dest/${CROSSTOOLS_DIR}/ocaml-cross/bin/ocamlfind ${CROSSTOOLS_DIR}/ocaml-cross/bin.orig/
+	cp -a ${PWD}/dest/${CROSSTOOLS_DIR}/ocaml-cross/etc ${CROSSTOOLS_DIR}/ocaml-cross/
+<<<CLEAR_DIR>>>
+
+cat >"${CROSSTOOLS_DIR}/ocaml-cross/bin/ocamlfind" <<EOF
+#!/bin/sh
+qemu-loongarch64 "${CROSSTOOLS_DIR}/ocaml-cross/bin.orig/ocamlfind" "\$@"
+EOF
+chmod +x "${CROSSTOOLS_DIR}/ocaml-cross/bin/ocamlfind"

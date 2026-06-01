@@ -1,0 +1,2 @@
+PACKAGE=qt6-webengine
+BUILD_MODE=custom

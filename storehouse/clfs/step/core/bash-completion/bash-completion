@@ -1,0 +1,2 @@
+PACKAGE=bash-completion
+BUILD_MODE=gnu

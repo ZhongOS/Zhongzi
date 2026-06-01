@@ -1,0 +1,2 @@
+PACKAGE=kunitconversion
+BUILD_MODE=cmake

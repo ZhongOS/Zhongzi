@@ -1,0 +1,9 @@
+<<<TAR_UNCOMPRESS>>>
+    pushd nspr
+    <<<PATCH>>>
+    ./configure ${COMMON_CONFIG} \
+                --with-mozilla --with-pthreads --enable-64bit
+    make CC="gcc" CFLAGS="" -C config
+    <<<MAKE_AND_INSTALL>>>
+    popd
+<<<CLEAR_DIR>>>

@@ -1,0 +1,2 @@
+PACKAGE=libstoragemgmt
+BUILD_MODE=gnu

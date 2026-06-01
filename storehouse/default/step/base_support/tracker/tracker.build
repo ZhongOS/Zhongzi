@@ -1,0 +1,1 @@
+EXTRA_PARM=-Dsystemd_user_services_dir=/usr/lib/systemd/user -Dbash_completion_dir=/usr/share/bash-completion/completions

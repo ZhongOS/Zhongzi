@@ -1,0 +1,2 @@
+EXTRA_PARM=--cross-prefix=${CROSS_TARGET}- --sysroot=${SYSROOT_DIR} --enable-shared --bashcompletionsdir=/usr/share/bash-completion/completions
+# EXTRA_PARM=--cross-prefix=${CROSS_TARGET}- --sysroot=${SYSROOT_DIR} --enable-shared --disable-cli --enable-pic --enable-lto

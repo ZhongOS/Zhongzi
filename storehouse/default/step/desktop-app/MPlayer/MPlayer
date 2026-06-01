@@ -1,0 +1,2 @@
+PACKAGE=MPlayer
+BUILD_MODE=custom

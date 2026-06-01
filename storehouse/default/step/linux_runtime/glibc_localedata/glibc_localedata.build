@@ -1,0 +1,15 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+        mkdir -p build-locale
+        pushd build-locale
+		export LDFLAGS=""
+		export CFLAGS=""
+# 		CC="/bin/gcc" CXX="/bin/g++" \
+		CC="gcc" CXX="g++" \
+                ../configure --prefix=/usr --libdir=/usr/lib${LIB_SUFF} --libexecdir=/usr/lib${LIB_SUFF}/glibc \
+                         --enable-stack-protector=strong --enable-add-ons \
+                         --disable-werror libc_cv_slibdir=/usr/lib${LIB_SUFF}
+                <<<MAKE>>>
+		patchelf --remove-rpath elf/ld.so
+                <<<MAKE>>> DESTDIR=${LINUX_SYSROOT_DIR} localedata/install-locales
+<<<CLEAR_DIR>>>

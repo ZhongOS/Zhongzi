@@ -1,0 +1,2 @@
+PACKAGE=libmng
+BUILD_MODE=gnu

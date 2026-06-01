@@ -1,0 +1,1 @@
+CONFIG_ENV=CFLAGS="${CFLAGS} -Wno-error=calloc-transposed-args -Wno-error=unterminated-string-initialization"

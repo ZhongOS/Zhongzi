@@ -1,0 +1,6 @@
+<<<TAR_UNCOMPRESS>>>
+    2to3-3.10 -w data/autostart/openbox-xdg-autostart &&
+    sed 's/python/python3/' -i data/autostart/openbox-xdg-autostart
+    ./configure ${COMMON_CONFIG}
+    <<<MAKE_AND_INSTALL>>>
+<<<CLEAR_DIR>>>

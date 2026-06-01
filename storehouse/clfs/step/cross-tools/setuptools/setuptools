@@ -1,0 +1,2 @@
+PACKAGE=setuptools
+BUILD_MODE=custom

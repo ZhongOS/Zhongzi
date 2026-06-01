@@ -1,0 +1,3 @@
+PACKAGE=html5lib
+# BUILD_MODE=python
+BUILD_MODE=pip

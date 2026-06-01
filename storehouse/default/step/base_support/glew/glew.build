@@ -1,0 +1,14 @@
+<<<TAR_UNCOMPRESS>>>
+    for config_i in $(find -name "config.sub")
+    do
+            cp -a -f $(automake --print-libdir)/config.{sub,guess} $(dirname ${config_i})/
+    done
+
+    sed -i "s@ -s @ @g" Makefile
+    <<<MAKE>>> CC="${CROSS_TARGET}-gcc" LD="${CROSS_TARGET}-gcc" \
+         STRIP="${CROSS_TARGET}-strip" \
+	GLEW_PREFIX=/usr GLEW_DEST=/usr
+#         STRIP="${CROSS_TARGET}-strip" \
+#         CFLAGS.EXTRA="-Wl,-rpath-link=${SYSROOT_DIR}/usr/lib64"
+    make PKGDIR=/usr/lib64/pkgconfig GLEW_PREFIX=/usr GLEW_DEST=/usr DESTDIR=${SYSROOT_DIR} install
+<<<CLEAR_DIR>>>

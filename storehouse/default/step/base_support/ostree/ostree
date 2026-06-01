@@ -1,0 +1,2 @@
+PACKAGE=ostree
+BUILD_MODE=custom

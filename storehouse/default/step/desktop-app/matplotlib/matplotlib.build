@@ -1,0 +1,5 @@
+<<<TAR_UNCOMPRESS>>>
+        <<<PATCH>>>
+	CC=${CROSS_TARGET}-gcc CXX=${CROSS_TARGET}-g++ _PYTHON_HOST_PLATFORM=linux-loongarch64 ${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-python3 setup.py build
+        CC=${CROSS_TARGET}-gcc CXX=${CROSS_TARGET}-g++ _PYTHON_HOST_PLATFORM=linux-loongarch64 ${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-python3 setup.py install --install-data --optimize=1 --no-compile --root=${SYSROOT_DIR} --prefix=/usr
+<<<CLEAR_DIR>>>

@@ -1,0 +1,7 @@
+p1 0001-xwayland-24.1.8-fix-glxdri-directory-for-cross-build.patch
+
+[[[24.0.99]]]
+# p1 0001-xwayland-24.0.99-fix-for-Yongbao-cross-build.patch
+
+[[[23.2.6]]]
+p1 0001-xwayland-fix-for-Yongbao-cross-build.patch

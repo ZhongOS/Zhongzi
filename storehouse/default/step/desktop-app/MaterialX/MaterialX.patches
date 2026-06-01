@@ -1,0 +1,5 @@
+
+
+[[[1.39.3]]]
+p1 0001-MaterialX-1.38.9-remove-doc-file-to-doc-dir.patch
+p1 0001-MaterialX-1.39.3-fix-for-gcc-15.patch

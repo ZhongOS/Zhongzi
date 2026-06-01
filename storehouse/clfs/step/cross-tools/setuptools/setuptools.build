@@ -1,0 +1,5 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+	<<<CROSS_TOOLS_PREFIX>>>/bin/python3 -m pip wheel -w dist --no-build-isolation --no-deps ${PWD}
+	<<<CROSS_TOOLS_PREFIX>>>/bin/python3 -m pip install --no-index --find-links dist --no-cache-dir --no-deps --force-reinstall --no-user <<<PACKAGE_NAME>>>
+<<<CLEAR_DIR>>>

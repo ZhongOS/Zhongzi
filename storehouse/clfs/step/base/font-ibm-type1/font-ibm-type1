@@ -1,0 +1,2 @@
+PACKAGE=font-ibm-type1
+BUILD_MODE=gnu

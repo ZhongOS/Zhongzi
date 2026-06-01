@@ -1,0 +1,2 @@
+PACKAGE=linux
+BUILD_MODE=custom

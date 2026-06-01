@@ -1,0 +1,12 @@
+
+
+[[[4.4]]]
+p1	0002-godot-4.3-thirdparty-openxr-add-loongarch64-define.patch
+p1	0003-godot-4.3-thirdparty-pcre2-add-loongarch64-define.patch
+p1	0004-godot-4.3-thirdparty-libpng-remove-loongarch64-lsx-d.patch
+
+[[[4.3]]]
+p1	0001-godot-4.3-add-loongarch64-define.patch
+p1	0002-godot-4.3-thirdparty-openxr-add-loongarch64-define.patch
+p1	0003-godot-4.3-thirdparty-pcre2-add-loongarch64-define.patch
+p1	0004-godot-4.3-thirdparty-libpng-remove-loongarch64-lsx-d.patch

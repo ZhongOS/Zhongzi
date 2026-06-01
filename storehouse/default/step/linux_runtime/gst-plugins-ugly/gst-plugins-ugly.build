@@ -1,0 +1,2 @@
+CONFIG_ENV=LDFLAGS="${LDFLAGS} -lm"
+EXTRA_PARM=-Dgpl=enabled

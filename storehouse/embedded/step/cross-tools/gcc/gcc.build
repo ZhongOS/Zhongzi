@@ -1,0 +1,20 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+	mkdir -p tools-build-all
+	pushd tools-build-all
+		../configure --prefix=<<<CROSS_TOOLS_PREFIX>>> --build=${CROSS_HOST} \
+		             --host=${CROSS_HOST} --target=${CROSS_TARGET} \
+		             --with-sysroot=${SYSROOT_DIR} --with-mpfr=<<<CROSS_TOOLS_PREFIX>>> \
+		             --with-gmp=<<<CROSS_TOOLS_PREFIX>>> --with-mpc=<<<CROSS_TOOLS_PREFIX>>> \
+			     --with-mpfr-lib=<<<CROSS_TOOLS_PREFIX>>>/lib64 \
+			     --with-gmp-lib=<<<CROSS_TOOLS_PREFIX>>>/lib64 --with-mpc-lib=<<<CROSS_TOOLS_PREFIX>>>/lib64 \
+		             --enable-__cxa_atexit --enable-threads=posix --with-system-zlib \
+		             --enable-libstdcxx-time --enable-checking=release --disable-multilib \
+			     --enable-linker-build-id --with-linker-hash-style=gnu --enable-gnu-unique-object --enable-initfini-array --enable-gnu-indirect-function \
+			     --with-arch=${TARGET_WITH_ARCH} \
+		             --enable-languages=c,c++,fortran,objc,obj-c++,lto
+		<<<MAKE>>>
+		make install-strip
+		ln -sf ${CROSS_TARGET}-gcc ${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-cc
+	popd
+<<<CLEAR_DIR>>>

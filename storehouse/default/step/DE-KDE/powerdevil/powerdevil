@@ -1,0 +1,2 @@
+PACKAGE=powerdevil
+BUILD_MODE=cmake

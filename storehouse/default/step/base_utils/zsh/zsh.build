@@ -1,0 +1,7 @@
+<<<TAR_UNCOMPRESS>>>
+    cp ${SYSROOT_DIR}/usr/share/automake-*/config.* ./
+    ./configure --build=${CROSS_HOST} --host=${CROSS_TARGET} \
+                --prefix=/usr --sysconfdir=/etc/zsh \
+                --enable-etcdir=/etc/zsh
+    <<<MAKE_AND_INSTALL>>>
+<<<CLEAR_DIR>>>

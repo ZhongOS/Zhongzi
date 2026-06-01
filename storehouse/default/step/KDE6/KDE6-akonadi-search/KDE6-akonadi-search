@@ -1,0 +1,2 @@
+PACKAGE=KDE6-akonadi-search
+BUILD_MODE=cmake

@@ -1,0 +1,9 @@
+<<<TAR_UNCOMPRESS>>>
+	sed -i '/MV.*old/d' Makefile.in
+	sed -i '/{OLDSUFF}/c:' support/shlib-install
+	cp -a -f $(automake --print-libdir)/config.{sub,guess} ./support/
+	./configure --prefix=${PREFIX} --libdir=${PREFIX}/lib64 \
+				--disable-static --with-curses
+	<<<MAKE>>> SHLIB_LIBS="-lncursesw"
+	make SHLIB_LIBS="-lncursesw" install
+<<<CLEAR_DIR>>>

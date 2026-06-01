@@ -1,0 +1,2 @@
+PACKAGE=libsepol
+BUILD_MODE=custom

@@ -1,0 +1,18 @@
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+    mkdir -p build
+    pushd build
+        BUILD_CC="gcc" CC="${CROSS_TOOLS_PREFIX}/bin/${X86_HOST}-gcc -m32 ${CFLAGS}" \
+        CXX="${CROSS_TOOLS_PREFIX}/bin/${X86_HOST}-gcc -m32 ${CXXFLAGS}" \
+        AS="${X86_HOST}-as" AR="${X86_HOST}-ar" RANLIB="${X86_HOST}-ranlib" \
+        ../configure --prefix=/usr --host=${X86_HOST} --build=${CROSS_HOST} \
+	                 --libdir=/usr/lib${LIB_SUFF} --libexecdir=/usr/lib${LIB_SUFF}/glibc \
+	                 --with-headers=${X86_SYSROOT_DIR}/usr/include \
+	                 --enable-add-ons \
+	                 --disable-cet \
+	                 --disable-werror libc_cv_slibdir=/usr/lib${LIB_SUFF}
+		<<<MAKE>>>
+		make DESTDIR=${X86_SYSROOT_DIR} install
+    popd
+    mkdir -p ${X86_SYSROOT_DIR}/usr/lib
+<<<CLEAR_DIR>>>

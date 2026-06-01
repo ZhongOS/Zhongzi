@@ -1,0 +1,2 @@
+PACKAGE=KDE6-networkmanager-qt
+BUILD_MODE=cmake

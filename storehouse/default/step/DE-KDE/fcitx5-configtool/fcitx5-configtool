@@ -1,0 +1,2 @@
+PACKAGE=fcitx5-configtool
+BUILD_MODE=custom

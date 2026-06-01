@@ -1,0 +1,16 @@
+<<<TAR_UNCOMPRESS>>>
+        <<<PATCH>>>
+        for config_i in $(find -name "config.sub")
+        do
+                cp -a -f $(automake --print-libdir)/config.{sub,guess} $(dirname ${config_i})/
+        done
+        if [ ! -f configure ]; then
+                autoreconf -ifv
+        fi
+        ./configure ${COMMON_CONFIG} --enable-malloc0returnsnull
+	cp ${HOST_TOOLS_DIR}/bin/libtool ./
+	sed -i "/^CC=\"gcc\"/d" libtool
+        <<<MAKE>>> LIBTOOL=${PWD}/libtool CC=${CROSS_TARGET}-gcc all-bin
+        make DESTDIR=${SYSROOT_DIR} install-bin install-include install-libdir install-man
+        rm -f ${SYSROOT_DIR}/usr/lib64/*.la
+<<<CLEAR_DIR>>>

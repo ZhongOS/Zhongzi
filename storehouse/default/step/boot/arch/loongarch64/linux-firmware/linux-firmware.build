@@ -1,0 +1,10 @@
+<<<TAR_UNCOMPRESS>>>
+	make DESTDIR=${PWD}/dest install
+	cp -a dest/lib/firmware ${SYSROOT_DIR}/lib/
+#	make DESTDIR=${SYSROOT_DIR} install
+#	mv ${SYSROOT_DIR}/usr/lib/firmware{,.orig}
+#	mkdir -pv ${SYSROOT_DIR}/usr/lib/firmware
+#	cp -a ${SYSROOT_DIR}/usr/lib/firmware.orig/{amd*,radeon,iwlwifi-*,rt*} \
+#	      ${SYSROOT_DIR}/usr/lib/firmware/
+#	rm -rf ${SYSROOT_DIR}/usr/lib/firmware.orig
+<<<CLEAR_DIR>>>

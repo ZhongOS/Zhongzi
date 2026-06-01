@@ -1,0 +1,39 @@
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+#     mkdir cross-prebuild
+#     pushd cross-prebuild
+#         meson ${MESON_CONFIG} -Dtriplet=${LINUX_HOST} -Dintrospection=disabled -Dpixbuf-loader=disabled ..
+# #         RUSTFLAGS="$RUSTFLAGS -C linker=${LINUX_HOST}-gcc" ninja
+# #         DESTDIR=${LINUX_SYSROOT_DIR} ninja install
+# 	<<<NINJA_AND_INSTALL>>>
+#     popd
+    mkdir cross-build
+    pushd cross-build
+        meson ${MESON_CONFIG} -Dtriplet=${CROSS_TARGET} ..
+#         RUSTFLAGS="$RUSTFLAGS -C linker=${CROSS_TARGET}-gcc" ninja
+#         DESTDIR=${SYSROOT_DIR} ninja install
+	<<<NINJA_AND_INSTALL>>>
+    popd
+<<<CLEAR_DIR>>>
+
+
+[[[2.58.0]]]
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+    find vendor -name .cargo-checksum.json \
+          -exec sed -i.uncheck -e 's/"files":{[^}]*}/"files":{ }/' '{}' '+'
+    sed -i "/GI_DOCGEN/s@ generate @ generate --add-include-path=${LINUX_SYSROOT_DIR}/usr/share/gir-1.0 @g" doc/Makefile.in
+    sed -i "s@\$PKG_CONFIG_SYSROOT_DIR@@g" configure
+    mkdir cross-build
+    pushd cross-build
+        PKG_CONFIG=${LINUX_HOST}-pkg-config \
+        ../configure ${COMMON_CONFIG} --enable-vala
+        <<<MAKE>>> INTROSPECTION_SCANNER=${LINUX_HOST}-g-ir-scanner \
+             RUSTFLAGS="$RUSTFLAGS -C linker=${LINUX_HOST}-gcc" \
+             INTROSPECTION_COMPILER=${LINUX_HOST}-g-ir-compiler \
+             VAPIGEN=${LINUX_HOST}-vapigen
+        RUSTFLAGS="$RUSTFLAGS -C linker=${LINUX_HOST}-gcc" \
+        make VAPIGEN=${LINUX_HOST}-vapigen DESTDIR=${LINUX_SYSROOT_DIR} install
+        rm -v ${LINUX_SYSROOT_DIR}/usr/lib${LIB_SUFF}/librsvg*.la
+    popd
+<<<CLEAR_DIR>>>

@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kitemviews
+BUILD_MODE=cmake

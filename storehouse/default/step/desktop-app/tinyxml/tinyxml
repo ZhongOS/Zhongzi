@@ -1,0 +1,2 @@
+PACKAGE=tinyxml
+BUILD_MODE=custom

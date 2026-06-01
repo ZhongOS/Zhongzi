@@ -1,0 +1,2 @@
+PACKAGE=print-manager
+BUILD_MODE=cmake

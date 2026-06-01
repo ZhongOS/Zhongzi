@@ -1,0 +1,2 @@
+PACKAGE=fltk
+BUILD_MODE=custom

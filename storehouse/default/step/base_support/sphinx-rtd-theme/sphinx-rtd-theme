@@ -1,0 +1,2 @@
+PACKAGE=sphinx-rtd-theme
+BUILD_MODE=pip

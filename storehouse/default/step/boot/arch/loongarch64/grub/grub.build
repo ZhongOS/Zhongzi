@@ -1,0 +1,109 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+	cp ${RESOURCEDIR}/files/unifont.pcf.gz ./
+	touch grub-core/extra_deps.lst
+	mkdir cross-build
+	pushd cross-build
+		mkdir -p grub-core
+		touch grub-core/extra_deps.lst
+		PYTHON=${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-python3 ../configure ${COMMON_CONFIG} --with-platform=efi \
+		             --with-utils=host --disable-werror \
+			     --with-dejavufont=${SYSROOT_DIR}/usr/share/fonts/DejaVu/DejaVuSansMono.ttf \
+			     --with-unifont=${PWD}/../unifont.pcf.gz
+		<<<MAKE_AND_INSTALL>>>
+	popd
+<<<CLEAR_DIR>>>
+
+
+[[[2.12]]]
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+# 	tar xvf ${RESOURCEDIR}/files/grub-gnulib_git.tar.gz
+# 	mv grub-gnulib_git gnulib
+# 	./bootstrap
+# 	autoreconf -ifv
+	cp ${RESOURCEDIR}/files/unifont.pcf.gz ./
+	touch grub-core/extra_deps.lst
+	mkdir cross-build
+	pushd cross-build
+#		PYTHON=${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-python3 ../configure ${COMMON_CONFIG} -with-platform=efi \
+		PYTHON=${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-python3 ../configure ${COMMON_CONFIG} --with-platform=efi \
+		             --with-utils=host --disable-werror \
+			     --with-dejavufont=${SYSROOT_DIR}/usr/share/fonts/DejaVu/DejaVuSansMono.ttf \
+			     --with-unifont=${PWD}/../unifont.pcf.gz
+		<<<MAKE_AND_INSTALL>>>
+	popd
+
+#	mkdir -pv ${SYSROOT_DIR}/boot/efi/EFI/BOOT
+#	${CROSS_TARGET}-grub-mkimage \
+#        	  --directory "${SYSROOT_DIR}/usr/lib64/grub/${ARCH_NAME}-efi" \
+#	          --prefix '(,gpt2)/boot/grub' \
+#        	  --output "${SYSROOT_DIR}/boot/efi/EFI/BOOT/BOOTLOONGARCH64.EFI" \
+#	          --format "${ARCH_NAME}-efi" \
+#        	  --compression 'auto' \
+#	          'ext2' 'part_gpt' 'gettext' 'gfxterm' 'gfxmenu' 'jpeg' 'png' 'tga' \
+#		  'echo' 'linux' 'fat' 'part_msdos' \
+#		  'all_video' 'font' 'video'
+#	cp -a ${SYSROOT_DIR}/boot/efi/EFI/BOOT/BOOTLOONGARCH{64,}.EFI
+#	mkdir -pv ${SYSROOT_DIR}/boot/grub
+#	cp -av ${SYSROOT_DIR}/usr/lib64/grub/${ARCH_NAME}-efi ${SYSROOT_DIR}/boot/grub
+#	cp -av ${SYSROOT_DIR}/usr/share/grub/themes ${SYSROOT_DIR}/boot/grub
+#	mkdir -pv ${SYSROOT_DIR}/boot/grub/locale/
+#	cp -av ${SYSROOT_DIR}/usr/share/locale/zh_CN/LC_MESSAGES/grub.mo ${SYSROOT_DIR}/boot/grub/locale/zh.gmo
+#	mkdir -pv ${SYSROOT_DIR}/boot/grub/fonts
+#	cp ${SYSROOT_DIR}/usr/share/grub/unicode.pf2 ${SYSROOT_DIR}/boot/grub/fonts/
+
+# cat > ${SYSROOT_DIR}/boot/grub/grub.cfg << "EOF"
+# set theme=\$prefix/themes/starfield/theme.txt
+#
+# font=\$prefix/fonts/unicode.pf2
+# if loadfont \$font ; then
+#   set gfxmode=auto
+#   set locale_dir=\$prefix/locale
+#   set lang=zh_CN
+# fi
+# 
+# terminal_output gfxterm
+# 
+# menuentry 'My GNU/Linux System for LoongArch64' {
+# echo 'Loading Linux Kernel ...'
+# linux /vmlinux.efi root=/dev/sda3 rootdelay=5 rw quiet
+# boot
+# }
+# EOF
+<<<CLEAR_DIR>>>
+
+
+[[[2.11]]]
+<<<TAR_UNCOMPRESS>>>
+	tar xvf ${RESOURCEDIR}/files/grub-gnulib_git.tar.gz
+	mv grub-gnulib_git gnulib
+	./bootstrap
+	autoreconf -ifv
+	mkdir cross-build
+	pushd cross-build
+		../configure ${COMMON_CONFIG} -with-platform=efi \
+		             --with-utils=host --disable-werror
+		<<<MAKE_AND_INSTALL>>>
+	popd
+
+	mkdir -pv ${SYSROOT_DIR}/boot/efi/EFI/BOOT
+	${CROSS_TARGET}-grub-mkimage \
+        	  --directory "${SYSROOT_DIR}/usr/lib64/grub/${ARCH_NAME}-efi" \
+	          --prefix '(,gpt2)/boot/grub' \
+        	  --output "${SYSROOT_DIR}/boot/efi/EFI/BOOT/BOOTLOONGARCH64.EFI" \
+	          --format "${ARCH_NAME}-efi" \
+        	  --compression 'auto' \
+	          'ext2' 'part_gpt'
+	cp -a ${SYSROOT_DIR}/boot/efi/EFI/BOOT/BOOTLOONGARCH{64,}.EFI
+	mkdir -pv ${SYSROOT_DIR}/boot/grub
+	cp -av ${SYSROOT_DIR}/usr/lib64/grub/${ARCH_NAME}-efi ${SYSROOT_DIR}/boot/grub
+
+cat > ${SYSROOT_DIR}/boot/grub/grub.cfg << "EOF"
+menuentry 'My GNU/Linux System for LoongArch64' {
+echo 'Loading Linux Kernel ...'
+linux /vmlinux.efi root=/dev/sda3 rootdelay=5 rw quiet
+boot
+}
+EOF
+<<<CLEAR_DIR>>>

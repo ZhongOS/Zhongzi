@@ -1,0 +1,2 @@
+PACKAGE=libfm
+BUILD_MODE=gnu

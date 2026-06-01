@@ -1,0 +1,2 @@
+PACKAGE=tmux
+BUILD_MODE=custom

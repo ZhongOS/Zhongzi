@@ -1,0 +1,2 @@
+PACKAGE=setuptools-rust
+BUILD_MODE=pip

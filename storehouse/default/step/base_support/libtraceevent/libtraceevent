@@ -1,0 +1,2 @@
+PACKAGE=libtraceevent
+BUILD_MODE=meson

@@ -1,0 +1,2 @@
+p1	pyqt-5.15.6-cross_compiler.patch
+p1	pyqt-5.15.6-fix-sip.patch

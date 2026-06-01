@@ -1,0 +1,10 @@
+EXTRA_PARM=-Ddocs=false
+
+
+[[[22.02.122]]]
+<<<TAR_UNCOMPRESS>>>
+     cp ${CROSSTOOLS_DIR}/share/automake-1.16/config.* build-tools/
+     sed -i "/linux\/fs.h/d" src/libply/ply-utils.c
+    ./configure ${COMMON_CONFIG} --with-systemdunitdir=/usr/lib/systemd/system
+    <<<MAKE_AND_INSTALL>>>
+<<<CLEAR_DIR>>>

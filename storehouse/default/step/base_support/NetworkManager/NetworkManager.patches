@@ -1,0 +1,2 @@
+# p1 0001-NetworkManager-fix-polkit-dir-error-for-cross-build.patch
+p1 0001-NetworkManager-1.47.4-fix-policydir-define-for-cross.patch

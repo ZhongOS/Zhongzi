@@ -1,0 +1,81 @@
+<<<TAR_UNCOMPRESS>>>
+    mkdir -p external/tarballs/
+    cp ${RESOURCEDIR}/files/libreoffice-dictionaries-<<<PACKAGE_VERSION>>>.tar.xz external/tarballs/
+    cp ${RESOURCEDIR}/files/libreoffice-help-<<<PACKAGE_VERSION>>>.tar.xz external/tarballs/
+    cp ${RESOURCEDIR}/files/libreoffice-translations-<<<PACKAGE_VERSION>>>.tar.xz external/tarballs/
+    tar xvf ${RESOURCEDIR}/files/tarballs.listfile_dir.tar.gz
+    mv tarballs.listfile_dir/* external/tarballs/
+    rmdir tarballs.listfile_dir
+    tar xvf ${RESOURCEDIR}/files/tarballs_extern.listfile_dir.tar.gz
+    mv tarballs_extern.listfile_dir/* external/tarballs/
+    rmdir tarballs_extern.listfile_dir
+    mkdir -p src
+#    tar xvf external/tarballs/libreoffice-dictionaries-<<<PACKAGE_VERSION>>>.tar.xz -C src
+#    tar xvf external/tarballs/libreoffice-help-<<<PACKAGE_VERSION>>>.tar.xz -C src
+#    tar xvf external/tarballs/libreoffice-translations-<<<PACKAGE_VERSION>>>.tar.xz -C src
+    ln -sv src/libreoffice-help-<<<PACKAGE_VERSION>>>/helpcontent2
+    ln -sv src/libreoffice-dictionaries-<<<PACKAGE_VERSION>>>/dictionaries
+    ln -sv src/libreoffice-translations-<<<PACKAGE_VERSION>>>/translations
+
+    cp -a ${SYSROOT_DIR}/usr/include/{math,stdlib}.h ${SYSROOT_DIR}/usr/local/include/
+
+#    sed -i "/gcc_full_version/s@120000@110000@g" configure.ac
+
+    cp -a -f $(automake --print-libdir)/config.{sub,guess} ./
+    aclocal -I m4
+    <<<PATCH>>>
+    sed -i "s@python python3 dnl@python3 python dnl@g" aclocal.m4
+    autoconf -I .
+#    LDFLAGS_FOR_BUILD="-Wl,-rpath-link=${CROSSTOOLS_DIR}/lib:${CROSSTOOLS_DIR}/lib64:${HOST_TOOLS_DIR}/lib64:${HOST_TOOLS_DIR}/lib -Wl,-rpath=${CROSSTOOLS_DIR}/lib:${CROSSTOOLS_DIR}/lib64:${HOST_TOOLS_DIR}/lib64:${HOST_TOOLS_DIR}/lib" \
+    PKG_CONFIG_FOR_BUILD=/bin/pkg-config \
+    ./configure CC=${CROSS_TARGET}-gcc CXX=${CROSS_TARGET}-g++ LO_CLANG_CC="${CROSSTOOLS_DIR}/bin/clang -target ${CROSS_TARGET} --sysroot=${SYSROOT_DIR}" LO_CLANG_CXX="${CROSSTOOLS_DIR}/bin/clang++ -target ${CROSS_TARGET} --sysroot=${SYSROOT_DIR}" \
+                      --build=${CROSS_HOST} --host=${CROSS_TARGET} --target=${CROSS_TARGET} \
+                      --prefix=/usr --libdir=/usr/lib${LIB_SUFF} \
+                      --with-lang="zh-CN" --with-vendor=Sunhaiyong \
+                      --with-help --with-myspell-dicts \
+                      --without-junit --without-system-dicts --disable-dconf --disable-odk \
+                      --enable-release-build=yes --without-java \
+                      --with-system-curl --with-system-epoxy \
+                      --with-system-expat --with-system-graphite --with-system-harfbuzz --with-system-gpgmepp \
+                      --with-system-jpeg --with-system-lcms2 --with-system-libtiff \
+                      --with-system-libatomic_ops --with-system-libpng --with-system-libxml \
+                      --with-system-nss --with-system-openldap --with-system-openssl \
+                      --with-system-zlib --with-system-openjpeg --without-system-icu \
+		      --disable-skia \
+                      CXXFLAGS="${CXXFLAGS} -I${SYSROOT_DIR}/usr/include/gpgme++" \
+#                       LIBS="-lstdc++" CXXFLAGS="${CXXFLAGS} -fpermissive -I${SYSROOT_DIR}/usr/include/gpgme++" \
+                      --enable-python=no
+#		      --enable-coinmp --enable-python=internal
+
+#    LDFLAGS="" \
+    PKG_CONFIG_PATH="${CROSSTOOLS_DIR}/lib/pkgconfig:${CROSSTOOLS_DIR}/lib64/pkgconfig:${HOST_TOOLS_DIR}/lib64/pkgconfig:${HOST_TOOLS_DIR}/lib/pkgconfig:/usr/lib64/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig" \
+    PKG_CONFIG_SYSROOT_DIR="" <<<MAKE>>> gb_Side=build -rs -f Makefile.gbuild build-tools
+    ZIC=/usr/sbin/zic <<<MAKE>>> build
+    make DESTDIR=${PWD}/dest distro-pack-install
+    cp -a ${PWD}/dest/usr ${SYSROOT_DIR}/
+#    cp -a ${PWD}/dest/opt/libreoffice ${SYSROOT_DIR}/opt/
+#    mkdir -pv ${SYSROOT_DIR}/usr/share/bash-completion/completions/
+#    cp -a ${PWD}/dest/usr/share/bash-completion/completions/* ${SYSROOT_DIR}/usr/share/bash-completion/completions/
+#    cp -a ${PWD}/dest/opt/libreoffice/share/applications/*.desktop \
+#           ${SYSROOT_DIR}/usr/share/applications/
+#    mkdir -pv ${SYSROOT_DIR}/usr/share/xdg/
+#    cp -a ${PWD}/dest/opt/libreoffice/lib/libreoffice/share/xdg/*.desktop \
+#           ${SYSROOT_DIR}/usr/share/xdg/
+
+    pushd ${PWD}/dest
+	find -type f -exec ${CROSS_TARGET}-strip --strip-unneeded '{}' ';'
+	cd ..
+	mv dest libreoffice-<<<PACKAGE_VERSION>>>
+	mkdir -pv ${DIST_DIRECTORY}/host/${ARCH_NAME}/libreoffice/$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")/
+	tar -cJf ${DIST_DIRECTORY}/host/${ARCH_NAME}/libreoffice/$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")/libreoffice-$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")-${ARCH_NAME}.tar.xz  --exclude=.git* libreoffice-<<<PACKAGE_VERSION>>>
+	info_pool "生成了可发布的LibreOffice <<<PACKAGE_VERSION>>> 压缩包文件：${DIST_DIRECTORY}/host/${ARCH_NAME}/libreoffice/$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")/libreoffice-$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")-${ARCH_NAME}.tar.xz"
+    popd
+
+    rm -f ${SYSROOT_DIR}/usr/local/include/{math,stdlib}.h
+<<<CLEAR_DIR>>>
+# set_strip_step "opt/libreoffice/lib/libreoffice/program/" "0"
+# set_strip_step "/usr/lib${LIB_SUFF}/" "0" "*.mod" "--strip-unneeded
+
+
+[[[7.0.0.0]]]
+# --with-jdk-home=${CROSSTOOLS_DIR}/jdk20-bootstrap --with-build-platform-configure-options="--host=${CROSS_HOST} --with-jdk-home=${CROSSTOOLS_DIR}/jdk20-bootstrap "

@@ -1,0 +1,2 @@
+PACKAGE=libshout
+BUILD_MODE=gnu

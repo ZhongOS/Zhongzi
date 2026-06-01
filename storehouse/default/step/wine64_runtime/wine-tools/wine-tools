@@ -1,0 +1,2 @@
+PACKAGE=wine
+BUILD_MODE=custom

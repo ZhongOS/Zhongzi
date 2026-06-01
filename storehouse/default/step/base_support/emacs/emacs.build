@@ -1,0 +1,16 @@
+<<<TAR_UNCOMPRESS>>>
+	sed -i "s@)\$(libsrc)/make-docfile@) qemu-${ARCH_NAME} \$\(libsrc\)/make-docfile@g" src/Makefile.in
+	sed -i "/^emacs/s@= '\$(EMACS)'@= qemu-${ARCH_NAME} '\$(EMACS)'@g" lisp/Makefile.in
+	./configure ${COMMON_CONFIG} --with-dumping=none
+	check_gnu_Makefile
+	<<<MAKE>>> actual-all
+	make DESTDIR=${SYSROOT_DIR} install
+<<<CLEAR_DIR>>>
+
+[[[2.28]]]
+<<<TAR_UNCOMPRESS>>>
+	sed -i "s@)\$(libsrc)/make-docfile@) qemu-${ARCH_NAME} \$\(libsrc\)/make-docfile@g" src/Makefile.in
+	sed -i -e "s@bootstrap_exe = \(.*\)@ bootstrap_exe = /bin/emacs@g" src/Makefile.in
+	./configure ${COMMON_CONFIG} --with-dumping=none
+	<<<MAKE_AND_INSTALL>>>
+<<<CLEAR_DIR>>>

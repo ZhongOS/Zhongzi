@@ -1,0 +1,6 @@
+<<<TAR_UNCOMPRESS>>>
+    make prefix="/usr" CC=${CROSS_TARGET}-gcc
+    make prefix="/usr" CC=${CROSS_TARGET}-gcc DESTDIR=${PWD}/dest install
+    cp -av dest/usr/bin/* ${SYSROOT_DIR}/usr/bin/
+    cp -av dest/usr/share/man/man* ${SYSROOT_DIR}/usr/share/man/
+<<<CLEAR_DIR>>>

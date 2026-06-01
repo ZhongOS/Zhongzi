@@ -1,0 +1,2 @@
+PACKAGE=analitza
+BUILD_MODE=cmake

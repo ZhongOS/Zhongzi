@@ -1,0 +1,2 @@
+PACKAGE=ripgrep
+BUILD_MODE=custom

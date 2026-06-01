@@ -1,0 +1,5 @@
+<<<TAR_UNCOMPRESS>>>
+    ./configure ${COMMON_CONFIG} --with-readline=gnu
+    make -j1
+    make DESTDIR=${SYSROOT_DIR} install
+<<<CLEAR_DIR>>>

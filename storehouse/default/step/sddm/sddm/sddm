@@ -1,0 +1,2 @@
+PACKAGE=sddm
+BUILD_MODE=custom

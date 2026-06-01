@@ -1,0 +1,9 @@
+export CROSS_TOOLS_PREFIX=${SYSDIR}/mingw-tools
+export PREFIX=${SYSDIR}/mingw-tools
+export PKG_CONFIG_PATH="${CROSS_TOOLS_PREFIX}/sys-root/mingw/lib/pkgconfig"
+export PKG_CONFIG_SYSROOT_DIR="${CROSS_TOOLS_PREFIX}/sys-root"
+export MAKE_AND_INSTALL="make -j${JOBS} && make install"
+export MINGW_HOST=x86_64-w64-mingw32ucrt
+export PATH=${CROSS_TOOLS_PREFIX}/bin:$PATH
+export COMMON_CONFIG="--prefix=/mingw --build=${CROSS_HOST} --host=${MINGW_HOST}"
+export MESON_CONFIG="--prefix=/mingw --cross-file ${COMMON_DIR}/meson-cross_mingw.txt"

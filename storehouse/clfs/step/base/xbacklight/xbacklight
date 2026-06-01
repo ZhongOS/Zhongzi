@@ -1,0 +1,2 @@
+PACKAGE=xbacklight
+BUILD_MODE=gnu

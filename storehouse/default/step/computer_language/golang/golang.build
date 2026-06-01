@@ -1,0 +1,37 @@
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+    case "${ARCH_NAME}" in 
+    "loongarch64")
+	GO_ARCH_NAME=loong64
+	;;
+    *)
+	GO_ARCH_NAME=${ARCH_NAME}
+	;;
+    esac
+    pushd src
+        GOROOT_BOOTSTRAP=${CROSSTOOLS_DIR}/go-bootstrap \
+        GOOS=linux GOARCH=${GO_ARCH_NAME} GO_LDFLAGS="-linkmode internal" \
+        ./make.bash -v
+    popd
+    rm -v bin/go{,fmt}
+    mv -v bin/linux_${GO_ARCH_NAME}/go* bin/
+    rmdir -v bin/linux_${GO_ARCH_NAME}
+
+    find bin pkg -type f -exec ${CROSS_TARGET}-strip --strip-unneeded '{}' ';'
+
+    TAR_EXCLUDE=""
+    for i in $(find -name "linux_*" -type d | grep -v "linux_${GO_ARCH_NAME}")
+    do
+        TAR_EXCLUDE="${TAR_EXCLUDE} --exclude=$i"
+    done
+    tar -czf ${TEMP_DIRECTORY}/golang-dist.tar.gz ${TAR_EXCLUDE} --exclude=.git* ./
+    unset TAR_EXCLUDE
+
+    mkdir -p golang-$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")-${ARCH_NAME}
+    tar xf ${TEMP_DIRECTORY}/golang-dist.tar.gz -C golang-$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")-${ARCH_NAME}
+    mkdir -pv ${DIST_DIRECTORY}/host/${ARCH_NAME}/golang/$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")/
+    tar -cJf ${DIST_DIRECTORY}/host/${ARCH_NAME}/golang/$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")/golang-$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")-${ARCH_NAME}.tar.xz golang-$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")-${ARCH_NAME}
+    rm ${TEMP_DIRECTORY}/golang-dist.tar.gz
+
+    info_pool "生成了可发布的 golang 压缩包文件：${DIST_DIRECTORY}/host/${ARCH_NAME}/golang/$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")/golang-$(echo "<<<PACKAGE_VERSION>>>" | sed "s@-default@@g")-${ARCH_NAME}.tar.xz"
+<<<CLEAR_DIR>>>

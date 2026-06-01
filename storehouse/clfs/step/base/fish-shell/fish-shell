@@ -1,0 +1,3 @@
+PACKAGE=fish-shell
+BUILD_MODE=custom
+# BUILD_MODE=cmake

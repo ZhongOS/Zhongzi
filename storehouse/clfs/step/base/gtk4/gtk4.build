@@ -1,0 +1,1 @@
+EXTRA_PARM= -Dbroadway-backend=true -Dmedia-gstreamer=disabled -Dintrospection=enabled -Dbuild-tests=false -Dvulkan=disabled

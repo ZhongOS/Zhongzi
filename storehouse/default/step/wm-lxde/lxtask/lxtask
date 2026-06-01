@@ -1,0 +1,2 @@
+PACKAGE=lxtask
+BUILD_MODE=gnu

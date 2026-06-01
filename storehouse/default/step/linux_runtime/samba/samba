@@ -1,0 +1,2 @@
+PACKAGE=samba
+BUILD_MODE=custom

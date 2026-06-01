@@ -1,0 +1,9 @@
+<<<TAR_UNCOMPRESS>>>
+        <<<PATCH>>>
+        mkdir cross-build
+        pushd cross-build
+                meson ${MESON_CONFIG} --default-library=both -Dtests=false -Dman=true -Dselinux=disabled -Dintrospection=disabled \
+                      ..
+                <<<NINJA_AND_INSTALL>>>
+        popd
+<<<CLEAR_DIR>>>

@@ -1,0 +1,6 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+	autoreconf -ifv
+	./configure ${COMMON_CONFIG} --with-ogg-includes=${SYSROOT_DIR}/usr/include --with-ogg-libraries=${SYSROOT_DIR}/usr/lib${LIB_SUFF}
+	<<<MAKE_AND_INSTALL>>>
+<<<CLEAR_DIR>>>

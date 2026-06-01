@@ -1,0 +1,70 @@
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+    ARCH_PARM_STR=""
+    case "${ARCH_NAME}" in
+	x86_64)
+		ARCH_PARM_STR="--enable-cet"
+		;;
+	aarch64)
+		ARCH_PARM_STR="--disable-multi-arch"
+		;;
+	*)
+		;;
+    esac
+    mkdir -p build-${ARCH_NAME}
+    pushd build-${ARCH_NAME}
+	CFLAGS="${BASE_CFLAGS}"
+	CXXFLAGS="${BASE_CFLAGS}"
+        BUILD_CC="gcc" CC="${CROSS_TOOLS_PREFIX}/bin/${LINUX_HOST}-gcc ${CFLAGS}" \
+        CXX="${CROSS_TOOLS_PREFIX}/bin/${LINUX_HOST}-gcc ${CXXFLAGS}" \
+        AS="${LINUX_HOST}-as" AR="${LINUX_HOST}-ar" RANLIB="${LINUX_HOST}-ranlib" \
+        ../configure --prefix=/usr --host=${LINUX_HOST} --build=${CROSS_HOST} \
+	                 --libdir=/usr/lib${LIB_SUFF} --libexecdir=/usr/lib${LIB_SUFF}/glibc \
+	                 --with-headers=${LINUX_SYSROOT_DIR}/usr/include \
+	                 --enable-add-ons ${ARCH_PARM_STR} \
+# 			 --with-rtld-early-cflags="-DDEFAULT_RPATH='\"/usr/lib${LIB_SUFF}:/usr/local/lib${LIB_SUFF}\"' ${CFLAGS}" \
+	                 --disable-werror libc_cv_slibdir=/usr/lib${LIB_SUFF}
+#  libc_cv_rtlddir=/lib${LIB_SUFF}
+		<<<MAKE>>>
+		make DESTDIR=${LINUX_SYSROOT_DIR} install
+    popd
+    mkdir -p ${LINUX_SYSROOT_DIR}/usr/lib
+#     case "${ARCH_NAME}" in
+# 	aarch64)
+# 		cp -a ${LINUX_SYSROOT_DIR}/usr/lib${LIB_SUFF}/${LD_LINUXFILE} ${LINUX_SYSROOT_DIR}/usr/lib/
+# 		;;
+# 	*)
+#		;;
+#      esac
+<<<CLEAR_DIR>>>
+
+
+
+[[[2.39]]]
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+    ARCH_PARM_STR=""
+    case "${ARCH_NAME}" in
+	i686)
+		ARCH_PARM_STR="--disable-cet"
+		;;
+	*)
+		;;
+    esac
+    mkdir -p build-${ARCH_NAME}
+    pushd build-${ARCH_NAME}
+	CFLAGS="-O2 -g -mno-avx2 -mno-aes -mno-pclmul"
+	CXXFLAGS="-O2 -g -mno-avx2 -mno-aes -mno-pclmul"
+        BUILD_CC="gcc" CC="${CROSS_TOOLS_PREFIX}/bin/${LINUX_HOST}-gcc ${CFLAGS}" \
+        CXX="${CROSS_TOOLS_PREFIX}/bin/${LINUX_HOST}-gcc ${CXXFLAGS}" \
+        AS="${LINUX_HOST}-as" AR="${LINUX_HOST}-ar" RANLIB="${LINUX_HOST}-ranlib" \
+        ../configure --prefix=/usr --host=${LINUX_HOST} --build=${CROSS_HOST} \
+	                 --libdir=/usr/lib${LIB_SUFF} --libexecdir=/usr/lib${LIB_SUFF}/glibc \
+	                 --with-headers=${LINUX_SYSROOT_DIR}/usr/include \
+	                 --enable-add-ons ${ARCH_PARM_STR} \
+	                 --disable-werror libc_cv_slibdir=/usr/lib${LIB_SUFF}
+		<<<MAKE>>>
+		make DESTDIR=${LINUX_SYSROOT_DIR} install
+    popd
+    mkdir -p ${LINUX_SYSROOT_DIR}/usr/lib
+<<<CLEAR_DIR>>>

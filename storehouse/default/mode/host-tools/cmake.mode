@@ -1,0 +1,11 @@
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+    mkdir -p native-build
+    pushd native-build
+	CC="gcc" CXX="g++" \
+        cmake -DCMAKE_INSTALL_PREFIX=${PREFIX} <<<EXTRA_PARM>>> \
+	      -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
+              -DCMAKE_BUILD_TYPE=Release ..
+	<<<MAKE_AND_INSTALL>>>
+    popd
+<<<CLEAR_DIR>>>

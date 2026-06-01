@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kdeclarative
+BUILD_MODE=cmake

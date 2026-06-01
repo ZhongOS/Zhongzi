@@ -1,0 +1,6 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+	CROSS_PREFIX=${MINGW_HOST}- ./configure --prefix=/mingw --static
+	<<<MAKE>>>
+	make DESTDIR=${MINGW_SYSROOT_DIR} install
+<<<CLEAR_DIR>>>

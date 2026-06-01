@@ -1,0 +1,7 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+	CROSS_PREFIX=${LINUX_HOST}- ./configure --prefix=/usr --libdir=/usr/lib${LIB_SUFF}
+	check_gnu_Makefile
+	<<<MAKE>>>
+	make DESTDIR=${LINUX_SYSROOT_DIR} install
+<<<CLEAR_DIR>>>

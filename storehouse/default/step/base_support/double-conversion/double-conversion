@@ -1,0 +1,2 @@
+PACKAGE=double-conversion
+BUILD_MODE=cmake

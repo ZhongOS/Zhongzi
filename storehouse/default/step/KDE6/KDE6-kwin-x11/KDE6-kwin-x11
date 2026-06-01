@@ -1,0 +1,3 @@
+PACKAGE=KDE6-kwin-x11
+BUILD_MODE=custom
+# BUILD_MODE=cmake

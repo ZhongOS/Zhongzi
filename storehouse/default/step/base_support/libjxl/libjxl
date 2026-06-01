@@ -1,0 +1,2 @@
+PACKAGE=libjxl
+BUILD_MODE=cmake

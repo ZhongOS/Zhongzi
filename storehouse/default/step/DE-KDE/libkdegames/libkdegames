@@ -1,0 +1,2 @@
+PACKAGE=libkdegames
+BUILD_MODE=cmake

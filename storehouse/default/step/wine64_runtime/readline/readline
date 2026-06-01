@@ -1,0 +1,2 @@
+PACKAGE=readline
+BUILD_MODE=custom

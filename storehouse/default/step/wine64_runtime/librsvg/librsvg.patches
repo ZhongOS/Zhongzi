@@ -1,0 +1,2 @@
+# p1 0001-librsvg-2.54.5-fix-loongarch64-support.patch
+p1 0001-librsvg-fix-gdk-pixbuf-dir-for-cross-build.patch

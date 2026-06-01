@@ -1,0 +1,10 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+	if [ ! -f configure ]; then
+		autoreconf -ifv
+	fi
+	<<<CONFIG_ENV>>> ./configure ${COMMON_CONFIG} <<<EXTRA_PARM>>> --enable-malloc0returnsnull
+	CC="${X86_64_HOST}-gcc" CXX="${X86_64_HOST}-g++" <<<MAKE>>>
+        make DESTDIR=${X86_64_SYSROOT_DIR} install
+	rm -f ${X86_64_SYSROOT_DIR}/usr/lib64/*.la
+<<<CLEAR_DIR>>>

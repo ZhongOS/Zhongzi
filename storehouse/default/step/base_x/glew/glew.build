@@ -1,0 +1,7 @@
+<<<TAR_UNCOMPRESS>>>
+    sed -i "s@ -s @ @g" Makefile
+    <<<MAKE>>> CC="${CROSS_TARGET}-gcc" LD="${CROSS_TARGET}-gcc" \
+         STRIP="${CROSS_TARGET}-strip" \
+         CFLAGS.EXTRA="-Wl,-rpath-link=${SYSROOT_DIR}/usr/lib64"
+    make PKGDIR=/usr/lib64/pkgconfig DESTDIR=${SYSROOT_DIR} install
+<<<CLEAR_DIR>>>

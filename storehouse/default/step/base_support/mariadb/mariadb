@@ -1,0 +1,2 @@
+PACKAGE=mariadb
+BUILD_MODE=custom

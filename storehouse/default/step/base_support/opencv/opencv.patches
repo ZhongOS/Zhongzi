@@ -1,0 +1,7 @@
+
+
+[[[4.12.0]]]
+p1	0001-opencv-4.12-fix-for-FFmpeg-8.0-support.patch
+
+[[[4.11.0]]]
+p1 0001-opencv-4.11.0-fix-for-cmake-4.0.patch

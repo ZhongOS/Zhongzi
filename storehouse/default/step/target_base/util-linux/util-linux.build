@@ -1,0 +1,3 @@
+EXTRA_PARM=--disable-chfn-chsh --disable-login --disable-nologin --disable-su --disable-setpriv --disable-runuser --disable-pylibmount --disable-static --without-python --without-systemd --disable-makeinstall-chown runstatedir=/run ADJTIME_PATH=/var/lib/hwclock/adjtime --with-bashcompletiondir=/usr/share/bash-completion/completions --with-tmpfilesdir=/usr/lib/tmpfiles.d
+
+# EXTRA_PARM=--disable-chfn-chsh --disable-login --disable-nologin --disable-su --disable-setpriv --disable-runuser --disable-pylibmount --disable-static --without-python --without-systemd --disable-makeinstall-chown runstatedir=/run ADJTIME_PATH=/var/lib/hwclock/adjtime --with-bashcompletiondir=/usr/share/bash-completion/completions --with-tmpfilesdir=/usr/lib/tmpfiles.d --disable-asciidoc

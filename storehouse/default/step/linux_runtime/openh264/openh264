@@ -1,0 +1,3 @@
+PACKAGE=openh264
+BUILD_MODE=meson
+# LOCK_VERSION=2.3.1

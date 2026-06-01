@@ -1,0 +1,38 @@
+<<<TAR_UNCOMPRESS>>>
+        <<<PATCH>>>
+	tar xvf ${DOWNLOADDIR}/SPIRV-Headers-$(get_package_version "SPIRV-Headers").tar.gz
+        mkdir cross-build
+        pushd cross-build
+                CC="${CROSS_TARGET}-gcc" CXX="${CROSS_TARGET}-g++" CXXFLAGS="-Wno-error=switch" \
+                cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=${COMMON_DIR}/cmake-cross.cmake \
+#                       -DPKG_CONFIG_EXECUTABLE=${SYSDIR}/cross-tools/bin/${CROSS_TARGET}-pkg-config \
+#                       -DCMAKE_SYSROOT=${SYSDIR}/sysroot \
+#                       -DCMAKE_FIND_ROOT_PATH=${SYSDIR}/sysroot/usr \
+#                       -DGETTEXT_MSGFMT_EXECUTABLE=/bin/msgfmt \
+#                       -DGETTEXT_MSGMERGE_EXECUTABLE=/bin/msgmerge \
+#                       -DPython_EXECUTABLE=${CROSSTOOLS_DIR}/bin/python3 \
+#                       -DPYTHON_EXECUTABLE=${CROSSTOOLS_DIR}/bin/python3 \
+#                       -DPYTHON3_EXECUTABLE=${CROSSTOOLS_DIR}/bin/python3 \
+# 		      -D_Python3_EXECUTABLE=${CROSSTOOLS_DIR}/bin/python3 \
+#                       -DPERL_EXECUTABLE=${SYSDIR}/cross-tools/bin/${CROSS_TARGET}-perl \
+#                       -DRuby_EXECUTABLE=${SYSDIR}/cross-tools/bin/ruby \
+#                       -DGPERF_EXECUTABLE=/bin/gperf \
+#                       -DDOXYGEN_EXECUTABLE=/bin/doxygen \
+                      -DCMAKE_INSTALL_LIBDIR=/usr/lib64 -DLIB_SUFFIX=64 \
+                      -DCMAKE_INSTALL_PREFIX=/usr \
+                      -DBUILD_SHARED_LIBS=ON \
+                      -DSPIRV-Headers_SOURCE_DIR=${BUILD_DIRECTORY}/<<<PACKAGE_DIR>>>/SPIRV-Headers-$(get_package_version "SPIRV-Headers") -Wno-dev ..
+                <<<MAKE_AND_INSTALL>>>
+        popd
+        rm -f ${SYSROOT_DIR}/usr/lib64/*.la
+<<<CLEAR_DIR>>>
+
+echo "#!/bin/bash -e
+qemu-${ARCH_NAME} ${SYSROOT_DIR}/usr/bin/spirv-opt \"\$@\"" > ${CROSSTOOLS_DIR}/bin/spirv-opt
+chmod +x ${CROSSTOOLS_DIR}/bin/spirv-opt
+
+if [ "x${PACKAGE_VERSION}" == "xgit" ]; then
+        save_package_version ${STEP_PACKAGENAME} "${PACKAGE_VERSION}_git"
+else
+	save_package_version ${STEP_PACKAGENAME} "${PACKAGE_VERSION}"
+fi

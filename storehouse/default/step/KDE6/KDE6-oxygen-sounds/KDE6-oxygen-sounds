@@ -1,0 +1,2 @@
+PACKAGE=KDE6-oxygen-sounds
+BUILD_MODE=cmake

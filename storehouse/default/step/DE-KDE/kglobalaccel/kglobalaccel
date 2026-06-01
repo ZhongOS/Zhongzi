@@ -1,0 +1,2 @@
+PACKAGE=kglobalaccel
+BUILD_MODE=cmake

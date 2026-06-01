@@ -1,0 +1,2 @@
+PACKAGE=html5-parser
+BUILD_MODE=pip

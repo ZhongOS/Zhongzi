@@ -1,0 +1,4 @@
+p1 0001-Build-failure-with-glibc-2.42-due-to-uabs-name-colli.patch
+p1 0001-jdk8-remove-typedef-int-bool.patch
+p1 0001-jdk8-fix-for-call-of-overloaded-null_check-Register-.patch
+# p1 0001-jdk8-fix-build-error.patch

@@ -1,0 +1,7 @@
+cp -a ${RESOURCEDIR}/bin-run-startx.sh ${SYSROOT_DIR}/usr/bin/run-startx.sh
+chmod u+x ${SYSROOT_DIR}/usr/bin/run-startx.sh
+
+mkdir -pv ${SYSROOT_DIR}/etc/X11/app-defaults/
+ln -sfv ../xinit/xinitrc.d ${SYSROOT_DIR}/etc/X11/app-defaults/
+
+cp -a ${RESOURCEDIR}/root-xinitrc ${SYSROOT_DIR}/root/.xinitrc

@@ -1,0 +1,6 @@
+PACKAGE=zxing-cpp
+BUILD_MODE=custom
+
+[[[2.3.0]]]
+PACKAGE=zxing-cpp
+BUILD_MODE=cmake

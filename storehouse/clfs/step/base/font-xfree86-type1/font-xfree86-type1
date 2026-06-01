@@ -1,0 +1,2 @@
+PACKAGE=font-xfree86-type1
+BUILD_MODE=gnu

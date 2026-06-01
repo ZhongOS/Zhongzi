@@ -1,0 +1,3 @@
+PACKAGE=binutils
+BUILD_MODE=custom
+LOCK_VERSION=rpm_git

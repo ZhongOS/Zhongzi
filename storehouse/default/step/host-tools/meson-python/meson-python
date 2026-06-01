@@ -1,0 +1,2 @@
+PACKAGE=meson-python
+BUILD_MODE=meson

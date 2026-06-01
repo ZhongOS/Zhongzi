@@ -1,0 +1,2 @@
+PACKAGE=libcroco
+BUILD_MODE=gnu

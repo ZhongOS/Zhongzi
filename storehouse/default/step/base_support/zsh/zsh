@@ -1,0 +1,3 @@
+PACKAGE=zsh
+BUILD_MODE=gnu
+# BUILD_MODE=custom

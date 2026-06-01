@@ -1,0 +1,2 @@
+PACKAGE=appstream-glib
+BUILD_MODE=meson

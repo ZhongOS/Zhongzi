@@ -1,0 +1,2 @@
+PACKAGE=xrefresh
+BUILD_MODE=gnu

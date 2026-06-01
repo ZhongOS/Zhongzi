@@ -1,0 +1,9 @@
+
+
+[[[1.0.9]]]
+<<<TAR_UNCOMPRESS>>>
+    ./bootstrap
+    sed -i "s@-R@-Wl,-rpath-link=@g" scripts/libbrotli{common,dec,enc}.pc.in
+    ./configure ${COMMON_CONFIG}
+    <<<MAKE_AND_INSTALL>>>
+<<<CLEAR_DIR>>>

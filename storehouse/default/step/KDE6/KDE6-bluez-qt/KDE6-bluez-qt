@@ -1,0 +1,2 @@
+PACKAGE=KDE6-bluez-qt
+BUILD_MODE=cmake

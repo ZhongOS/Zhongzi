@@ -1,0 +1,2 @@
+PACKAGE=KDE6-libplasma
+BUILD_MODE=cmake

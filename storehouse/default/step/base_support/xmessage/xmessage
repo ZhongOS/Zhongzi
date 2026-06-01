@@ -1,0 +1,2 @@
+PACKAGE=xmessage
+BUILD_MODE=gnu

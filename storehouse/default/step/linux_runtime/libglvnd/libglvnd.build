@@ -1,0 +1,2 @@
+# CONFIG_ENV=LDFLAGS="${LDFLAGS}:${PWD}/src/GLdispatch:${PWD}/src/GLX"
+# sed -i "s@-rpath,@-rpath-link,@g" build.ninja

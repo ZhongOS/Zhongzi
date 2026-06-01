@@ -1,0 +1,2 @@
+PACKAGE=iceauth
+BUILD_MODE=gnu

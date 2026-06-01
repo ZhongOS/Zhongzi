@@ -1,0 +1,4 @@
+<<<TAR_UNCOMPRESS>>>
+    mkdir -pv ${CROSSTOOLS_DIR}/jdk-latest-bootstrap
+    cp -af * ${CROSSTOOLS_DIR}/jdk-latest-bootstrap
+<<<CLEAR_DIR>>>

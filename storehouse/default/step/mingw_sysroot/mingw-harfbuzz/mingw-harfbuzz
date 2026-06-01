@@ -1,0 +1,2 @@
+PACKAGE=harfbuzz
+BUILD_MODE=cmake

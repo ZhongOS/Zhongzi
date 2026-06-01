@@ -1,0 +1,2 @@
+PACKAGE=apr-util
+BUILD_MODE=custom

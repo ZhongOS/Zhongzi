@@ -1,0 +1,30 @@
+<<<TAR_UNCOMPRESS>>>
+    ./configure ${COMMON_CONFIG} --enable-securedir=/usr/lib64/security --disable-doc \
+                ac_cv_func_yp_get_default_domain=no
+    <<<MAKE_AND_INSTALL>>>
+    chmod -v 4755 ${LINUX_SYSROOT_DIR}/usr/sbin/unix_chkpwd
+
+mkdir -pv ${LINUX_SYSROOT_DIR}/etc/pam.d
+
+cat > ${LINUX_SYSROOT_DIR}/etc/pam.d/system-account << "EOF"
+account   required    pam_unix.so
+EOF
+
+cat > ${LINUX_SYSROOT_DIR}/etc/pam.d/system-auth << "EOF"
+auth      required    pam_unix.so
+EOF
+
+cat > ${LINUX_SYSROOT_DIR}/etc/pam.d/system-session << "EOF"
+session   required    pam_unix.so
+EOF
+cat > ${LINUX_SYSROOT_DIR}/etc/pam.d/system-password << "EOF"
+password  required    pam_unix.so       sha512 shadow try_first_pass
+EOF
+
+cat > ${LINUX_SYSROOT_DIR}/etc/pam.d/other << EOF
+auth            required        pam_unix.so     nullok
+account         required        pam_unix.so
+session         required        pam_unix.so
+password        required        pam_unix.so     nullok
+EOF
+<<<CLEAR_DIR>>>

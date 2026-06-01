@@ -1,0 +1,2 @@
+PACKAGE=libnice
+BUILD_MODE=meson

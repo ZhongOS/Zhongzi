@@ -1,0 +1,322 @@
+<<<TAR_UNCOMPRESS>>>
+	export PATH=${CROSSTOOLS_DIR}/qt6/bin:${PATH}
+        <<<PATCH>>>
+# 	sed -i "/unset PKG_CONFIG_PATH/s@unset PKG_CONFIG_PATH@export PKG_CONFIG_PATH=\\\\\"${CROSSTOOLS_DIR}/lib/pkgconfig:${CROSSTOOLS_DIR}/lib64/pkgconfig:${HOST_TOOLS_DIR}/lib64/pkgconfig:${HOST_TOOLS_DIR}/lib/pkgconfig:/usr/lib64/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig\\\\\"@g" qtwebengine/cmake/QtToolchainHelpers.cmake
+# 	sed -i "/v8_enable_webassembly/s@=false@=true@g" qtwebengine/src/pdf/CMakeLists.txt
+
+	sed -i "s@\${QT_VERSION_MAJOR}@6@g" qtlottie/tools/lottietoqml/CMakeLists.txt
+
+# # 	sed -i "s@../lib/@@g" qtmultimedia/cmake/FindFFmpeg.cmake
+# 	sed -i "s@llvm-10.0@llvm-16.0@g" qtwebengine/src/3rdparty/chromium/third_party/swiftshader/src/Reactor/BUILD.gn
+
+# 	cp -a ${SYSROOT_DIR}/usr/include/{math,stdlib}.h ${SYSROOT_DIR}/usr/local/include/
+
+# # 	sed -i -e "/^if(/d" -e "/^endif/d" qtwebengine/examples/CMakeLists.txt
+
+        mkdir -pv cross-build
+        pushd cross-build
+                CC="${CROSS_TARGET}-gcc" CXX="${CROSS_TARGET}-g++" \
+# #                CC="clang" CXX="clang++" CFLAGS="${CFLAGS} -mcmodel=medium -target ${CROSS_TARGET}" CXXFLAGS="${CXXFLAGS} -mcmodel=medium -target ${CROSS_TARGET}" \
+                cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=${COMMON_DIR}/cmake-cross.cmake \
+                      -DPython_EXECUTABLE=${HOST_TOOLS_DIR}/bin/python3 \
+                      -DPython3_EXECUTABLE=${HOST_TOOLS_DIR}/bin/python3 \
+                      -DPYTHON_EXECUTABLE=${HOST_TOOLS_DIR}/bin/python3 \
+                      -DPYTHON3_EXECUTABLE=${HOST_TOOLS_DIR}/bin/python3 \
+                      -DCMAKE_INSTALL_LIBDIR=/usr/lib64 -DLIB_SUFFIX=64 \
+                      -DCMAKE_INSTALL_PREFIX=/usr \
+                      -DINSTALL_BINDIR=/usr/lib64/qt6/bin \
+                      -DINSTALL_ARCHDATADIR=/usr/lib64/qt6 \
+                      -DINSTALL_LIBDIR=/usr/lib64 \
+                      -DINSTALL_QMLDIR=/usr/lib64/qml \
+                      -DINSTALL_SYSCONFDIR=/etc/xdg \
+                      -DINSTALL_PLUGINSDIR=/usr/lib64/qt6/plugins \
+                      -DINSTALL_QMLDIR=/usr/lib64/qt6/qml \
+                      -DINSTALL_DATADIR=/usr/share/qt6 \
+                      -DINSTALL_DOCDIR=/usr/share/doc/qt6 \
+                      -DINSTALL_TRANSLATIONSDIR=/usr/share/qt6/translations \
+                      -DINSTALL_INCLUDEDIR=/usr/include/qt6 \
+                      -DINSTALL_IMPORTDIR=/usr/lib64/qt6/imports \
+                      -DINSTALL_MKSPECSDIR=/usr/lib64/qt6/mkspecs \
+                      -DBUILD_SHARED_LIBS=ON \
+		      -DQT_HOST_PATH=${CROSSTOOLS_DIR}/qt6 -DQT_FORCE_BUILD_TOOLS=ON \
+# 		      -DQT_BUILD_SUBMODULES=qt3d\;qt5compat\;qtactiveqt\;qtbase\;qtcharts\;qtcoap\;qtconnectivity\;qtdatavis3d\;qtdeclarative\;qtdoc\;qthttpserver\;qtimageformats\;qtlanguageserver\;qtlocation\;qtlottie\;qtmqtt\;qtmultimedia\;qtnetworkauth\;qtopcua\;qtpositioning\;qtquick3d\;qtquickeffectmaker\;qtquicktimeline\;qtremoteobjects\;qtscxml\;qtsensors\;qtserialbus\;qtserialport\;qtshadertools\;qtspeech\;qtsvg\;qttools\;qttranslations\;qtvirtualkeyboard\;qtwayland\;qtwebchannel\;qtwebsockets\;qtwebview\;qtwebengine \
+		      -DQT_BUILD_SUBMODULES=qt3d\;qt5compat\;qtactiveqt\;qtbase\;qtcharts\;qtcoap\;qtconnectivity\;qtdatavis3d\;qtdeclarative\;qtdoc\;qthttpserver\;qtimageformats\;qtlanguageserver\;qtlocation\;qtlottie\;qtmqtt\;qtmultimedia\;qtnetworkauth\;qtopcua\;qtpositioning\;qtquick3d\;qtquickeffectmaker\;qtquicktimeline\;qtremoteobjects\;qtscxml\;qtsensors\;qtserialbus\;qtserialport\;qtshadertools\;qtspeech\;qtsvg\;qttools\;qttranslations\;qtvirtualkeyboard\;qtwayland\;qtwebchannel\;qtwebsockets\;qtwebview \
+		      -DPKG_CONFIG_HOST_EXECUTABLE=/usr/bin/pkg-config \
+# 		      -DFEATURE_webengine_system_ffmpeg:BOOL=ON  -DFEATURE_webengine_vaapi:BOOL=ON -DFEATURE_webengine_extensions:BOOL=ON -DFEATURE_webengine_printing_and_pdf:BOOL=ON -DFEATURE_webengine_proprietary_codecs:BOOL=ON -DFEATURE_webengine_webrtc:BOOL=ON -DFEATURE_webengine_webrtc_pipewire:BOOL=ON -DFEATURE_webengine_system_minizip:BOOL=OFF \
+		      -DQT_FEATURE_use_lld_linker:BOOL=OFF \
+# 		      -DFEATURE_qtpdf_build:BOOL=ON -DFEATURE_pdf_v8:BOOL=ON \
+		      -DQT_GENERATE_SBOM=OFF \
+# 		      -DQT_BUILD_EXAMPLES=ON \
+                      -Wno-dev ..
+                <<<MAKE_AND_INSTALL>>>
+        popd
+        rm -f ${SYSROOT_DIR}/usr/lib64/*.la
+<<<CLEAR_DIR>>>
+
+cat > ${SYSROOT_DIR}/etc/profile.d/qt6.sh << "EOF"
+export QT_PLUGIN_PATH=${QT_PLUGIN_PATH}:/usr/lib64/qt6/plugins
+export QT_IMPORTS_DIR=${QT_IMPORTS_PATH}:/usr/lib64/qt6/qml
+export QML2_IMPORT_PATH=${QML2_IMPORT_PATH}:/usr/lib64/qt6/qml
+EOF
+
+
+
+
+[[[6.9.3]]]
+<<<TAR_UNCOMPRESS>>>
+	export PATH=${CROSSTOOLS_DIR}/qt6/bin:${PATH}
+        <<<PATCH>>>
+	sed -i "/unset PKG_CONFIG_PATH/s@unset PKG_CONFIG_PATH@export PKG_CONFIG_PATH=\\\\\"${CROSSTOOLS_DIR}/lib/pkgconfig:${CROSSTOOLS_DIR}/lib64/pkgconfig:${HOST_TOOLS_DIR}/lib64/pkgconfig:${HOST_TOOLS_DIR}/lib/pkgconfig:/usr/lib64/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig\\\\\"@g" qtwebengine/cmake/QtToolchainHelpers.cmake
+	sed -i "/v8_enable_webassembly/s@=false@=true@g" qtwebengine/src/pdf/CMakeLists.txt
+
+	sed -i "s@../lib/@@g" qtmultimedia/cmake/FindFFmpeg.cmake
+	sed -i "s@llvm-10.0@llvm-16.0@g" qtwebengine/src/3rdparty/chromium/third_party/swiftshader/src/Reactor/BUILD.gn
+
+#	if [ "x${ARCH_NAME}" == "xloongarch64" ] && [
+#		sed -i "s@__NR_statx_default@__NR_fstatat_default@g" qtwebengine/src/3rdparty/chromium/sandbox/policy/linux/sandbox_linux.cc
+#	fi
+
+	cp -a ${SYSROOT_DIR}/usr/include/{math,stdlib}.h ${SYSROOT_DIR}/usr/local/include/
+
+	sed -i -e "/^if(/d" -e "/^endif/d" qtwebengine/examples/CMakeLists.txt
+# 	sed -i "s@AND NOT CMAKE_CROSSCOMPILING@@g" qtwebengine/src/core/tools/qwebengine_convert_dict/CMakeLists.txt
+
+        mkdir -pv cross-build
+        pushd cross-build
+                CC="${CROSS_TARGET}-gcc" CXX="${CROSS_TARGET}-g++" \
+#                CC="clang" CXX="clang++" CFLAGS="${CFLAGS} -mcmodel=medium -target ${CROSS_TARGET}" CXXFLAGS="${CXXFLAGS} -mcmodel=medium -target ${CROSS_TARGET}" \
+                cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=${COMMON_DIR}/cmake-cross.cmake \
+#                       -DPKG_CONFIG_EXECUTABLE=${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-pkg-config \
+#                       -DGETTEXT_MSGFMT_EXECUTABLE=/bin/msgfmt \
+#                       -DGETTEXT_MSGMERGE_EXECUTABLE=/bin/msgmerge \
+                      -DPython_EXECUTABLE=${HOST_TOOLS_DIR}/bin/python3 \
+                      -DPython3_EXECUTABLE=${HOST_TOOLS_DIR}/bin/python3 \
+                      -DPYTHON_EXECUTABLE=${HOST_TOOLS_DIR}/bin/python3 \
+                      -DPYTHON3_EXECUTABLE=${HOST_TOOLS_DIR}/bin/python3 \
+#                       -DPERL_EXECUTABLE=${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-perl \
+#                       -DRuby_EXECUTABLE=${HOST_TOOLS_DIR}/bin/ruby \
+#                       -DGPERF_EXECUTABLE=/bin/gperf -DGperf_EXECUTABLE=/bin/gperf \
+#                       -DDOXYGEN_EXECUTABLE=/bin/doxygen \
+#                       -DWaylandScanner_EXECUTABLE=${CROSSTOOLS_DIR}/bin/wayland-scanner \
+#                       -DQtWaylandScanner_EXECUTABLE=${CROSSTOOLS_DIR}/bin/qtwaylandscanner \
+#                       -DLIBXML2_XMLLINT_EXECUTABLE=${HOST_TOOLS_DIR}/bin/xmllint \
+# #		      -DLLVM_LD=${CROSSTOOLS_DIR}/bin/lld \
+#                       -DFLEX_EXECUTABLE=/bin/flex \
+#                       -DBISON_EXECUTABLE=/bin/bison \
+#                       -Dgzip_EXECUTABLE=/bin/gzip \
+                      -DCMAKE_INSTALL_LIBDIR=/usr/lib64 -DLIB_SUFFIX=64 \
+                      -DCMAKE_INSTALL_PREFIX=/usr \
+                      -DINSTALL_BINDIR=/usr/lib64/qt6/bin \
+                      -DINSTALL_ARCHDATADIR=/usr/lib64/qt6 \
+                      -DINSTALL_LIBDIR=/usr/lib64 \
+                      -DINSTALL_QMLDIR=/usr/lib64/qml \
+                      -DINSTALL_SYSCONFDIR=/etc/xdg \
+                      -DINSTALL_PLUGINSDIR=/usr/lib64/qt6/plugins \
+                      -DINSTALL_QMLDIR=/usr/lib64/qt6/qml \
+                      -DINSTALL_DATADIR=/usr/share/qt6 \
+                      -DINSTALL_DOCDIR=/usr/share/doc/qt6 \
+                      -DINSTALL_TRANSLATIONSDIR=/usr/share/qt6/translations \
+                      -DINSTALL_INCLUDEDIR=/usr/include/qt6 \
+                      -DINSTALL_IMPORTDIR=/usr/lib64/qt6/imports \
+                      -DINSTALL_MKSPECSDIR=/usr/lib64/qt6/mkspecs \
+                      -DBUILD_SHARED_LIBS=ON \
+		      -DQT_HOST_PATH=${CROSSTOOLS_DIR}/qt6 -DQT_FORCE_BUILD_TOOLS=ON \
+		      -DQT_BUILD_SUBMODULES=qt3d\;qt5compat\;qtactiveqt\;qtbase\;qtcharts\;qtcoap\;qtconnectivity\;qtdatavis3d\;qtdeclarative\;qtdoc\;qthttpserver\;qtimageformats\;qtlanguageserver\;qtlocation\;qtlottie\;qtmqtt\;qtmultimedia\;qtnetworkauth\;qtopcua\;qtpositioning\;qtquick3d\;qtquickeffectmaker\;qtquicktimeline\;qtremoteobjects\;qtscxml\;qtsensors\;qtserialbus\;qtserialport\;qtshadertools\;qtspeech\;qtsvg\;qttools\;qttranslations\;qtvirtualkeyboard\;qtwayland\;qtwebchannel\;qtwebsockets\;qtwebview\;qtwebengine \
+		      -DPKG_CONFIG_HOST_EXECUTABLE=/usr/bin/pkg-config \
+		      -DFEATURE_webengine_system_ffmpeg:BOOL=ON  -DFEATURE_webengine_vaapi:BOOL=ON -DFEATURE_webengine_extensions:BOOL=ON -DFEATURE_webengine_printing_and_pdf:BOOL=ON -DFEATURE_webengine_proprietary_codecs:BOOL=ON -DFEATURE_webengine_webrtc:BOOL=ON -DFEATURE_webengine_webrtc_pipewire:BOOL=ON \
+		      -DQT_FEATURE_use_lld_linker:BOOL=OFF \
+		      -DFEATURE_qtpdf_build:BOOL=ON -DFEATURE_pdf_v8:BOOL=ON \
+		      -DQT_GENERATE_SBOM=OFF \
+# 		      -DQT_BUILD_EXAMPLES=ON \
+                      -Wno-dev ..
+                <<<MAKE_AND_INSTALL>>>
+        popd
+        rm -f ${SYSROOT_DIR}/usr/lib64/*.la
+<<<CLEAR_DIR>>>
+
+cat > ${SYSROOT_DIR}/etc/profile.d/qt6.sh << "EOF"
+export QT_PLUGIN_PATH=${QT_PLUGIN_PATH}:/usr/lib64/qt6/plugins
+export QT_IMPORTS_DIR=${QT_IMPORTS_PATH}:/usr/lib64/qt6/qml
+export QML2_IMPORT_PATH=${QML2_IMPORT_PATH}:/usr/lib64/qt6/qml
+EOF
+
+
+# -DQT_HOST_PATH=${CROSSTOOLS_DIR}/qt6 -DQT_BUILD_SUBMODULES=qt3d\;qt5compat\;qtactiveqt\;qtbase\;qtcharts\;qtcoap\;qtconnectivity\;qtdatavis3d\;qtdeclarative\;qtdoc\;qthttpserver\;qtimageformats\;qtlanguageserver\;qtlocation\;qtlottie\;qtmqtt\;qtmultimedia\;qtnetworkauth\;qtopcua\;qtpositioning\;qtquick3d\;qtquick3dphysics\;qtquickeffectmaker\;qtquicktimeline\;qtremoteobjects\;qtscxml\;qtsensors\;qtserialbus\;qtserialport\;qtshadertools\;qtspeech\;qtsvg\;qttools\;qttranslations\;qtvirtualkeyboard\;qtwayland\;qtwebchannel\;qtwebsockets\;qtwebview \
+
+
+# -DQT_BUILD_SUBMODULES=qtwebengine             -DFEATURE_qtpdf_build:BOOL=OFF   -DPKG_CONFIG_HOST_EXECUTABLE=/usr/bin/pkg-config   -DFEATURE_webengine_system_ffmpeg:BOOL=OFF  -DFEATURE_webengine_system_libvpx:BOOL=ON
+
+# QT_CONFIG_INSTALL_DIR QT_HOST_PATH_CMAKE_DIR
+
+# QT_BUILD_TOOLS_BY_DEFAULT=ON QT_WILL_BUILD_TOOLS:INTERNAL=TRUE
+
+
+[[[6.9.0]]]
+<<<TAR_UNCOMPRESS>>>
+	export PATH=${CROSSTOOLS_DIR}/qt6/bin:${PATH}
+        <<<PATCH>>>
+	sed -i "/unset PKG_CONFIG_PATH/s@unset PKG_CONFIG_PATH@export PKG_CONFIG_PATH=\\\\\"${CROSSTOOLS_DIR}/lib/pkgconfig:${CROSSTOOLS_DIR}/lib64/pkgconfig:${HOST_TOOLS_DIR}/lib64/pkgconfig:${HOST_TOOLS_DIR}/lib/pkgconfig:/usr/lib64/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig\\\\\"@g" qtwebengine/cmake/Functions.cmake
+	sed -i "/v8_enable_webassembly/s@=false@=true@g" qtwebengine/src/pdf/CMakeLists.txt
+
+	sed -i "s@../lib/@@g" qtmultimedia/cmake/FindFFmpeg.cmake
+	sed -i "s@llvm-10.0@llvm-16.0@g" qtwebengine/src/3rdparty/chromium/third_party/swiftshader/src/Reactor/BUILD.gn
+
+#	if [ "x${ARCH_NAME}" == "xloongarch64" ] && [
+#		sed -i "s@__NR_statx_default@__NR_fstatat_default@g" qtwebengine/src/3rdparty/chromium/sandbox/policy/linux/sandbox_linux.cc
+#	fi
+
+	cp -a ${SYSROOT_DIR}/usr/include/{math,stdlib}.h ${SYSROOT_DIR}/usr/local/include/
+
+        mkdir -pv cross-build
+        pushd cross-build
+                CC="${CROSS_TARGET}-gcc" CXX="${CROSS_TARGET}-g++" \
+#                CC="clang" CXX="clang++" CFLAGS="${CFLAGS} -mcmodel=medium -target ${CROSS_TARGET}" CXXFLAGS="${CXXFLAGS} -mcmodel=medium -target ${CROSS_TARGET}" \
+                cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=${COMMON_DIR}/cmake-cross.cmake \
+#                       -DPKG_CONFIG_EXECUTABLE=${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-pkg-config \
+#                       -DGETTEXT_MSGFMT_EXECUTABLE=/bin/msgfmt \
+#                       -DGETTEXT_MSGMERGE_EXECUTABLE=/bin/msgmerge \
+                      -DPython_EXECUTABLE=${HOST_TOOLS_DIR}/bin/python3 \
+                      -DPython3_EXECUTABLE=${HOST_TOOLS_DIR}/bin/python3 \
+                      -DPYTHON_EXECUTABLE=${HOST_TOOLS_DIR}/bin/python3 \
+                      -DPYTHON3_EXECUTABLE=${HOST_TOOLS_DIR}/bin/python3 \
+#                       -DPERL_EXECUTABLE=${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-perl \
+#                       -DRuby_EXECUTABLE=${HOST_TOOLS_DIR}/bin/ruby \
+#                       -DGPERF_EXECUTABLE=/bin/gperf -DGperf_EXECUTABLE=/bin/gperf \
+#                       -DDOXYGEN_EXECUTABLE=/bin/doxygen \
+#                       -DWaylandScanner_EXECUTABLE=${CROSSTOOLS_DIR}/bin/wayland-scanner \
+#                       -DQtWaylandScanner_EXECUTABLE=${CROSSTOOLS_DIR}/bin/qtwaylandscanner \
+#                       -DLIBXML2_XMLLINT_EXECUTABLE=${HOST_TOOLS_DIR}/bin/xmllint \
+# #		      -DLLVM_LD=${CROSSTOOLS_DIR}/bin/lld \
+#                       -DFLEX_EXECUTABLE=/bin/flex \
+#                       -DBISON_EXECUTABLE=/bin/bison \
+#                       -Dgzip_EXECUTABLE=/bin/gzip \
+                      -DCMAKE_INSTALL_LIBDIR=/usr/lib64 -DLIB_SUFFIX=64 \
+                      -DCMAKE_INSTALL_PREFIX=/usr \
+                      -DINSTALL_BINDIR=/usr/lib64/qt6/bin \
+                      -DINSTALL_ARCHDATADIR=/usr/lib64/qt6 \
+                      -DINSTALL_LIBDIR=/usr/lib64 \
+                      -DINSTALL_QMLDIR=/usr/lib64/qml \
+                      -DINSTALL_SYSCONFDIR=/etc/xdg \
+                      -DINSTALL_PLUGINSDIR=/usr/lib64/qt6/plugins \
+                      -DINSTALL_QMLDIR=/usr/lib64/qt6/qml \
+                      -DINSTALL_DATADIR=/usr/share/qt6 \
+                      -DINSTALL_DOCDIR=/usr/share/doc/qt6 \
+                      -DINSTALL_TRANSLATIONSDIR=/usr/share/qt6/translations \
+                      -DINSTALL_INCLUDEDIR=/usr/include/qt6 \
+                      -DINSTALL_IMPORTDIR=/usr/lib64/qt6/imports \
+                      -DINSTALL_MKSPECSDIR=/usr/lib64/qt6/mkspecs \
+                      -DBUILD_SHARED_LIBS=ON \
+		      -DQT_HOST_PATH=${CROSSTOOLS_DIR}/qt6 -DQT_FORCE_BUILD_TOOLS=ON \
+		      -DQT_BUILD_SUBMODULES=qt3d\;qt5compat\;qtactiveqt\;qtbase\;qtcharts\;qtcoap\;qtconnectivity\;qtdatavis3d\;qtdeclarative\;qtdoc\;qthttpserver\;qtimageformats\;qtlanguageserver\;qtlocation\;qtlottie\;qtmqtt\;qtmultimedia\;qtnetworkauth\;qtopcua\;qtpositioning\;qtquick3d\;qtquickeffectmaker\;qtquicktimeline\;qtremoteobjects\;qtscxml\;qtsensors\;qtserialbus\;qtserialport\;qtshadertools\;qtspeech\;qtsvg\;qttools\;qttranslations\;qtvirtualkeyboard\;qtwayland\;qtwebchannel\;qtwebsockets\;qtwebview\;qtwebengine \
+		      -DPKG_CONFIG_HOST_EXECUTABLE=/usr/bin/pkg-config \
+		      -DFEATURE_webengine_system_ffmpeg:BOOL=ON  -DFEATURE_webengine_vaapi:BOOL=ON -DFEATURE_webengine_extensions:BOOL=ON -DFEATURE_webengine_printing_and_pdf:BOOL=ON -DFEATURE_webengine_proprietary_codecs:BOOL=ON -DFEATURE_webengine_webrtc:BOOL=ON -DFEATURE_webengine_webrtc_pipewire:BOOL=ON \
+		      -DQT_FEATURE_use_lld_linker:BOOL=OFF \
+		      -DFEATURE_qtpdf_build:BOOL=ON -DFEATURE_pdf_v8:BOOL=ON \
+		      -DQT_GENERATE_SBOM=OFF \
+		      -DQT_BUILD_EXAMPLES=ON \
+                      -Wno-dev ..
+                <<<MAKE_AND_INSTALL>>>
+        popd
+        rm -f ${SYSROOT_DIR}/usr/lib64/*.la
+<<<CLEAR_DIR>>>
+
+cat > ${SYSROOT_DIR}/etc/profile.d/qt6.sh << "EOF"
+export QT_PLUGIN_PATH=${QT_PLUGIN_PATH}:/usr/lib64/qt6/plugins
+export QT_IMPORTS_DIR=${QT_IMPORTS_PATH}:/usr/lib64/qt6/qml
+export QML2_IMPORT_PATH=${QML2_IMPORT_PATH}:/usr/lib64/qt6/qml
+EOF
+
+
+# -DQT_HOST_PATH=${CROSSTOOLS_DIR}/qt6 -DQT_BUILD_SUBMODULES=qt3d\;qt5compat\;qtactiveqt\;qtbase\;qtcharts\;qtcoap\;qtconnectivity\;qtdatavis3d\;qtdeclarative\;qtdoc\;qthttpserver\;qtimageformats\;qtlanguageserver\;qtlocation\;qtlottie\;qtmqtt\;qtmultimedia\;qtnetworkauth\;qtopcua\;qtpositioning\;qtquick3d\;qtquick3dphysics\;qtquickeffectmaker\;qtquicktimeline\;qtremoteobjects\;qtscxml\;qtsensors\;qtserialbus\;qtserialport\;qtshadertools\;qtspeech\;qtsvg\;qttools\;qttranslations\;qtvirtualkeyboard\;qtwayland\;qtwebchannel\;qtwebsockets\;qtwebview \
+
+
+# -DQT_BUILD_SUBMODULES=qtwebengine             -DFEATURE_qtpdf_build:BOOL=OFF   -DPKG_CONFIG_HOST_EXECUTABLE=/usr/bin/pkg-config   -DFEATURE_webengine_system_ffmpeg:BOOL=OFF  -DFEATURE_webengine_system_libvpx:BOOL=ON
+
+# QT_CONFIG_INSTALL_DIR QT_HOST_PATH_CMAKE_DIR
+
+# QT_BUILD_TOOLS_BY_DEFAULT=ON QT_WILL_BUILD_TOOLS:INTERNAL=TRUE
+
+
+[[[6.8.3]]]
+<<<TAR_UNCOMPRESS>>>
+	export PATH=${CROSSTOOLS_DIR}/qt6/bin:${PATH}
+        <<<PATCH>>>
+	sed -i "/unset PKG_CONFIG_PATH/s@unset PKG_CONFIG_PATH@export PKG_CONFIG_PATH=\\\\\"${CROSSTOOLS_DIR}/lib/pkgconfig:${CROSSTOOLS_DIR}/lib64/pkgconfig:${HOST_TOOLS_DIR}/lib64/pkgconfig:${HOST_TOOLS_DIR}/lib/pkgconfig:/usr/lib64/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig\\\\\"@g" qtwebengine/cmake/Functions.cmake
+#	sed -i "s#@YONGBAO_HOST_LDFLAGS@#-Wl,-rpath-link=${CROSSTOOLS_DIR}/lib:${CROSSTOOLS_DIR}/lib64:${HOST_TOOLS_DIR}/lib:${HOST_TOOLS_DIR}/lib64 -Wl,-rpath=${CROSSTOOLS_DIR}/lib:${CROSSTOOLS_DIR}/lib64:${HOST_TOOLS_DIR}/lib:${HOST_TOOLS_DIR}/lib64/#g" qtwebengine/src/host/BUILD.toolchain.gn.in
+	sed -i "s#@YONGBAO_HOST_LDFLAGS@##g" qtwebengine/src/host/BUILD.toolchain.gn.in
+	sed -i "/v8_enable_webassembly/s@=false@=true@g" qtwebengine/src/pdf/CMakeLists.txt
+
+	sed -i "s@../lib/@@g" qtmultimedia/cmake/FindFFmpeg.cmake
+
+#	if [ "x${ARCH_NAME}" == "xloongarch64" ] && [
+#		sed -i "s@__NR_statx_default@__NR_fstatat_default@g" qtwebengine/src/3rdparty/chromium/sandbox/policy/linux/sandbox_linux.cc
+#	fi
+
+        mkdir cross-build
+        pushd cross-build
+                CC="${CROSS_TARGET}-gcc" CXX="${CROSS_TARGET}-g++" \
+#                CC="clang" CXX="clang++" CFLAGS="${CFLAGS} -mcmodel=medium -target ${CROSS_TARGET}" CXXFLAGS="${CXXFLAGS} -mcmodel=medium -target ${CROSS_TARGET}" \
+                cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=${COMMON_DIR}/cmake-cross.cmake \
+                      -DPKG_CONFIG_EXECUTABLE=${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-pkg-config \
+                      -DGETTEXT_MSGFMT_EXECUTABLE=/bin/msgfmt \
+                      -DGETTEXT_MSGMERGE_EXECUTABLE=/bin/msgmerge \
+                      -DPython_EXECUTABLE=${HOST_TOOLS_DIR}/bin/python3 \
+                      -DPython3_EXECUTABLE=${HOST_TOOLS_DIR}/bin/python3 \
+                      -DPYTHON_EXECUTABLE=${HOST_TOOLS_DIR}/bin/python3 \
+                      -DPYTHON3_EXECUTABLE=${HOST_TOOLS_DIR}/bin/python3 \
+                      -DPERL_EXECUTABLE=${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-perl \
+                      -DRuby_EXECUTABLE=${HOST_TOOLS_DIR}/bin/ruby \
+                      -DGPERF_EXECUTABLE=/bin/gperf -DGperf_EXECUTABLE=/bin/gperf \
+                      -DDOXYGEN_EXECUTABLE=/bin/doxygen \
+                      -DWaylandScanner_EXECUTABLE=${CROSSTOOLS_DIR}/bin/wayland-scanner \
+                      -DQtWaylandScanner_EXECUTABLE=${CROSSTOOLS_DIR}/bin/qtwaylandscanner \
+                      -DLIBXML2_XMLLINT_EXECUTABLE=${HOST_TOOLS_DIR}/bin/xmllint \
+#		      -DLLVM_LD=${CROSSTOOLS_DIR}/bin/lld \
+                      -DFLEX_EXECUTABLE=/bin/flex \
+                      -DBISON_EXECUTABLE=/bin/bison \
+                      -Dgzip_EXECUTABLE=/bin/gzip \
+                      -DCMAKE_INSTALL_LIBDIR=/usr/lib64 -DLIB_SUFFIX=64 \
+                      -DCMAKE_INSTALL_PREFIX=/usr \
+                      -DINSTALL_BINDIR=/usr/lib64/qt6/bin \
+                      -DINSTALL_ARCHDATADIR=/usr/lib64/qt6 \
+                      -DINSTALL_LIBDIR=/usr/lib64 \
+                      -DINSTALL_QMLDIR=/usr/lib64/qml \
+                      -DINSTALL_SYSCONFDIR=/etc/xdg \
+                      -DINSTALL_PLUGINSDIR=/usr/lib64/qt6/plugins \
+                      -DINSTALL_QMLDIR=/usr/lib64/qt6/qml \
+                      -DINSTALL_DATADIR=/usr/share/qt6 \
+                      -DINSTALL_DOCDIR=/usr/share/doc/qt6 \
+                      -DINSTALL_TRANSLATIONSDIR=/usr/share/qt6/translations \
+                      -DINSTALL_INCLUDEDIR=/usr/include/qt6 \
+                      -DINSTALL_IMPORTDIR=/usr/lib64/qt6/imports \
+                      -DINSTALL_MKSPECSDIR=/usr/lib64/qt6/mkspecs \
+                      -DBUILD_SHARED_LIBS=ON \
+		      -DQT_HOST_PATH=${CROSSTOOLS_DIR}/qt6 -DQT_FORCE_BUILD_TOOLS=ON \
+		      -DQT_BUILD_SUBMODULES=qt3d\;qt5compat\;qtactiveqt\;qtbase\;qtcharts\;qtcoap\;qtconnectivity\;qtdatavis3d\;qtdeclarative\;qtdoc\;qthttpserver\;qtimageformats\;qtlanguageserver\;qtlocation\;qtlottie\;qtmqtt\;qtmultimedia\;qtnetworkauth\;qtopcua\;qtpositioning\;qtquick3d\;qtquickeffectmaker\;qtquicktimeline\;qtremoteobjects\;qtscxml\;qtsensors\;qtserialbus\;qtserialport\;qtshadertools\;qtspeech\;qtsvg\;qttools\;qttranslations\;qtvirtualkeyboard\;qtwayland\;qtwebchannel\;qtwebsockets\;qtwebview\;qtwebengine \
+		      -DPKG_CONFIG_HOST_EXECUTABLE=/usr/bin/pkg-config \
+		      -DFEATURE_webengine_system_ffmpeg:BOOL=ON  -DFEATURE_webengine_vaapi:BOOL=ON -DFEATURE_webengine_extensions:BOOL=ON -DFEATURE_webengine_printing_and_pdf:BOOL=ON -DFEATURE_webengine_proprietary_codecs:BOOL=ON -DFEATURE_webengine_webrtc:BOOL=ON -DFEATURE_webengine_webrtc_pipewire:BOOL=ON -DFEATURE_webengine_system_minizip:BOOL=OFF \
+		      -DQT_FEATURE_use_lld_linker:BOOL=OFF \
+#		      -DFEATURE_private_api=ON \
+		      -DFEATURE_qtpdf_build:BOOL=ON -DFEATURE_pdf_v8:BOOL=ON \
+		      -DQT_GENERATE_SBOM=OFF -DEXTERNAL_BUILD=OFF -DQT_BUILD_EXAMPLES_AS_EXTERNAL=OFF \
+                      -Wno-dev ..
+                <<<MAKE_AND_INSTALL>>>
+        popd
+        rm -f ${SYSROOT_DIR}/usr/lib64/*.la
+<<<CLEAR_DIR>>>
+
+cat > ${SYSROOT_DIR}/etc/profile.d/qt6.sh << "EOF"
+export QT_PLUGIN_PATH=${QT_PLUGIN_PATH}:/usr/lib64/qt6/plugins
+export QT_IMPORTS_DIR=${QT_IMPORTS_PATH}:/usr/lib64/qt6/qml
+export QML2_IMPORT_PATH=${QML2_IMPORT_PATH}:/usr/lib64/qt6/qml
+EOF
+
+
+# -DQT_HOST_PATH=${CROSSTOOLS_DIR}/qt6 -DQT_BUILD_SUBMODULES=qt3d\;qt5compat\;qtactiveqt\;qtbase\;qtcharts\;qtcoap\;qtconnectivity\;qtdatavis3d\;qtdeclarative\;qtdoc\;qthttpserver\;qtimageformats\;qtlanguageserver\;qtlocation\;qtlottie\;qtmqtt\;qtmultimedia\;qtnetworkauth\;qtopcua\;qtpositioning\;qtquick3d\;qtquick3dphysics\;qtquickeffectmaker\;qtquicktimeline\;qtremoteobjects\;qtscxml\;qtsensors\;qtserialbus\;qtserialport\;qtshadertools\;qtspeech\;qtsvg\;qttools\;qttranslations\;qtvirtualkeyboard\;qtwayland\;qtwebchannel\;qtwebsockets\;qtwebview \
+
+
+# -DQT_BUILD_SUBMODULES=qtwebengine             -DFEATURE_qtpdf_build:BOOL=OFF   -DPKG_CONFIG_HOST_EXECUTABLE=/usr/bin/pkg-config   -DFEATURE_webengine_system_ffmpeg:BOOL=OFF  -DFEATURE_webengine_system_libvpx:BOOL=ON
+
+# QT_CONFIG_INSTALL_DIR QT_HOST_PATH_CMAKE_DIR
+
+# QT_BUILD_TOOLS_BY_DEFAULT=ON QT_WILL_BUILD_TOOLS:INTERNAL=TRUE

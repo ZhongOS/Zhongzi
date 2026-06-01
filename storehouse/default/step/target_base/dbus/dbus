@@ -1,0 +1,3 @@
+PACKAGE=dbus
+# BUILD_MODE=custom
+BUILD_MODE=custom

@@ -1,0 +1,10 @@
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+    mkdir -p native-build
+    pushd native-build
+        meson --prefix=<<<CROSS_TOOLS_PREFIX>>> --libdir=${CROSSTOOLS_DIR}/lib${LIB_SUFF} <<<EXTRA_PARM>>> \
+              --buildtype=release ..
+        ninja
+        ninja install
+    popd
+<<<CLEAR_DIR>>>

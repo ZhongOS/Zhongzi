@@ -1,0 +1,2 @@
+PACKAGE=plasma-sdk
+BUILD_MODE=cmake

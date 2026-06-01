@@ -1,0 +1,2 @@
+PACKAGE=kcoreaddons
+BUILD_MODE=custom

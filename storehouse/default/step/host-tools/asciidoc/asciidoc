@@ -1,0 +1,4 @@
+# PACKAGE=asciidoc-py
+# BUILD_MODE=python
+PACKAGE=asciidoc
+BUILD_MODE=pip

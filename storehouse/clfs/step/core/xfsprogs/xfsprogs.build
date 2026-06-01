@@ -1,0 +1,11 @@
+<<<TAR_UNCOMPRESS>>>
+        <<<PATCH>>>
+# 	export LDFLAGS="${LDFLAGS} -Wl,--copy-dt-needed-entries"
+        CC=${CROSS_TARGET}-gcc ./configure ${COMMON_CONFIG} --with-systemd-unit-dir=/usr/lib/systemd/system --with-udev-rule-dir=/usr/lib/udev/rules.d
+        CC="${CROSS_TARGET}-gcc" CXX="${CROSS_TARGET}-g++" make -j
+        make DESTDIR=${SYSROOT_DIR} install
+        rm -f ${SYSROOT_DIR}/usr/lib64/*.la
+<<<CLEAR_DIR>>>
+
+[[[6.1.0]]]
+CONFIG_ENV=CC=${CROSS_TARGET}-gcc

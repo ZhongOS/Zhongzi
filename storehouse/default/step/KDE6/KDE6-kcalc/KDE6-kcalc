@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kcalc
+BUILD_MODE=cmake

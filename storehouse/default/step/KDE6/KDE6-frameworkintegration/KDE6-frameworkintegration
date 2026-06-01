@@ -1,0 +1,2 @@
+PACKAGE=KDE6-frameworkintegration
+BUILD_MODE=cmake

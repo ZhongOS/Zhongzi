@@ -1,0 +1,2 @@
+PACKAGE=findutils
+BUILD_MODE=gnu

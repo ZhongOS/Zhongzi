@@ -1,0 +1,5 @@
+<<<TAR_UNCOMPRESS>>>
+        <<<PATCH>>>
+        ./configure --prefix=<<<CROSS_TOOLS_PREFIX>>>
+        <<<MAKE_AND_INSTALL>>>
+<<<CLEAR_DIR>>>

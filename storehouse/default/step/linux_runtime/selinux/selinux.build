@@ -1,0 +1,6 @@
+<<<TAR_UNCOMPRESS>>>
+	pushd libselinux
+		CC=${LINUX_HOST}-gcc CXX=${LINUX_HOST}-g++ <<<MAKE>>> SHLIBDIR=/lib${LIB_SUFF} LIBDIR=/usr/lib${LIB_SUFF}
+		CC=${LINUX_HOST}-gcc CXX=${LINUX_HOST}-g++ make DESTDIR=${LINUX_SYSROOT_DIR} SHLIBDIR=/usr/lib${LIB_SUFF} LIBDIR=/usr/lib${LIB_SUFF} install
+	popd
+<<<CLEAR_DIR>>>

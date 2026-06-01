@@ -1,0 +1,2 @@
+PACKAGE=libretro-database
+BUILD_MODE=custom

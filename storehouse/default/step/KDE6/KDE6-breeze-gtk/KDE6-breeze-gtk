@@ -1,0 +1,2 @@
+PACKAGE=KDE6-breeze-gtk
+BUILD_MODE=cmake

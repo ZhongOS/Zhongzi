@@ -1,0 +1,2 @@
+PACKAGE=kicad
+BUILD_MODE=custom

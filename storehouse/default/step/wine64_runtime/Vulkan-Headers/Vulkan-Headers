@@ -1,0 +1,2 @@
+PACKAGE=Vulkan-Headers
+BUILD_MODE=cmake

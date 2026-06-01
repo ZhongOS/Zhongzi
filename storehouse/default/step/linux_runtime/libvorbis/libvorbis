@@ -1,0 +1,2 @@
+PACKAGE=libvorbis
+BUILD_MODE=gnu

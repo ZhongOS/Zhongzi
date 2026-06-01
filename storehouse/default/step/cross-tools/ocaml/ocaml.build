@@ -1,0 +1,167 @@
+<<<TAR_UNCOMPRESS>>>
+        <<<PATCH>>>
+	cp -a -f $(automake --print-libdir)/config.{sub,guess} build-aux/
+	autoconf
+	./configure --host=${CROSS_TARGET} --prefix=${CROSSTOOLS_DIR}/ocaml-cross  --libdir=${SYSROOT_DIR}/usr/lib64/ocaml
+	<<<MAKE>>> runtime/sak SAK_CC=cc SAK_CFLAGS= SAK_LINK='cc -o $(1) $(2)'
+	<<<MAKE>>> ocamlopt ocamlc OCAMLRUN=ocamlrun NEW_OCAMLRUN=ocamlrun CAMLC="`which ocamlc`"
+	<<<MAKE>>> ocamlmklib      OCAMLRUN=ocamlrun NEW_OCAMLRUN=ocamlrun CAMLC="`which ocamlc`"
+	<<<MAKE>>> boot/ocamlrun
+	<<<MAKE>>> runtime
+	<<<MAKE>>> -C stdlib OCAMLRUN=ocamlrun COMPILER="${PWD}/boot/ocamlc"
+	<<<MAKE>>> coldstart OCAMLRUN=ocamlrun NEW_OCAMLRUN=ocamlrun
+	<<<MAKE>>> runtime/libasmrun.a runtime/libasmrund.a runtime/libasmruni.a runtime/libasmrun_pic.a
+	for i in library otherlibs opt ocamlnat ocaml ocamldoc ocamldebugger
+	do
+		<<<MAKE>>> $i \
+		OCAMLRUN=ocamlrun NEW_OCAMLRUN=ocamlrun \
+		OPTCOMPILER="${PWD}/ocamlopt" \
+		MKLIB="ocamlrun \"${PWD}/tools/ocamlmklib\"" \
+		OCAMLYACC=ocamlyacc
+	done
+	mv boot/ocamlrun{,.orig}
+	echo "qemu-loongarch64 ${PWD}/boot/ocamlrun.orig \"\$@\"" > boot/ocamlrun
+	chmod +x boot/ocamlrun
+	make DESTDIR=${PWD}/dest install
+	mkdir -p ${CROSSTOOLS_DIR}/ocaml-cross/bin.orig/
+	cp -a ${PWD}/dest/${CROSSTOOLS_DIR}/ocaml-cross/bin/ocaml* ${CROSSTOOLS_DIR}/ocaml-cross/bin.orig/
+<<<CLEAR_DIR>>>
+
+mkdir -p ${CROSSTOOLS_DIR}/ocaml-cross/bin/
+
+cat >"${CROSSTOOLS_DIR}/ocaml-cross/bin/ocaml" <<EOF
+#!/bin/sh
+qemu-loongarch64 ${SYSROOT_DIR}/usr/bin/ocamlrun ${CROSSTOOLS_DIR}/ocaml-cross/bin.orig/ocaml -I +stublibs "\$@"
+EOF
+chmod +x "${CROSSTOOLS_DIR}/ocaml-cross/bin/ocaml"
+
+
+for bin in ocamlc ocamlopt ocamlcp ocamlmklib ocamlmktop ocamldoc ocamldep ocamllex
+do
+  cat >"${CROSSTOOLS_DIR}/ocaml-cross/bin/${bin}" <<EOF
+#!/bin/sh
+${CROSSTOOLS_DIR}/bin/ocamlrun "${CROSSTOOLS_DIR}/ocaml-cross/bin.orig/${bin}" "\$@"
+EOF
+  chmod +x "${CROSSTOOLS_DIR}/ocaml-cross/bin/${bin}"
+done
+
+for bin in ocamlyacc
+do
+  cat >"${CROSSTOOLS_DIR}/ocaml-cross/bin/${bin}" <<EOF
+#!/bin/sh
+qemu-loongarch64 "${CROSSTOOLS_DIR}/ocaml-cross/bin.orig/${bin}" "\$@"
+EOF
+  chmod +x "${CROSSTOOLS_DIR}/ocaml-cross/bin/${bin}"
+done
+
+
+[[[5.0.0]]]
+<<<TAR_UNCOMPRESS>>>
+        <<<PATCH>>>
+	cp ${CROSSTOOLS_DIR}/share/automake*/config.* build-aux/
+	autoconf
+	./configure --host=${CROSS_TARGET} --prefix=${CROSSTOOLS_DIR}/ocaml-cross  --libdir=${SYSROOT_DIR}/usr/lib64/ocaml
+	<<<MAKE>>> runtime/sak SAK_CC=cc SAK_CFLAGS= SAK_LINK='cc -o $(1) $(2)'
+	<<<MAKE>>> ocamlopt ocamlc OCAMLRUN=ocamlrun NEW_OCAMLRUN=ocamlrun CAMLC="`which ocamlc`"
+	<<<MAKE>>> -C tools ocamlmklib OCAMLRUN=ocamlrun NEW_OCAMLRUN=ocamlrun CAMLC="`which ocamlc`"
+	<<<MAKE>>> boot/ocamlruns
+	<<<MAKE>>> runtime
+	<<<MAKE>>> -C stdlib OCAMLRUN=ocamlrun COMPILER="${PWD}/boot/ocamlc"
+	<<<MAKE>>> coldstart OCAMLRUN=ocamlrun NEW_OCAMLRUN=ocamlrun
+	<<<MAKE>>> runtime/libasmrun.a runtime/libasmrund.a runtime/libasmruni.a runtime/libasmrun_pic.a
+	for i in library otherlibs opt ocamlnat ocaml ocamldoc ocamldebugger
+	do
+		<<<MAKE>>> $i \
+		OCAMLRUN=ocamlrun NEW_OCAMLRUN=ocamlrun \
+		OPTCOMPILER="${PWD}/ocamlopt" \
+		MKLIB="ocamlrun \"${PWD}/tools/ocamlmklib\"" \
+		OCAMLYACC=ocamlyacc
+	done
+	<<<MAKE>>> -C tools ocamlmktop ocamlmktop.opt othertools OCAMLRUN=ocamlrun NEW_OCAMLRUN=ocamlrun CAMLC="`which ocamlc`"
+	mv boot/ocamlrun{,.orig}
+	echo "qemu-loongarch64 ${PWD}/boot/ocamlrun.orig \"\$@\"" > boot/ocamlrun
+	chmod +x boot/ocamlrun
+	make DESTDIR=${PWD}/dest install
+	mkdir -p ${CROSSTOOLS_DIR}/ocaml-cross/bin.orig/
+	cp -a ${PWD}/dest/${CROSSTOOLS_DIR}/ocaml-cross/bin/ocaml* ${CROSSTOOLS_DIR}/ocaml-cross/bin.orig/
+<<<CLEAR_DIR>>>
+
+mkdir -p ${CROSSTOOLS_DIR}/ocaml-cross/bin/
+
+cat >"${CROSSTOOLS_DIR}/ocaml-cross/bin/ocaml" <<EOF
+#!/bin/sh
+qemu-loongarch64 ${SYSROOT_DIR}/usr/bin/ocamlrun ${CROSSTOOLS_DIR}/ocaml-cross/bin.orig/ocaml -I +stublibs "\$@"
+EOF
+chmod +x "${CROSSTOOLS_DIR}/ocaml-cross/bin/ocaml"
+
+
+for bin in ocamlc ocamlopt ocamlcp ocamlmklib ocamlmktop ocamldoc ocamldep ocamllex
+do
+  cat >"${CROSSTOOLS_DIR}/ocaml-cross/bin/${bin}" <<EOF
+#!/bin/sh
+${CROSSTOOLS_DIR}/bin/ocamlrun "${CROSSTOOLS_DIR}/ocaml-cross/bin.orig/${bin}" "\$@"
+EOF
+  chmod +x "${CROSSTOOLS_DIR}/ocaml-cross/bin/${bin}"
+done
+
+for bin in ocamlyacc
+do
+  cat >"${CROSSTOOLS_DIR}/ocaml-cross/bin/${bin}" <<EOF
+#!/bin/sh
+qemu-loongarch64 "${CROSSTOOLS_DIR}/ocaml-cross/bin.orig/${bin}" "\$@"
+EOF
+  chmod +x "${CROSSTOOLS_DIR}/ocaml-cross/bin/${bin}"
+done
+
+
+[[[4.14.999]]]
+<<<TAR_UNCOMPRESS>>>
+        <<<PATCH>>>
+	./configure --host=${CROSS_TARGET} --prefix=${CROSSTOOLS_DIR}/ocaml-cross  --libdir=${SYSROOT_DIR}/usr/lib64/ocaml
+	<<<MAKE>>> runtime/sak SAK_CC=cc SAK_CFLAGS= SAK_LINK='cc -o $(1) $(2)'
+	<<<MAKE>>> ocamlopt ocamlc OCAMLRUN=ocamlrun NEW_OCAMLRUN=ocamlrun CAMLC="`which ocamlc`"
+	<<<MAKE>>> ocamlmklib      OCAMLRUN=ocamlrun NEW_OCAMLRUN=ocamlrun CAMLC="`which ocamlc`"
+	<<<MAKE>>> boot/ocamlruns
+	<<<MAKE>>> runtime
+	<<<MAKE>>> -C stdlib OCAMLRUN=ocamlrun COMPILER="${PWD}/boot/ocamlc"
+	<<<MAKE>>> coldstart OCAMLRUN=ocamlrun NEW_OCAMLRUN=ocamlrun
+	<<<MAKE>>> runtime/libasmrun.a runtime/libasmrund.a runtime/libasmruni.a runtime/libasmrun_pic.a
+	for i in library otherlibs opt ocamlnat ocaml ocamldoc ocamldebugger
+	do
+		<<<MAKE>>> $i \
+		OCAMLRUN=ocamlrun NEW_OCAMLRUN=ocamlrun \
+		OPTCOMPILER="${PWD}/ocamlopt" \
+		MKLIB="ocamlrun \"${PWD}/tools/ocamlmklib\"" \
+		OCAMLYACC=ocamlyacc
+	done
+	make DESTDIR=${PWD}/dest install
+	mkdir -p ${CROSSTOOLS_DIR}/ocaml-cross/bin.orig/
+	cp -a ${PWD}/dest/${CROSSTOOLS_DIR}/ocaml-cross/bin/ocaml* ${CROSSTOOLS_DIR}/ocaml-cross/bin.orig/
+<<<CLEAR_DIR>>>
+
+mkdir -p ${CROSSTOOLS_DIR}/ocaml-cross/bin/
+
+cat >"${CROSSTOOLS_DIR}/ocaml-cross/bin/ocaml" <<EOF
+#!/bin/sh
+qemu-loongarch64 ${SYSROOT_DIR}/usr/bin/ocamlrun ${CROSSTOOLS_DIR}/ocaml-cross/bin.orig/ocaml -I +stublibs "\$@"
+EOF
+chmod +x "${CROSSTOOLS_DIR}/ocaml-cross/bin/ocaml"
+
+
+for bin in ocamlc ocamlopt ocamlcp ocamlmklib ocamlmktop ocamldoc ocamldep ocamllex
+do
+  cat >"${CROSSTOOLS_DIR}/ocaml-cross/bin/${bin}" <<EOF
+#!/bin/sh
+${CROSSTOOLS_DIR}/bin/ocamlrun "${CROSSTOOLS_DIR}/ocaml-cross/bin.orig/${bin}" "\$@"
+EOF
+  chmod +x "${CROSSTOOLS_DIR}/ocaml-cross/bin/${bin}"
+done
+
+for bin in ocamlyacc
+do
+  cat >"${CROSSTOOLS_DIR}/ocaml-cross/bin/${bin}" <<EOF
+#!/bin/sh
+qemu-loongarch64 "${CROSSTOOLS_DIR}/ocaml-cross/bin.orig/${bin}" "\$@"
+EOF
+  chmod +x "${CROSSTOOLS_DIR}/ocaml-cross/bin/${bin}"
+done

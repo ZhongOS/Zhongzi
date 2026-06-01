@@ -1,0 +1,2 @@
+EXTRA_PARM=CFLAGS="${CFLAGS} -Wno-error=calloc-transposed-args -Wno-error=sign-compare"
+# EXTRA_PARM=--enabled-bundled=yes CFLAGS="${CFLAGS} -Wno-error=calloc-transposed-args -Wno-error=sign-compare"

@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kcontacts
+BUILD_MODE=cmake

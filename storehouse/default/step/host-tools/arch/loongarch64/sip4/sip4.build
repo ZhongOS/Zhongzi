@@ -1,0 +1,9 @@
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+    mkdir native-build
+    pushd native-build
+        ${HOST_TOOLS_DIR}/bin/python3 ../configure.py
+	<<<MAKE>>>
+        make install
+    popd
+<<<CLEAR_DIR>>>

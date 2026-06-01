@@ -1,0 +1,2 @@
+PACKAGE=openexr
+BUILD_MODE=cmake

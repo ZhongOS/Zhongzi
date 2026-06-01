@@ -1,0 +1,3 @@
+# p1	0001-fix-the-missing-include-file-when-using-gcc-plugins-.patch
+# p1	0001-gcc-13-add-cmodule-medium-for-loongarch-libgcc.patch
+# p1	0001-LoongArch-Set-the-default-code-model-to-medium.patch

@@ -1,0 +1,2 @@
+PACKAGE=kxmlrpcclient
+BUILD_MODE=cmake

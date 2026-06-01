@@ -1,0 +1,2 @@
+PACKAGE=mobile-broadband-provider-info
+BUILD_MODE=meson

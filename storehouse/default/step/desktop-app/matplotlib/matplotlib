@@ -1,0 +1,2 @@
+PACKAGE=matplotlib
+BUILD_MODE=meson

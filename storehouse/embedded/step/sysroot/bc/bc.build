@@ -1,0 +1,4 @@
+<<<TAR_UNCOMPRESS>>>
+	CC="${CROSS_TARGET}-gcc" HOSTCC="gcc" CFLAGS="${CFLAGS} -std=gnu17" ./configure --prefix=/usr
+	<<<MAKE_AND_INSTALL>>>
+<<<CLEAR_DIR>>>

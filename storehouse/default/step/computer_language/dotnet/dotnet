@@ -1,0 +1,2 @@
+PACKAGE=dotnet
+BUILD_MODE=custom

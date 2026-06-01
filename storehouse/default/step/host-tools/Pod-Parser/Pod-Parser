@@ -1,0 +1,2 @@
+PACKAGE=Pod-Parser
+BUILD_MODE=perl

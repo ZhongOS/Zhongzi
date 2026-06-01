@@ -1,0 +1,17 @@
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+    mkdir -p build-64
+    pushd build-64
+        BUILD_CC="gcc" CC="${CROSS_TOOLS_PREFIX}/bin/${X86_64_HOST}-gcc -m64 ${CFLAGS}" \
+        CXX="${CROSS_TOOLS_PREFIX}/bin/${X86_64_HOST}-gcc -m64 ${CXXFLAGS}" \
+        AS="${X86_64_HOST}-as" AR="${X86_64_HOST}-ar" RANLIB="${X86_64_HOST}-ranlib" \
+        ../configure --prefix=/usr --host=${X86_64_HOST} --build=${CROSS_HOST} \
+	                 --libdir=/usr/lib64 --libexecdir=/usr/lib64/glibc \
+	                 --with-headers=${X86_64_SYSROOT_DIR}/usr/include \
+	                 --enable-add-ons \
+	                 --disable-werror libc_cv_slibdir=/usr/lib64
+		<<<MAKE>>>
+		make DESTDIR=${X86_64_SYSROOT_DIR} install
+    popd
+    mkdir -p ${X86_64_SYSROOT_DIR}/usr/lib
+<<<CLEAR_DIR>>>

@@ -1,0 +1,2 @@
+PACKAGE=ispc
+BUILD_MODE=custom

@@ -1,0 +1,2 @@
+PACKAGE=KDE6-kdenetwork-filesharing
+BUILD_MODE=cmake

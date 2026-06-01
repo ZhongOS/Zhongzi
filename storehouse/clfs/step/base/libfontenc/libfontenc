@@ -1,0 +1,2 @@
+PACKAGE=libfontenc
+BUILD_MODE=gnu

@@ -1,0 +1,2 @@
+PACKAGE=menu-cache
+BUILD_MODE=gnu

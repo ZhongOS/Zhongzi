@@ -1,0 +1,7 @@
+
+
+[[[0.40.0]]]
+p1	0001-mpv-0.40.0-fix-for-ffmpeg-8.patch
+
+[[[0.39]]]
+p1	0001-mpv-0.39-add-qemu-wrapper-for-cross-build.patch

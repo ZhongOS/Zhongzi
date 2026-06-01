@@ -1,0 +1,2 @@
+PACKAGE=roman-numerals
+BUILD_MODE=pip

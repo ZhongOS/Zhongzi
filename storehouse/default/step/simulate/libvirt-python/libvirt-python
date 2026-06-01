@@ -1,0 +1,2 @@
+PACKAGE=libvirt-python
+BUILD_MODE=python

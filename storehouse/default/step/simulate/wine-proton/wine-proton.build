@@ -1,0 +1,6 @@
+<<<TAR_UNCOMPRESS>>>
+	mkdir -p cross-build
+	pushd cross-build
+		../configure.sh --prefix=/opt/wine-proton/${PACKAGE_VERSION} --enable-ccache
+	popd
+<<<CLEAR_DIR>>>

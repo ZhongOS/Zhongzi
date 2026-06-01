@@ -1,0 +1,2 @@
+PACKAGE=volume_key
+BUILD_MODE=gnu

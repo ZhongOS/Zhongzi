@@ -1,0 +1,2 @@
+PACKAGE=KDE6-breeze-grub
+BUILD_MODE=custom

@@ -1,0 +1,7 @@
+export CROSS_TOOLS_PREFIX=${SYSDIR}/cross-toolchains
+export PREFIX=${CROSS_TOOLS_PREFIX}
+# # export MINGW_HOST=x86_64-w64-mingw32ucrt
+# export MINGW_HOST=x86_64-w64-mingw32
+# export X86_64_HOST=x86_64-unknown-linux-gnu
+# export X86_HOST=i686-unknown-linux-gnu
+export MAKE_AND_INSTALL="make -j${JOBS} && run_step_package_check ${DEFAULT_CHECK_OPTION} && make install"

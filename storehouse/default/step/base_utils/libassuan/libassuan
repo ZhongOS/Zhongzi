@@ -1,0 +1,2 @@
+PACKAGE=libassuan
+BUILD_MODE=gnu

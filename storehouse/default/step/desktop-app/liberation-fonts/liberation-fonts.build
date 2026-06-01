@@ -1,0 +1,5 @@
+<<<TAR_UNCOMPRESS>>>
+	sed -i "/^FONTFORGE/s@ fontforge@ qemu-${ARCH_NAME} ${SYSROOT_DIR}/usr/bin/fontforge@g" Makefile
+	sed -i "/^PYTHON/s@ python3@ ${CROSS_TARGET}-python3@g" Makefile
+	<<<MAKE_AND_INSTALL>>>
+<<<CLEAR_DIR>>>

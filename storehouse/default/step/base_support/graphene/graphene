@@ -1,0 +1,2 @@
+PACKAGE=graphene
+BUILD_MODE=meson

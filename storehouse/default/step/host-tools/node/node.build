@@ -1,0 +1,9 @@
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+#    export CFLAGS=""
+#    export CXXFLAGS=""
+#    export JOBS=$[ ( $(nproc) / 4 ) + 1 ]
+    ./configure --prefix ${PREFIX} --shared-openssl --with-intl=system-icu
+    <<<MAKE_AND_INSTALL>>>
+    cp -av out/Release/node ${PREFIX}/bin/
+<<<CLEAR_DIR>>>

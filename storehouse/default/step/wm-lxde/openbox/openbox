@@ -1,0 +1,2 @@
+PACKAGE=openbox
+BUILD_MODE=custom

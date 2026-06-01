@@ -1,0 +1,119 @@
+<<<TAR_UNCOMPRESS>>>
+        <<<PATCH>>>
+	sed -i "s@COMMAND factorial@COMMAND qemu-loongarch64 factorial@g" dbug/CMakeLists.txt
+	sed -i "s@COMMAND comp_err@COMMAND qemu-loongarch64 comp_err@g" extra/CMakeLists.txt
+	sed -i "s@COMMAND gen_lex_token@COMMAND qemu-loongarch64 gen_lex_token@g" sql/CMakeLists.txt
+	sed -i "s@COMMAND gen_lex_hash@COMMAND qemu-loongarch64 gen_lex_hash@g" sql/CMakeLists.txt
+	sed -i "s@COMMAND comp_sql@COMMAND qemu-loongarch64 comp_sql@g" scripts/CMakeLists.txt
+	sed -i "s@COMMAND uca-dump@COMMAND qemu-loongarch64 uca-dump@g" strings/CMakeLists.txt
+        mkdir cross-build
+        pushd cross-build
+		mkdir -p extra/libfmt/src/
+		mv ${RESOURCEDIR}/files/libfmt.zip extra/libfmt/src/fmt-11.0.2.zip
+                CC="${CROSS_TARGET}-gcc" CXX="${CROSS_TARGET}-g++" \
+		CXXFLAGS="${CXXFLAGS} -fpermissive -DBASE_BUFFER_SIZE" CFLAGS="${CFLAGS} -fpermissive -DBASE_BUFFER_SIZE" \
+                cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CROSSCOMPILING_EMULATOR=qemu-loongarch64 \
+                      -DPKG_CONFIG_EXECUTABLE=${SYSDIR}/cross-tools/bin/${CROSS_TARGET}-pkg-config \
+                      -DCMAKE_SYSROOT=${SYSDIR}/sysroot \
+                      -DCMAKE_FIND_ROOT_PATH=${SYSDIR}/sysroot/usr \
+                      -DGETTEXT_MSGFMT_EXECUTABLE=/bin/msgfmt \
+                      -DGETTEXT_MSGMERGE_EXECUTABLE=/bin/msgmerge \
+                      -DPython_EXECUTABLE=${CROSSTOOLS_DIR}/bin/python3 \
+                      -DPYTHON_EXECUTABLE=${CROSSTOOLS_DIR}/bin/python3 \
+                      -DPYTHON3_EXECUTABLE=${CROSSTOOLS_DIR}/bin/python3 \
+                      -DPERL_EXECUTABLE=${SYSDIR}/cross-tools/bin/${CROSS_TARGET}-perl \
+                      -DRuby_EXECUTABLE=${SYSDIR}/cross-tools/bin/ruby \
+                      -DCAT_EXECUTABLE=/bin/cat \
+                      -DBISON_EXECUTABLE=/bin/bison \
+                      -DGPERF_EXECUTABLE=/bin/gperf \
+		      -DGROFF=${CROSSTOOLS_DIR}/bin/groff \
+                      -DGETCONF=/usr/bin/getconf \
+                      -DDOXYGEN_EXECUTABLE=/bin/doxygen \
+                      -DCMAKE_INSTALL_LIBDIR=/usr/lib64 -DLIB_SUFFIX=64 -DINSTALL_LIBDIR=/usr/lib64 \
+                      -DCMAKE_INSTALL_PREFIX=/usr \
+                      -DBUILD_SHARED_LIBS=ON \
+                      -DGRN_LOG_PATH=/var/log/groonga.log \
+                      -DINSTALL_MANDIR=share/man \
+                      -DINSTALL_MYSQLSHAREDIR=share/mysql \
+                      -DINSTALL_MYSQLTESTDIR=share/mysql/test \
+                      -DINSTALL_PAMDIR=lib/security \
+                      -DINSTALL_PAMDATADIR=/etc/security \
+                      -DINSTALL_PLUGINDIR=lib/mysql/plugin \
+                      -DINSTALL_SBINDIR=sbin \
+                      -DINSTALL_SCRIPTDIR=bin \
+                      -DINSTALL_SQLBENCHDIR=share/mysql/bench \
+                      -DINSTALL_SUPPORTFILESDIR=share/mysql \
+                      -DMYSQL_DATADIR=/srv/mysql \
+                      -DMYSQL_UNIX_ADDR=/run/mysqld/mysqld.sock \
+                      -DWITH_EXTRA_CHARSETS=complex \
+                      -DWITH_EMBEDDED_SERVER=ON \
+                      -DSKIP_TESTS=ON \
+                      -DTOKUDB_OK=0 \
+		      -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
+                      -DENABLE_DTRACE=OFF -Wno-dev ..
+                <<<MAKE_AND_INSTALL>>>
+        popd
+        rm -f ${SYSROOT_DIR}/usr/lib64/*.la
+<<<CLEAR_DIR>>>
+
+
+[[[11.8.1]]]
+<<<TAR_UNCOMPRESS>>>
+        <<<PATCH>>>
+	sed -i "s@COMMAND factorial@COMMAND qemu-loongarch64 factorial@g" dbug/CMakeLists.txt
+	sed -i "s@COMMAND comp_err@COMMAND qemu-loongarch64 comp_err@g" extra/CMakeLists.txt
+	sed -i "s@COMMAND gen_lex_token@COMMAND qemu-loongarch64 gen_lex_token@g" sql/CMakeLists.txt
+	sed -i "s@COMMAND gen_lex_hash@COMMAND qemu-loongarch64 gen_lex_hash@g" sql/CMakeLists.txt
+	sed -i "s@COMMAND comp_sql@COMMAND qemu-loongarch64 comp_sql@g" scripts/CMakeLists.txt
+	sed -i "s@COMMAND uca-dump@COMMAND qemu-loongarch64 uca-dump@g" strings/CMakeLists.txt
+        mkdir cross-build
+        pushd cross-build
+		mkdir -p extra/libfmt/src/
+		mv ${RESOURCEDIR}/files/libfmt.zip extra/libfmt/src/fmt-11.0.2.zip
+                CC="${CROSS_TARGET}-gcc" CXX="${CROSS_TARGET}-g++" \
+		CXXFLAGS="${CXXFLAGS} -fpermissive" CFLAGS="${CFLAGS} -fpermissive" \
+                cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CROSSCOMPILING_EMULATOR=qemu-loongarch64 \
+                      -DPKG_CONFIG_EXECUTABLE=${SYSDIR}/cross-tools/bin/${CROSS_TARGET}-pkg-config \
+                      -DCMAKE_SYSROOT=${SYSDIR}/sysroot \
+                      -DCMAKE_FIND_ROOT_PATH=${SYSDIR}/sysroot/usr \
+                      -DGETTEXT_MSGFMT_EXECUTABLE=/bin/msgfmt \
+                      -DGETTEXT_MSGMERGE_EXECUTABLE=/bin/msgmerge \
+                      -DPython_EXECUTABLE=${CROSSTOOLS_DIR}/bin/python3 \
+                      -DPYTHON_EXECUTABLE=${CROSSTOOLS_DIR}/bin/python3 \
+                      -DPYTHON3_EXECUTABLE=${CROSSTOOLS_DIR}/bin/python3 \
+                      -DPERL_EXECUTABLE=${SYSDIR}/cross-tools/bin/${CROSS_TARGET}-perl \
+                      -DRuby_EXECUTABLE=${SYSDIR}/cross-tools/bin/ruby \
+                      -DCAT_EXECUTABLE=/bin/cat \
+                      -DBISON_EXECUTABLE=/bin/bison \
+                      -DGPERF_EXECUTABLE=/bin/gperf \
+		      -DGROFF=${CROSSTOOLS_DIR}/bin/groff \
+                      -DGETCONF=/usr/bin/getconf \
+                      -DDOXYGEN_EXECUTABLE=/bin/doxygen \
+                      -DCMAKE_INSTALL_LIBDIR=/usr/lib64 -DLIB_SUFFIX=64 -DINSTALL_LIBDIR=/usr/lib64 \
+                      -DCMAKE_INSTALL_PREFIX=/usr \
+                      -DBUILD_SHARED_LIBS=ON \
+                      -DGRN_LOG_PATH=/var/log/groonga.log \
+                      -DINSTALL_MANDIR=share/man \
+                      -DINSTALL_MYSQLSHAREDIR=share/mysql \
+                      -DINSTALL_MYSQLTESTDIR=share/mysql/test \
+                      -DINSTALL_PAMDIR=lib/security \
+                      -DINSTALL_PAMDATADIR=/etc/security \
+                      -DINSTALL_PLUGINDIR=lib/mysql/plugin \
+                      -DINSTALL_SBINDIR=sbin \
+                      -DINSTALL_SCRIPTDIR=bin \
+                      -DINSTALL_SQLBENCHDIR=share/mysql/bench \
+                      -DINSTALL_SUPPORTFILESDIR=share/mysql \
+                      -DMYSQL_DATADIR=/srv/mysql \
+                      -DMYSQL_UNIX_ADDR=/run/mysqld/mysqld.sock \
+                      -DWITH_EXTRA_CHARSETS=complex \
+                      -DWITH_EMBEDDED_SERVER=ON \
+                      -DSKIP_TESTS=ON \
+                      -DTOKUDB_OK=0 \
+                      -DENABLE_DTRACE=OFF -Wno-dev ..
+                <<<MAKE_AND_INSTALL>>>
+        popd
+        rm -f ${SYSROOT_DIR}/usr/lib64/*.la
+<<<CLEAR_DIR>>>
+
+
+

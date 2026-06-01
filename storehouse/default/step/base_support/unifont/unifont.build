@@ -1,0 +1,9 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+	<<<MAKE>>>
+	pushd font
+		make bdf ttf
+	popd
+	mkdir -pv ${SYSROOT_DIR}/usr/share/fonts/truetype/unifont/
+	cp -av font/compiled/unifont-<<<PACKAGE_VERSION>>>.ttf ${SYSROOT_DIR}/usr/share/fonts/truetype/unifont/unifont.ttf
+<<<CLEAR_DIR>>>

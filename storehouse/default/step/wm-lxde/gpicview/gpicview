@@ -1,0 +1,2 @@
+PACKAGE=gpicview
+BUILD_MODE=gnu

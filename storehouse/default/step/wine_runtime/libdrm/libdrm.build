@@ -1,0 +1,1 @@
+EXTRA_PARM=-Detnaviv=enabled -Dudev=true -Dintel=enabled

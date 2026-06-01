@@ -1,0 +1,2 @@
+PACKAGE=postject
+BUILD_MODE=cmake

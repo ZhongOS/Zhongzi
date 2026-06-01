@@ -1,0 +1,2 @@
+PACKAGE=glib-networking
+BUILD_MODE=meson

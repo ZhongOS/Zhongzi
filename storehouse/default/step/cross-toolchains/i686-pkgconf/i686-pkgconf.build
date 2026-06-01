@@ -1,0 +1,8 @@
+<<<TAR_UNCOMPRESS>>>
+        <<<PATCH>>>
+        ./configure --prefix=${PREFIX}/${X86_HOST} --build=${CROSS_HOST} \
+                --host=${CROSS_HOST} --target=${X86_HOST}
+        <<<MAKE>>>
+	make install
+        cp -f ${PREFIX}/${X86_HOST}/bin/pkgconf ${PREFIX}/${X86_HOST}/bin/${X86_HOST}-pkg-config
+<<<CLEAR_DIR>>>

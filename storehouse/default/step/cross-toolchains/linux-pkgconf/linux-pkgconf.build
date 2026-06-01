@@ -1,0 +1,8 @@
+<<<TAR_UNCOMPRESS>>>
+        <<<PATCH>>>
+        ./configure --prefix=${PREFIX}/${LINUX_HOST} --build=${CROSS_HOST} \
+                --host=${CROSS_HOST} --target=${LINUX_HOST}
+        <<<MAKE>>>
+	make install
+        cp -f ${PREFIX}/${LINUX_HOST}/bin/pkgconf ${PREFIX}/${LINUX_HOST}/bin/${LINUX_HOST}-pkg-config
+<<<CLEAR_DIR>>>

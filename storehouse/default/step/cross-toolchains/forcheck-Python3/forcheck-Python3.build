@@ -1,0 +1,9 @@
+<<<TAR_UNCOMPRESS>>>
+	export PATH=${PREFIX}/${LINUX_HOST}/bin:${PATH}
+	CFLAGS="${CFLAGS} -fPIC" LDFLAGS="${LDFLAGS} -lutil"
+	./configure --prefix=${PREFIX}/${LINUX_HOST} --with-platlibdir=lib \
+	            --disable-shared --with-system-expat --with-system-ffi \
+	            --with-ensurepip=yes --enable-optimizations \
+	            ac_cv_broken_sem_getvalue=yes
+	<<<MAKE_AND_INSTALL>>>
+<<<CLEAR_DIR>>>

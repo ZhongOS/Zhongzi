@@ -1,0 +1,2 @@
+PACKAGE=openssh
+BUILD_MODE=custom

@@ -1,0 +1,20 @@
+<<<TAR_UNCOMPRESS>>>
+        <<<PATCH>>>
+        if [ ! -f configure ]; then
+                autoreconf -ifv
+        fi
+
+# 	去掉默认的 -rpath 参数
+	sed -i "/^LDFLAGS.rpath/s,@LDFLAGS_RPATH@,,g" Makefile.in autoconf/Makefile.in
+
+#         ./configure ${COMMON_CONFIG} --enable-fts5  CPPFLAGS="-DSQLITE_ENABLE_FTS3=1  -DSQLITE_ENABLE_FTS4=1  -DSQLITE_ENABLE_COLUMN_METADATA=1  -DSQLITE_ENABLE_UNLOCK_NOTIFY=1  -DSQLITE_ENABLE_DBSTAT_VTAB=1  -DSQLITE_SECURE_DELETE=1 -DSQLITE_ENABLE_FTS3_TOKENIZER=1" --soname=legacy
+        ./configure --prefix=/usr --build=${CROSS_HOST} --host=${LINUX_HOST} --libdir=/usr/lib${LIB_SUFF} --sysconfdir=/etc \
+		--enable-fts5  CPPFLAGS="-DSQLITE_ENABLE_FTS3=1  -DSQLITE_ENABLE_FTS4=1  -DSQLITE_ENABLE_COLUMN_METADATA=1  -DSQLITE_ENABLE_UNLOCK_NOTIFY=1  -DSQLITE_ENABLE_DBSTAT_VTAB=1  -DSQLITE_SECURE_DELETE=1 -DSQLITE_ENABLE_FTS3_TOKENIZER=1" --soname=legacy --with-tcl=${LINUX_SYSROOT_DIR}/usr/lib${LIB_SUFF}
+	check_gnu_Makefile
+#         CC="${LINUX_HOST}-gcc" CXX="${LINUX_HOST}-g++" <<<MAKE>>> LDFLAGS.rpath=""
+        CC="${LINUX_HOST}-gcc" CXX="${LINUX_HOST}-g++" <<<MAKE>>>
+        make DESTDIR=${LINUX_SYSROOT_DIR} install
+        rm -f ${LINUX_SYSROOT_DIR}/usr/lib${LIB_SUFF}/*.la
+<<<CLEAR_DIR>>>
+
+# EXTRA_PARM=--enable-fts5  CPPFLAGS="-DSQLITE_ENABLE_FTS3=1  -DSQLITE_ENABLE_FTS4=1  -DSQLITE_ENABLE_COLUMN_METADATA=1  -DSQLITE_ENABLE_UNLOCK_NOTIFY=1  -DSQLITE_ENABLE_DBSTAT_VTAB=1  -DSQLITE_SECURE_DELETE=1 -DSQLITE_ENABLE_FTS3_TOKENIZER=1"

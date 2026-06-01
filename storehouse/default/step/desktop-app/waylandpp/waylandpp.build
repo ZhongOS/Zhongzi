@@ -1,0 +1,2 @@
+# EXTRA_PARM=-DWAYLAND_SCANNERPP=${CROSSTOOLS_DIR}/bin/wayland-scanner++
+EXTRA_PARM=-DWAYLAND_SCANNERPP=${HOST_TOOLS_DIR}/bin/wayland-scanner++

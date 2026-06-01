@@ -1,0 +1,2 @@
+PACKAGE=la_ow_syscall
+BUILD_MODE=custom

@@ -1,0 +1,2 @@
+PACKAGE=kmod
+BUILD_MODE=custom

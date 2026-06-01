@@ -1,0 +1,2 @@
+PACKAGE=libev
+BUILD_MODE=gnu

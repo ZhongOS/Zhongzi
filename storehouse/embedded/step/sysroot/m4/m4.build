@@ -1,0 +1,2 @@
+CONFIG_ENV=CFLAGS="${CFLAGS} -std=gnu17"
+EXTRA_PARM=AUTOMAKE=automake ACLOCAL=aclocal

@@ -1,0 +1,2 @@
+PACKAGE=Citron
+BUILD_MODE=cmake

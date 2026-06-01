@@ -1,0 +1,2 @@
+PACKAGE=nvtop
+BUILD_MODE=cmake

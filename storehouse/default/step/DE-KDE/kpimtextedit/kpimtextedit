@@ -1,0 +1,2 @@
+PACKAGE=kpimtextedit
+BUILD_MODE=cmake

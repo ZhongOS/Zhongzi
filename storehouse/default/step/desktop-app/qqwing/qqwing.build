@@ -1,0 +1,13 @@
+<<<TAR_UNCOMPRESS>>>
+	make tgz
+	GET_VERSION=$(cat build/configure.ac | grep "^AC_INIT"  | awk -F',' '{ print $2 }' | tr -d ' ')
+	pushd target
+		tar xvf ${STEP_PACKAGENAME}-${GET_VERSION}.tar.gz
+		pushd ${STEP_PACKAGENAME}-${GET_VERSION}
+			./configure ${COMMON_CONFIG} <<<EXTRA_PARM>>> --enable-malloc0returnsnull
+			CC=${CROSS_TARGET}-gcc CXX=${CROSS_TARGET}-g++ <<<MAKE>>>
+			make DESTDIR=${SYSROOT_DIR} install
+			rm -f ${SYSROOT_DIR}/usr/lib64/*.la
+		popd
+	popd
+<<<CLEAR_DIR>>>

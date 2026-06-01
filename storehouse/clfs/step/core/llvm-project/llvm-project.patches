@@ -1,0 +1,8 @@
+# p1	0001-LoongArch-Default-to-medium-code-model.patch
+
+
+[[[18.1.8]]]
+p1	0001-llvm-project-18.1.8-fix-for-gcc-15.patch
+
+[[[14.0.6]]]
+p1	llvm-fix-reloc-sub64.patch

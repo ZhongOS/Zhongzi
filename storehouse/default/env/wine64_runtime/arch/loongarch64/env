@@ -1,0 +1,4 @@
+export ARCH_NAME=x86_64
+export ARCH_FAMILY=x86
+export ARCH_ABI=64
+export QEMU_ARCH=x86_64

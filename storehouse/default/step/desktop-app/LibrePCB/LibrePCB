@@ -1,0 +1,2 @@
+PACKAGE=LibrePCB
+BUILD_MODE=cmake

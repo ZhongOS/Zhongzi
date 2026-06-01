@@ -1,0 +1,2 @@
+PACKAGE=pimcommon
+BUILD_MODE=cmake

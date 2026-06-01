@@ -1,0 +1,2 @@
+PACKAGE=alabaster
+BUILD_MODE=pip

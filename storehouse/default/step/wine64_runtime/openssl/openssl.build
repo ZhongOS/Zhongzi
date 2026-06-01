@@ -1,0 +1,7 @@
+<<<TAR_UNCOMPRESS>>>
+	CC="${X86_64_HOST}-gcc" \
+	./Configure --prefix=/usr --openssldir=/etc/ssl \
+				--libdir=lib64 shared zlib
+	sed -i '/INSTALL_LIBS/s/libcrypto.a libssl.a//' Makefile
+	<<<MAKE_AND_INSTALL>>>
+<<<CLEAR_DIR>>>

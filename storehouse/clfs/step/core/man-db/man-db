@@ -1,0 +1,2 @@
+PACKAGE=man-db
+BUILD_MODE=gnu

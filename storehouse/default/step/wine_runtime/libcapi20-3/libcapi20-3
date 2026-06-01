@@ -1,0 +1,2 @@
+PACKAGE=libcapi20-3
+BUILD_MODE=gnu

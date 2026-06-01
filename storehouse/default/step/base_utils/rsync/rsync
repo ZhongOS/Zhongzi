@@ -1,0 +1,2 @@
+PACKAGE=rsync
+BUILD_MODE=gnu

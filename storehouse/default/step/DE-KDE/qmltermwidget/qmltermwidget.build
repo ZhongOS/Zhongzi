@@ -1,0 +1,4 @@
+<<<TAR_UNCOMPRESS>>>
+	qmake
+	<<<MAKE_AND_INSTALL>>>
+<<<CLEAR_DIR>>>

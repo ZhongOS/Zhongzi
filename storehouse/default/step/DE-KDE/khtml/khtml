@@ -1,0 +1,2 @@
+PACKAGE=khtml
+BUILD_MODE=cmake

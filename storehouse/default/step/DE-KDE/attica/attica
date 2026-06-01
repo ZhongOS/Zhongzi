@@ -1,0 +1,2 @@
+PACKAGE=attica
+BUILD_MODE=cmake

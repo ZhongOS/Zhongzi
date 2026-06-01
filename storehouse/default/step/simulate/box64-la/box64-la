@@ -1,0 +1,3 @@
+PACKAGE=box64
+# BUILD_MODE=custom
+BUILD_MODE=cmake

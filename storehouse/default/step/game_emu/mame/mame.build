@@ -1,0 +1,6 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<PATCH>>>
+	<<<MAKE>>> genie
+	<<<MAKE>>> CC="${CROSS_TARGET}-gcc -mcmodel=medium" CXX="${CROSS_TARGET}-g++ -mcmodel=medium" CFLAGS="-Wno-error=pointer-to-int-cast -Wno-error=int-to-pointer-cast" CXXFLAGS="-DPTR64=1" linux
+	cp -a mame ${SYSROOT_DIR}/usr/bin/
+<<<CLEAR_DIR>>>
