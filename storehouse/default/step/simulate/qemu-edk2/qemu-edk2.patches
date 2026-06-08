@@ -1,4 +1,5 @@
 p1	0001-qemu-edk2-platform-add-VirtNorFlashDeviceLib-for-loo.patch qemu-edk2-edk2-platforms_git
 p1	0001-qemu-edk2-add-gcc-CFLAGS-for-LoongArch64.patch qemu-edk2-edk2_git
+p1	0001-qemu-edk2-add-gcc-CFLAGS-for-gcc-16.patch
 
 # p1	0001-qemu-edk2-edk2-fix-for-gcc-15.patch

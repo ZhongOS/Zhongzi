@@ -22,3 +22,5 @@ p2	0001-SYS_SECCOMP-has-already-been-defined-when-glibc-2.43.patch
 p1	0001-qtwebengine-6.11.0-fix-build-error.patch
 p1	0001-fix-sigsys_handlers.cc-build-error.patch
 p1	0001-chromium-third_party-blink-renderer-add-cxxflags-Wno.patch
+
+p1	qtwebengine-fix-delay-signature.patch

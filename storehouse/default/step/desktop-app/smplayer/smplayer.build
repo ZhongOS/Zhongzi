@@ -1,4 +1,4 @@
 <<<TAR_UNCOMPRESS>>>
-	<<<MAKE>>> PREFIX=/usr CC=${CROSS_TARGET}-gcc CXX=${CROSS_TARGET}-g++ LINK=${CROSS_TARGET}-g++ LRELEASE=${SYSROOT_DIR}/usr/bin/lrelease QMAKE=${SYSROOT_DIR}/usr/bin/qmake
+	<<<MAKE>>> PREFIX=/usr CC=${CROSS_TARGET}-gcc CXX=${CROSS_TARGET}-g++ CFLAGS="${CFLAGS} -Wno-error=unused-but-set-variable" LINK=${CROSS_TARGET}-g++ LRELEASE=${SYSROOT_DIR}/usr/bin/lrelease QMAKE=${SYSROOT_DIR}/usr/bin/qmake
 	make PREFIX=/usr CC=${CROSS_TARGET}-gcc CXX=${CROSS_TARGET}-g++ LINK=${CROSS_TARGET}-g++ DESTDIR=${SYSROOT_DIR} install
 <<<CLEAR_DIR>>>

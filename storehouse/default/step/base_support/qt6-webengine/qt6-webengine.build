@@ -13,9 +13,9 @@
 #                 CC="clang" CXX="clang++" CFLAGS="${CFLAGS} -mcmodel=medium -target ${CROSS_TARGET} --sysroot=${SYSROOT_DIR}" CXXFLAGS="${CXXFLAGS} -mcmodel=medium -target ${CROSS_TARGET} --sysroot=${SYSROOT_DIR}" \
                 cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=${COMMON_DIR}/cmake-cross.cmake \
 		      -DCMAKE_C_COMPILER="${CROSS_TARGET}-gcc" -DCMAKE_CXX_COMPILER="${CROSS_TARGET}-g++" \
-# 		      -DCMAKE_C_FLAGS="${CFLAGS} -mcmodel=medium -target ${CROSS_TARGET} --sysroot=${SYSROOT_DIR}" \
-# 		      -DCMAKE_CXX_FLAGS="${CXXFLAGS} -mcmodel=medium -target ${CROSS_TARGET} --sysroot=${SYSROOT_DIR} -Wno-c++11-narrowing" \
-		      -DCMAKE_CXX_FLAGS="${CXXFLAGS} -Wno-c++11-narrowing" \
+#  		      -DCMAKE_C_FLAGS="${CFLAGS} -mcmodel=medium -target ${CROSS_TARGET} --sysroot=${SYSROOT_DIR}" \
+#  		      -DCMAKE_CXX_FLAGS="${CXXFLAGS} -mcmodel=medium -target ${CROSS_TARGET} --sysroot=${SYSROOT_DIR} -Wno-c++11-narrowing" \
+# 		      -DCMAKE_CXX_FLAGS="${CXXFLAGS} -Wno-c++11-narrowing" \
                       -DPython_EXECUTABLE=${HOST_TOOLS_DIR}/bin/python3 \
                       -DPython3_EXECUTABLE=${HOST_TOOLS_DIR}/bin/python3 \
                       -DPYTHON_EXECUTABLE=${HOST_TOOLS_DIR}/bin/python3 \

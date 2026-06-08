@@ -5,10 +5,11 @@
 <<<CLEAR_DIR>>>
 
 echo "#!/bin/bash -e
-if [ -f ${SYSROOT_DIR}/usr/bin/cython ]; then
-    qemu-${ARCH_NAME} ${SYSROOT_DIR}/usr/bin/cython \"\$@\"
-else
+# if [ -f ${SYSROOT_DIR}/usr/bin/cython ]; then
+#     qemu-${ARCH_NAME} ${SYSROOT_DIR}/usr/bin/cython \"\$@\"
+# else
     _PYTHON_SYSCONFIGDATA_NAME=_sysconfigdata__linux_${CROSS_TARGET} ${HOST_TOOLS_DIR}/bin/cython \"\$@\"
-fi" > ${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-cython
+# fi" > ${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-cython
+" > ${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-cython
 chmod +x ${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-cython
 

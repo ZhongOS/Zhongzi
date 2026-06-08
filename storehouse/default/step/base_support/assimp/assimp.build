@@ -1,2 +1,2 @@
-CONFIG_ENV=CXXFLAGS="${CXXFLAGS} -Wno-error=array-bounds"
+CONFIG_ENV=CXXFLAGS="${CXXFLAGS} -Wno-error=array-bounds -Wno-error=unused-but-set-variable -Wno-error=uninitialized"
 EXTRA_PARM=-DASSIMP_BUILD_ZLIB=ON

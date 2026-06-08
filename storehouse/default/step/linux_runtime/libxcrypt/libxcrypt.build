@@ -1,1 +1,2 @@
-CONFIG_ENV=CFLAGS="${BASE_CFLAGS} -Wno-error=stringop-overread"
+# CONFIG_ENV=CFLAGS="${BASE_CFLAGS} -Wno-error=stringop-overread"
+CONFIG_ENV=CC="${CROSS_TOOLS_PREFIX}/bin/${LINUX_HOST}-gcc -Wno-error=stringop-overread -fno-link-libatomic"

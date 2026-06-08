@@ -13,7 +13,7 @@
     esac
     mkdir -p build-${ARCH_NAME}
     pushd build-${ARCH_NAME}
-	CFLAGS="${BASE_CFLAGS}"
+	CFLAGS="${BASE_CFLAGS} -fno-link-libatomic"
 	CXXFLAGS="${BASE_CFLAGS}"
         BUILD_CC="gcc" CC="${CROSS_TOOLS_PREFIX}/bin/${LINUX_HOST}-gcc ${CFLAGS}" \
         CXX="${CROSS_TOOLS_PREFIX}/bin/${LINUX_HOST}-gcc ${CXXFLAGS}" \

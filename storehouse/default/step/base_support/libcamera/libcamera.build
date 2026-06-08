@@ -1,2 +1,2 @@
-CONFIG_ENV=CXXFLAGS="${CXXFLAGS} -Wno-error=cpp"
-EXTRA_PARM=-Ddocumentation=disabled
+CONFIG_ENV=CXXFLAGS="${CXXFLAGS} -Wno-error=cpp -Wno-error=array-bounds"
+EXTRA_PARM=-Ddocumentation=disabled -Dlc-compliance=disabled

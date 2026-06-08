@@ -39,5 +39,7 @@ stellarsolver
 erfa
 xplanet
 libxisf
-kstars|%PARENT=ORIG,KDE5
+# kstars 需要KDE5的组件支持
+# kstars|%PARENT=ORIG,KDE5
+KDE6-kstars|%PARENT=ORIG,KDE6
 NULL

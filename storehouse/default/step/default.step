@@ -149,7 +149,8 @@ distro_info@target_base|none_status
 # 构建游戏相关的组件
 @game_emu|game
 
-@DE-KDE:kf5|opt+KDE5
+# 为部分只支持KDE5组件的软件包提供库支持，可能在gcc 16下存在编译问题。
+# @DE-KDE:kf5|opt+KDE5
 
 # 构建桌面应用组件
 @desktop-app|opt+desk-app

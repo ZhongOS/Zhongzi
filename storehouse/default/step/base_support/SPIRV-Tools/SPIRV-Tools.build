@@ -3,7 +3,7 @@
 	tar xvf ${DOWNLOADDIR}/SPIRV-Headers-$(get_package_version "SPIRV-Headers").tar.gz
         mkdir cross-build
         pushd cross-build
-                CC="${CROSS_TARGET}-gcc" CXX="${CROSS_TARGET}-g++" CXXFLAGS="-Wno-error=switch" \
+                CC="${CROSS_TARGET}-gcc" CXX="${CROSS_TARGET}-g++" CXXFLAGS="-Wno-error=switch -Wno-error=array-bounds" \
                 cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=${COMMON_DIR}/cmake-cross.cmake \
 #                       -DPKG_CONFIG_EXECUTABLE=${SYSDIR}/cross-tools/bin/${CROSS_TARGET}-pkg-config \
 #                       -DCMAKE_SYSROOT=${SYSDIR}/sysroot \

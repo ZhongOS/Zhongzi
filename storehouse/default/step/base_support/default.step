@@ -474,7 +474,7 @@ hidapi
 libmanette
 flite|bad
 webkitgtk
-qtwebkit
+qtwebkit|deprecated
 faac
 accountsservice
 libpcap
