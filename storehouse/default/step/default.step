@@ -149,7 +149,7 @@ distro_info@target_base|none_status
 # 构建游戏相关的组件
 @game_emu|game
 
-# 为部分只支持KDE5组件的软件包提供库支持，可能在gcc 16下存在编译问题。
+# 为部分需要支持KDE5组件的软件包提供库支持(如 kstars，新版本以不需要)，可能在gcc 16下存在编译问题。
 # @DE-KDE:kf5|opt+KDE5
 
 # 构建桌面应用组件
@@ -226,8 +226,9 @@ NULL@linux_runtime|opt
 # make_directory@linux_runtime:core|opt;linux_runtime,chromium,wine;%target=?x86_64;%OVERLAY=x86_64_runtime;%PARENT=sysroot
 @linux_runtime:core|opt;linux_runtime,chromium,wine;%target=?x86_64;%OVERLAY=x86_64_runtime
 NULL@cross-toolchains|opt
-linux-gcc-glibc@cross-toolchains|opt;linux_runtime,chromium,wine;%target=?x86_64;%OVERLAY=x86_64_runtime
-@cross-toolchains|opt;linux_runtime,chromium,wine;%target=?x86_64;%OVERLAY=x86_64_runtime
+linux-gcc-libc@cross-toolchains|opt;!forcheck;linux_runtime,chromium,wine;%target=?x86_64;%OVERLAY=x86_64_runtime
+forcheck-linux-gcc-libc@cross-toolchains|opt;forcheck;linux_runtime,chromium,wine;%target=?x86_64;%OVERLAY=x86_64_runtime
+@cross-toolchains|opt;!forcheck;linux_runtime,chromium,wine;%target=?x86_64;%OVERLAY=x86_64_runtime
 @cross-toolchains:forcheck|opt;forcheck;linux_runtime,chromium,wine;%target=?x86_64;%OVERLAY=x86_64_runtime
 NULL@cross-toolchains|opt
 
@@ -244,7 +245,7 @@ NULL@linux_runtime|i686_runtime
 # make_directory@linux_runtime:core|i686_runtime,wine32;%target=i686;%OVERLAY=i686_runtime;%PARENT=sysroot
 @linux_runtime:core|i686_runtime,wine32;%target=i686;%OVERLAY=i686_runtime
 NULL@cross-toolchains|opt
-linux-gcc-glibc@cross-toolchains|opt;i686_runtime,wine32;%target=i686;%OVERLAY=i686_runtime
+linux-gcc-libc@cross-toolchains|opt;i686_runtime,wine32;%target=i686;%OVERLAY=i686_runtime
 @cross-toolchains|opt;i686_runtime,wine32;%target=i686;%OVERLAY=i686_runtime
 NULL@cross-toolchains|opt
 

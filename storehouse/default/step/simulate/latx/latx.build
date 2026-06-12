@@ -48,7 +48,7 @@
 			     --target-list=i386-linux-user \
 			     --enable-latx \
 			     --optimize-O1 \
-			     --low_mem_mode0 \
+# 			     --low_mem_mode0 \
 			     --enable-guest-base-zero \
 			     --disable-debug-info --disable-docs \
 			     --disable-werror \
@@ -65,7 +65,7 @@
 			     --target-list=x86_64-linux-user \
 			     --enable-latx \
 			     --optimize-O1 \
-			     --low_mem_mode0 \
+# 			     --low_mem_mode0 \
 			     --enable-kzt \
 			     --disable-debug-info --disable-docs \
 			     --disable-werror \
