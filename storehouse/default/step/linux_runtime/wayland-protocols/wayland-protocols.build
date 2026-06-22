@@ -1,6 +1,7 @@
 <<<TAR_UNCOMPRESS>>>
     sed -i -e "/dep_scanner =/s@, native: true@@g" \
            -e "/prog_scanner =/s@find_program\(.*\)\$@find_program('wayland-scanner')@g" \
+	   -e "s@\${pc_sysrootdir}@@g" \
            meson.build
     mkdir cross-build
     pushd cross-build

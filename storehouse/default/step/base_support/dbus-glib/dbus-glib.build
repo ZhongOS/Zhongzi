@@ -6,6 +6,6 @@
 
 	./configure ${COMMON_CONFIG}
 	check_gnu_Makefile
-	<<<MAKE>>> DBUS_BINDING_TOOL=/bin/dbus-binding-tool
+	<<<MAKE>>> DBUS_BINDING_TOOL=${HOST_TOOLS_DIR}/bin/dbus-binding-tool
 	make DESTDIR=${SYSROOT_DIR} install
 <<<CLEAR_DIR>>>

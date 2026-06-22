@@ -1,0 +1,2 @@
+PACKAGE=xmlto
+BUILD_MODE=gnu

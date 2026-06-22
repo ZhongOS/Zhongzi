@@ -189,12 +189,12 @@ attrs
 libei
 at-spi2-core
 at-spi2-atk
-adwaita-icon-theme
 libsass
 sassc
 cairo
 gtk2
 gtk3
+adwaita-icon-theme
 libdecor
 mesa-demos
 gsl
@@ -757,6 +757,8 @@ distlib
 zenity
 
 rapidjson
+
+bubblewrap
 
 # gettext
 

@@ -8,9 +8,9 @@
 		-confirm-license -opensource \
                 -openssl-linked -system-harfbuzz -system-sqlite \
                 -nomake examples \
-                -journald \
-# #		-rpath -R "${CROSSTOOLS_DIR}/lib${LIB_SUFF}" -R "${CROSSTOOLS_DIR}/build-tools/lib${LIB_SUFF}" -R "${CROSSTOOLS_DIR}/build-tools/lib" -R "\\\${ORIGIN}/../lib${LIB_SUFF}" -R "${CROSSTOOLS_DIR}/lib" \
-# 		-rpath -R "${CROSSTOOLS_DIR}/lib${LIB_SUFF}" -R "${HOST_TOOLS_DIR}/lib${LIB_SUFF}" -R "${HOST_TOOLS_DIR}/lib" -R "\\\${ORIGIN}/../lib${LIB_SUFF}" -R "${CROSSTOOLS_DIR}/lib" \
+# #                 -journald \
+# # #		-rpath -R "${CROSSTOOLS_DIR}/lib${LIB_SUFF}" -R "${CROSSTOOLS_DIR}/build-tools/lib${LIB_SUFF}" -R "${CROSSTOOLS_DIR}/build-tools/lib" -R "\\\${ORIGIN}/../lib${LIB_SUFF}" -R "${CROSSTOOLS_DIR}/lib" \
+# # 		-rpath -R "${CROSSTOOLS_DIR}/lib${LIB_SUFF}" -R "${HOST_TOOLS_DIR}/lib${LIB_SUFF}" -R "${HOST_TOOLS_DIR}/lib" -R "\\\${ORIGIN}/../lib${LIB_SUFF}" -R "${CROSSTOOLS_DIR}/lib" \
 		ICU_PREFIX=${CROSSTOOLS_DIR} ICU_LIBS="-licui18n -licuuc -licudata" \
                 -skip qtwebengine
         <<<MAKE>>>

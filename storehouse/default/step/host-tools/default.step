@@ -126,6 +126,7 @@ bdftopcf
 fontforge
 console-setup
 
+gperf
 fontconfig
 dbus
 libevent
@@ -139,6 +140,7 @@ meson-python
 pyproject
 pyproject-metadata
 
+elfutils
 dwarves
 # rust-bindgen|opt
 # cargo-c|opt
@@ -152,7 +154,7 @@ lttng-ust|dotnet
 
 NULL
 
-elfutils
+# elfutils
 
 Parse-Yapp
 JSON
@@ -175,6 +177,16 @@ pycparser
 python-build
 pyproject_hooks
 
+# gperf
+autogen
+
+libfontenc
+mkfontscale
+
+dbus-glib
+
+xmlto
+
 NULL
 
 texinfo
@@ -189,6 +201,8 @@ scikit-build-core
 patchelf
 pipewire
 
+libcap
+bubblewrap
 NULL
 
 llvm-project|opt

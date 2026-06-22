@@ -2,17 +2,18 @@
     <<<PATCH>>>
     cp -a -f $(automake --print-libdir)/config.{sub,guess} ./
     _PYTHON_HOST_PLATFORM=linux-loongarch64 \
-#    _PYTHON_SYSCONFIGDATA_NAME=_sysconfigdata__linux_${CROSS_TARGET} \
+    _PYTHON_SYSCONFIGDATA_NAME=_sysconfigdata__linux_${CROSS_TARGET} \
     ./configure ${COMMON_CONFIG} --with-securedir=/usr/lib/security \
-                --with-python-binary=${CROSS_TARGET}-python3
+                --with-python-binary=${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-python3
+#                 --with-python-binary=${HOST_TOOLS_DIR}/bin/python3
     check_gnu_Makefile
     CC=${CROSS_TARGET}-gcc \
     _PYTHON_HOST_PLATFORM=linux-loongarch64 \
-#    _PYTHON_SYSCONFIGDATA_NAME=_sysconfigdata__linux_${CROSS_TARGET} \
+    _PYTHON_SYSCONFIGDATA_NAME=_sysconfigdata__linux_${CROSS_TARGET} \
     <<<MAKE>>>
     CC=${CROSS_TARGET}-gcc \
     _PYTHON_HOST_PLATFORM=linux-loongarch64 \
-#    _PYTHON_SYSCONFIGDATA_NAME=_sysconfigdata__linux_${CROSS_TARGET} \
+    _PYTHON_SYSCONFIGDATA_NAME=_sysconfigdata__linux_${CROSS_TARGET} \
     make DESTDIR=${SYSROOT_DIR} install
 <<<CLEAR_DIR>>>
 

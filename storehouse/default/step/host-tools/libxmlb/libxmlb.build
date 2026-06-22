@@ -1,1 +1,1 @@
-EXTRA_PARM=-Dintrospection=false
+EXTRA_PARM=-Dintrospection=false -Dgtkdoc=false

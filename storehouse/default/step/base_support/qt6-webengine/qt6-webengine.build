@@ -11,6 +11,7 @@
         mkdir -pv cross-build
         pushd cross-build
 #                 CC="clang" CXX="clang++" CFLAGS="${CFLAGS} -mcmodel=medium -target ${CROSS_TARGET} --sysroot=${SYSROOT_DIR}" CXXFLAGS="${CXXFLAGS} -mcmodel=medium -target ${CROSS_TARGET} --sysroot=${SYSROOT_DIR}" \
+		unset PKG_CONFIG_PATH PKG_CONFIG_LIBPATH PKG_CONFIG_SYSROOT_DIR
                 cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=${COMMON_DIR}/cmake-cross.cmake \
 		      -DCMAKE_C_COMPILER="${CROSS_TARGET}-gcc" -DCMAKE_CXX_COMPILER="${CROSS_TARGET}-g++" \
 #  		      -DCMAKE_C_FLAGS="${CFLAGS} -mcmodel=medium -target ${CROSS_TARGET} --sysroot=${SYSROOT_DIR}" \
@@ -41,7 +42,7 @@
 		      -DFEATURE_webengine_system_ffmpeg:BOOL=ON  -DFEATURE_webengine_vaapi:BOOL=ON -DFEATURE_webengine_extensions:BOOL=ON -DFEATURE_webengine_printing_and_pdf:BOOL=ON -DFEATURE_webengine_proprietary_codecs:BOOL=ON -DFEATURE_webengine_webrtc:BOOL=ON -DFEATURE_webengine_webrtc_pipewire:BOOL=ON -DFEATURE_webengine_system_minizip:BOOL=OFF \
 		      -DQT_FEATURE_use_lld_linker:BOOL=OFF \
 		      -DFEATURE_qtpdf_build:BOOL=ON -DFEATURE_pdf_v8:BOOL=ON \
-		      -DQT_GENERATE_SBOM=OFF -DQT_BUILD_EXAMPLES=ON \
+		      -DQT_GENERATE_SBOM=OFF -DQT_BUILD_EXAMPLES=OFF \
                       -Wno-dev ..
                 <<<MAKE_AND_INSTALL>>>
         popd

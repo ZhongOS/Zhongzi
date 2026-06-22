@@ -1,1 +1,1 @@
-EXTRA_PARM=PYTHON=${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-python3
+EXTRA_PARM=PYTHON=${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-python3 --with-xml-catalog=${HOST_TOOLS_DIR}/etc/xml/catalog

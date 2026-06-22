@@ -87,6 +87,7 @@ NULL@cross-tools
 
 tcl@host-tools
 graphviz@host-tools
+Python3@host-tools
 
 NULL@host-tools
 NULL@cross-tools

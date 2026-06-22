@@ -1,0 +1,2 @@
+PACKAGE=bubblewrap
+BUILD_MODE=meson

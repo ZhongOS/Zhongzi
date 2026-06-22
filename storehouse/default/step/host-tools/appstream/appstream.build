@@ -1,1 +1,1 @@
-EXTRA_PARM=-Dstemming=false -Ddocs=false -Dapidocs=false -Dgir=false -Dbash-completion=false
+EXTRA_PARM=-Dstemming=false -Ddocs=false -Dapidocs=false -Dgir=false -Dbash-completion=false -Dsystemd=false

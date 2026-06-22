@@ -1,10 +1,12 @@
 <<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
     sed -ri "s:.*(AUX_MODULES.*valid):\1:" modules.cfg
     sed -r "s:.*(#.*SUBPIXEL_RENDERING) .*:\1:" \
            -i include/freetype/config/ftoption.h
     ./configure ${COMMON_CONFIG} \
                 --enable-freetype-config
     <<<MAKE_AND_INSTALL>>>
+    sed -i "s@-L/usr/lib64@-L\${libdir}@g" ${SYSROOT_DIR}/usr/lib${LIB_SUFF}/pkgconfig/freetype2.pc
 
     sed -i -e "s@${CROSSTOOLS_DIR}/bin@/usr/bin@g" \
            -e "s@${CROSS_TARGET}-@@g" \

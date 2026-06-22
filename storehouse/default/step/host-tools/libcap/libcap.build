@@ -1,0 +1,4 @@
+<<<TAR_UNCOMPRESS>>>
+	<<<MAKE>>> prefix=${PREFIX} lib=lib${LIB_SUFF}
+	make prefix=${PREFIX} lib=lib${LIB_SUFF} install
+<<<CLEAR_DIR>>>

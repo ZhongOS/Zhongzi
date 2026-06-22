@@ -1,0 +1,15 @@
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+    for config_i in $(find -name "config.sub")
+    do  
+	cp -a -f $(automake --print-libdir)/config.{sub,guess} $(dirname ${config_i})/
+    done
+
+    sed -i "/_guile_versions_to_search/s@\"2.2@\"3.0 2.2@g" configure
+    sed -i "s@203000@308000@g" agen5/guile-iface.h
+	CFLAGS="-Wno-error=unused-but-set-variable" \
+	./configure ${COMMON_CONFIG} \
+	            --disable-dependency-tracking
+	check_gnu_Makefile
+	<<<MAKE_AND_INSTALL>>>
+<<<CLEAR_DIR>>>

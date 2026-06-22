@@ -12,3 +12,7 @@
 	popd
 	rm -f ${SYSROOT_DIR}/usr/lib64/*.la
 <<<CLEAR_DIR>>>
+
+echo "#!/bin/bash -e
+qemu-${ARCH_NAME} ${SYSROOT_DIR}/usr/bin/update-desktop-database \"\$@\"" > ${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-update-desktop-database
+chmod +x ${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-update-desktop-database

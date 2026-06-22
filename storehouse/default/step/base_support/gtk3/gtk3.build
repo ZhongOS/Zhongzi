@@ -26,6 +26,11 @@ gtk-cursor-theme-name = Adwaita
 EOF
 <<<CLEAR_DIR>>>
 
+echo "#!/bin/bash -e
+qemu-${ARCH_NAME} ${SYSROOT_DIR}/usr/bin/gtk-update-icon-cache \"\$@\"" > ${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-gtk-update-icon-cache
+chmod +x ${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-gtk-update-icon-cache
+
+
 
 [[[3.24.34]]]
 <<<TAR_UNCOMPRESS>>>
