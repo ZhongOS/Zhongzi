@@ -104,7 +104,9 @@ ln -sv ../../gongju/env/data ./distro/${DISTRO_DIR}/env/
 if [ ! -f ./distro/${DISTRO_DIR}/env/distro.info ]; then
 	echo "DISTRO_ARCH=${DISTRO_ARCH}" > ./distro/${DISTRO_DIR}/env/distro.info
 	echo "DISTRO_ARCH_NAME=${DISTRO_ARCH}" >> ./distro/${DISTRO_DIR}/env/distro.info
+	echo "DISTRO_ARCH_NAME_CN=${DISTRO_ARCH}" >> ./distro/${DISTRO_DIR}/env/distro.info
 	echo "DISTRO_NAME=${DISTRO_NAME}" >> ./distro/${DISTRO_DIR}/env/distro.info
+	echo "DISTRO_NAME_CN=${DISTRO_NAME}" >> ./distro/${DISTRO_DIR}/env/distro.info
 	echo "DISTRO_VERSION=1.0" >> ./distro/${DISTRO_DIR}/env/distro.info
 	echo "DISTRO_ARCHIVE_MODE=squashfs" >> ./distro/${DISTRO_DIR}/env/distro.info
 	echo "DISTRO_DEFAULT_USER=$(echo ${DISTRO_NAME} | sed -e "s@64@@g" -e "s@32@@g")" >> ./distro/${DISTRO_DIR}/env/distro.info
