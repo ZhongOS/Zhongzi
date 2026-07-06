@@ -9,7 +9,8 @@
 
 	mkdir -p build
 	pushd build
-		meson ${MESON_CONFIG} \
+# 因为目标系统构建的是以bin和sbin分开的模式，因此强制设置 -Dsplit-bin=true ,避免在某些系统上编译的systemd出现运行卡住的问题。
+		meson ${MESON_CONFIG} -Dsplit-bin=true \
 		      -Ddefault-dnssec=no -Dfirstboot=false \
 		      -Dinstall-tests=false -Dldconfig=false -Dsysusers=false \
 		      -Drpmmacrosdir=no -Dhomed=false -Duserdb=false -Dman=false -Dmode=release -Dlogind=true \

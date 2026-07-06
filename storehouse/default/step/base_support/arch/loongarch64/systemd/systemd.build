@@ -9,7 +9,7 @@
 
 	mkdir -p build
 	pushd build
-		meson ${MESON_CONFIG} \
+		meson ${MESON_CONFIG} -Dsplit-bin=true \
 		      -Ddefault-dnssec=no -Dfirstboot=false \
 		      -Dinstall-tests=false -Dldconfig=false -Dsysusers=false \
 		      -Drpmmacrosdir=no -Dhomed=false -Duserdb=false -Dman=false -Dmode=release -Dlogind=true \

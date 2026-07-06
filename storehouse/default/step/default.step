@@ -58,6 +58,7 @@ meson@host-tools
 Mako@host-tools
 packaging@host-tools
 python-zstandard@host-tools
+pycairo@host-tools
 pygobject@host-tools
 
 pcre2@host-tools

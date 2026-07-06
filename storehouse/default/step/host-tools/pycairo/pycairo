@@ -1,2 +1,2 @@
 PACKAGE=pycairo
-BUILD_MODE=python
+BUILD_MODE=meson

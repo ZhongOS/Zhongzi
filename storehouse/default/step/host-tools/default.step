@@ -15,7 +15,7 @@ libxslt
 wayland
 Cython
 glslang
-pycairo|bad
+# pycairo
 lxml
 sip4
 wheel
