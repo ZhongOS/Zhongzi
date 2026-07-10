@@ -4,6 +4,7 @@
 
 #	sed -i "/DataVisualization/d" cmake/PySideHelpers.cmake
 
+	export LC_ALL=POSIX
 	mkdir cross-build
 	pushd cross-build
         	CC="${CROSS_TARGET}-gcc" CXX="${CROSS_TARGET}-g++" <<<CONFIG_ENV>>> \

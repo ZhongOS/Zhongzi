@@ -40,10 +40,10 @@
                       -DBUILD_SHARED_LIBS=ON \
 		      -DQT_HOST_PATH=${CROSSTOOLS_DIR}/qt6 -DQT_FORCE_BUILD_TOOLS=ON \
 # 		      -DQT_BUILD_SUBMODULES=qt3d\;qt5compat\;qtactiveqt\;qtbase\;qtcharts\;qtcoap\;qtconnectivity\;qtdatavis3d\;qtdeclarative\;qtdoc\;qthttpserver\;qtimageformats\;qtlanguageserver\;qtlocation\;qtlottie\;qtmqtt\;qtmultimedia\;qtnetworkauth\;qtopcua\;qtpositioning\;qtquick3d\;qtquickeffectmaker\;qtquicktimeline\;qtremoteobjects\;qtscxml\;qtsensors\;qtserialbus\;qtserialport\;qtshadertools\;qtspeech\;qtsvg\;qttools\;qttranslations\;qtvirtualkeyboard\;qtwayland\;qtwebchannel\;qtwebsockets\;qtwebview\;qtwebengine \
-		      -DQT_BUILD_SUBMODULES=qt3d\;qt5compat\;qtactiveqt\;qtbase\;qtcharts\;qtcoap\;qtconnectivity\;qtdatavis3d\;qtdeclarative\;qtdoc\;qthttpserver\;qtimageformats\;qtlanguageserver\;qtlocation\;qtlottie\;qtmqtt\;qtmultimedia\;qtnetworkauth\;qtopcua\;qtpositioning\;qtquick3d\;qtquickeffectmaker\;qtquicktimeline\;qtremoteobjects\;qtscxml\;qtsensors\;qtserialbus\;qtserialport\;qtshadertools\;qtspeech\;qtsvg\;qttools\;qttranslations\;qtvirtualkeyboard\;qtwayland\;qtwebchannel\;qtwebsockets\;qtwebview \
+		      -DQT_BUILD_SUBMODULES=qt3d\;qt5compat\;qtactiveqt\;qtbase\;qtcharts\;qtcoap\;qtconnectivity\;qtdatavis3d\;qtdeclarative\;qtdoc\;qthttpserver\;qtimageformats\;qtlanguageserver\;qtlocation\;qtlottie\;qtmqtt\;qtmultimedia\;qtnetworkauth\;qtopcua\;qtpositioning\;qtquick3d\;qtquickeffectmaker\;qtquicktimeline\;qtremoteobjects\;qtscxml\;qtsensors\;qtserialbus\;qtserialport\;qtshadertools\;qtspeech\;qtsvg\;qttools\;qttranslations\;qtvirtualkeyboard\;qtwayland\;qtwebchannel\;qtwebsockets\;qtwebview\;qtcanvaspainter \
 		      -DPKG_CONFIG_HOST_EXECUTABLE=/usr/bin/pkg-config \
 # 		      -DFEATURE_webengine_system_ffmpeg:BOOL=ON  -DFEATURE_webengine_vaapi:BOOL=ON -DFEATURE_webengine_extensions:BOOL=ON -DFEATURE_webengine_printing_and_pdf:BOOL=ON -DFEATURE_webengine_proprietary_codecs:BOOL=ON -DFEATURE_webengine_webrtc:BOOL=ON -DFEATURE_webengine_webrtc_pipewire:BOOL=ON -DFEATURE_webengine_system_minizip:BOOL=OFF \
-		      -DQT_FEATURE_use_lld_linker:BOOL=OFF \
+		      -DQT_FEATURE_use_lld_linker:BOOL=OFF -DQT_FEATURE_webview_webengine_plugin:BOOL=OFF \
 # 		      -DFEATURE_qtpdf_build:BOOL=ON -DFEATURE_pdf_v8:BOOL=ON \
 		      -DQT_GENERATE_SBOM=OFF \
 # 		      -DQT_BUILD_EXAMPLES=ON \
