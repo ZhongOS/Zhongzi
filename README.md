@@ -8,7 +8,7 @@
 “种子”系统创建器可以通过git命令进行获取，使用以下命令获取最新的版本：
 
 ```sh
-git clone https://github.com/sunhaiyong1978/Zhongzi.git --depth 1
+git clone https://github.com/sunhaiyong1978/Zhongzi.git --recursive --shallow-submodules --depth 1
 ```
 
 ## 运行环境：
