@@ -1,4 +1,5 @@
 <<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
     yes "" | make BINDIR='/usr/bin' SBINDIR='/usr/bin' CC=${CROSS_TARGET}-gcc
     make BINDIR='/usr/bin' SBINDIR='/usr/bin' CC=${CROSS_TARGET}-gcc DESTDIR=${PWD}/dest install
     rm -v dest/usr/bin/{nis,yp}domainname

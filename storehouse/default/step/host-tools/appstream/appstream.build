@@ -1,1 +1,13 @@
-EXTRA_PARM=-Dstemming=false -Ddocs=false -Dapidocs=false -Dgir=false -Dbash-completion=false -Dsystemd=false
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+    sed -i 's/xsl-ns/xsl/' docs/meson.build
+    mkdir -p native-build
+    pushd native-build
+	meson --prefix=${PREFIX} --libdir=${PREFIX}/lib${LIB_SUFF} -Dstemming=false -Ddocs=false -Dapidocs=false -Dgir=false -Dbash-completion=false -Dsystemd=false \
+	      --buildtype=release ..
+        ninja
+        ninja install
+    popd
+<<<CLEAR_DIR>>>
+
+# EXTRA_PARM=-Dstemming=false -Ddocs=false -Dapidocs=false -Dgir=false -Dbash-completion=false -Dsystemd=false

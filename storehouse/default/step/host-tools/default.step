@@ -216,4 +216,6 @@ appstream|opt
 
 libglvnd|opt
 
+pefile
+
 NULL

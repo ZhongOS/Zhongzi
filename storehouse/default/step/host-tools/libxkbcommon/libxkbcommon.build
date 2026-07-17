@@ -1,2 +1,2 @@
 # EXTRA_PARM=-Denable-wayland=false -Denable-bash-completion=false
-EXTRA_PARM=-Denable-wayland=false -Denable-bash-completion=false -Denable-x11=false
+EXTRA_PARM=-Denable-wayland=false -Denable-bash-completion=false -Denable-x11=false -Dxkb-config-unversioned-extensions-path=${HOST_TOOLS_DIR}/share/xkeyboard-config.d -Dxkb-config-versioned-extensions-path=${HOST_TOOLS_DIR}/share/X11/xkb.d
