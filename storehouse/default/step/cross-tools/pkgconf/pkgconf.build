@@ -17,4 +17,17 @@ fi
 #	mkdir -p ${CROSSTOOLS_DIR}/tmp/bin
 #        cp -f ${CROSSTOOLS_DIR}/bin/pkgconf ${CROSSTOOLS_DIR}/tmp/bin/${CROSS_TARGET}-pkg-config
 mkdir -p ${CROSSTOOLS_DIR}/bin
-ln -sf ${HOST_TOOLS_DIR}/bin/pkgconf ${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-pkg-config
+# ln -sf ${HOST_TOOLS_DIR}/bin/pkgconf ${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-pkg-config
+
+rm -f ${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-pkg-config
+
+cat > ${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-pkg-config << EOF
+#!/bin/bash -e
+
+if echo "\$@" | grep -q "\--variable=" && \
+ ! echo "\$@" | grep -q "wayland-protocols"; then
+    unset PKG_CONFIG_SYSROOT_DIR
+fi
+
+${HOST_TOOLS_DIR}/bin/pkgconf "\$@"
+EOF

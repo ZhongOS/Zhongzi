@@ -1,3 +1,6 @@
+p1	0001-add-sysroot-for-rust-cross-build.patch
+
+[[[2.62.2]]]
 p1	0001-librsvg-2.59.91-fix-for-cross-build.patch
 p1	0001-add-sysroot-for-rust-cross-build.patch
 

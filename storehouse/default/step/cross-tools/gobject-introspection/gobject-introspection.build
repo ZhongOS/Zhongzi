@@ -21,6 +21,7 @@ mkdir -p ${CROSSTOOLS_DIR}/bin
 cat > <<<CROSS_TOOLS_PREFIX>>>/bin/${CROSS_TARGET}-g-ir-scanner << EOF
 #!/bin/bash -e
 # LD_LIBRARY_PATH=<<<HOST_TOOLS_PREFIX>>>/lib64/:<<<HOST_TOOLS_PREFIX>>>/lib/ \
+CC=${CROSS_TARGET}-gcc \
 <<<HOST_TOOLS_PREFIX>>>/bin/g-ir-scanner \
       --add-include-path=${SYSROOT_DIR}/usr/share/gir-1.0 \
       --use-binary-wrapper=<<<CROSS_TOOLS_PREFIX>>>/bin/qemu-${YONGBAO_TARGET_ARCH} \

@@ -30,6 +30,13 @@
     popd
 <<<CLEAR_DIR>>>
 
+cat > ${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-tclsh << EOF
+#!/bin/bash -e
+qemu-${ARCH_NAME} ${SYSROOT_DIR}/usr/bin/tclsh "\$@"
+EOF
+chmod +x ${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-tclsh
+
+
 # set_final_fix_step "/usr/lib${LIB_SUFF}/itcl${ITCL_VERSION}/" "F" "f" "*.sh"
 
 [[[8.6.11]]]

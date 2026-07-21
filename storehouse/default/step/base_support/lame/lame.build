@@ -1,1 +1,2 @@
+CONFIG_ENV=CFLAGS="${CFLAGS} -Wno-implicit-function-declaration -Wno-incompatible-pointer-types"
 EXTRA_PARM= --enable-mp3rtp
