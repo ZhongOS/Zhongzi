@@ -4,9 +4,12 @@ source environment/functions
 
 declare CUSTOM_STEP_STR=""
 declare CUSTOM_STEP_NAME="default"
+declare CUSTOM_PACKAGE_DIR_NAME=""
+declare CUSTOM_PACKAGE_NAME=""
 declare CUSTOM_VERSIONS_NAME="Default"
 declare FORCE_OVERWRITE=0
-while getopts 's:S:N:fh' OPT; do
+declare NO_CREATE_INDEX=0
+while getopts 's:S:P:p:N:jfh' OPT; do
     case $OPT in
         s)
             CUSTOM_STEP_STR=$OPTARG
@@ -14,8 +17,17 @@ while getopts 's:S:N:fh' OPT; do
 	S)
 	    CUSTOM_STEP_NAME=$OPTARG
 	    ;;
+	P)
+	    CUSTOM_PACKAGE_DIR_NAME=$OPTARG
+	    ;;
+	p)
+	    CUSTOM_PACKAGE_NAME=$OPTARG
+	    ;;
 	N)
 	    CUSTOM_VERSIONS_NAME=$OPTARG
+	    ;;
+	j)
+	    NO_CREATE_INDEX=1
 	    ;;
         f)
             FORCE_OVERWRITE=1
@@ -25,7 +37,10 @@ while getopts 's:S:N:fh' OPT; do
 	    echo "参数："
 	    echo "	s <步骤组列表>: 设置更新步骤组内容的列表，多个组之间使用“,”进行分隔，若其中有个别指定组不存在则忽略进行存在指定组的更新，不指定该参数则将对全部组进行更新。"
 	    echo "	S <起始步骤文件名称>: 设置从哪个步骤文件开始进行制作，不指定该参数将使用 default.step 开始制作。"
+	    echo "	P <种子名列表>: 仅对符合指定种子名进行更新，可以指定多个名字，名字之间使用“,”符号进行分隔。"
+	    echo "	p <软件包名列表>: 对使用指定软件包的种子进行更新，种子名无需与软件包名相同，名字之间使用“,”符号进行分隔。"
 	    echo "	N <软件版本组名称>: 设置从哪个软件版本组名称的目录中获取软件版本号，指定的名称为 package_version 目录中的目录名，不指定该参数将使用 package_version/Default 目录中的版本号进行配置。"
+	    echo "	j : 不重新创建索引文件，使用已存在的索引文件，当目标系统的索引文件不存在时该参数无效。"
 	    echo "	f : 强制更新那些指定了AUTO_LOCK（自动锁）的步骤。"
 	    exit 0
 	    ;;
@@ -55,7 +70,21 @@ fi
 ZZ_NAME=default
 VERSIONS_NAME=Default
 if [ "x${CUSTOM_VERSIONS_NAME}" != "x" ]; then
-	VERSIONS_NAME="${CUSTOM_VERSIONS_NAME}"
+	if [ -d package_version/${CUSTOM_VERSIONS_NAME} ]; then
+		VERSIONS_NAME="${CUSTOM_VERSIONS_NAME}"
+	else
+		echo "没有找到 package_version/${CUSTOM_VERSIONS_NAME} 目录，清检查 -N 参数指定的名称是否正确。"
+		echo "可用的名称有："
+		for i in $(find package_version/ -maxdepth 1 -type d | sed "s@package_version/@@")
+		do
+			if [ -h package_version/${i} ]; then
+				echo "	${i} -> $(readlink package_version/${i})"
+			else
+				echo "	${i}"
+			fi
+		done
+		exit 9
+	fi
 fi
 
 GET_FULL_DISTRO_SET=""
@@ -87,15 +116,15 @@ else
 fi
 if [ "x${GET_CUSTOM_STEP_NAME}" == "x" ]; then
 	if [ "x${GET_FULL_DISTRO_SET}" == "x" ]; then
-		echo "default_store 文件中没有 ${DISTRO_NAME} 设置的内容，将使用默认的种子文件 default.step 进行目标系统的生成。"
+		echo "default_store 文件中没有 ${DISTRO_NAME} 设置的内容，将使用默认的种子步骤文件 default.step 进行目标系统的生成。"
 	eles
-		echo "default_store 文件中定义了 ${DISTRO_NAME} ，但没有定义种子文件，将使用默认的 default.step 。"
+		echo "default_store 文件中定义了 ${DISTRO_NAME} ，但没有定义种子步骤文件，将使用默认的 default.step 。"
 	fi
 else
 	if [ -f storehouse/${GET_ZZ_NAME}/step/${GET_CUSTOM_STEP_NAME}.step ]; then
 		CUSTOM_STEP_NAME=${GET_CUSTOM_STEP_NAME}
 	else
-		echo "default_store 中 ${DISTRO_NAME} 指定的种子文件 ${GET_CUSTOM_STEP_NAME}.step 不存在，不能继续，请检查 default_store 中的设置。"
+		echo "default_store 中 ${DISTRO_NAME} 指定的种子步骤文件 ${GET_CUSTOM_STEP_NAME}.step 不存在，不能继续，请检查 default_store 中的设置。"
 		exit 3
 	fi
 fi
@@ -119,11 +148,15 @@ echo "完成。"
 # chmod +x ${DISTRO_DIR}/build.sh ${DISTRO_DIR}/tools/*.sh
 # echo "完成。"
 
-echo -n "创建索引文件..."
-get_steps ${ZZ_NAME} ${CUSTOM_STEP_NAME} | grep "^%" > ${DISTRO_DIR}/step
-echo "" > ${DISTRO_DIR}/arch_step
-echo "" > ${DISTRO_DIR}/set_step
-echo "完成。"
+if [ -f ${DISTRO_DIR}/step ] && [ "x${NO_CREATE_INDEX}" == "x1" ]; then
+	echo "参数指定将不进行索引文件（${DISTRO_DIR}/step）的创建。"
+else
+	echo -n "创建索引文件..."
+	get_steps ${ZZ_NAME} ${CUSTOM_STEP_NAME} | grep "^%" > ${DISTRO_DIR}/step
+	echo "" > ${DISTRO_DIR}/arch_step
+	echo "" > ${DISTRO_DIR}/set_step
+	echo "完成。"
+fi
 
 for i in $(cat ${DISTRO_DIR}/step  | gawk -F'/' '{ print $2 }' | sort | uniq)
 do
@@ -172,9 +205,43 @@ done
 
 
 echo "创建制作文件..."
+
+DISTRO_ALL_STEP_PACKAGE="$(cat ${DISTRO_DIR}/step)"
+GREP_STR=""
+if [ "x${CUSTOM_PACKAGE_DIR_NAME}" != "x" ]; then
+	DISTRO_STEP_PACKAGE="$(bin/show_package_steps.sh -m I ${CUSTOM_PACKAGE_DIR_NAME} | sort | uniq)"
+	for package_i in ${DISTRO_STEP_PACKAGE}
+	do
+		if [ "x${GREP_STR}" == "x" ]; then
+			GREP_STR="${package_i}|"
+		else
+			GREP_STR="${GREP_STR}\|${package_i}|"
+		fi
+	done
+fi
+if [ "x${CUSTOM_PACKAGE_NAME}" != "x" ]; then
+	DISTRO_STEP_PACKAGE="$(bin/show_package_name.sh -m I ${CUSTOM_PACKAGE_NAME} | sort | uniq)"
+	for package_i in ${DISTRO_STEP_PACKAGE}
+	do
+		if [ "x${GREP_STR}" == "x" ]; then
+			GREP_STR="${package_i}|"
+		else
+			GREP_STR="${GREP_STR}\|${package_i}|"
+		fi
+	done
+fi
+# echo "${GREP_STR}"
+
+if [ "x${CUSTOM_PACKAGE_DIR_NAME}" != "x" ] || [ "x${CUSTOM_PACKAGE_NAME}" != "x" ]; then
+	DISTRO_ALL_STEP="$(echo "${DISTRO_ALL_STEP_PACKAGE}" | grep "${GREP_STR}" | sed "s@^%@@g" | awk -F'|' '{ print $1 }' | sort | uniq)"
+else
+	DISTRO_ALL_STEP="${DISTRO_ALL_STEP_PACKAGE}"
+fi
+
 if [ "x${CUSTOM_STEP_STR}" == "x" ]; then
 # 	DISTRO_DIR_STEP="$(cat ${DISTRO_DIR}/step)"
-	DISTRO_DIR_STEP="$(cat ${DISTRO_DIR}/step | sed "s@^%@@g" | awk -F'|' '{ print $1 }' | sort | uniq)"
+# 	DISTRO_DIR_STEP="$(cat ${DISTRO_DIR}/step | sed "s@^%@@g" | awk -F'|' '{ print $1 }' | sort | uniq)"
+	DISTRO_DIR_STEP="$(echo "${DISTRO_ALL_STEP}" | sed "s@^%@@g" | awk -F'|' '{ print $1 }' | sort | uniq)"
 else
 	GREP_STR=""
 	for step_i in $(echo ${CUSTOM_STEP_STR} | tr ',' ' ')
@@ -185,9 +252,14 @@ else
 			GREP_STR="${GREP_STR}/\|/${step_i}"
 		fi
 	done
+
 #	DISTRO_DIR_STEP="$(cat ${DISTRO_DIR}/step | grep "/${GREP_STR}/")"
-	DISTRO_DIR_STEP="$(cat ${DISTRO_DIR}/step | grep "/${GREP_STR}/" | sed "s@^%@@g" | awk -F'|' '{ print $1 }' | sort | uniq)"
+# 	DISTRO_DIR_STEP="$(cat ${DISTRO_DIR}/step | grep "/${GREP_STR}/" | sed "s@^%@@g" | awk -F'|' '{ print $1 }' | sort | uniq)"
+	DISTRO_DIR_STEP="$(echo "${DISTRO_ALL_STEP}" | grep "/${GREP_STR}/" | sed "s@^%@@g" | awk -F'|' '{ print $1 }' | sort | uniq)"
 fi
+
+# echo "------------------------------"
+# echo ${DISTRO_DIR_STEP}
 
 LOCK_GROUP_NAME=""
 
@@ -199,6 +271,11 @@ do
 	if [ "x${STEP_NAME##*/}" == "xNULL" ]; then
 		continue
 	fi
+# 	if [ "x${CUSTOM_PACKAGE_DIR_NAME}"] != "x" ]; then
+# 		if [ "x${CUSTOM_PACKAGE_DIR_NAME}" != "x${STEP_NAME##*/}" ]; then
+# 			continue
+# 		fi
+# 	fi
 
 	if [ "x${FORCE_OVERWRITE}" == "x0" ]; then
 		LOCK_MODE=$(soft_lock_mode "${STEP_NAME}")
