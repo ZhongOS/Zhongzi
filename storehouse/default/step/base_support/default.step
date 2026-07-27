@@ -590,6 +590,7 @@ qt6
 qt6-webengine
 
 KDE6-extra-cmake-modules
+plasma-wayland-protocols
 xcb-imdkit
 
 gst-plugins-good

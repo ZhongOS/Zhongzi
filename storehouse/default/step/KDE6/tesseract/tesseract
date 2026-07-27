@@ -1,0 +1,2 @@
+PACKAGE=tesseract
+BUILD_MODE=cmake

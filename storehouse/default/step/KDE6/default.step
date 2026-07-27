@@ -10,7 +10,7 @@ KDE6-kconfig
 KDE6-kcoreaddons
 KDE6-kdbusaddons
 KDE6-kdnssd
-plasma-wayland-protocols
+# plasma-wayland-protocols
 KDE6-kguiaddons
 KDE6-ki18n
 KDE6-kidletime
@@ -217,6 +217,7 @@ KDE6-plasma-systemmonitor
 KDE6-qqc2-breeze-style
 KDE6-ksystemstats
 KDE6-oxygen-sounds
+corrosion
 KDE6-kdeplasma-addons
 # KDE6-breeze-icons
 KDE6-xdg-desktop-portal-kde
@@ -246,6 +247,8 @@ libfakekey
 KDE6-kdeconnect-kde
 
 kquickimageeditor
+
+tesseract
 
 KDE6-spectacle
 
