@@ -47,6 +47,7 @@ distlib@host-tools
 guile@host-tools
 make@host-tools
 autogen@host-tools
+ninja@host-tools
 NULL@cross-tools
 
 llvm-project@cross-tools

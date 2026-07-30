@@ -18,4 +18,4 @@
 	make CC="${CROSS_TARGET}-gcc -Wno-error=dangling-pointer" DESTDIR=${SYSROOT_DIR} install
 <<<CLEAR_DIR>>>
 
-set_final_fix_step "/usr/share/autogen/" "F" "g" "text executable"
+set_final_fix_step "usr/share/autogen/" "F" "g" "text executable"

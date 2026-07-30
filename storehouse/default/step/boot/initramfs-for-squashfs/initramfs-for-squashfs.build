@@ -39,6 +39,7 @@ pushd ${BUILD_DIRECTORY}/ISO-Build/Initramfs
 	do
 		if [ -f ${DIST_DIRECTORY}/os/linux-kernel/${LINUX_KERNEL_VERSION}/${CONFIG_STR}/img/usr/lib/modules/${LINUX_KERNEL_VERSION}_${CONFIG_STR}/kernel/${i}.ko.zst ]; then
 		        cp -a ${DIST_DIRECTORY}/os/linux-kernel/${LINUX_KERNEL_VERSION}/${CONFIG_STR}/img/usr/lib/modules/${LINUX_KERNEL_VERSION}_${CONFIG_STR}/kernel/${i}.ko.zst lib/
+			unzstd -d lib/${i}.ko.zst
 		else
 			if [ -f ${DIST_DIRECTORY}/os/linux-kernel/${LINUX_KERNEL_VERSION}/${CONFIG_STR}/img/usr/lib/modules/${LINUX_KERNEL_VERSION}_${CONFIG_STR}/kernel/${i}.ko ]; then
 		        	cp -a ${DIST_DIRECTORY}/os/linux-kernel/${LINUX_KERNEL_VERSION}/${CONFIG_STR}/img/usr/lib/modules/${LINUX_KERNEL_VERSION}_${CONFIG_STR}/kernel/${i}.ko lib/
@@ -47,7 +48,6 @@ pushd ${BUILD_DIRECTORY}/ISO-Build/Initramfs
 			fi
 		fi
 	done
-	unzstd -d lib/*.ko.zst
 
 #       cp -a ${DIST_DIRECTORY}/os/linux-kernel/${LINUX_KERNEL_VERSION}/${CONFIG_STR}/img/usr/lib/modules/${LINUX_KERNEL_VERSION}_${CONFIG_STR}/kernel/fs/fat/* lib/
 #	if [ -f ${DIST_DIRECTORY}/os/linux-kernel/${LINUX_KERNEL_VERSION}/${CONFIG_STR}/img/usr/lib/modules/${LINUX_KERNEL_VERSION}_${CONFIG_STR}/kernel/drivers/usb/storage/usb-storage.ko ]; then

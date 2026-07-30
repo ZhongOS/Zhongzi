@@ -79,7 +79,7 @@ libxml2@host-tools|nouse
 NULL@host-tools
 NULL@cross-tools
 
-@bootstrap|opt
+@bootstrap
 
 
 @host-tools
@@ -94,14 +94,13 @@ NULL@host-tools
 NULL@cross-tools
 
 golang@cross-tools|opt+golang
-rustc@host-tools|opt
-rustc@cross-tools|opt
+rustc@host-tools
+rustc@cross-tools
 
 ocaml@host-tools|opt+ocaml
 dune@host-tools|opt+ocaml
 ocaml@cross-tools|opt+ocaml
 #    ocaml-findlib@cross-tools|opt,ocaml
-
 
 # 开始制作目标系统
 @target_base
@@ -115,13 +114,13 @@ maturin@host-tools|opt
 rpds-py@host-tools|opt
 cbindgen@host-tools|opt
 
-qemu@host-tools
+qemu@host-tools|opt
 
-Python3_13@host-tools
-expect@host-tools
-dejagnu@host-tools
-ruby3@host-tools
-truststore@host-tools
+Python3_13@host-tools|opt
+expect@host-tools|opt
+dejagnu@host-tools|opt
+ruby3@host-tools|opt
+truststore@host-tools|opt
 
 @base_support|opt
 blfs-systemd-units@target_base

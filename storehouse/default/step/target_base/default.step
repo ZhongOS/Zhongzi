@@ -114,7 +114,7 @@ links
 doxygen
 git
 gdb
-valgrind
+valgrind|opt
 ctags
 inih
 dosfstools
@@ -123,7 +123,7 @@ xfsprogs
 libaio
 mdadm
 LVM2
-pcre
+# pcre
 pcre2
 packaging
 glib_pre

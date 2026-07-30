@@ -21,3 +21,6 @@
 		rm -fv ${SYSROOT_DIR}/lib${LIB_SUFF}/libssp{,_nonshared}.*
 	popd
 <<<CLEAR_DIR>>>
+
+set_split_conf "devel" "/usr/libexec/gcc"
+set_split_conf "devel" "/usr/lib64/gcc"
