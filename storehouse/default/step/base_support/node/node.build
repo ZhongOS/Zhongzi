@@ -1,5 +1,37 @@
 <<<TAR_UNCOMPRESS>>>
     <<<PATCH>>>
+    export CFLAGS="$(echo ${CFLAGS} | sed "s@ -g\( \|$\)@@g")"
+    export CXXFLAGS="$(echo ${CXXFLAGS} | sed "s@ -g\( \|$\)@@g")"
+    export RUSTFLAGS="${RUSTFLAGS} -C linker=${CROSS_TARGET}-gcc --sysroot=${CROSSTOOLS_DIR}"
+    export JOBS=$(($(nproc)*1))
+
+    sed -i "s@registry.npmjs.org@registry.loongnix.cn:5873@g" deps/npm/node_modules/@npmcli/config/lib/definitions/definitions.js
+    mkdir -pv out/Release
+    for i in bytecode_builtins_list_generator gen-regexp-special-case torque mksnapshot node_js2c node_mksnapshot
+    do
+        sed -i "/EXECUTABLE_SUFFIX/s@$i<@$i.host<@g" tools/v8_gypfiles/v8.gyp
+        echo -e '#!/bin/bash -e \n' "qemu-${ARCH_NAME} ${PWD}/out/Release/$i \"\$@\"" > ${PWD}/out/Release/$i.host
+        chmod +x ${PWD}/out/Release/$i.host
+    done
+    sed -i "/EXECUTABLE_SUFFIX/s@node_js2c<@node_js2c.host<@g" node.gyp
+    sed -i "/EXECUTABLE_SUFFIX/s@node_mksnapshot<@node_mksnapshot.host<@g" node.gyp
+    sed -i.orig "s@\[ '<(PRODUCT_DIR)@\[ 'qemu-${ARCH_NAME}', '<(PRODUCT_DIR)@g" tools/icu/icu-generic.gyp
+
+    sed -i.orig "s@\['variables'\]\['cargo_rust_target'\] = ''@\['variables'\]\['cargo_rust_target'\] = '${CROSS_TARGET}'@g" configure.py
+
+    PKG_CONFIG=${CROSS_TARGET}-pkg-config \
+    CC="${CROSS_TARGET}-gcc" CXX="${CROSS_TARGET}-g++" \
+    ./configure --prefix /usr --dest-cpu=$(echo ${ARCH_NAME} | sed 's@arch@@g') --shared-openssl
+#                --with-intl=system-icu --shared
+    <<<MAKE>>> -C out bytecode_builtins_list_generator gen-regexp-special-case torque
+    <<<MAKE>>> -C out mksnapshot
+    <<<MAKE>>> -C out node_js2c
+    <<<MAKE_AND_INSTALL>>>
+<<<CLEAR_DIR>>>
+
+[[[25.9.0]]]
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
 #    pushd deps/v8
 #        patch -Np1 -i ${RESOURCEDIR}/9721082.diff
 #    popd
@@ -35,6 +67,8 @@
 #        exit 1
 #    fi
 <<<CLEAR_DIR>>>
+
+
 
 [[[20.3.0]]]
 <<<TAR_UNCOMPRESS>>>

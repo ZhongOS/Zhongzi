@@ -6,6 +6,7 @@
 	sed -i "s@COMMAND gen_lex_hash@COMMAND qemu-loongarch64 gen_lex_hash@g" sql/CMakeLists.txt
 	sed -i "s@COMMAND comp_sql@COMMAND qemu-loongarch64 comp_sql@g" scripts/CMakeLists.txt
 	sed -i "s@COMMAND uca-dump@COMMAND qemu-loongarch64 uca-dump@g" strings/CMakeLists.txt
+	sed -i "s@COMMAND generate_option_list@COMMAND qemu-loongarch64 generate_option_list@g" extra/CMakeLists.txt
         mkdir cross-build
         pushd cross-build
 		mkdir -p extra/libfmt/src/

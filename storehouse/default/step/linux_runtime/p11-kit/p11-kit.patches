@@ -1,0 +1,7 @@
+p1 0001-p11-kit-0.25.10-fix-systemd-user-unit-dir-for-cross-.patch
+
+[[[0.25.8]]]
+p1 0001-p11-kit-0.25.1-fix-systemd-user-unit-dir-for-cross-b.patch
+
+[[[0.25.0]]]
+p1 0001-p11-kit-fix-systemd-dir-for-cross-build.patch

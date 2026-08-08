@@ -1,5 +1,6 @@
 <<<TAR_UNCOMPRESS>>>
         <<<PATCH>>>
+	sed -i 's/xsl-ns/xsl/' docs/meson.build
         mkdir cross-build
         pushd cross-build
                 meson ${MESON_CONFIG} -Dstemming=false \

@@ -1,3 +1,7 @@
+p1 0001-systemd-261-add-loongarch32-support.patch
+p1 0001-Add-syscalls-file-for-loongarch32.patch
+
+[[260]]
 p1 0001-systemd-258-add-loongarch32-support.patch
 p1 0001-Add-syscalls-file-for-loongarch32.patch
 

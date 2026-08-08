@@ -4,7 +4,7 @@
            meson.build
     mkdir cross-build
     pushd cross-build
-        meson ${MESON_CONFIG} -Dxkb-config-root=/usr/share/X11/xkb ..
+        meson ${MESON_CONFIG} -Dxkb-config-root=/usr/share/X11/xkb -Dbash-completion-path=/usr/share/bash-completion/completions ..
 	<<<NINJA_AND_INSTALL>>>
     popd
 <<<CLEAR_DIR>>>

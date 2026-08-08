@@ -2,7 +2,7 @@
 	if [ -f ${RESOURCEDIR}/wine-staging.url ]; then
 		git init
 		mkdir -p wine-staging
-		tar xvf ${RESOURCEDIR}/files/wine-staging.tar.gz --strip-components=1  -C wine-staging
+		tar xvf ${RESOURCEDIR}/files/wine-staging-v<<<PACKAGE_VERSION>>>.tar.gz --strip-components=1  -C wine-staging
 		wine-staging/staging/patchinstall.py DESTDIR=${PWD} --all
 	fi
         <<<PATCH>>>

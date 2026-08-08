@@ -1,2 +1,2 @@
 PACKAGE=mm-common
-BUILD_MODE=meson
+BUILD_MODE=custom

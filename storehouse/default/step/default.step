@@ -58,6 +58,7 @@ meson@host-tools
 Mako@host-tools
 packaging@host-tools
 python-zstandard@host-tools
+cairo@host-tools
 pycairo@host-tools
 pygobject@host-tools
 
@@ -132,8 +133,8 @@ distro_info@target_base|none_status
 @boot
 
 # 构建图形登录器
-@lightdm|opt;lightdm
-@sddm|opt;sddm
+@lightdm|opt+lightdm
+@sddm|opt+sddm
 
 # 构建桌面环境
 @wm-lxde|opt+LXDE
@@ -141,14 +142,14 @@ distro_info@target_base|none_status
 @KDE6|opt+KDE6
 
 # 构建JAVA的运行环境
-@java_runtime|java
+@java_runtime|opt+java
 
 # NULL@cross-toolchains
 # default_arch-binutils@cross-toolchains|gcc13
 # default_arch-gcc-glibc@cross-toolchains|gcc13
 
 # 构建游戏相关的组件
-@game_emu|game
+@game_emu|opt+game
 
 # 为部分需要支持KDE5组件的软件包提供库支持(如 kstars，新版本以不需要)，可能在gcc 16下存在编译问题。
 # @DE-KDE:kf5|opt+KDE5
@@ -197,24 +198,24 @@ distro_info@target_base|none_status
 
 # 构建Mingw的工具链及基础库
 NULL@mingw_sysroot|opt
-create_commfile@mingw_sysroot|mingw,wine;%target=?mingw64ucrt
+create_commfile@mingw_sysroot|opt;mingw,wine;%target=?mingw64ucrt
 NULL@cross-toolchains|opt
-@cross-toolchains:pre-mingw_tools|mingw,wine;%target=?mingw64ucrt
-@mingw_sysroot:core|mingw,wine;%target=?mingw64ucrt
-@cross-toolchains:mingw_tools|mingw,wine;%target=?mingw64ucrt;%PARENT=mingw_sysroot
-mingw-w64-libs@mingw_sysroot|mingw,wine;%target=?mingw64ucrt
+@cross-toolchains:pre-mingw_tools|opt;mingw,wine;%target=?mingw64ucrt
+@mingw_sysroot:core|opt;mingw,wine;%target=?mingw64ucrt
+@cross-toolchains:mingw_tools|opt;mingw,wine;%target=?mingw64ucrt;%PARENT=mingw_sysroot
+mingw-w64-libs@mingw_sysroot|opt;mingw,wine;%target=?mingw64ucrt
 
 NULL@mingw_sysroot|opt
-create_commfile@mingw_sysroot|wine,wine32;%target=mingw32
+create_commfile@mingw_sysroot|opt;mingw,wine,wine32;%target=mingw32
 NULL@cross-toolchains|opt
-@cross-toolchains:pre-mingw_tools|wine,wine32;%target=mingw32
-@mingw_sysroot:core|wine,wine32;%target=mingw32
-@cross-toolchains:mingw_tools|wine,wine32;%target=mingw32;%PARENT=mingw_sysroot
-mingw-w64-libs@mingw_sysroot|wine,wine32;%target=mingw32
+@cross-toolchains:pre-mingw_tools|opt;mingw,wine,wine32;%target=mingw32
+@mingw_sysroot:core|opt;mingw,wine,wine32;%target=mingw32
+@cross-toolchains:mingw_tools|opt;mingw,wine,wine32;%target=mingw32;%PARENT=mingw_sysroot
+mingw-w64-libs@mingw_sysroot|opt;mingw,wine,wine32;%target=mingw32
 NULL@cross-toolchains|opt
 
 NULL@mingw_sysroot|opt
-@mingw_sysroot|mingw_sysroot;%target=?mingw64ucrt
+@mingw_sysroot|opt;mingw_sysroot;%target=?mingw64ucrt
 NULL@mingw_sysroot|opt
 NULL@cross-toolchains|opt
 
@@ -239,12 +240,12 @@ NULL@linux_runtime|opt
 NULL@linux_runtime|opt
 
 # 构建i686的工具链和基础库
-make_directory@linux_runtime:core|i686_runtime,wine32;%target=i686;%OVERLAY=i686_runtime;%PARENT=sysroot
+make_directory@linux_runtime:core|opt;i686_runtime,wine32;%target=i686;%OVERLAY=i686_runtime;%PARENT=sysroot
 NULL@cross-toolchains|opt
 @cross-toolchains:pre-tools|opt;wine32;%target=i686
-NULL@linux_runtime|i686_runtime
-# make_directory@linux_runtime:core|i686_runtime,wine32;%target=i686;%OVERLAY=i686_runtime;%PARENT=sysroot
-@linux_runtime:core|i686_runtime,wine32;%target=i686;%OVERLAY=i686_runtime
+NULL@linux_runtime|opt;i686_runtime
+# make_directory@linux_runtime:core|opt;i686_runtime,wine32;%target=i686;%OVERLAY=i686_runtime;%PARENT=sysroot
+@linux_runtime:core|opt;i686_runtime,wine32;%target=i686;%OVERLAY=i686_runtime
 NULL@cross-toolchains|opt
 linux-gcc-libc@cross-toolchains|opt;i686_runtime,wine32;%target=i686;%OVERLAY=i686_runtime
 @cross-toolchains|opt;i686_runtime,wine32;%target=i686;%OVERLAY=i686_runtime
@@ -324,7 +325,7 @@ NULL@linux_runtime|opt
 # @game_emu:x86|game
 
 # 构建虚拟机及模拟器工具。
-@simulate|emu
+@simulate|opt;emu
 # @simulate:wine-collection|emu;%OVERLAY=wine-collection
 
 # 增加一些二进制相关的软件包。

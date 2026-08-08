@@ -8,7 +8,7 @@
     <<<MAKE_AND_INSTALL>>>
 <<<CLEAR_DIR>>>
 
-[[[3.0.23]]]
+[[[3.0.22]]]
 <<<TAR_UNCOMPRESS>>>
     <<<PATCH>>>
     CFLAGS="${CFLAGS} -Wno-incompatible-pointer-types" ./configure ${COMMON_CONFIG} --disable-chromecast --disable-gst-decode

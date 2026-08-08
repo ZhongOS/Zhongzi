@@ -665,9 +665,9 @@ mm-common
 libsigc++-2
 libsigc++
 cairomm-1
-glibmm266
-pangomm24
-atkmm228
+glibmm266|deprecated
+pangomm24|deprecated
+atkmm228|deprecated
 # gtkmm-3
 
 gpgmepp

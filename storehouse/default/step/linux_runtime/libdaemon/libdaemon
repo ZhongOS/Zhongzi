@@ -1,0 +1,2 @@
+PACKAGE=libdaemon
+BUILD_MODE=gnu

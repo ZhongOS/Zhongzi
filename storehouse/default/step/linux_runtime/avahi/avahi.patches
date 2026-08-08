@@ -1,0 +1,2 @@
+p1 avahi-0.8-ipv6_race_condition_fix-1.patch
+p1 0001-fix-miss-avahi-glib-for-link-bssh.patch

@@ -1,0 +1,2 @@
+PACKAGE=xkeyboard-config
+BUILD_MODE=meson

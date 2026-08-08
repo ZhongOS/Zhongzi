@@ -23,6 +23,7 @@
 	                 --with-headers=${LINUX_SYSROOT_DIR}/usr/include \
 	                 --enable-add-ons ${ARCH_PARM_STR} \
 # 			 --with-rtld-early-cflags="-DDEFAULT_RPATH='\"/usr/lib${LIB_SUFF}:/usr/local/lib${LIB_SUFF}\"' ${CFLAGS}" \
+			 --enable-kernel=5.19 \
 	                 --disable-werror libc_cv_slibdir=/usr/lib${LIB_SUFF}
 #  libc_cv_rtlddir=/lib${LIB_SUFF}
 		<<<MAKE>>>

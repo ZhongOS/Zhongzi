@@ -25,15 +25,17 @@ cat > ${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-pkg-config << EOF
 #!/bin/bash -e
 
 if echo "\$@" | grep -q "\--variable=" && \\
- ! echo "\$@" | grep -q "variable=libdir " && \\
- ! echo "\$@" | grep -q "variable=includedir " && \\
- ! echo "\$@" | grep -q "gobject-introspection" && \\
  ! echo "\$@" | grep -q "variable=datadir vapigen" && \\
  ! echo "\$@" | grep -q "variable=bindir Qt6Core" && \\
  ! echo "\$@" | grep -q "variable=libexecdir Qt6Core" && \\
  ! echo "\$@" | grep -q "variable=interfaces_dir flatpak" && \\
- ! echo "\$@" | grep -q "variable=pkgdatadir wayland-scanner" && \\
- ! echo "\$@" | grep -q "wayland-protocols"; then
+ ! echo "\$@" | grep -q "variable=datadir gobject-introspection" && \\
+ ! echo "\$@" | grep -q "variable=pkgdatadir wayland" && \\
+ ! echo "\$@" | grep -q "variable=xcbincludedir xcb-proto" && \\
+ ! echo "\$@" | grep -q "variable=pythondir xcb-proto" && \\
+ ! echo "\$@" | grep -q "variable=libdir " && \\
+ ! echo "\$@" | grep -q "variable=includedir "; then
+#  ! echo "\$@" | grep -q "wayland-protocols"; then
     unset PKG_CONFIG_SYSROOT_DIR
 fi
 

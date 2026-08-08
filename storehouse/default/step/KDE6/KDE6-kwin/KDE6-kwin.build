@@ -48,7 +48,7 @@
                       -Dgzip_EXECUTABLE=/bin/gzip \
                       -DCMAKE_INSTALL_LIBDIR=/usr/lib64 -DLIB_SUFFIX=64 -DCMAKE_INSTALL_LIBEXECDIR=/usr/libexec \
                       -DCMAKE_INSTALL_PREFIX=/usr \
-                      -DBUILD_SHARED_LIBS=ON \
+                      -DBUILD_SHARED_LIBS=ON -DBUILD_TESTING=OFF \
                       -DQtWaylandScanner_EXECUTABLE=${CROSSTOOLS_DIR}/bin/qtwaylandscanner -Wno-dev ..
                 <<<MAKE_AND_INSTALL>>>
         popd
