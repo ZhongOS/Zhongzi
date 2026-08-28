@@ -1,4 +1,7 @@
 
 
+[[[1.1.3]]]
+p1 0001-fix-COIN_MICRO_VERSION.patch
+
 [[[1.0.2]]]
 p1 0001-FreeCAD-1.0.2-remove-boost_system-require-for-boost-.patch

@@ -6,20 +6,21 @@
             cp -a -f $(automake --print-libdir)/config.{sub,guess} $(dirname ${config_i})/
     done
 
-   sed -i "s@\$(builddir)/gen-internal-compose-table@qemu-${QEMU_NAME} \$(builddir)/gen-internal-compose-table@g" src/Makefile.in
-   sed -i "s@\$(builddir)/unicode-parser@qemu-${QEMU_NAME} \$(builddir)/unicode-parser@g" src/Makefile.in
-   sed -i "s@\$(builddir)/emoji-parser@qemu-${QEMU_NAME} \$(builddir)/emoji-parser@g" src/Makefile.in
+   sed -i "s@\$(builddir)/gen-internal-compose-table@qemu-${QEMU_ARCH} \$(builddir)/gen-internal-compose-table@g" src/Makefile.in
+   sed -i "s@\$(builddir)/unicode-parser@qemu-${QEMU_ARCH} \$(builddir)/unicode-parser@g" src/Makefile.in
+   sed -i "s@\$(builddir)/emoji-parser@qemu-${QEMU_ARCH} \$(builddir)/emoji-parser@g" src/Makefile.in
 #    sed -i "s@\$PKG_CONFIG_SYSROOT_DIR@@g" configure
 
     export CFLAGS="${CFLAGS} -Wno-incompatible-pointer-types"
     mkdir cross-build
     pushd cross-build
         ../configure ${COMMON_CONFIG} \
-                     --disable-emoji-dict --disable-unicode-dict --enable-introspection=no --disable-python2 --disable-ui
+                     --disable-emoji-dict --disable-unicode-dict --enable-introspection=no --disable-python2 --disable-ui \
+		     --disable-gtk4 --disable-dconf --disable-appindicator --disable-libnotify --disable-wayland --enable-introspection=no --enable-vala=no --disable-engine
 	check_gnu_Makefile
-	<<<MAKE>>> CC_FOR_BUILD=${LINUX_HOST}-gcc GLIB_COMPILE_RESOURCES=${CROSS_TOOLS_PREFIX}/bin/${LINUX_HOST}-glib-compile-resources
-        make DESTDIR=${LINUX_SYSROOT_DIR} install
+	<<<MAKE>>> CC_FOR_BUILD=${LINUX_HOST}-gcc GLIB_COMPILE_RESOURCES=${CROSS_TOOLS_PREFIX}/bin/${LINUX_HOST}-glib-compile-resources -C src
+        make -C src DESTDIR=${LINUX_SYSROOT_DIR} install
     popd
 
-    rm -v ${LINUX_SYSROOT_DIR}/usr/lib64/libibus*.la
+    rm -v ${LINUX_SYSROOT_DIR}/usr/lib${LIB_SUFF}/libibus*.la
 <<<CLEAR_DIR>>>

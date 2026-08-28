@@ -1,1 +1,2 @@
+CONFIG_ENV=CXXFLAGS="${CXXFLAGS} -Wno-error=array-bounds -Wno-error=stringop-overread"
 EXTRA_PARM=-DCMAKE_INSTALL_LIBDIR=lib${LIB_SUFF}

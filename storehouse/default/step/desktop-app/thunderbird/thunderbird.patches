@@ -1,3 +1,7 @@
+p1 0001-firefox-153-fixed-a-judgment-issue-when-libstdc-has-.patch
+
+
+[[[140.12.0esr]]]
 p1 firefox-140.9.0esr-glibc-2.43.patch
 p1 firefox-140.9.0esr-llvm_22-1.patch
 p1 firefox-140.9.0esr-python_3.14_fixes-1.patch

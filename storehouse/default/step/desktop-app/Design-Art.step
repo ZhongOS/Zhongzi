@@ -13,7 +13,7 @@ MaterialX
 # pystring
 # minizip-ng
 # OpenColorIO
-OpenCOLLADA
+OpenCOLLADA|deprecated
 partio
 # llvm17@/cross-tools|llvm17
 # # llvm17@/oldversion|llvm17;%PARENT=sysroot

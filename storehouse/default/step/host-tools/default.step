@@ -218,4 +218,7 @@ libglvnd|opt
 
 pefile
 
+parameterized
+gtk-doc
+
 NULL

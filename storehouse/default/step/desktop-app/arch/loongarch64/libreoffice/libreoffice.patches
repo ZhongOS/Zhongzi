@@ -1,4 +1,23 @@
 p1	0001-libreoffice-24.2.1.1-fix-for-cross-build.patch
+p1	0001-external-curl-configure-add-without-ssl.patch
+p1	0001-fix-build-error-at-use-without-java.patch
+p1	0001-libreoffice-fix-for-gcc-14.patch
+p1	0001-libreoffice-26.2.0.2-pdfium-fix-for-gcc14.patch
+p1	0001-external-libcmis-add-0001-libcmis-fix-build-error-fo.patch
+p1	0001-libreoffice-external-bzip2-remove-test-for-cross-bui.patch
+p1	0001-fix-link-miss-zlib.patch
+p1	0001-external-redland-fix-build-error.patch
+p1	0001-calc.cxx-fix-build-for-gcc-14.patch
+p1	0001-xmlsecurity-add-nss-nss.h-header-file.patch
+p1	0001-libreoffice-25.2.3.1-add-gettextlib-for-fix-link-lib.patch
+
+p1	0001-libreoffice-26.2.0.2-fix-link-miss-dlsyms-function.patch
+
+p1	0001-fix-postprocess_fontconfig-not-found.patch
+
+
+[[[26.3.0.0]]]
+p1	0001-libreoffice-24.2.1.1-fix-for-cross-build.patch
 p1	0001-libreoffice-24.2.0-external-curl-configure-add-witho.patch
 p1	0001-fix-build-error-at-use-without-java.patch
 p1	0001-libreoffice-fix-for-gcc-14.patch

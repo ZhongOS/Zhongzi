@@ -23,7 +23,7 @@ mpfr|%compat=?0;%host=?;%vendor=
 mpc|%compat=?0;%host=?;%vendor=
 zlib|%compat=?0;%host=?;%vendor=
 zstd|%compat=?0;%host=?;%vendor=
-qemu|%compat=?0;%host=?;%vendor=
+qemu|%compat=?0;%host=?;%vendor=;qemu
 
 NULL
 binutils|%target_compat=?0;%target=?;%vendor=?;!binutils_git
@@ -50,7 +50,7 @@ mpfr|%target_compat=?0;%target=?;%vendor=?;
 mpc|%target_compat=?0;%target=?;%vendor=?;
 zlib|%target_compat=?0;%target=?;%vendor=?;
 zstd|%target_compat=?0;%target=?;%vendor=?;
-qemu|%target_compat=?0;%target=?;%vendor=?;
+qemu|%target_compat=?0;%target=?;%vendor=?;qemu
 
 NULL
 llvm-project|%vendor=?;llvm

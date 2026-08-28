@@ -1,3 +1,6 @@
+EXTRA_PARM=-Dsystem-freetype=true -Dsystem-libraqm=true
+
+[[[3.9.4]]]
 <<<TAR_UNCOMPRESS>>>
         <<<PATCH>>>
 	CC=${CROSS_TARGET}-gcc CXX=${CROSS_TARGET}-g++ _PYTHON_HOST_PLATFORM=linux-loongarch64 ${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-python3 setup.py build

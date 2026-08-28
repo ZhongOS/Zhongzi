@@ -22,8 +22,8 @@ KDE6-kwidgetsaddons
 KDE6-kwindowsystem
 KDE6-networkmanager-qt
 KDE6-solid
-libxml++2
-hfst-ospell
+libxml++2|deprecated
+hfst-ospell|deprecated
 corevoikko
 KDE6-sonnet
 KDE6-threadweaver
@@ -213,9 +213,9 @@ KDE6-kde-cli-tools
 KDE6-systemsettings
 KDE6-plasma-thunderbolt
 KDE6-plasma-firewall
+KDE6-ksystemstats
 KDE6-plasma-systemmonitor
 KDE6-qqc2-breeze-style
-KDE6-ksystemstats
 KDE6-oxygen-sounds
 corrosion
 KDE6-kdeplasma-addons

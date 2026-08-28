@@ -17,7 +17,8 @@ ${CROSSTOOLS_DIR}/bin/qemu-${ARCH_NAME} ${SYSROOT_DIR}/usr/bin/oslc \"\$@\"" > o
         mkdir cross-build
         pushd cross-build
 #                 CC="${CROSS_TARGET}-gcc" CXX="${CROSS_TARGET}-g++" LDFLAGS="${LDFLAGS} -lglslang -lSPIRV" \
-                CC="${CROSS_TARGET}-gcc" CXX="${CROSS_TARGET}-g++" LDFLAGS="${LDFLAGS} -lfftw3 -lpcre" \
+#                 CC="${CROSS_TARGET}-gcc" CXX="${CROSS_TARGET}-g++" LDFLAGS="${LDFLAGS} -lfftw3 -lpcre" \
+                CC="${CROSS_TARGET}-gcc" CXX="${CROSS_TARGET}-g++" LDFLAGS="${LDFLAGS} -lfftw3" \
 		CFLAGS="${CFLAGS} -fpermissive" CXXFLAGS="${CXXFLAGS} -fpermissive" \
                 cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=${COMMON_DIR}/cmake-cross.cmake \
 #                       -DPKG_CONFIG_EXECUTABLE=${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-pkg-config \

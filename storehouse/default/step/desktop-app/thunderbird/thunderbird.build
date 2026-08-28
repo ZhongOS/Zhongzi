@@ -1,4 +1,121 @@
 <<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+
+    sed -i "/assert_rust_compile(target/d" build/moz.configure/rust.configure
+
+#     cat > comm/third_party/botan/src/build-data/arch/loongarch64.txt << "EOF"
+# family loongarch
+# endian little
+# wordsize 64
+# EOF
+
+    cat > mozconfig << "EOF"
+# ac_add_options --enable-linker=lld
+ac_add_options --disable-necko-wifi
+
+# ac_add_options --with-system-av1
+# ac_add_options --with-system-libevent
+ac_add_options --with-system-libvpx
+ac_add_options --with-system-nspr
+ac_add_options --with-system-nss
+ac_add_options --with-system-webp
+
+ac_add_options --prefix=/usr
+ac_add_options --enable-application=comm/mail
+
+ac_add_options --disable-crashreporter
+ac_add_options --disable-updater
+ac_add_options --disable-debug
+ac_add_options --disable-debug-symbols
+ac_add_options --disable-tests
+
+ac_add_options --enable-rust-simd
+
+ac_add_options --enable-strip
+ac_add_options --enable-install-strip
+
+# ac_add_options --enable-optimize=-O2
+ac_add_options --enable-official-branding
+
+ac_add_options --enable-system-ffi
+ac_add_options --enable-system-pixman
+ac_add_options --with-system-jpeg
+ac_add_options --with-system-png
+ac_add_options --with-system-zlib
+
+ac_add_options --without-wasm-sandboxed-libraries
+
+# ac_add_options --disable-strip
+# ac_add_options --disable-install-strip
+
+
+ac_add_options --libdir=/usr/lib64
+ac_add_options --target=${CROSS_TARGET}
+ac_add_options --with-sysroot=${SYSROOT_DIR}
+ac_add_options --disable-jemalloc
+ac_add_options --enable-jit
+
+unset MOZ_TELEMETRY_REPORTING
+mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/thunderbird-build-dir
+EOF
+
+    export MACH_BUILD_PYTHON_NATIVE_PACKAGE_SOURCE=none
+    export RUSTFLAGS="$RUSTFLAGS -Ccode-model=medium --sysroot=${CROSSTOOLS_DIR}"
+
+#     HOST_CC=gcc HOST_CXX=g++ CC=clang CXX=clang++ \
+#     CXXFLAGS="-fpermissive -Wnonnull -mno-lsx -mcmodel=medium" CFLAGS="-mno-lsx -mcmodel=medium" \
+# #     MACH_BUILD_PYTHON_NATIVE_PACKAGE_SOURCE=system \
+#     MOZBUILD_STATE_PATH=${PWD}/mozbuild \
+#     ./mach configure
+
+    HOST_CC=gcc HOST_CXX=g++ CC=clang CXX=clang++ \
+#     CXXFLAGS="-fpermissive -Wnonnull -mno-lsx -mcmodel=medium" CFLAGS="-mno-lsx -mcmodel=medium" \
+#     MACH_BUILD_PYTHON_NATIVE_PACKAGE_SOURCE=system \
+    MOZBUILD_STATE_PATH=${PWD}/mozbuild \
+    ./mach build -j${JOBS}
+
+    HOST_CC=gcc HOST_CXX=g++ CC=clang CXX=clang++ \
+    CXXFLAGS="-fpermissive -Wnonnull -mno-lsx -mcmodel=medium" CFLAGS="-mno-lsx -mcmodel=medium" \
+#     MACH_BUILD_PYTHON_NATIVE_PACKAGE_SOURCE=system \
+    MOZBUILD_STATE_PATH=${PWD}/mozbuild \
+    ./mach package
+
+#     HOST_CC=gcc HOST_CXX=g++ CC=clang CXX=clang++ \
+#     CXXFLAGS="-fpermissive -Wnonnull -mno-lsx" CFLAGS="-mno-lsx" \
+#     MOZBUILD_STATE_PATH=${PWD}/mozbuild \
+#     ./mach build installers-zh-CN
+
+    mkdir -pv ${DIST_DIRECTORY}/host/${ARCH_NAME}/thunderbird/
+    cp -av thunderbird-build-dir/dist/thunderbird-*.tar.xz ${DIST_DIRECTORY}/host/${ARCH_NAME}/thunderbird/
+#     tar xvf thunderbird-build-dir/dist/thunderbird-*.zh-CN.linux-${ARCH_NAME}.tar.bz2 \
+    tar xvf thunderbird-build-dir/dist/thunderbird-*.en-US.linux-${ARCH_NAME}.tar.xz \
+        -C ${SYSROOT_DIR}/usr/lib64/
+    ln -sfv /usr/lib64/thunderbird/thunderbird ${SYSROOT_DIR}/usr/bin/thunderbird
+
+cat > ${SYSROOT_DIR}/usr/share/applications/thunderbird.desktop << "EOF"
+[Desktop Entry]
+Encoding=UTF-8
+Name=Thunderbird Mail
+Name[zh_CN]=邮件客户端
+Comment=Send and receive mail
+Comment[zh_CN]=邮件客户端
+GenericName=邮件客户端
+Exec=thunderbird %u
+Terminal=false
+Type=Application
+Icon=thunderbird
+Categories=Network;Email;
+MimeType=text/html;text/xml;application/xhtml+xml;application/xml;application/rss+xml;x-scheme-handler/mailto;
+StartupNotify=true
+EOF
+ln -sfv /usr/lib64/thunderbird/chrome/icons/default/default256.png \
+        ${SYSROOT_DIR}/usr/share/pixmaps/thunderbird.png
+
+<<<CLEAR_DIR>>>
+
+
+[[[140.9.1esr]]]
+<<<TAR_UNCOMPRESS>>>
     mkdir -pv mozbuild/l10n-central
     pushd mozbuild/l10n-central
         unzip ${RESOURCEDIR}/files/tip.zip

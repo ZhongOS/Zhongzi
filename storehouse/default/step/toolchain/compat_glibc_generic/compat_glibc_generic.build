@@ -30,8 +30,8 @@
         BUILD_CC="gcc" \
 # 	CC="${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_TARGET}/cross-tools/bin/${COMPAT_TARGET}-gcc ${ARCH_MABI}" \
 #         CXX="${TOOLCHAIN_DIRECTORY}/cross-target/${COMPAT_TARGET}/cross-tools/bin/${COMPAT_TARGET}-gcc ${ARCH_MABI}" \
-	CC="${TARGET_CROSSTOOLCHAIN_DIR}/bin/${COMPAT_TARGET}-gcc ${ARCH_MABI} -mcmodel=medium" \
-        CXX="${TARGET_CROSSTOOLCHAIN_DIR}/bin/${COMPAT_TARGET}-gcc ${ARCH_MABI} -mcmodel=medium" \
+	CC="${TARGET_CROSSTOOLCHAIN_DIR}/bin/${COMPAT_TARGET}-gcc ${ARCH_MABI} -mcmodel=medium -fno-link-libatomic" \
+        CXX="${TARGET_CROSSTOOLCHAIN_DIR}/bin/${COMPAT_TARGET}-gcc ${ARCH_MABI} -mcmodel=medium -fno-link-libatomic" \
         AS="${COMPAT_TARGET}-as" AR="${COMPAT_TARGET}-ar" RANLIB="${COMPAT_TARGET}-ranlib" \
         ../configure --prefix=/usr --host=${COMPAT_TARGET} --build=${CROSS_HOST} \
 	                 --libdir=/usr/lib${LIB_SUFF} --libexecdir=/usr/lib${LIB_SUFF}/glibc \

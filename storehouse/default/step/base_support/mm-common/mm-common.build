@@ -11,4 +11,4 @@
 <<<CLEAR_DIR>>>
 
 cp -av ${SYSROOT_DIR}/usr/bin/mm-common-get ${CROSSTOOLS_DIR}/bin/
-sed -i "s@\"/usr/share\"@\"${SYSROOT_DIR}/usr/share\"@g" ${CROSSTOOLS_DIR}/bin/mm-common-get
+sed -i "s@'/usr/share'@'${SYSROOT_DIR}/usr/share'@g" ${CROSSTOOLS_DIR}/bin/mm-common-get
