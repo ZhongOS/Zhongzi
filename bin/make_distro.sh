@@ -209,7 +209,7 @@ echo "创建制作文件..."
 DISTRO_ALL_STEP_PACKAGE="$(cat ${DISTRO_DIR}/step)"
 GREP_STR=""
 if [ "x${CUSTOM_PACKAGE_DIR_NAME}" != "x" ]; then
-	DISTRO_STEP_PACKAGE="$(bin/show_package_steps.sh -m I ${CUSTOM_PACKAGE_DIR_NAME} | sort | uniq)"
+	DISTRO_STEP_PACKAGE="$(bin/show_package_steps.sh -Z ${ZZ_NAME} -m I ${CUSTOM_PACKAGE_DIR_NAME} | sort | uniq)"
 	for package_i in ${DISTRO_STEP_PACKAGE}
 	do
 		if [ "x${GREP_STR}" == "x" ]; then
@@ -220,7 +220,7 @@ if [ "x${CUSTOM_PACKAGE_DIR_NAME}" != "x" ]; then
 	done
 fi
 if [ "x${CUSTOM_PACKAGE_NAME}" != "x" ]; then
-	DISTRO_STEP_PACKAGE="$(bin/show_package_name.sh -m I ${CUSTOM_PACKAGE_NAME} | sort | uniq)"
+	DISTRO_STEP_PACKAGE="$(bin/show_package_name.sh -Z ${ZZ_NAME} -m I ${CUSTOM_PACKAGE_NAME} | sort | uniq)"
 	for package_i in ${DISTRO_STEP_PACKAGE}
 	do
 		if [ "x${GREP_STR}" == "x" ]; then
