@@ -94,9 +94,9 @@ icu4c
 Python
 meson
 ninja
-perl
-XML-Parser
-URI
+perl|opt
+XML-Parser|opt
+URI|opt
 libgpg-error
 libgcrypt
 libxml2

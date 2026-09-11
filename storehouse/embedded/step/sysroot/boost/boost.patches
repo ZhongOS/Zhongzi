@@ -1,1 +1,5 @@
+p1 0001-boost-1.92-add-loongarch32-support.patch
+p1 0001-boost-add-SYS_futex-define.patch
+
+[[[1_91_0]]]
 p1 0001-boost-1.90-add-loongarch32-support.patch

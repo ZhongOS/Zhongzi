@@ -1,2 +1,3 @@
 PACKAGE=flit-core
 BUILD_MODE=pip
+LOCK_VERSION=3.12.0
