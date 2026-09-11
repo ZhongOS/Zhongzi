@@ -1,0 +1,2 @@
+PACKAGE=libraqm
+BUILD_MODE=meson

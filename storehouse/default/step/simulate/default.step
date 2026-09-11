@@ -32,8 +32,8 @@ libguestfs|bad
 NULL
 latx
 # box86|bad
-box64|deprecated
-box64-la
+box64-standard|deprecated
+box64
 lata|bad
 NULL
 

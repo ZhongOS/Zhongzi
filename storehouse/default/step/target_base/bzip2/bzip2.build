@@ -14,3 +14,17 @@
 	ln -sfv bzip2 ${SYSROOT_DIR}/bin/bunzip2
 	ln -sfv bzip2 ${SYSROOT_DIR}/bin/bzcat
 <<<CLEAR_DIR>>>
+
+cat > ${SYSROOT_DIR}/usr/lib${LIB_SUFF}/pkgconfig/bzip2.pc << "EOF"
+prefix=/usr
+exec_prefix=/usr
+bindir=/usr/bin
+libdir=
+includedir=/usr/include
+
+Name: bzip2
+Description: A file compression library
+Version: 1.0.6
+Libs: -L${libdir} -lbz2
+Cflags: -I${includedir}
+EOF

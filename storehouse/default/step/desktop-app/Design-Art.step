@@ -54,8 +54,8 @@ babl
 gegl
 gexiv2
 libmypaint
-# mypaint-brushes-1
-mypaint-brushes
+mypaint-brushes-1
+# mypaint-brushes
 gimp
 NULL
 
@@ -73,6 +73,7 @@ OCCT
 granite-6
 Coin4
 pivy
+libraqm
 matplotlib
 # rift
 GSL

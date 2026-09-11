@@ -1,6 +1,6 @@
 PACKAGE=gimp
 BUILD_MODE=custom
-
+LOCK_VERSION=2.10.38
 
 [[[2.10.38]]]
 PACKAGE=gimp
