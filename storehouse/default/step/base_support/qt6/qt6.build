@@ -27,7 +27,7 @@
                       -DINSTALL_BINDIR=/usr/lib64/qt6/bin \
                       -DINSTALL_ARCHDATADIR=/usr/lib64/qt6 \
                       -DINSTALL_LIBDIR=/usr/lib64 \
-                      -DINSTALL_QMLDIR=/usr/lib64/qml \
+#                       -DINSTALL_QMLDIR=/usr/lib64/qml \
                       -DINSTALL_SYSCONFDIR=/etc/xdg \
                       -DINSTALL_PLUGINSDIR=/usr/lib64/qt6/plugins \
                       -DINSTALL_QMLDIR=/usr/lib64/qt6/qml \

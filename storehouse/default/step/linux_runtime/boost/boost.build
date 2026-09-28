@@ -4,7 +4,7 @@
     sed -i "s@mips @mips1 @g" libs/log/build/log-arch-config.jam
     sed -i '/#include.*phoenix.*tuple.hpp.*/d' boost/phoenix/stl.hpp
     case "x${ARCH_NAME}" in
-	x*64)
+	x*64*)
 # 	    LD_LIBRARY_PATH="${HOST_TOOLS_DIR}/lib64:${CROSSTOOLS_DIR}/lib64:/usr/lib64:/usr/lib" \
 	    ./b2 stage threading=multi link=shared address-model=64 toolset=gcc-${ARCH_NAME} linkflags="-lstdc++"
 	    rm -rf ${LINUX_SYSROOT_DIR}/usr/lib/cmake/[Bb]oost*

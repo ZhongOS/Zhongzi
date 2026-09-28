@@ -30,6 +30,7 @@
 	    make DESTDIR=${LINUX_SYSROOT_DIR} install
 	    make DESTDIR=${LINUX_SYSROOT_DIR} install-private-headers
 	    ln -sfv tclsh${TCL_VERSION} ${LINUX_SYSROOT_DIR}/usr/bin/tclsh
+	    chmod u+w ${LINUX_SYSROOT_DIR}/usr/lib${LIB_SUFF}/libtcl*.so
     popd
 <<<CLEAR_DIR>>>
 

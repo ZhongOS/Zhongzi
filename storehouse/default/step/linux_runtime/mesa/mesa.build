@@ -1,17 +1,29 @@
 <<<TAR_UNCOMPRESS>>>
     <<<PATCH>>>
+
+    export BINDGEN_EXTRA_CLANG_ARGS="--sysroot=${LINUX_SYSROOT_DIR}"
+
     tar xf ${RESOURCEDIR}/files/mesa-DirectX-Headers_git.tar.gz -C subprojects/
     mv subprojects/{mesa-DirectX-Headers_git,DirectX-Headers-1.0}
 
 #     sed -i -e "/dep_wl_scanner/s@, native: true@@g" \
 #            -e "/prog_wl_scanner/s@find_program\(.*\)\$@'wayland-scanner'@g" meson.build
 
+    VK_DRIVERS="amd, broadcom, freedreno, intel, intel_hasvk, panfrost, swrast, virtio, imagination, microsoft-experimental, nouveau, asahi, gfxstream"
     case "${ARCH_NAME}" in
 	i686)
-		VK_DRIVERS="amd, broadcom, freedreno, intel, intel_hasvk, panfrost, swrast, virtio, imagination, microsoft-experimental, asahi, gfxstream"
+# 		VK_DRIVERS="amd, broadcom, freedreno, intel, intel_hasvk, panfrost, swrast, virtio, imagination, microsoft-experimental, nouveau, asahi, gfxstream"
+# 		MESA_EXTRA_PARM="-Dgallium-rusticl=true -Dintel-rt=disabled"
+		MESA_EXTRA_PARM="-Dgallium-rusticl=false -Dintel-rt=disabled"
+		;;
+	mips*)
+		VK_DRIVERS="amd, broadcom, freedreno, intel, intel_hasvk, panfrost, swrast, virtio, imagination, microsoft-experimental, nouveau, gfxstream"
+		MESA_EXTRA_PARM="-Dgallium-rusticl=false -Dintel-rt=enabled"
 		;;
 	*)
-		VK_DRIVERS="amd, broadcom, freedreno, intel, intel_hasvk, panfrost, swrast, virtio, imagination, microsoft-experimental, nouveau, asahi, gfxstream"
+# 		VK_DRIVERS="amd, broadcom, freedreno, intel, intel_hasvk, panfrost, swrast, virtio, imagination, microsoft-experimental, nouveau, asahi, gfxstream"
+# 		MESA_EXTRA_PARM="-Dgallium-rusticl=true -Dintel-rt=enabled"
+		MESA_EXTRA_PARM="-Dgallium-rusticl=false -Dintel-rt=enabled"
 		;;
     esac
 
@@ -22,14 +34,18 @@
 	      -Dgallium-drivers="radeonsi,r300,r600,nouveau,freedreno,softpipe,v3d,vc4,etnaviv,tegra,svga,virgl,panfrost,lima,zink,d3d12,crocus,llvmpipe" \
               -Dplatforms=x11,wayland \
               -Dglx=dri -Dopengl=true -Degl=enabled -Dglvnd=enabled -Dllvm-orcjit=true \
-              -Dgles2=enabled \
+              -Dgles1=enabled -Dgles2=enabled \
 # -Dgallium-vdpau=enabled \
 #               -Dlibunwind=disabled -Dvulkan-drivers="amd, broadcom, freedreno, intel, intel_hasvk, panfrost, swrast, virtio, imagination, microsoft-experimental, nouveau, asahi, gfxstream" \
               -Dlibunwind=disabled -Dvulkan-drivers="${VK_DRIVERS}" \
 # auto, amd, broadcom, freedreno, intel, intel_hasvk, panfrost, swrast, virtio, imagination, microsoft-experimental, nouveau, asahi, gfxstream, all
-# nouveau 支持需要rust支持对应的架构，cross-tools的rust目前只支持x86_64 和 loongarch64,所以nouveau在i686上需要有支持i686的rust
+# nouveau 支持需要rust支持对应的架构，cross-tools的rust目前只支持x86_64 和 loongarch64,所以nouveau在i686上需要有支持i686的rust, (已解决,可以支持了）
               -Dvideo-codecs="vc1dec,h264dec,h264enc,h265dec,h265enc,av1dec,av1enc,vp9dec" \
-              -Dllvm=enabled -Dshared-llvm=enabled -Ddraw-use-llvm=true -Dgallium-d3d12-video=auto -Dshader-cache-max-size=8G -Dglx-direct=true -Dvulkan-layers=overlay \
+	      -Dmicrosoft-clc=disabled \
+# 确保llvm-project提供了 host;AMDGPU 的支持，缺一不可，否则部份软件可能因找不到本地(native)架构或者GPU的支持而启动失败。
+#               -Dllvm=enabled -Dshared-llvm=enabled -Ddraw-use-llvm=true -Dgallium-d3d12-video=auto -Dshader-cache-max-size=8G -Dglx-direct=true -Dvulkan-layers=overlay \
+              -Dllvm=enabled -Dshared-llvm=enabled -Ddraw-use-llvm=true -Dgallium-d3d12-video=auto -Dshader-cache-max-size=8G -Dglx-direct=true -Dvulkan-layers=device-select,overlay \
+	      -Dbuild-tests=false -Dlmsensors=disabled ${MESA_EXTRA_PARM} \
               ..
 	<<<NINJA_AND_INSTALL>>>
     popd

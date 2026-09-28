@@ -1,0 +1,2 @@
+PACKAGE=KDE6-plasma-login-manager
+BUILD_MODE=cmake

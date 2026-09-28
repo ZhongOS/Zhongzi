@@ -26,8 +26,13 @@ pushd ${BUILD_DIRECTORY}/FreeCAD
 #                       -DFLEX_EXECUTABLE=/bin/flex \
 #                       -DBISON_EXECUTABLE=/bin/bison \
 #                       -Dgzip_EXECUTABLE=/bin/gzip \
-                      -DCMAKE_INSTALL_LIBDIR=/usr/lib64 -DLIB_SUFFIX=64 -DCMAKE_INSTALL_LIBEXECDIR=/usr/libexec \
-                      -DCMAKE_INSTALL_PREFIX=/usr \
+#                       -DCMAKE_INSTALL_LIBDIR=/usr/lib64 -DLIB_SUFFIX=64 -DCMAKE_INSTALL_LIBEXECDIR=/usr/libexec \
+#                       -DCMAKE_INSTALL_LIBDIR=/opt/FreeCAD/lib64 -DLIB_SUFFIX=64 -DCMAKE_INSTALL_LIBEXECDIR=/opt/FreeCAD/libexec \
+		      -DCMAKE_INSTALL_PREFIX=/usr/lib64/FreeCAD \
+#                       -DCMAKE_INSTALL_PREFIX=/usr \
+# 		      -DCMAKE_INSTALL_DATADIR=/opt/FreeCAD/share \
+# 		      -DRESOURCEDIR=/opt/FreeCAD/share \
+		      -DCMAKE_INSTALL_INCLUDEDIR=/usr/include \
                       -DBUILD_SHARED_LIBS=ON \
 		      -DFREECAD_QT_MAJOR_VERSION=6 -DQT_DEFAULT_MAJOR_VERSION=6 -DBUILD_FEM=OFF -DBUILD_WEB=OFF -DENABLE_DEVELOPER_TESTS=OFF \
 		      -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
@@ -36,4 +41,8 @@ pushd ${BUILD_DIRECTORY}/FreeCAD
         popd
         rm -f ${SYSROOT_DIR}/usr/lib64/*.la
 popd
+
+ln -rs /usr/lib64/FreeCAD/bin/FreeCAD ${SYSROOT_DIR}/bin/
+ln -rs /usr/lib64/FreeCAD/bin/FreeCADCmd ${SYSROOT_DIR}/bin/
+
 rm -rf ${BUILD_DIRECTORY}/FreeCAD

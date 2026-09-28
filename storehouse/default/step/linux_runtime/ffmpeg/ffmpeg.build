@@ -10,6 +10,8 @@ export FFMPEG_ARCH=$(archname_to_anyparm "$(get_user_set_env target "x86_64")" "
                 --enable-nonfree     \
                 --disable-static     \
                 --enable-shared      \
+#                 --enable-static     \
+#                 --disable-shared      \
                 --disable-debug      \
                 --enable-libass      \
                 --enable-libfdk-aac  \

@@ -1,0 +1,111 @@
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
+    mkdir -p build
+    pushd build
+        CC="${CROSS_TARGET}-gcc" CXX="${CROSS_TARGET}-g++" \
+        cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=${COMMON_DIR}/cmake-cross.cmake \
+	      -DKDE_INSTALL_USE_QT_SYS_PATHS:BOOL=ON \
+	      -DKDE_INSTALL_QMLDIR=/usr/lib${LIB_SUFF}/qt6/qml \
+	      -DKDE_INSTALL_PLUGINDIR=/usr/lib${LIB_SUFF}/qt6/plugins \
+	      -DKDE_INSTALL_QTPLUGINDIR=/usr/lib${LIB_SUFF}/qt6/plugins \
+	      -DKDE_INSTALL_QTMETATYPESDIR=/usr/lib${LIB_SUFF}/qt6/metatypes \
+#               -DCMAKE_UNAME=${CROSSTOOLS_DIR}/bin/cross-uname \
+#               -DPKG_CONFIG_EXECUTABLE=${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-pkg-config \
+	      -DCMAKE_INSTALL_LIBDIR=/usr/lib64 \
+              -DENABLE_JOURNALD:BOOL=ON \
+#               -DQT_IMPORTS_DIR=/usr/lib64/qml \
+#               -DSESSION_COMMAND:PATH=/etc/plasmalogin/Xsession \
+#               -DWAYLAND_SESSION_COMMAND:PATH=/etc/plasmalogin/wayland-session \
+	      -DSYSTEMD_SYSTEM_UNIT_DIR=/usr/lib/systemd/system \
+	      -DSYSTEMD_SYSUSERS_DIR=/usr/lib/sysusers.d \
+	      -DSYSTEMD_TMPFILES_DIR=/usr/lib/tmpfiles.d \
+	      -DRUNTIME_DIR=/run/plasmalogin \
+	      -DDATA_INSTALL_DIR=/usr/share/plasmalogin \
+# 	      -DDBUS_CONFIG_FILENAME=sddm_org.freedesktop.DisplayManager.conf \
+              -DCMAKE_INSTALL_PREFIX=/usr \
+	      -DBUILD_WITH_QT6=ON \
+	      -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
+	      -DINSTALL_PAM_CONFIGURATION:BOOL=OFF \
+	      ..
+        <<<MAKE_AND_INSTALL>>>
+    popd
+#     mkdir -p ${SYSROOT_DIR}/etc/plasmalogin
+#     cp -av ${SYSROOT_DIR}/usr/share/plasmalogin/scripts/* ${SYSROOT_DIR}/etc/plasmalogin/
+    install -v -dm755 ${SYSROOT_DIR}/var/lib/plasmalogin
+    install -v -dm755 ${SYSROOT_DIR}/var/run/plasmalogin
+    chmod a+rw ${SYSROOT_DIR}/var/lib/plasmalogin \
+               ${SYSROOT_DIR}/var/run/plasmalogin
+<<<CLEAR_DIR>>>
+
+cat > ${SYSROOT_DIR}/etc/pam.d/plasmalogin << "EOF"
+#%PAM-1.0
+
+auth        include     system-auth
+-auth       optional    pam_gnome_keyring.so
+-auth       optional    pam_kwallet5.so
+
+account     include     system-account
+
+password    include     system-password
+-password   optional    pam_gnome_keyring.so    use_authtok
+
+session     optional    pam_keyinit.so          force revoke
+session     include     system-session
+-session    optional    pam_gnome_keyring.so    auto_start
+-session    optional    pam_kwallet5.so         auto_start
+EOF
+
+cat > ${SYSROOT_DIR}/etc/pam.d/plasmalogin-greeter << "EOF"
+#%PAM-1.0
+
+## Load environment from /etc/environment and ~/.pam_environment
+auth            required pam_env.so
+
+## Always let the greeter start without authentication
+auth            required pam_permit.so
+
+## No action required for account management
+account         required pam_permit.so
+
+## Can't change password
+password        required pam_deny.so
+
+## Setup session
+session         required pam_unix.so
+session         optional pam_systemd.so
+EOF
+
+cat > ${SYSROOT_DIR}/etc/pam.d/plasmalogin-autologin << "EOF"
+#%PAM-1.0
+auth        required    pam_env.so
+auth        required    pam_faillock.so preauth
+auth        required    pam_shells.so
+auth        required    pam_nologin.so
+auth        required    pam_permit.so
+-auth       optional    pam_gnome_keyring.so
+-auth       optional    pam_kwallet5.so
+account     required    pam_unix.so
+password    required    pam_deny.so
+session     required    pam_unix.so
+session     optional    pam_systemd.so
+-session    optional    pam_gnome_keyring.so auto_start
+-session    optional    pam_kwallet5.so auto_start
+EOF
+
+# cat > ${SYSROOT_DIR}/etc/plasmalogin.conf << "EOF"
+# [General]
+# InputMethod=
+# Numlock=on
+# EOF
+
+# mkdir -p ${SYSROOT_DIR}/etc/plasmalogin.conf.d/
+# cat > ${SYSROOT_DIR}/etc/plasmalogin.conf.d/default_settings.conf << EOF
+# [Theme]
+# Current=breeze
+# CursorTheme=breeze_cursors
+# Font=Noto Sans,10,-1,0,50,0,0,0,0,0
+# EOF
+
+set_strip_step "/usr/bin/"
+set_strip_step "/usr/libexec/"
+

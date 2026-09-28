@@ -90,3 +90,11 @@ do
 	fi
 done
 
+for fix_file in $(grep -rl "INTERFACE_SOURCES " $(find ${SYSROOT_DIR}/usr/lib64/cmake/ -name "*.cmake") ${TEMP_DIRECTORY}/strip-foo ) ${TEMP_DIRECTORY}/strip-foo
+do
+	if [ -f ${fix_file} ]; then
+		sed -i.orig -e "/INTERFACE_SOURCES /s@ \"/usr@ \"${SYSROOT_DIR}/usr@g" \
+			${fix_file}
+	fi
+done
+

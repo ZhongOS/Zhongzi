@@ -1,8 +1,9 @@
 <<<TAR_UNCOMPRESS>>>
-    ./configure ${COMMON_CONFIG} --enable-securedir=/usr/lib64/security --disable-doc \
+    ./configure ${COMMON_CONFIG} --enable-securedir=/usr/lib${LIB_SUFF}/security --disable-doc \
                 ac_cv_func_yp_get_default_domain=no
     <<<MAKE_AND_INSTALL>>>
     chmod -v 4755 ${LINUX_SYSROOT_DIR}/usr/sbin/unix_chkpwd
+    rm ${LINUX_SYSROOT_DIR}/usr/lib${LIB_SUFF}/security/*.la
 
 mkdir -pv ${LINUX_SYSROOT_DIR}/etc/pam.d
 

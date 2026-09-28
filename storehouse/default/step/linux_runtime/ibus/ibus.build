@@ -1,5 +1,6 @@
 <<<TAR_UNCOMPRESS>>>
     <<<PATCH>>>
+    sed '/docs/d;/GTK_DOC/d' -i Makefile.am configure.ac
     autoreconf -ifv
     for config_i in $(find -name "config.sub")
     do

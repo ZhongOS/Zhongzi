@@ -43,6 +43,7 @@
                       -DCMAKE_INSTALL_LIBDIR=/usr/lib64 -DLIB_SUFFIX=64 \
                       -DCMAKE_INSTALL_PREFIX=/usr \
                       -DBUILD_SHARED_LIBS=ON \
+		      -DSKIP_GLSLANG_INSTALL=ON -DSKIP_SPIRV_TOOLS_INSTALL=ON -DSKIP_GOOGLETEST_INSTALL=ON \
 		      -DSHADERC_SKIP_TESTS=ON -Wno-dev ..
                 <<<MAKE_AND_INSTALL>>>
         popd

@@ -2,7 +2,7 @@
         <<<PATCH>>>
         mkdir cross-build
         pushd cross-build
-                meson ${MESON_CONFIG} --default-library=both -Dtests=false -Dman=true -Dselinux=disabled -Dintrospection=disabled \
+                meson ${MESON_CONFIG} --default-library=both -Dtests=false -Dman=true -Dselinux=disabled -Dintrospection=disabled -Dman-pages=disabled \
                       ..
                 <<<NINJA_AND_INSTALL>>>
         popd

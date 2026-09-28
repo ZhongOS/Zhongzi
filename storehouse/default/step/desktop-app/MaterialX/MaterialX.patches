@@ -1,4 +1,5 @@
-
+p1 materialx-gnuinstalldirs.patch
+p1 materialx-fix-install-paths.patch
 
 [[[1.39.3]]]
 p1 0001-MaterialX-1.38.9-remove-doc-file-to-doc-dir.patch

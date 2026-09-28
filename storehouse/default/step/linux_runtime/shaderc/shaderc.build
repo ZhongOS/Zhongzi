@@ -1,17 +1,17 @@
 <<<TAR_UNCOMPRESS>>>
-	tar xvf ${DOWNLOADDIR}/SPIRV-Tools-$(get_package_version "SPIRV-Tools").tar.gz -C third_party/
-	mv third_party/SPIRV-Tools-$(get_package_version "SPIRV-Tools") third_party/spirv-tools
+	tar xvf ${DOWNLOADDIR}/SPIRV-Tools-$(get_package_version "${LINUX_HOST}_SPIRV-Tools").tar.gz -C third_party/
+	mv third_party/SPIRV-Tools-$(get_package_version "${LINUX_HOST}_SPIRV-Tools") third_party/spirv-tools
 	
 # 	tar xvf ${RESOURCEDIR}/files/glslang-15.1.0.tar.gz -C third_party/
 # 	mv third_party/glslang-15.1.0 third_party/glslang
-	tar xvf ${DOWNLOADDIR}/glslang-$(get_package_version "glslang").tar.gz -C third_party/
-	mv third_party/glslang-$(get_package_version "glslang") third_party/glslang
+	tar xvf ${DOWNLOADDIR}/glslang-$(get_package_version "${LINUX_HOST}_glslang").tar.gz -C third_party/
+	mv third_party/glslang-$(get_package_version "${LINUX_HOST}_glslang") third_party/glslang
 
 
 # 	tar xvf ${DOWNLOADDIR}/SPIRV-Headers-$(get_package_version "SPIRV-Headers").tar.gz -C third_party/spirv-tools/external/
 # 	mv third_party/spirv-tools/external/SPIRV-Headers-$(get_package_version "SPIRV-Headers") third_party/spirv-tools/external/spirv-headers
-	tar xvf ${DOWNLOADDIR}/SPIRV-Headers-$(get_package_version "SPIRV-Headers").tar.gz -C third_party/spirv-tools/external/
-	mv third_party/spirv-tools/external/SPIRV-Headers-$(get_package_version "SPIRV-Headers") third_party/spirv-tools/external/spirv-headers
+	tar xvf ${DOWNLOADDIR}/SPIRV-Headers-$(get_package_version "${LINUX_HOST}_SPIRV-Headers").tar.gz -C third_party/spirv-tools/external/
+	mv third_party/spirv-tools/external/SPIRV-Headers-$(get_package_version "${LINUX_HOST}_SPIRV-Headers") third_party/spirv-tools/external/spirv-headers
 
 
         <<<PATCH>>>
@@ -21,6 +21,7 @@
                 cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release \
                       -DCMAKE_INSTALL_LIBDIR=/usr/lib${LIB_SUFF} \
                       -DCMAKE_TOOLCHAIN_FILE=${COMMON_DIR}/cmake-cross-${TAG_NAME}.cmake \
+		      -DSKIP_GLSLANG_INSTALL=ON -DSKIP_SPIRV_TOOLS_INSTALL=ON -DSKIP_GOOGLETEST_INSTALL=ON \
                       -DCMAKE_INSTALL_PREFIX=/usr -DSHADERC_SKIP_TESTS=ON -Wno-dev ..
                 <<<MAKE_AND_INSTALL>>>
         popd

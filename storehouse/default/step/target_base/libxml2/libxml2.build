@@ -8,10 +8,11 @@
         if [ ! -f configure ]; then
                 autoreconf -ifv
         fi
+# 在Linux系统中libxm2无需依赖ICU，可以--without-icu。Windows系统中可能需要启用ICU。
 	if [ -f ${SYSROOT_DIR}/usr/bin/python3 ]; then
-	        ./configure ${COMMON_CONFIG} --with-history --with-icu --with-http --with-python=yes --with-python_install_dir=/usr/lib${LIB_SUFF}/python<<<PYTHON_VERSION>>>/site-packages PYTHON=${CROSS_TARGET}-python3
+	        ./configure ${COMMON_CONFIG} --with-history --without-icu --with-http --with-python=yes --with-python_install_dir=/usr/lib${LIB_SUFF}/python<<<PYTHON_VERSION>>>/site-packages PYTHON=${CROSS_TARGET}-python3
 	else
-		./configure ${COMMON_CONFIG} --with-history --with-icu --with-http --with-python=no
+		./configure ${COMMON_CONFIG} --with-history --without-icu --with-http --with-python=no
 	fi
 #         CC="${CROSS_TARGET}-gcc" CXX="${CROSS_TARGET}-g++" <<<MAKE>>>
 #         make DESTDIR=${SYSROOT_DIR} install

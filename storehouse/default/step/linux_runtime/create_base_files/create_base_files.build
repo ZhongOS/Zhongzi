@@ -40,16 +40,33 @@ set_strip_step "${RUNTIME_SYSROOT_DIR}/usr/lib${LIB_SUFF}/" "0" "*.a" "--strip-d
 set_strip_step "${RUNTIME_SYSROOT_DIR}/usr/lib${LIB_SUFF}/" "0" "*.so*" "--strip-unneeded" "${CROSS_TOOLS_PREFIX}/bin/${LINUX_HOST}-strip"
 set_strip_step "${RUNTIME_SYSROOT_DIR}/usr/lib/systemd/" "0" "*" "--strip-all" "${CROSS_TOOLS_PREFIX}/bin/${LINUX_HOST}-strip"
 set_strip_step "${RUNTIME_SYSROOT_DIR}/usr/lib/udev/" "0" "*" "--strip-all" "${CROSS_TOOLS_PREFIX}/bin/${LINUX_HOST}-strip"
+set_strip_step "${RUNTIME_SYSROOT_DIR}/usr/lib${LIB_SUFF}/security/" "0" "*.so" "--strip-unneeded" "${CROSS_TOOLS_PREFIX}/bin/${LINUX_HOST}-strip"
 
 
 set_split_conf "devel" "${RUNTIME_SYSROOT_DIR}/usr/include"
 set_split_conf "devel" "${RUNTIME_SYSROOT_DIR}/usr/lib${LIB_SUFF}" "*.a"
 set_split_conf "devel" "${RUNTIME_SYSROOT_DIR}/usr/lib${LIB_SUFF}/pkgconfig"
 set_split_conf "devel" "${RUNTIME_SYSROOT_DIR}/usr/share/pkgconfig"
+# 
+set_split_conf "devel" "${RUNTIME_SYSROOT_DIR}/usr/lib${LIB_SUFF}/gcc"
+set_split_conf "devel" "${RUNTIME_SYSROOT_DIR}/usr/libexec/gcc"
+set_split_conf "devel" "${RUNTIME_SYSROOT_DIR}/usr/lib${LIB_SUFF}" "libclang*"
+set_split_conf "devel" "${RUNTIME_SYSROOT_DIR}/usr/lib${LIB_SUFF}/clang"
+set_split_conf "devel" "${RUNTIME_SYSROOT_DIR}/usr/lib/linux"
+set_split_conf "devel" "${RUNTIME_SYSROOT_DIR}/usr/lib${LIB_SUFF}/gstreamer-1.0/" "*.a"
+set_split_conf "devel" "${RUNTIME_SYSROOT_DIR}/usr/lib${LIB_SUFF}/cmake"
+set_split_conf "devel" "${RUNTIME_SYSROOT_DIR}/usr/lib${LIB_SUFF}/clc"
 
 set_split_conf "docs" "${RUNTIME_SYSROOT_DIR}/usr/share/doc"
 set_split_conf "docs" "${RUNTIME_SYSROOT_DIR}/usr/share/man"
 set_split_conf "docs" "${RUNTIME_SYSROOT_DIR}/usr/share/gtk-doc/html/"
+# 
+set_split_conf "docs" "${RUNTIME_SYSROOT_DIR}/usr/share/info"
+set_split_conf "docs" "${RUNTIME_SYSROOT_DIR}/usr/share/locale"
 
 set_split_conf "bins" "${RUNTIME_SYSROOT_DIR}/usr/bin"
 set_split_conf "bins" "${RUNTIME_SYSROOT_DIR}/usr/sbin"
+# 
+set_split_conf "bins" "${RUNTIME_SYSROOT_DIR}/usr/lib/systemd/"
+set_split_conf "bins" "${RUNTIME_SYSROOT_DIR}/usr/lib/udev/"
+set_split_conf "bins" "${RUNTIME_SYSROOT_DIR}/usr/lib/oss/"

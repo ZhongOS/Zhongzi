@@ -1,1 +1,2 @@
-EXTRA_PARM=--with-history --with-icu --without-python
+# EXTRA_PARM=--with-history --with-icu --without-python
+EXTRA_PARM=--with-history --without-icu --without-python

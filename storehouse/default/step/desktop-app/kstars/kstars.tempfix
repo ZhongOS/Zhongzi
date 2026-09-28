@@ -44,4 +44,3 @@ do
                 sed -i.orig "s@\"/usr/include@\"${SYSROOT_DIR}/usr/include@g" ${kf5_file}
         fi
 done
-

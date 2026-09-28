@@ -7,7 +7,7 @@
 #               -DCMAKE_UNAME=${CROSSTOOLS_DIR}/bin/cross-uname \
 #               -DPKG_CONFIG_EXECUTABLE=${CROSSTOOLS_DIR}/bin/${CROSS_TARGET}-pkg-config \
               -DENABLE_JOURNALD:BOOL=ON \
-              -DQT_IMPORTS_DIR=/usr/lib64/qml \
+#               -DQT_IMPORTS_DIR=/usr/lib64/qml \
               -DSESSION_COMMAND:PATH=/etc/sddm/Xsession \
               -DWAYLAND_SESSION_COMMAND:PATH=/etc/sddm/wayland-session \
 	      -DSYSTEMD_SYSTEM_UNIT_DIR=/usr/lib/systemd/system \

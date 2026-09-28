@@ -221,7 +221,8 @@ NULL@cross-toolchains|opt
 
 # 构建linux_runtime的工具链和基础库
 NULL@linux_runtime|opt
-make_directory@linux_runtime:core|opt;linux_runtime,chromium,wine;%target=?x86_64;%OVERLAY=x86_64_runtime;%PARENT=sysroot
+# make_directory@linux_runtime:core|opt;linux_runtime,chromium,wine;%target=?x86_64;%OVERLAY=x86_64_runtime;%PARENT=sysroot
+make_directory@linux_runtime:core|opt;linux_runtime,chromium,wine;%target=?x86_64;%OVERLAY=x86_64_runtime
 NULL@cross-toolchains|opt
 @cross-toolchains:pre-tools|opt;linux_runtime,chromium,wine;%target=?x86_64
 NULL@linux_runtime|opt
@@ -240,7 +241,8 @@ NULL@linux_runtime|opt
 NULL@linux_runtime|opt
 
 # 构建i686的工具链和基础库
-make_directory@linux_runtime:core|opt;i686_runtime,wine32;%target=i686;%OVERLAY=i686_runtime;%PARENT=sysroot
+# make_directory@linux_runtime:core|opt;i686_runtime,wine32;%target=i686;%OVERLAY=i686_runtime;%PARENT=sysroot
+make_directory@linux_runtime:core|opt;i686_runtime,wine32;%target=i686;%OVERLAY=i686_runtime
 NULL@cross-toolchains|opt
 @cross-toolchains:pre-tools|opt;wine32;%target=i686
 NULL@linux_runtime|opt;i686_runtime

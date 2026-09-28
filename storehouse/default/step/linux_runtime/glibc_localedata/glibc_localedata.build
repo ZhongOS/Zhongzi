@@ -1,5 +1,14 @@
 <<<TAR_UNCOMPRESS>>>
 	<<<PATCH>>>
+echo "
+SUPPORTED-LOCALES=\\
+C.UTF-8/UTF-8 \\
+C/ISO-8859-1 \\
+zh_CN.GB18030/GB18030 \\
+zh_CN.GBK/GBK \\
+zh_CN.UTF-8/UTF-8 \\
+zh_CN/GB2312 \\" > localedata/SUPPORTED
+
         mkdir -p build-locale
         pushd build-locale
 		export LDFLAGS=""
@@ -11,5 +20,10 @@
                          --disable-werror libc_cv_slibdir=/usr/lib${LIB_SUFF}
                 <<<MAKE>>>
 		patchelf --remove-rpath elf/ld.so
+# 		locale/localedef -i C -f UTF-8 C.UTF-8
+# 		locale/localedef -i en_US -f ISO-8859-1 en_US
+# 		locale/localedef -i en_US -f UTF-8 en_US.UTF-8
+# 		locale/localedef -i zh_CN -f GB18030 zh_CN.GB18030
+# 		locale/localedef -i zh_CN -f UTF-8 zh_CN.UTF-8
                 <<<MAKE>>> DESTDIR=${LINUX_SYSROOT_DIR} localedata/install-locales
 <<<CLEAR_DIR>>>

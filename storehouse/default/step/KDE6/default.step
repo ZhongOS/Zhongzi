@@ -143,7 +143,6 @@ KDE6-messagelib
 KDE6-akonadi-calendar
 KDE6-kontactinterface
 # KDE6-akonadi-notes
-# KDE6-akonadi-search
 KDE6-calendarsupport
 # KDE6-pimcommon
 kdiagram
@@ -241,7 +240,8 @@ KDE6-wacomtablet
 fcitx5-configtool
 
 KDE6-plasma-welcome
-oxygen-icons
+# oxygen-icons
+KDE6-oxygen-icons
 
 libfakekey
 KDE6-kdeconnect-kde
@@ -266,7 +266,7 @@ KDE6-kturtle
 
 KDE6-keysmith
 KDE6-krecorder
-KDE6-kweather|bad
+# KDE6-kweather|bad
 # freerdp|bad
 KDE6-krdc|bad
 # KDE6-step
@@ -275,5 +275,32 @@ KDE6-kdevelop
 KDE6-kpmcore
 KDE6-partitionmanager
 NULL
+
+KDE6-plasma-login-manager
+NULL
+
+KDE6-plasma-camera
+KDE6-plasma-phonebook
+KDE6-plasma-settings
+
+KDE6-plasma-keyboard
+KDE6-plasma-setup
+KDE6-plasma-dialer
+KDE6-pacebar
+KDE6-union
+KDE6-krdp
+
+KDE6-accessibility-inspector
+KDE6-audex
+KDE6-francis
+KDE6-kalm
+KDE6-kdominate
+KDE6-keepsecret
+KDE6-kunifiedpush
+KDE6-kweathercore
+KDE6-kweather
+KDE6-massif-visualizer
+KDE6-skladnik
+
 create_files
 final_run

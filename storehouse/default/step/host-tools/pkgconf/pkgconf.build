@@ -7,7 +7,7 @@
         if [ ! -f configure ]; then
                 autoreconf -ifv
         fi
-        ./configure --prefix=${PREFIX}
+        ./configure --prefix=${PREFIX} --libdir=${PREFIX}/lib${LIB_SUFF}
         <<<MAKE_AND_INSTALL>>>
 #	mkdir -p ${CROSSTOOLS_DIR}/tmp/bin
 #        cp -f ${CROSSTOOLS_DIR}/bin/pkgconf ${CROSSTOOLS_DIR}/tmp/bin/${CROSS_TARGET}-pkg-config

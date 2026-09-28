@@ -5,6 +5,11 @@
 		export _PYTHON_HOST_PLATFORM=linux-loongarch64 _PYTHON_SYSCONFIGDATA_NAME=_sysconfigdata__linux_${CROSS_TARGET}
 		CC="${CROSS_TARGET}-gcc" CXX="${CROSS_TARGET}-g++" \
 		cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=${COMMON_DIR}/cmake-cross.cmake \
+		      -DKDE_INSTALL_USE_QT_SYS_PATHS:BOOL=ON \
+		      -DKDE_INSTALL_QMLDIR=/usr/lib${LIB_SUFF}/qt6/qml \
+		      -DKDE_INSTALL_PLUGINDIR=/usr/lib${LIB_SUFF}/qt6/plugins \
+		      -DKDE_INSTALL_QTPLUGINDIR=/usr/lib${LIB_SUFF}/qt6/plugins \
+		      -DKDE_INSTALL_QTMETATYPESDIR=/usr/lib${LIB_SUFF}/qt6/metatypes \
 		      -DPython_EXECUTABLE=${HOST_TOOLS_DIR}/bin/python3 \
 		      -DPython3_EXECUTABLE=${HOST_TOOLS_DIR}/bin/python3 \
 		      -DCMAKE_INSTALL_LIBDIR=/usr/lib64 -DLIB_SUFFIX=64 -DCMAKE_INSTALL_LIBEXECDIR=/usr/libexec \

@@ -64,7 +64,6 @@ volk
 Vulkan-Loader
 Vulkan-Tools
 llvm-project
-clang|bad
 OpenCL-Headers
 SPIRV-Headers
 SPIRV-Tools
@@ -74,13 +73,14 @@ lua
 openssl
 libarchive
 libva
+systemd_pre
 mesa
 glu
 fontconfig
 libcap
 util-linux
 gperf
-systemd_pre
+# systemd_pre
 dbus
 libaio
 libsepol
@@ -188,6 +188,7 @@ libdvbpsi
 faad2
 ffmpeg
 iso-codes
+glslang
 shaderc
 gst-plugins-base
 gst-plugins-good
@@ -197,21 +198,21 @@ gstreamer-vaapi|deprecated
 gst-plugins-ugly
 boost
 openldap
-p7zip
-coreutils
-bash
+p7zip|tools
+coreutils|tools
+bash|tools
 pcre
 libseccomp
 libunwind
 libbpf
 fmt
-MangoHud
+MangoHud|tools
 pciutils
 pipewire
 # fmt
 json
 Catch2
-llvm_runtimes
+llvm_runtimes|devel
 glfw
 SDL3
 psmisc
