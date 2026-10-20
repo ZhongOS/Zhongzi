@@ -1,1 +1,2 @@
 p1 0001-glibc-add-C.UTF-8-to-localedata.patch
+p1 0001-glibc-2.44-Support-pointer-guard-on-LoongArch32.patch
