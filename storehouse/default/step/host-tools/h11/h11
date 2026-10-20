@@ -1,0 +1,2 @@
+PACKAGE=h11
+BUILD_MODE=pip

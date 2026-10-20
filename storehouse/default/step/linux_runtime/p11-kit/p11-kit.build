@@ -13,7 +13,9 @@ cat >> trust/trust-extract-compat << "EOF"
 EOF
         mkdir cross-build
         pushd cross-build
-                meson ${MESON_CONFIG} -Dtrust_paths=/etc/pki/anchors -Dbashcompdir=/usr/share/bash-completion/completions \
+#                 meson ${MESON_CONFIG} -Dtrust_paths=/etc/pki/anchors -Dbashcompdir=/usr/share/bash-completion/completions \
+# 在 trust_paths 中增加 /etc/ssl/certs/ca-certificates.crt 文件提供兼容性。
+                meson ${MESON_CONFIG} -Dtrust_paths=/etc/pki/anchors:/etc/ssl/certs/ca-certificates.crt -Dbashcompdir=/usr/share/bash-completion/completions \
                       ..
                 <<<NINJA_AND_INSTALL>>>
         popd

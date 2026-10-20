@@ -1,4 +1,5 @@
 <<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
     sed -i 's#@CUPS_HTMLVIEW@#firefox#' desktop/cups.desktop.in
     ./configure ${COMMON_CONFIG} --with-rcdir=/tmp/cupsinit \
 # 避免安装时进行strip操作，主要是防止误用strip代替${CROSS_TARGET}-strip进行了处理导致命令文件和库文件损坏。

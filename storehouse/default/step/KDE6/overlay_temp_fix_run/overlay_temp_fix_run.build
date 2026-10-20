@@ -38,31 +38,31 @@ do
 done
 
 
-
-for kf6_file in $(grep -rl "\.so\." $(find ${SYSROOT_DIR}/usr/lib64/cmake/ -name "*-release.cmake") ${TEMP_DIRECTORY}/strip-foo ) \
+for kf6_file in $(grep -rl "\.so\." $(find ${SYSROOT_DIR}/usr/lib64/cmake/ ${SYSROOT_DIR}/usr/share/cmake/ -name "*-release.cmake") ${TEMP_DIRECTORY}/strip-foo ) \
+		$(grep -rl "\.a\"" $(find ${SYSROOT_DIR}/usr/lib64/cmake/ ${SYSROOT_DIR}/usr/share/cmake/ -name "*-release.cmake") ${TEMP_DIRECTORY}/strip-foo) \
 		${SYSROOT_DIR}/usr/lib64/cmake/Qca-qt6/Qca-qt6Targets.cmake \
 		${SYSROOT_DIR}/usr/lib64/cmake/PolkitQt6-1/PolkitQt6-1Targets.cmake \
-		${SYSROOT_DIR}/usr/lib64/cmake/utf8_range/utf8_range-targets-release.cmake \
+# 		${SYSROOT_DIR}/usr/lib64/cmake/utf8_range/utf8_range-targets-release.cmake \
 		${SYSROOT_DIR}/usr/lib64/cmake/Gpgmepp/GpgmeppConfig.cmake \
 		${SYSROOT_DIR}/usr/lib64/cmake/QGpgmeQt6/QGpgmeQt6Config.cmake \
 		${SYSROOT_DIR}/usr/lib64/cmake/xapian/xapian-config.cmake \
-		${SYSROOT_DIR}/usr/share/cmake/opentime/OpenTimeTargets-release.cmake \
-		${SYSROOT_DIR}/usr/share/cmake/opentimelineio/OpenTimelineIOTargets-release.cmake \
+# 		${SYSROOT_DIR}/usr/share/cmake/opentime/OpenTimeTargets-release.cmake \
+# 		${SYSROOT_DIR}/usr/share/cmake/opentimelineio/OpenTimelineIOTargets-release.cmake \
+# 		${SYSROOT_DIR}/usr/lib64/cmake/Imath/ImathTargets-release.cmake \
                 ${SYSROOT_DIR}/usr/lib64/cmake/PySide6/PySide6Targets.cmake \
-		${SYSROOT_DIR}/usr/lib64/cmake/PySide6/PySide6Config.abi3.cmake \
-		${SYSROOT_DIR}/usr/lib64/cmake/Imath/ImathTargets-release.cmake
+		${SYSROOT_DIR}/usr/lib64/cmake/PySide6/PySide6Config.abi3.cmake
 do
 	if [ -f ${kf6_file} ]; then
 		sed -i.orig "s@\"/usr@\"${SYSROOT_DIR}/usr@g" ${kf6_file}
 	fi
 done
 
-for kf6_file in $(grep -rl "\.a\"" $(find ${SYSROOT_DIR}/usr/lib64/cmake/ -name "*-release.cmake") ${TEMP_DIRECTORY}/strip-foo)
-do
-	if [ -f ${kf6_file} ]; then
-		sed -i.orig "s@\"/usr@\"${SYSROOT_DIR}/usr@g" ${kf6_file}
-	fi
-done
+# for kf6_file in $(grep -rl "\.a\"" $(find ${SYSROOT_DIR}/usr/lib64/cmake/ -name "*-release.cmake") ${TEMP_DIRECTORY}/strip-foo)
+# do
+# 	if [ -f ${kf6_file} ]; then
+# 		sed -i.orig "s@\"/usr@\"${SYSROOT_DIR}/usr@g" ${kf6_file}
+# 	fi
+# done
 
 
 for kf6_file in $(grep -rl "_IMPORT_PREFIX \"/usr\"" $(find ${SYSROOT_DIR}/usr/lib64/cmake/ -name "*.cmake") $(find ${SYSROOT_DIR}/usr/share/cmake/ -name "*.cmake") ${TEMP_DIRECTORY}/strip-foo ) ${TEMP_DIRECTORY}/strip-foo

@@ -1,0 +1,2 @@
+PACKAGE=httpx
+BUILD_MODE=pip

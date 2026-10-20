@@ -1,5 +1,28 @@
 <<<TAR_UNCOMPRESS>>>
     <<<PATCH>>>
+    mkdir cross-build
+    pushd cross-build
+        meson ${MESON_CONFIG} \
+              -Dxkb_output_dir=/var/lib/xkb -Dxkb_bin_dir=/usr/bin -Dxkb_dir=/usr/share/X11/xkb \
+	      -Dfontrootdir=/usr/share/fonts/X11 \
+	      -Dglamor=true -Dsuid_wrapper=true \
+              ..
+#    ./configure ${COMMON_CONFIG} --enable-glamor \
+#            --enable-suid-wrapper --disable-selective-werror \
+# 	    --with-fontrootdir=/usr/share/fonts/X11
+    <<<NINJA_AND_INSTALL>>>
+
+    cp -v ${SYSROOT_DIR}/usr/share/aclocal/xorg-server.m4 ${HOST_TOOLS_DIR}/share/aclocal/
+cat >> ${SYSROOT_DIR}/etc/sysconfig/createfiles << "EOF"
+/tmp/.ICE-unix dir 1777 root root
+/tmp/.X11-unix dir 1777 root root
+EOF
+<<<CLEAR_DIR>>>
+
+
+[[[21.1.9]]]
+<<<TAR_UNCOMPRESS>>>
+    <<<PATCH>>>
     ./configure ${COMMON_CONFIG} --enable-glamor \
             --enable-suid-wrapper --disable-selective-werror \
             --with-xkb-output=/var/lib/xkb \

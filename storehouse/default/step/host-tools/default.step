@@ -17,7 +17,7 @@ Cython
 glslang
 # pycairo
 lxml
-sip4
+sip4|bad
 wheel
 Markdown
 toml
@@ -76,9 +76,19 @@ referencing
 setuptools-rust
 typing-extensions
 semantic-version
-# maturin|opt
+
+puccinialin|opt
+filelock|opt
+httpx|opt
+httpcore|opt
+h11|opt
+truststore|opt
+tqdm|opt
+maturin|opt
 # rpds-py|opt
 poetry-core|opt
+uv|opt
+uv-build|opt
 dnspython|opt
 nasm
 ply|opt

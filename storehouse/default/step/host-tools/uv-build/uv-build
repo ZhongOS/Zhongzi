@@ -1,0 +1,2 @@
+PACKAGE=uv-build
+BUILD_MODE=pip

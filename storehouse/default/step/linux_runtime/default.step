@@ -10,6 +10,7 @@ readline
 bzip2
 pcre2
 libffi
+libunwind
 glib
 freetype
 # harfbuzz
@@ -127,8 +128,6 @@ sane-backends
 pcsc-lite
 # libcapi20-3|deprecated
 alsa-lib
-oss4
-alsa-oss
 glibc_localedata
 ocl-icd
 unixODBC
@@ -170,6 +169,8 @@ libepoxy
 libXdamage
 gtk2
 gtk3
+# oss4|nouse
+# alsa-oss|nouse
 gstreamer
 opus
 libmpeg2
@@ -203,7 +204,7 @@ coreutils|tools
 bash|tools
 pcre
 libseccomp
-libunwind
+# libunwind
 libbpf
 fmt
 MangoHud|tools
@@ -219,6 +220,7 @@ psmisc
 libdaemon
 avahi
 ibus
+libgcrypt
 fix_sysroot|none_status
 create_base_files
 dist_sysroot

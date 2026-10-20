@@ -57,7 +57,7 @@
 	LDFLAGS="${STATIC_STR}" \
         ../configure --prefix=${CROSS_TOOLCHAIN_PREFIX}/cross-tools --build=${CROSS_HOST} --host=${COMPAT_HOST} --target=${COMPAT_TARGET} \
                      --with-sysroot=${CROSS_TOOLCHAIN_PREFIX}/cross-tools/target --enable-nls \
-		     --enable-targets=all \
+# 		     --enable-targets=all \
                      --enable-64-bit-bfd --disable-shared --disable-gprofng --disable-werror
 #        <<<MAKE>>> configure-host LIBS="$([[ $(gcc -dumpversion | cut -d. -f1) -ge 13 ]] && echo "${LIBS}" || echo "${LIBS} -lzstd -lpthread")"
         <<<MAKE>>> configure-host LIBS="${LIBS} -lzstd -lpthread"

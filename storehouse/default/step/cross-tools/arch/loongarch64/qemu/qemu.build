@@ -3,6 +3,7 @@
     sed -i "/HAVE_OPENAT2_H/d" meson.build
     mkdir -p build
     pushd build
+	export CFLAGS="-O2" CXXFLAGS="-O2"
 #        CFLAGS="-Wno-error=unused-function" \
 	../configure --prefix=${PREFIX} \
 		     --target-list=${YONGBAO_TARGET_ARCH}-linux-user \

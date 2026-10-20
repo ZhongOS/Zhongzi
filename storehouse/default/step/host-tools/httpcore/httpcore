@@ -1,0 +1,2 @@
+PACKAGE=httpcore
+BUILD_MODE=pip

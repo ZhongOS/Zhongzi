@@ -109,8 +109,8 @@ ocaml@cross-tools|opt+ocaml
 rust-bindgen@host-tools|opt
 cargo-c@host-tools|opt
 # for rpds-py
-puccinialin@host-tools|opt
-maturin@host-tools|opt
+# puccinialin@host-tools|opt
+# maturin@host-tools|opt
 # for firefox
 rpds-py@host-tools|opt
 cbindgen@host-tools|opt
@@ -121,7 +121,7 @@ Python3_13@host-tools|opt
 expect@host-tools|opt
 dejagnu@host-tools|opt
 ruby3@host-tools|opt
-truststore@host-tools|opt
+# truststore@host-tools|opt
 
 @base_support|opt
 blfs-systemd-units@target_base
